@@ -115,6 +115,13 @@ main{padding-top:52px}
 .card{display:grid;grid-template-columns:230px minmax(0,1fr) 190px;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
 .photo{display:block;position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1/1;max-width:100%;background:var(--surface-2)}
 .photo svg{display:block;width:100%;height:100%}
+.photo img,.banner img,.mrow .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--surface-2)}
+.mrow .th{position:relative;overflow:hidden}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.gallery a{display:block;aspect-ratio:4/3;border-radius:7px;overflow:hidden;background:var(--surface-2)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery h3{grid-column:1/-1;font-size:15px;font-weight:600;color:var(--muted);margin-top:4px}
+.ph-src{font-size:12.5px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
 .photo .heart{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:var(--surface);color:var(--fg);display:grid;place-items:center;font-size:17px;line-height:1}
 .photo .heart[aria-pressed="true"]{color:#d4294b}
 .photo .tag{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:5px}
@@ -351,7 +358,7 @@ en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom vide
  allFactories:"All factories",facts:"Factory facts",legal:"Legal name",location:"Location",started:"Business started",employees:"Employees",capacity:"Production capacity",markets:"Export markets",website:"Website",notFound:"Not found online",factoryToComplete:"Factory to complete",sourceLegend:"Each fact shows its source:",cfVerified:"Canton Fair verified",
  models:"Models",eecCatalog:"EEC catalog",nonEec:"Non-EEC models",eecSub:n=>`${n} models approved for Europe`,nonSub:n=>`${n} models · EEC can be developed`,modelYear:y=>`Model year ${y}`,
  noEec:"No EEC model was found on European sites. The factory can upload its EEC catalog after claiming this profile.",noNon:"No Non-EEC model list was found online. The factory adds it after claiming this profile.",
- priceReq:"Price on request",euShop:"EU shop price · FOB on request",factoryFob:"Factory to add FOB price",reqPrice:"Request a price",sources:"Sources",contactFactory:"Contact the factory",email:"Email",phone:"Phone",copy:"Copy",copied:"Copied",addedByFactory:"Added by the factory",contactPage:"Contact form",
+ priceReq:"Price on request",euShop:"EU shop price · FOB on request",factoryFob:"Factory to add FOB price",reqPrice:"Request a price",photos:"Photos",photosProd:"Motorcycles",photosFact:"Factory",photosFrom:"Photos published by the company on",photosNone:"No photos found online yet. The factory adds them when it claims its profile.",sources:"Sources",contactFactory:"Contact the factory",email:"Email",phone:"Phone",copy:"Copy",copied:"Copied",addedByFactory:"Added by the factory",contactPage:"Contact form",
  claimTitle:"Is this your company?",claimText:"Claim this profile to add your logo, factory photos, contacts, EEC catalog PDF and FOB prices.",claimBtn:"Claim and edit this profile",claimToast:"Factory sign in comes next. Factories get a link in the invitation email.",
  compNote:"Based on how many facts, contacts and models were found. Rises when the factory completes its profile.",cfPending:"Canton Fair check pending",notClaimed:"Not yet claimed by the factory",
  customize:"Customize",colour:"Colour",qty:"Quantity (units)",replyBy:"Reply to me by",yourCo:"Your company",yourContact:"Your email or ID",message:"Message",send:"Send price request",
@@ -370,7 +377,7 @@ fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite v
  allFactories:"Toutes les usines",facts:"Informations usine",legal:"Raison sociale",location:"Adresse",started:"Début d'activité",employees:"Employés",capacity:"Capacité de production",markets:"Marchés export",website:"Site web",notFound:"Non trouvé en ligne",factoryToComplete:"À compléter par l'usine",sourceLegend:"Chaque information indique sa source :",cfVerified:"Vérifié Foire de Canton",
  models:"Modèles",eecCatalog:"Catalogue CEE",nonEec:"Modèles non-CEE",eecSub:n=>`${n} modèles homologués pour l'Europe`,nonSub:n=>`${n} modèles · homologation CEE possible`,modelYear:y=>`Modèle ${y}`,
  noEec:"Aucun modèle CEE trouvé sur les sites européens. L'usine pourra ajouter son catalogue CEE après avoir réclamé ce profil.",noNon:"Aucune liste de modèles non-CEE trouvée en ligne. L'usine l'ajoutera après avoir réclamé ce profil.",
- priceReq:"Prix sur demande",euShop:"Prix public UE · FOB sur demande",factoryFob:"Prix FOB à ajouter par l'usine",reqPrice:"Demander un prix",sources:"Sources",contactFactory:"Contacter l'usine",email:"Email",phone:"Téléphone",copy:"Copier",copied:"Copié",addedByFactory:"Ajouté par l'usine",contactPage:"Formulaire de contact",
+ priceReq:"Prix sur demande",euShop:"Prix public UE · FOB sur demande",factoryFob:"Prix FOB à ajouter par l'usine",reqPrice:"Demander un prix",photos:"Photos",photosProd:"Motos",photosFact:"Usine",photosFrom:"Photos publiées par l'entreprise sur",photosNone:"Aucune photo trouvée en ligne pour l'instant. L'usine les ajoute en réclamant son profil.",sources:"Sources",contactFactory:"Contacter l'usine",email:"Email",phone:"Téléphone",copy:"Copier",copied:"Copié",addedByFactory:"Ajouté par l'usine",contactPage:"Formulaire de contact",
  claimTitle:"C'est votre entreprise ?",claimText:"Réclamez ce profil pour ajouter logo, photos d'usine, contacts, catalogue CEE en PDF et prix FOB.",claimBtn:"Réclamer et modifier ce profil",claimToast:"La connexion usine arrive bientôt. Les usines reçoivent un lien dans l'email d'invitation.",
  compNote:"Selon le nombre d'informations, contacts et modèles trouvés. Augmente quand l'usine complète son profil.",cfPending:"Vérification Foire de Canton en attente",notClaimed:"Profil pas encore réclamé",
  customize:"Personnaliser",colour:"Couleur",qty:"Quantité (unités)",replyBy:"Me répondre par",yourCo:"Votre société",yourContact:"Votre email ou ID",message:"Message",send:"Envoyer la demande",
@@ -389,7 +396,7 @@ zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°�
  allFactories:"所有工厂",facts:"工厂信息",legal:"公司全称",location:"地址",started:"成立年份",employees:"员工人数",capacity:"产能",markets:"出口市场",website:"网站",notFound:"网上未找到",factoryToComplete:"待工厂补充",sourceLegend:"每项信息均注明来源：",cfVerified:"广交会已核实",
  models:"车型",eecCatalog:"EEC目录",nonEec:"非EEC车型",eecSub:n=>`${n} 款欧洲认证车型`,nonSub:n=>`${n} 款 · 可开发EEC`,modelYear:y=>`${y} 款`,
  noEec:"欧洲网站上未找到EEC车型。工厂认领资料后可上传EEC目录。",noNon:"网上未找到非EEC车型清单。工厂认领资料后可添加。",
- priceReq:"价格面议",euShop:"欧洲零售价 · FOB询价",factoryFob:"待工厂添加FOB价格",reqPrice:"询价",sources:"来源",contactFactory:"联系工厂",email:"邮箱",phone:"电话",copy:"复制",copied:"已复制",addedByFactory:"由工厂添加",contactPage:"联系表单",
+ priceReq:"价格面议",euShop:"欧洲零售价 · FOB询价",factoryFob:"待工厂添加FOB价格",reqPrice:"询价",photos:"图片",photosProd:"摩托车",photosFact:"工厂",photosFrom:"图片来自公司发布的页面",photosNone:"暂未在网上找到图片。工厂认领资料后可自行上传。",sources:"来源",contactFactory:"联系工厂",email:"邮箱",phone:"电话",copy:"复制",copied:"已复制",addedByFactory:"由工厂添加",contactPage:"联系表单",
  claimTitle:"这是您的公司吗？",claimText:"认领此资料，添加公司标志、工厂照片、联系方式、EEC目录PDF和FOB价格。",claimBtn:"认领并编辑资料",claimToast:"工厂登录即将推出。工厂将在邀请邮件中收到链接。",
  compNote:"根据已找到的信息、联系方式和车型数量计算。工厂完善资料后会提高。",cfPending:"广交会核实中",notClaimed:"工厂尚未认领",
  customize:"定制",colour:"颜色",qty:"数量（台）",replyBy:"回复方式",yourCo:"您的公司",yourContact:"您的邮箱或ID",message:"留言",send:"发送询价",
@@ -408,7 +415,7 @@ ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا في
  allFactories:"كل المصانع",facts:"معلومات المصنع",legal:"الاسم القانوني",location:"الموقع",started:"بداية النشاط",employees:"عدد الموظفين",capacity:"الطاقة الإنتاجية",markets:"أسواق التصدير",website:"الموقع",notFound:"غير متوفر على الإنترنت",factoryToComplete:"يكمله المصنع",sourceLegend:"كل معلومة تبين مصدرها:",cfVerified:"موثق من معرض كانتون",
  models:"الطرازات",eecCatalog:"كتالوج EEC",nonEec:"طرازات غير EEC",eecSub:n=>`${n} طرازات معتمدة لأوروبا`,nonSub:n=>`${n} طرازات · يمكن تطوير EEC`,modelYear:y=>`طراز ${y}`,
  noEec:"لم نجد طرازات EEC على المواقع الأوروبية. يمكن للمصنع رفع كتالوج EEC بعد المطالبة بالملف.",noNon:"لم نجد قائمة طرازات غير EEC. يضيفها المصنع بعد المطالبة بالملف.",
- priceReq:"السعر عند الطلب",euShop:"سعر البيع في أوروبا · FOB عند الطلب",factoryFob:"سعر FOB يضيفه المصنع",reqPrice:"طلب سعر",sources:"المصادر",contactFactory:"تواصل مع المصنع",email:"البريد",phone:"الهاتف",copy:"نسخ",copied:"تم النسخ",addedByFactory:"يضيفه المصنع",contactPage:"نموذج التواصل",
+ priceReq:"السعر عند الطلب",euShop:"سعر البيع في أوروبا · FOB عند الطلب",factoryFob:"سعر FOB يضيفه المصنع",reqPrice:"طلب سعر",photos:"الصور",photosProd:"الدراجات النارية",photosFact:"المصنع",photosFrom:"صور نشرتها الشركة على",photosNone:"لم نجد صورًا على الإنترنت بعد. يضيفها المصنع عند المطالبة بملفه.",sources:"المصادر",contactFactory:"تواصل مع المصنع",email:"البريد",phone:"الهاتف",copy:"نسخ",copied:"تم النسخ",addedByFactory:"يضيفه المصنع",contactPage:"نموذج التواصل",
  claimTitle:"هل هذه شركتك؟",claimText:"طالب بهذا الملف لإضافة شعارك وصور المصنع وجهات الاتصال وكتالوج EEC وأسعار FOB.",claimBtn:"المطالبة بالملف وتعديله",claimToast:"دخول المصانع قريباً. تستلم المصانع رابطاً في بريد الدعوة.",
  compNote:"حسب عدد المعلومات وجهات الاتصال والطرازات المتوفرة. يرتفع عندما يكمل المصنع ملفه.",cfPending:"التحقق من معرض كانتون قيد الانتظار",notClaimed:"لم يطالب المصنع بالملف بعد",
  customize:"تخصيص",colour:"اللون",qty:"الكمية (وحدة)",replyBy:"الرد عبر",yourCo:"شركتك",yourContact:"بريدك أو معرفك",message:"الرسالة",send:"إرسال طلب السعر",
@@ -500,6 +507,7 @@ const eur = n => "€ " + n.toLocaleString("en-US");
 
 /* ---------- data: base + admin edits from db ---------- */
 let EDITS = {};
+let PHOTOS = {}; // id -> {page, products:[{u,alt}], factory:[{u,alt}]} from tools/fetch_photos.py
 let NEWS = {};   // fid -> [{id,title,body,date}]       // id -> {removed, rating, note, emails, phone, whatsapp, wechat}
 let db = null, isAdmin = false;
 /* ---------- server API (PHP on Hostinger) ---------- */
@@ -523,7 +531,7 @@ function factories(includeRemoved){
   return BASE.map(b => {
     const e = EDITS[b.id] || {};
     const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || "",
-      emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
+      ph: PHOTOS[b.id] || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = prices.length ? Math.min(...prices) : null;
     const facts = [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
@@ -567,6 +575,19 @@ function renderFilters(F){
   p = pool("age");
   $("g-age").innerHTML = AGE.map(a => opt("age",String(a),`${a}+`,p.filter(f=>f.since && NOW-f.since>=a).length,st.age===String(a))).join("");
 }
+const pimg = (x, cls) => x ? `<img src="${esc(x.u)}" alt="${esc(x.alt || "")}" loading="lazy" referrerpolicy="no-referrer"${cls ? ` class="${cls}"` : ""} onerror="this.remove()">` : "";
+const mainPhoto = (f, fact) => f.ph ? (fact ? f.ph.factory[0] || f.ph.products[0] : f.ph.products[0] || f.ph.factory[0]) : null;
+const normM = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
+function modelPhoto(f, n){
+  const k = normM(n); if (!f.ph || k.length < 3) return null;
+  return f.ph.products.find(p => normM(p.alt).includes(k)) || null;
+}
+function gallery(f){
+  if (!f.ph) return `<div class="empty-cat">${t("photosNone")}</div>`;
+  const g = (h, list) => list.length ? `<h3>${h}</h3>` + list.map(x => `<a href="${esc(x.u)}" target="_blank" rel="noopener noreferrer" title="${esc(x.alt || "")}">${pimg(x)}</a>`).join("") : "";
+  return `<div class="gallery">${g(t("photosProd"), f.ph.products)}${g(t("photosFact"), f.ph.factory)}</div>
+    <div class="ph-src">${t("photosFrom")} <a href="${esc(f.ph.page)}" target="_blank" rel="noopener">${esc(f.ph.page.replace(/^https?:\/\//,"").slice(0,70))}</a></div>`;
+}
 function scene(f, w, h, id){
   const [a,b] = f.sky;
   const k = (f.id.charCodeAt(0)*7 + f.id.length*13) % 60;
@@ -593,7 +614,7 @@ function renderResults(F){
   $("results").innerHTML = list.length ? list.slice(0, st.limit).map(f => {
     const ccTxt = f.cc ? `${f.cc[0]}–${f.cc[1]} cc` : "";
     return `<article class="card">
-      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}</a>
+      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${pimg(mainPhoto(f))}</a>
       <div class="info">
         <h3><a href="#${f.id}">${esc(f.name)}</a> ${stars(f.rating)}</h3>
         <div class="legal">${esc(f.legal || "")}</div>
@@ -637,7 +658,7 @@ function modelRows(f){
   const list = showEec ? f.eec : f.non;
   if (!list.length) return `<div class="empty-cat">${showEec ? t("noEec") : t("noNon")}</div>`;
   return list.map(x => `<div class="mrow">
-    <div class="th"><svg viewBox="0 0 200 120" style="color:${f.c}" aria-hidden="true"><use href="#moto"/></svg></div>
+    <div class="th"><svg viewBox="0 0 200 120" style="color:${f.c}" aria-hidden="true"><use href="#moto"/></svg>${pimg(modelPhoto(f, x.n))}</div>
     <div style="min-width:0"><h3>${esc(x.n)}</h3>
       <div class="badges" style="margin:5px 0">
         ${x.year ? `<span class="badge b-non">${t("modelYear",x.year)}</span>` : ""}
@@ -657,7 +678,7 @@ function renderProfile(f){
   const link = u => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").replace(/\/$/,""))}</a>` : null;
   $("profile").innerHTML = `
   <nav class="crumbs"><a href="#">${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
-  <div class="banner">${scene(f,1600,500,"b"+f.id)}</div>
+  <div class="banner">${scene(f,1600,500,"b"+f.id)}${pimg(mainPhoto(f, true))}</div>
   <div class="phead">
     <div class="wordmark" style="background:${f.sky[0]}">${esc(wm)}</div>
     <div class="t"><h1>${esc(f.name)} ${stars(f.rating)}</h1>
@@ -678,6 +699,7 @@ function renderProfile(f){
         ${fact(t("coType"), t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated"))}${fact(t("mainProducts"), esc(f.products || ""))}
         ${fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
       </div></section>
+    <section class="box" id="photos"><h2>${t("photos")}</h2>${gallery(f)}</section>
     <section class="box" id="models"><h2>${t("models")}</h2>
       <div class="switch">
         <button type="button" id="t-eec" aria-pressed="${showEec}"><strong>${t("eecCatalog")}</strong><span>${t("eecSub",f.eec.length)}</span></button>
@@ -932,7 +954,8 @@ $("open-filters").onclick = () => $("filters").classList.add("open");
 $("f-done").onclick = () => $("filters").classList.remove("open");
 applyLang();
 (async () => {
-  try { BASE = await (await fetch("data/factories.json")).json(); } catch(_) { BASE = []; }
+  const [b, p] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
+  BASE = b; PHOTOS = p;
   try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
   render();
 })();
