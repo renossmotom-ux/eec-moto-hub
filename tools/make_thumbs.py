@@ -18,11 +18,11 @@ def name(fid, u):
     return f"{fid}-{hashlib.md5(u.encode()).hexdigest()[:10]}.jpg"
 
 def thumb(job):
-    fid, u = job
+    fid, u, ref = job
     path = f"{OUT}/{name(fid, u)}"
     if os.path.exists(path): return u, path
     try:
-        r = requests.get(u, headers=H, timeout=25)
+        r = requests.get(u, headers={**H, **({"Referer": ref} if ref else {})}, timeout=25)
         im = Image.open(io.BytesIO(r.content))
         if im.mode in ("RGBA", "LA", "P"):
             im = im.convert("RGBA"); bg = Image.new("RGB", im.size, (255, 255, 255)); bg.paste(im, mask=im.split()[-1]); im = bg
@@ -36,7 +36,7 @@ def thumb(job):
 def main():
     os.makedirs(OUT, exist_ok=True)
     photos = json.load(open(f"{ROOT}/data/photos.json"))
-    jobs = [(fid, x["u"]) for fid, v in photos.items() for x in v.get("products", []) + v.get("factory", [])]
+    jobs = [(fid, x["u"], x.get("from") if x.get("ref") else None) for fid, v in photos.items() for x in v.get("products", []) + v.get("factory", [])]
     with ThreadPoolExecutor(12) as ex:
         done = {u: p for u, p in ex.map(thumb, jobs) if p}
     keep = {os.path.basename(p) for p in done.values()}

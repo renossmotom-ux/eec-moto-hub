@@ -611,7 +611,7 @@ function srcLinks(f){
 }
 function gallery(f){
   if (!f.ph) return `<div class="empty-cat">${t("photosNone")}</div>`;
-  const g = (h, list) => list.length ? `<h3>${h}</h3>` + list.map(x => `<a href="${esc(x.u)}" target="_blank" rel="noopener noreferrer" title="${esc(x.credit || x.alt || "")}">${pimg(x)}</a>`).join("") : "";
+  const g = (h, list) => list.length ? `<h3>${h}</h3>` + list.map(x => `<a href="${esc(x.ref ? x.from : x.u)}" target="_blank" rel="noopener noreferrer" title="${esc(x.credit || x.alt || "")}">${pimg(x)}</a>`).join("") : "";
   return `<div class="gallery">${g(t("photosProd"), f.ph.products)}${g(t("photosFact"), f.ph.factory)}</div>
     <div class="ph-src">${t("photosFrom")} ${srcLinks(f)}${f.ph.products.some(x => x.credit) ? `. ${t("photosCommons")} <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>` : ""}</div>`;
 }

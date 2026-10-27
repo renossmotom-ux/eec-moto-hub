@@ -73,10 +73,14 @@ def candidates(html, base):
              if re.search(r"company[-_ ]?(profile|info)|about|factory|company-", a["href"] + " " + a.get_text(" ", strip=True), re.I)]
     return res, links
 
-def check(u):
-    """Download once: must load with no Referer, be a photo-sized raster image."""
+def upsize(u):
+    """Showroom pages list small thumbnails (e.g. /220f0j00/); /2f0j00/ is the full-size photo."""
+    return re.sub(r"(image\.made-in-china\.com/)\d+(f\dj00)", r"\g<1>2\2", u)
+
+def check(u, ref=None):
+    """Download once: must be a photo-sized raster image. Thumbnails are saved locally, so a Referer is fine."""
     try:
-        r = get(u, stream=True)
+        r = requests.get(u, headers={**H, **({"Referer": ref} if ref else {})}, timeout=25, stream=True)
         if r.status_code != 200 or not r.headers.get("content-type", "").startswith("image"): return None
         data = r.raw.read(6_000_000, decode_content=True)
         im = Image.open(io.BytesIO(data)); w, h = im.size
@@ -138,10 +142,16 @@ def one(f, use_browser=False):
             if isfact and len(facts) >= MAX_FACT: continue
             if not isfact and len(prods) >= max_prod: continue
             tried += 1
-            c = check(u)
+            c, ref = None, None
+            for cand in dict.fromkeys([upsize(u), u]):
+                for r_ in (None, url):
+                    c = check(cand, r_)
+                    if c: u, ref = cand, r_; break
+                if c: break
             if not c or c[2] in hashes: continue
             hashes.add(c[2])
             item = {"u": u, "alt": alt[:140], "w": c[0], "h": c[1], "from": url}
+            if ref: item["ref"] = 1  # server wants a Referer: the site shows the local thumbnail
             (facts if isfact else prods).append(item)
             page = page or url
     return {"page": page, "products": prods, "factory": facts, "at": time.strftime("%Y-%m-%d")} if (prods or facts) else None
