@@ -614,7 +614,7 @@ function renderResults(F){
   $("results").innerHTML = list.length ? list.slice(0, st.limit).map(f => {
     const ccTxt = f.cc ? `${f.cc[0]}–${f.cc[1]} cc` : "";
     return `<article class="card">
-      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${pimg(mainPhoto(f))}</a>
+      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${f.ph && f.ph.t ? pimg({u: f.ph.t, alt: mainPhoto(f).alt}) : pimg(mainPhoto(f))}</a>
       <div class="info">
         <h3><a href="#${f.id}">${esc(f.name)}</a> ${stars(f.rating)}</h3>
         <div class="legal">${esc(f.legal || "")}</div>
