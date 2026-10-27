@@ -185,6 +185,19 @@ def commons(f):
 
 DEBUG, WANT_DEBUG = None, set()
 
+def diag_sizes(u):
+    m = re.search(r"image\.made-in-china\.com/(\w+?j\d\d)(\w+)/", u)
+    if not m: return
+    for pre in ["2f0j00", "2f0j10", "2f1j10", "1f1j00", "4f0j00", "4f1j00", "43f1j00", "44f1j00", "201f0j00", "203f0j00", "220f1j00", "3f2j00", "2f2j00"]:
+        v = u.replace(m.group(1) + m.group(2), pre + m.group(2))
+        try:
+            x = requests.get(v, headers=H, timeout=20)
+            try: size = Image.open(io.BytesIO(x.content)).size
+            except Exception: size = "-"
+            print("    size", pre, x.status_code, len(x.content), size)
+        except Exception as e:
+            print("    size", pre, "ERR", type(e).__name__)
+
 def diag(ids):
     """Print why photos are rejected for a few factories (run by hand when a showroom template changes)."""
     F = {f["id"]: f for f in json.load(open(f"{ROOT}/data/factories.json"))}
@@ -201,6 +214,7 @@ def diag(ids):
                         print("  ", x.status_code, x.headers.get("content-type"), len(x.content), size, cand[-70:], "|", alt[:40])
                     except Exception as e:
                         print("  ERR", type(e).__name__, cand[-70:])
+            if cands: diag_sizes(cands[2][0] if len(cands) > 2 else cands[0][0])
 
 def main():
     global DEBUG, WANT_DEBUG

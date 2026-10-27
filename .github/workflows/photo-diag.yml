@@ -14,4 +14,4 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests beautifulsoup4 pillow
-      - run: python tools/fetch_photos.py --diag deep-metal-moto kawai-motor guangzhou-dirtmax-motorsports chongqing-jianya-motorcycle
+      - run: python tools/fetch_photos.py --diag deep-metal-moto kawai-motor
