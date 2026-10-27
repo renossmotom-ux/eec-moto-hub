@@ -4,6 +4,9 @@ on:
   push:
     branches: ["claude/**"]
     paths: ["tools/clean_photos.py", "tools/models.py", "tools/fetch_photos.py", ".github/workflows/clean.yml"]
+defaults:
+  run:
+    shell: bash   # stop on errors inside pipes too
 permissions:
   contents: write
 concurrency:

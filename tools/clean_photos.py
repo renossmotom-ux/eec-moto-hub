@@ -35,6 +35,11 @@ def ahash(path):
     im = Image.open(f"{ROOT}/{path}").convert("L").resize((12, 12)); px = list(im.getdata()); avg = sum(px) / len(px)
     return "".join("1" if q > avg else "0" for q in px)
 
+def text_emb(model, proc, texts):
+    t = proc(text=texts, return_tensors="pt", padding=True)
+    e = model.text_projection(model.text_model(input_ids=t["input_ids"], attention_mask=t["attention_mask"]).pooler_output)
+    return e / e.norm(dim=-1, keepdim=True)
+
 def main():
     photos = json.load(open(f"{ROOT}/data/photos.json"))
     thumbs = json.load(open(f"{ROOT}/data/thumbs.json"))
@@ -44,8 +49,7 @@ def main():
     model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").eval()
     proc = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
     with torch.no_grad():
-        tl = proc(text=LABELS, return_tensors="pt", padding=True); te = model.get_text_features(**tl); te = te / te.norm(dim=-1, keepdim=True)
-        ts = proc(text=STUDIO, return_tensors="pt", padding=True); se = model.get_text_features(**ts); se = se / se.norm(dim=-1, keepdim=True)
+        te, se = text_emb(model, proc, LABELS), text_emb(model, proc, STUDIO)
     scale = model.logit_scale.exp()
 
     jobs = [(fid, x) for fid, v in photos.items() for x in v.get("products", []) + v.get("factory", []) if thumbs.get(x["u"])]
@@ -57,7 +61,7 @@ def main():
             except Exception: pass
         if not ims: continue
         with torch.no_grad():
-            ie = model.get_image_features(**proc(images=ims, return_tensors="pt")); ie = ie / ie.norm(dim=-1, keepdim=True)
+            ie = model.visual_projection(model.vision_model(pixel_values=proc(images=ims, return_tensors="pt")["pixel_values"]).pooler_output); ie = ie / ie.norm(dim=-1, keepdim=True)
             p = (scale * ie @ te.T).softmax(-1); s = (scale * ie @ se.T).softmax(-1)[:, 0]
         for u, pr, st in zip(keep, p.tolist(), s.tolist()):
             score[u] = (sum(pr[:NV]), sum(pr[NV:NV + NF]), max(range(len(pr)), key=pr.__getitem__), st)

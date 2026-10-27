@@ -3,6 +3,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 3 1 * *"   # refresh monthly
+defaults:
+  run:
+    shell: bash   # stop on errors inside pipes too
 permissions:
   contents: write
 concurrency:
