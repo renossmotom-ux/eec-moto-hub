@@ -1,0 +1,33 @@
+name: Clean photos and add model photos
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths: ["tools/clean_photos.py", "tools/models.py", "tools/fetch_photos.py", ".github/workflows/clean.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: clean-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 pillow transformers && pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python tools/fetch_photos.py --models | tee -a "$GITHUB_STEP_SUMMARY"
+      - run: python tools/make_thumbs.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - run: python tools/clean_photos.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - run: python tools/make_thumbs.py | tee -a "$GITHUB_STEP_SUMMARY"   # drop thumbnails of removed photos
+      - name: Commit photos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A data/photos.json data/thumbs data/thumbs.json data/photo_rejects.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Remove wrong photos, add a photo for each model"
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
