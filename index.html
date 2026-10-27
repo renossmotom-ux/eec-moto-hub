@@ -535,7 +535,7 @@ function factories(includeRemoved){
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = prices.length ? Math.min(...prices) : null;
     const facts = [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
-    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0))*10)/10;
+    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0) + (f.ph?1:0))*10)/10;
     return f;
   }).filter(f => includeRemoved || !f.removed);
 }
