@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EEC Moto Hub · Chinese motorcycle factories</title>
+<meta name="description" content="Compare Chinese motorcycle factories, EEC catalogs and prices. For buyers in Morocco and worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&display=swap">
+<style>
+/* Layout: booking-style results — blue hero with search bar, left filter column, result cards with photo | details | score+price */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --surface-2:#eaeef4; --line:#d6dce6;
+  --fg:#16202e; --muted:#5b6778;
+  --brand:#1a3f8f; --brand-fg:#ffffff; --brand-2:#ffb703;
+  --accent:#1f5fd1; --accent-fg:#ffffff; --accent-soft:#e3eafa;
+  --ok:#17794a; --ok-soft:#e1f3e9; --warn:#9a5a00; --warn-soft:#fbefd9;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Noto Sans SC","Noto Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#171e29; --surface-2:#1f2836; --line:#2c3748;
+  --fg:#e7ecf3; --muted:#9aa6b8;
+  --brand:#14295a; --brand-fg:#eef3ff; --brand-2:#ffc23a;
+  --accent:#7ea2ef; --accent-fg:#0d1626; --accent-soft:#1c2a46;
+  --ok:#5fcf93; --ok-soft:#143524; --warn:#f0b75c; --warn-soft:#3a2a10;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#171e29; --surface-2:#1f2836; --line:#2c3748;
+  --fg:#e7ecf3; --muted:#9aa6b8;
+  --brand:#14295a; --brand-fg:#eef3ff; --brand-2:#ffc23a;
+  --accent:#7ea2ef; --accent-fg:#0d1626; --accent-soft:#1c2a46;
+  --ok:#5fcf93; --ok-soft:#143524; --warn:#f0b75c; --warn-soft:#3a2a10;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--brand)}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+button,input,select{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+.label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* header + hero */
+.hero{background:var(--brand);color:var(--brand-fg)}
+.hero .wrap{padding-block:14px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brandname{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:.02em}
+.brandname span{font-weight:500;opacity:.75}
+.nav-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav-r .lnk{color:var(--brand-fg);opacity:.9;font-size:14px;font-weight:600}
+.nav-r .out{border:1px solid currentColor;border-radius:6px;padding:5px 10px;background:transparent;color:var(--brand-fg);font-size:13px;font-weight:600}
+.tabs{display:flex;gap:6px;margin-top:14px;overflow-x:auto;padding-bottom:2px}
+.tabs span{border:1px solid transparent;border-radius:99px;padding:7px 14px;font-size:14px;font-weight:600;white-space:nowrap;opacity:.9}
+.tabs span.on{border-color:var(--brand-fg);background:rgba(255,255,255,.12);opacity:1}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:700;margin-top:22px}
+.hero p{margin:4px 0 0;opacity:.9}
+.searchbar{display:grid;grid-template-columns:2fr 1.2fr 1.2fr auto;gap:4px;background:var(--brand-2);padding:4px;border-radius:10px;margin-top:22px;transform:translateY(24px)}
+.searchbar label{display:flex;flex-direction:column;background:var(--surface);color:var(--fg);border-radius:7px;padding:6px 12px;min-width:0}
+.searchbar label span{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.searchbar input,.searchbar select{border:0;background:transparent;color:var(--fg);padding:2px 0;width:100%;outline:none;font-weight:500}
+.searchbar button{background:var(--accent);color:var(--accent-fg);border:0;border-radius:7px;padding:0 26px;font-weight:700;font-size:16px}
+@media (max-width:760px){.searchbar{grid-template-columns:1fr 1fr}.searchbar label:first-child{grid-column:1/-1}.searchbar button{grid-column:1/-1;padding:12px}}
+
+main{padding-top:52px}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}}
+
+/* filters */
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.f-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.f-head h2{font-size:20px;font-weight:600}
+.f-head button{border:0;background:none;color:var(--accent);font-weight:600;font-size:13px}
+.f-group{padding:14px 16px;border-bottom:1px solid var(--line)}
+.f-group:last-child{border-bottom:0}
+.f-group h3{font-family:var(--body);font-size:14px;font-weight:700;margin-bottom:8px}
+.f-opt{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:14px;cursor:pointer}
+.f-opt input{width:18px;height:18px;accent-color:var(--accent);flex:none}
+.f-opt .t{flex:1;min-width:0}
+.f-opt .c{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.f-opt.zero{opacity:.45}
+.range{display:grid;gap:6px}
+.range input{width:100%;accent-color:var(--accent)}
+.range .v{font-weight:600;font-variant-numeric:tabular-nums}
+.f-close{display:none}
+@media (max-width:900px){
+  .filters{display:none}
+  .filters.open{display:block;position:fixed;inset:0;z-index:30;border-radius:0;border:0;overflow:auto;
+    padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(76px + env(safe-area-inset-bottom,0px));
+    padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+  .f-close{display:block;position:fixed;left:0;right:0;bottom:0;z-index:31;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--surface);border-top:1px solid var(--line)}
+  .f-close button{width:100%}
+  .filters:not(.open) + .f-close{display:none}
+}
+
+/* results header */
+.r-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.r-head h2{font-size:26px;font-weight:700}
+.r-head .note{color:var(--muted);font-size:13.5px}
+.sortbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sortbar select{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:99px;padding:7px 12px;font-size:14px;font-weight:600}
+.mbtn{display:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:99px;padding:7px 14px;font-size:14px;font-weight:600}
+@media (max-width:900px){.mbtn{display:inline-block}}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--accent);border:0;border-radius:99px;padding:4px 10px;font-size:13px;font-weight:600}
+
+/* result cards */
+.results{display:grid;gap:14px}
+.card{display:grid;grid-template-columns:230px minmax(0,1fr) 190px;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.photo{display:block;position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1/1;max-width:100%;background:var(--surface-2)}
+.photo svg{display:block;width:100%;height:100%}
+.photo .heart{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:var(--surface);color:var(--fg);display:grid;place-items:center;font-size:17px;line-height:1}
+.photo .heart[aria-pressed="true"]{color:#d4294b}
+.photo .tag{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:5px}
+.info{min-width:0;display:flex;flex-direction:column;gap:6px}
+.info h3{font-size:24px;font-weight:700;color:var(--accent)}
+.info h3 a{color:inherit;text-decoration:none}
+.info h3 a:hover{text-decoration:underline}
+.legal{font-size:13px;color:var(--muted)}
+.loc{font-size:13.5px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.loc a{color:var(--accent);font-weight:600;text-decoration:underline}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border-radius:5px;padding:2px 8px;white-space:nowrap;line-height:1.5}
+.b-eec{background:var(--accent-soft);color:var(--accent)}
+.b-non{background:var(--surface-2);color:var(--fg)}
+.b-ok{background:var(--ok-soft);color:var(--ok)}
+.b-warn{background:var(--warn-soft);color:var(--warn)}
+.desc{font-size:13.5px;margin:0}
+.models-line{font-size:13px;color:var(--muted)}
+.models-line b{color:var(--fg);font-weight:600}
+.deal{font-size:13px;color:var(--ok);font-weight:600}
+.side{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:12px;text-align:right}
+.score{display:flex;gap:8px;align-items:center}
+.score .w{font-size:13px;line-height:1.25}
+.score .w b{display:block;font-size:15px}
+.score .w span{color:var(--muted)}
+.score .n{background:var(--brand);color:var(--brand-fg);font-weight:700;font-size:16px;border-radius:7px 7px 7px 0;padding:7px 8px;min-width:38px;text-align:center;font-variant-numeric:tabular-nums}
+.from{font-size:12.5px;color:var(--muted)}
+.price{font-family:var(--display);font-size:28px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.btn{display:inline-block;border:0;border-radius:7px;padding:10px 16px;font-weight:700;background:var(--accent);color:var(--accent-fg);text-decoration:none;text-align:center;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.sec{background:transparent;color:var(--accent);border:1.5px solid var(--accent);padding:8px 14px}
+.side .btns{display:grid;gap:6px;width:100%}
+@media (max-width:1060px) and (min-width:901px){.card{grid-template-columns:190px minmax(0,1fr)}.side{grid-column:1/-1;flex-direction:row;align-items:center}}
+@media (max-width:700px){
+  .card{grid-template-columns:120px minmax(0,1fr);gap:12px;padding:10px}
+  .info h3{font-size:20px}
+  .desc{display:none}
+  .side{grid-column:1/-1;flex-direction:row;align-items:center;border-top:1px solid var(--line);padding-top:10px}
+  .side .btns{width:auto}
+  .photo .tag{display:none}
+}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:28px;text-align:center;color:var(--muted)}
+.disclaimer{color:var(--muted);font-size:12.5px;padding-block:24px 40px;max-width:80ch}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:14px;z-index:40;max-width:calc(100% - 32px)}
+
+/* profile view */
+body.pmode .hero h1, body.pmode .hero p, body.pmode .searchbar{display:none}
+body.pmode .hero .wrap{padding-bottom:12px}
+#profile{padding-block:16px 0}
+.crumbs{font-size:13px;color:var(--muted);padding-bottom:12px}
+.crumbs a{color:var(--accent);text-decoration:none;font-weight:600}
+.banner{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:16/5;min-height:160px;max-width:100%}
+.banner svg{position:absolute;inset:0;width:100%;height:100%}
+.banner .cap{position:absolute;right:10px;top:10px;font-size:11.5px;color:#fff;background:rgba(0,0,0,.45);padding:3px 9px;border-radius:5px}
+.phead{display:flex;gap:16px;align-items:flex-end;margin-top:-40px;position:relative;padding-inline:16px;flex-wrap:wrap}
+.wordmark{width:92px;height:92px;flex:none;border-radius:14px;border:4px solid var(--surface);box-shadow:0 4px 16px rgba(10,20,40,.2);display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:700;text-align:center;line-height:1;padding:6px;font-size:19px;letter-spacing:.02em;overflow:hidden;overflow-wrap:anywhere}
+.phead .t{flex:1;min-width:0}
+.phead h1{font-size:clamp(26px,4.4vw,38px);font-weight:700}
+.phead .sub{color:var(--muted);font-size:14px;margin-top:3px}
+@media (max-width:640px){.phead{margin-top:-34px;padding-inline:10px}.wordmark{width:74px;height:74px;font-size:15px}.phead .t{flex-basis:100%}}
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:22px;margin-top:22px;align-items:start}
+@media (max-width:900px){.pgrid{grid-template-columns:minmax(0,1fr)}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.box + .box{margin-top:18px}
+.box h2{font-size:24px;font-weight:600;margin-bottom:10px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:12px;align-items:center}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+@media (max-width:560px){.facts{grid-template-columns:minmax(0,1fr)}}
+.fact{padding:11px 4px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px;min-width:0;align-items:flex-start}
+.fact:nth-child(odd){padding-right:16px}
+.fact .val{font-weight:600}
+.fact .val.miss{color:var(--muted);font-weight:500;font-style:italic}
+.switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.switch button{border:2px solid var(--line);background:var(--surface);color:var(--fg);border-radius:10px;padding:11px 13px;text-align:left;display:flex;flex-direction:column;gap:1px}
+.switch button strong{font-family:var(--display);font-size:20px;font-weight:600}
+.switch button span{font-size:12.5px;color:var(--muted)}
+.switch button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.mrow{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.mrow + .mrow{margin-top:10px}
+.mrow .th{aspect-ratio:4/3;border-radius:7px;background:var(--surface-2);display:grid;place-items:center;max-width:100%}
+.mrow .th svg{width:86%;height:auto}
+.mrow h3{font-size:20px;font-weight:600}
+.mrow .sp{font-size:13px;color:var(--muted)}
+.mrow .buy{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
+.mrow .eu{font-family:var(--display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.mrow .eu small{display:block;font-family:var(--body);font-size:11.5px;font-weight:500;color:var(--muted);margin-top:2px}
+@media (max-width:620px){.mrow{grid-template-columns:84px minmax(0,1fr)}.mrow .buy{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}}
+.empty-cat{border:1px dashed var(--line);border-radius:var(--r);padding:18px;color:var(--muted);font-size:14px}
+.crow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.crow .k{flex:1;min-width:0}
+.crow .k b{display:block;font-size:14px;color:var(--muted);font-weight:500;font-style:italic}
+.claim{background:var(--accent-soft);border-radius:var(--r);padding:16px}
+.claim h3{font-size:20px;font-weight:600;margin-bottom:4px}
+.claim p{margin:0 0 10px;font-size:13.5px}
+.srcs{font-size:12.5px;color:var(--muted);margin:0;padding-left:18px}
+.srcs a{color:var(--accent);overflow-wrap:anywhere}
+.overlay{position:fixed;inset:0;z-index:35;background:rgba(8,14,26,.55);display:flex;align-items:flex-end;justify-content:center}
+@media (min-width:640px){.overlay{align-items:center}}
+.sheet{background:var(--surface);color:var(--fg);width:100%;max-width:500px;max-height:92%;overflow:auto;border-radius:16px 16px 0 0;padding:20px max(20px,env(safe-area-inset-left,0px)) calc(20px + env(safe-area-inset-bottom,0px))}
+@media (min-width:640px){.sheet{border-radius:16px}}
+.sheet h2{font-size:24px}
+.sheet .x{float:right;border:0;background:var(--surface-2);color:var(--fg);width:34px;height:34px;border-radius:50%;font-size:18px}
+.form{display:grid;gap:11px;margin-top:12px}
+.form label{display:grid;gap:4px;font-size:13px;font-weight:600}
+.form input,.form select,.form textarea{font:inherit;font-weight:400;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{display:flex;align-items:center;gap:6px;font-weight:500;background:var(--surface-2);border-radius:8px;padding:7px 10px}
+.opts input{width:auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.done{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:12px;font-size:14px}
+
+/* language + admin additions */
+.lang{display:flex;gap:2px;background:rgba(255,255,255,.12);border-radius:8px;padding:2px}
+.lang button{border:0;background:transparent;color:var(--brand-fg);font-size:13px;font-weight:600;padding:5px 8px;border-radius:6px}
+.lang button[aria-pressed="true"]{background:var(--brand-fg);color:var(--brand)}
+.tabs button{border:1px solid transparent;border-radius:99px;padding:7px 14px;font-size:14px;font-weight:600;white-space:nowrap;background:transparent;color:var(--brand-fg);opacity:.9}
+.tabs button.on{border-color:var(--brand-fg);background:rgba(255,255,255,.12);opacity:1}
+[dir="rtl"] .side{align-items:flex-start;text-align:left}
+[dir="rtl"] .mrow .buy{align-items:flex-start;text-align:left}
+.stars{display:inline-flex;gap:1px;color:var(--brand-2);font-size:15px;letter-spacing:1px}
+.contact-v{font-weight:600;font-size:14px;overflow-wrap:anywhere}
+.copy{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;font-size:12px;padding:5px 9px;flex:none}
+#admin{padding-block:20px 40px}
+.adm-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px}
+.adm-bar h2{font-size:28px;font-weight:700}
+.adm-table{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.adm-table table{border-collapse:collapse;width:100%;min-width:860px;font-size:13.5px}
+.adm-table th,.adm-table td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+.adm-table th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface-2)}
+.adm-table tr.removed td{opacity:.45}
+.adm-table .em{font-family:var(--mono);font-size:12px;overflow-wrap:anywhere}
+.rate button{border:0;background:none;color:var(--line);font-size:18px;padding:0 1px;line-height:1}
+.rate button.on{color:var(--brand-2)}
+.mini{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;font-size:12.5px;padding:5px 9px;font-weight:600}
+.mini.danger{color:#c0392b;border-color:currentColor}
+.mail{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:16px;display:grid;gap:10px}
+.mail textarea,.mail input,.mail select{font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+.mail .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.notice{background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:10px 12px;font-size:13.5px}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.edit-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="moto" viewBox="0 0 200 120">
+      <circle cx="44" cy="84" r="27" fill="none" stroke="#141a24" stroke-width="7"/>
+      <circle cx="158" cy="84" r="27" fill="none" stroke="#141a24" stroke-width="7"/>
+      <circle cx="44" cy="84" r="6" fill="#141a24"/><circle cx="158" cy="84" r="6" fill="#141a24"/>
+      <path d="M44 84 L78 52 L120 52 L140 40 L158 84" fill="none" stroke="#141a24" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M70 50 Q92 30 124 40 L118 56 L76 58 Z" fill="currentColor"/>
+      <path d="M58 46 L98 42 L96 50 L62 54 Z" fill="#141a24"/>
+      <rect x="84" y="58" width="34" height="22" rx="4" fill="#5b6778"/>
+      <path d="M140 40 L146 18 L160 16" fill="none" stroke="#141a24" stroke-width="5" stroke-linecap="round"/>
+      <path d="M150 28 L166 30 L162 42 Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="nav">
+      <div class="brandname">EEC Moto Hub <span>· China ⇄ Morocco</span></div>
+      <div class="nav-r">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ar">عربي</button>
+        </div>
+        <button class="out" type="button" id="factory-login" data-t="factorySignIn">Factory sign in</button>
+      </div>
+    </div>
+    <div class="tabs" aria-label="Sections">
+      <button type="button" class="on" id="tab-dir" data-t="tabFactories">Factories</button>
+      <button type="button" id="tab-admin" hidden data-t="tabAdmin">Admin</button>
+    </div>
+    <h1 data-t="heroTitle">Find your next motorcycle factory</h1>
+    <p data-t="heroSub">Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.</p>
+    <form class="searchbar" id="searchbar">
+      <label for="s-q"><span data-t="sQ">Factory, brand or model</span><input id="s-q" type="search" placeholder="Zontes, Chongqing, 125cc…"></label>
+      <label for="s-type"><span data-t="sType">Motorcycle type</span><select id="s-type"></select></label>
+      <label for="s-cat"><span data-t="sCat">Catalog</span><select id="s-cat"></select></label>
+      <button type="submit" data-t="search">Search</button>
+    </form>
+  </div>
+</header>
+
+<main class="wrap" id="search-view">
+  <div class="layout">
+    <aside class="filters" id="filters" aria-label="Filters">
+      <div class="f-head"><h2 data-t="filterBy">Filter by</h2><button type="button" id="clear" data-t="clearAll">Clear all</button></div>
+      <div class="f-group"><h3 data-t="catalog">Catalog</h3><div id="g-cat"></div></div>
+      <div class="f-group"><h3 data-t="province">Province</h3><div id="g-prov"></div></div>
+      <div class="f-group"><h3 data-t="type">Motorcycle type</h3><div id="g-type"></div></div>
+      <div class="f-group"><h3 data-t="engine">Engine size</h3><div id="g-cc"></div></div>
+      <div class="f-group"><h3 data-t="euPrice">Cheapest EU shop price</h3><div id="g-price"></div></div>
+      <div class="f-group"><h3 data-t="coType">Company type</h3><div id="g-bt"></div></div>
+      <div class="f-group"><h3 data-t="contactAvail">Contact</h3><div id="g-contact"></div></div>
+      <div class="f-group"><h3 data-t="years">Years in business</h3><div id="g-age"></div></div>
+    </aside>
+    <div class="f-close"><button class="btn" type="button" id="f-done" data-t="showResults">Show results</button></div>
+    <section aria-label="Results">
+      <div class="r-head">
+        <div><h2 id="count"></h2><div class="note" data-t="clickHint">Tap a factory to see its EEC catalog, models and contacts</div></div>
+        <div class="sortbar">
+          <button class="mbtn" type="button" id="open-filters" data-t="filter">Filter</button>
+          <select id="sort" aria-label="Sort"></select>
+        </div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="results" id="results"></div>
+      <div style="text-align:center;margin-top:16px"><button class="btn sec" type="button" id="more" hidden></button></div>
+      <p class="disclaimer" data-t="disclaimer"></p>
+    </section>
+  </div>
+</main>
+<main class="wrap" id="profile" hidden></main>
+<main class="wrap" id="admin" hidden></main>
+<div class="overlay" id="overlay" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const HUB = {"en": {"adminNoDb": "Sign in as admin to save changes.", "mailNotice": "Send now emails each factory separately from your Hostinger mailbox, 25 at a time. You can still copy the list or open your own email app.", "sendNow": "Send now", "sending": "Sending…", "sentN": "Sent {ok} of {n}. Failed: {bad}.", "loginTitle": "Admin sign in", "password": "Password", "signIn": "Sign in", "signOut": "Sign out", "wrongPw": "Wrong password.", "loadErr": "Could not load saved changes."}, "fr": {"adminNoDb": "Connectez-vous en admin pour enregistrer.", "mailNotice": "Envoyer maintenant écrit à chaque usine séparément depuis votre boîte Hostinger, 25 à la fois. Vous pouvez toujours copier la liste ou ouvrir votre messagerie.", "sendNow": "Envoyer maintenant", "sending": "Envoi…", "sentN": "Envoyés {ok} sur {n}. Échecs : {bad}.", "loginTitle": "Connexion admin", "password": "Mot de passe", "signIn": "Se connecter", "signOut": "Se déconnecter", "wrongPw": "Mot de passe incorrect.", "loadErr": "Impossible de charger les modifications."}, "zh": {"adminNoDb": "请以管理员身份登录后保存。", "mailNotice": "“立即发送”会从您的 Hostinger 邮箱逐个发送给每家工厂，每批 25 封。您仍可复制地址或打开自己的邮件应用。", "sendNow": "立即发送", "sending": "发送中…", "sentN": "已发送 {ok}/{n}，失败 {bad}。", "loginTitle": "管理员登录", "password": "密码", "signIn": "登录", "signOut": "退出", "wrongPw": "密码错误。", "loadErr": "无法加载已保存的更改。"}, "ar": {"adminNoDb": "سجّل الدخول كمسؤول لحفظ التغييرات.", "mailNotice": "زر الإرسال الآن يرسل لكل مصنع رسالة منفصلة من بريدك في Hostinger، 25 رسالة في كل دفعة. يمكنك أيضاً نسخ القائمة أو فتح تطبيق البريد.", "sendNow": "إرسال الآن", "sending": "جارٍ الإرسال…", "sentN": "أُرسل {ok} من {n}. فشل: {bad}.", "loginTitle": "دخول المسؤول", "password": "كلمة المرور", "signIn": "دخول", "signOut": "خروج", "wrongPw": "كلمة المرور غير صحيحة.", "loadErr": "تعذر تحميل التغييرات المحفوظة."}};
+let BASE = [];
+const NOW = 2026;
+const T = {
+en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom video or virtual tour here after claiming the profile.",tourOpen:"Open the 360° showroom",tourUrl:"360° video or tour link",news:"Factory news",newsEmpty:"No news yet. New models, certifications and fair dates will appear here.",addNews:"Add news",newsTitle:"Title",newsBody:"Text",post:"Post",del:"Delete",coType:"Company type",manufacturer:"Manufacturer",trading:"Trading company",notStated:"Not stated",showMore:n=>`Show ${n} more`,mainProducts:"Main products",b2bShowroom:"B2B showroom",detailed:"Detailed profile",factorySignIn:"Factory sign in",tabFactories:"Factories",tabAdmin:"Admin",heroTitle:"Find your next motorcycle factory",heroSub:"Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.",sQ:"Factory, brand or model",sType:"Motorcycle type",sCat:"Catalog",search:"Search",filterBy:"Filter by",clearAll:"Clear all",catalog:"Catalog",province:"Province",type:"Motorcycle type",engine:"Engine size",euPrice:"Cheapest EU shop price",contactAvail:"Contact",years:"Years in business",showResults:"Show results",clickHint:"Tap a factory to see its EEC catalog, models and contacts",filter:"Filter",
+ found:n=>`${n} ${n===1?"factory":"factories"} found`,anyType:"Any type",anyCat:"EEC and Non-EEC",eecOnly:"EEC only",nonOnly:"Non-EEC available",hasEec:"Has EEC models",hasNon:"Has Non-EEC models",hasEmail:"Public email found",noEmail:"Email still needed",
+ sortRec:"Our top picks",sortPrice:"Lowest EU price",sortAge:"Longest in business",sortEec:"Most EEC models",sortRating:"Admin rating",
+ since:y=>`Since ${y}`,sinceUnknown:"Founding year to confirm",eecN:n=>`EEC · ${n} models`,nonN:n=>`Non-EEC · ${n} models`,notVerified:"From internet, not verified",
+ completeness:"Profile completeness",euFrom:"EU shop price from",onRequest:"On request",seeProfile:"See profile",noMatch:"No factory matches these filters. Remove a filter to see more results.",
+ disclaimer:"Company facts, models and contacts come from public web sources listed on each profile and are not yet checked against the Canton Fair exhibitor list. Prices are European shop prices for reference. Factories add logos, photos and FOB prices when they claim their profile.",
+ allFactories:"All factories",facts:"Factory facts",legal:"Legal name",location:"Location",started:"Business started",employees:"Employees",capacity:"Production capacity",markets:"Export markets",website:"Website",notFound:"Not found online",factoryToComplete:"Factory to complete",sourceLegend:"Each fact shows its source:",cfVerified:"Canton Fair verified",
+ models:"Models",eecCatalog:"EEC catalog",nonEec:"Non-EEC models",eecSub:n=>`${n} models approved for Europe`,nonSub:n=>`${n} models · EEC can be developed`,modelYear:y=>`Model year ${y}`,
+ noEec:"No EEC model was found on European sites. The factory can upload its EEC catalog after claiming this profile.",noNon:"No Non-EEC model list was found online. The factory adds it after claiming this profile.",
+ priceReq:"Price on request",euShop:"EU shop price · FOB on request",factoryFob:"Factory to add FOB price",reqPrice:"Request a price",sources:"Sources",contactFactory:"Contact the factory",email:"Email",phone:"Phone",copy:"Copy",copied:"Copied",addedByFactory:"Added by the factory",contactPage:"Contact form",
+ claimTitle:"Is this your company?",claimText:"Claim this profile to add your logo, factory photos, contacts, EEC catalog PDF and FOB prices.",claimBtn:"Claim and edit this profile",claimToast:"Factory sign in comes next. Factories get a link in the invitation email.",
+ compNote:"Based on how many facts, contacts and models were found. Rises when the factory completes its profile.",cfPending:"Canton Fair check pending",notClaimed:"Not yet claimed by the factory",
+ customize:"Customize",colour:"Colour",qty:"Quantity (units)",replyBy:"Reply to me by",yourCo:"Your company",yourContact:"Your email or ID",message:"Message",send:"Send price request",
+ demoSent:(f,v)=>`Demo only, nothing was sent. In the live site this request goes to ${f}, and you get the reply by ${v}.`,close:"Close",
+ adminTitle:"Admin",adminNote:"Only you see this page. Changes are saved for everyone who opens the directory.",adminNoDb:"Sign in to claude.ai to save admin changes.",
+ colFactory:"Factory",colEmails:"Emails",colRating:"Rating",colStatus:"Status",colActions:"Actions",live:"Live",removed:"Removed",edit:"Edit",remove:"Remove",restore:"Restore",select:"Select",
+ emailSel:"Email selected",emailAll:"Email all with an address",composeTitle:"Invitation email",recipients:n=>`${n} recipients`,subject:"Subject",body:"Message",template:"Template language",copyAddr:"Copy addresses (BCC)",copyMsg:"Copy message",openMail:"Open in my email app",
+ mailNotice:"This page cannot send email itself. Copy the addresses into BCC and the message into your email, or tap Open in my email app. A real sending service comes with the live site.",
+ save:"Save",cancel:"Cancel",saved:"Saved",editTitle:"Edit factory",noAddr:"No public email yet",whatsapp:"WhatsApp",wechat:"WeChat",note:"Admin note"},
+fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite virtuelle 360° après avoir réclamé son profil.",tourOpen:"Ouvrir le showroom 360°",tourUrl:"Lien vidéo ou visite 360°",news:"Actualités de l'usine",newsEmpty:"Pas encore d'actualités. Nouveaux modèles, certifications et salons apparaîtront ici.",addNews:"Ajouter une actualité",newsTitle:"Titre",newsBody:"Texte",post:"Publier",del:"Supprimer",coType:"Type d'entreprise",manufacturer:"Fabricant",trading:"Société de négoce",notStated:"Non précisé",showMore:n=>`Voir ${n} de plus`,mainProducts:"Produits principaux",b2bShowroom:"Vitrine B2B",detailed:"Profil détaillé",factorySignIn:"Connexion usine",tabFactories:"Usines",tabAdmin:"Admin",heroTitle:"Trouvez votre prochaine usine de motos",heroSub:"Comparez les fabricants chinois, les catalogues CEE et les prix. Aucun compte requis pour consulter.",sQ:"Usine, marque ou modèle",sType:"Type de moto",sCat:"Catalogue",search:"Rechercher",filterBy:"Filtrer par",clearAll:"Tout effacer",catalog:"Catalogue",province:"Province",type:"Type de moto",engine:"Cylindrée",euPrice:"Prix public UE le plus bas",contactAvail:"Contact",years:"Années d'activité",showResults:"Voir les résultats",clickHint:"Touchez une usine pour voir son catalogue CEE, ses modèles et ses contacts",filter:"Filtrer",
+ found:n=>`${n} usine${n>1?"s":""} trouvée${n>1?"s":""}`,anyType:"Tous types",anyCat:"CEE et non-CEE",eecOnly:"CEE uniquement",nonOnly:"Non-CEE disponible",hasEec:"A des modèles CEE",hasNon:"A des modèles non-CEE",hasEmail:"Email public trouvé",noEmail:"Email à trouver",
+ sortRec:"Nos meilleurs choix",sortPrice:"Prix UE le plus bas",sortAge:"Plus ancienne",sortEec:"Plus de modèles CEE",sortRating:"Note admin",
+ since:y=>`Depuis ${y}`,sinceUnknown:"Année de création à confirmer",eecN:n=>`CEE · ${n} modèles`,nonN:n=>`Non-CEE · ${n} modèles`,notVerified:"Source internet, non vérifié",
+ completeness:"Profil complété",euFrom:"Prix public UE dès",onRequest:"Sur demande",seeProfile:"Voir le profil",noMatch:"Aucune usine ne correspond. Retirez un filtre pour voir plus de résultats.",
+ disclaimer:"Les informations, modèles et contacts viennent de sources publiques citées sur chaque profil et ne sont pas encore vérifiés avec la liste des exposants de la Foire de Canton. Les prix sont des prix publics européens, à titre indicatif. Les usines ajoutent logos, photos et prix FOB en réclamant leur profil.",
+ allFactories:"Toutes les usines",facts:"Informations usine",legal:"Raison sociale",location:"Adresse",started:"Début d'activité",employees:"Employés",capacity:"Capacité de production",markets:"Marchés export",website:"Site web",notFound:"Non trouvé en ligne",factoryToComplete:"À compléter par l'usine",sourceLegend:"Chaque information indique sa source :",cfVerified:"Vérifié Foire de Canton",
+ models:"Modèles",eecCatalog:"Catalogue CEE",nonEec:"Modèles non-CEE",eecSub:n=>`${n} modèles homologués pour l'Europe`,nonSub:n=>`${n} modèles · homologation CEE possible`,modelYear:y=>`Modèle ${y}`,
+ noEec:"Aucun modèle CEE trouvé sur les sites européens. L'usine pourra ajouter son catalogue CEE après avoir réclamé ce profil.",noNon:"Aucune liste de modèles non-CEE trouvée en ligne. L'usine l'ajoutera après avoir réclamé ce profil.",
+ priceReq:"Prix sur demande",euShop:"Prix public UE · FOB sur demande",factoryFob:"Prix FOB à ajouter par l'usine",reqPrice:"Demander un prix",sources:"Sources",contactFactory:"Contacter l'usine",email:"Email",phone:"Téléphone",copy:"Copier",copied:"Copié",addedByFactory:"Ajouté par l'usine",contactPage:"Formulaire de contact",
+ claimTitle:"C'est votre entreprise ?",claimText:"Réclamez ce profil pour ajouter logo, photos d'usine, contacts, catalogue CEE en PDF et prix FOB.",claimBtn:"Réclamer et modifier ce profil",claimToast:"La connexion usine arrive bientôt. Les usines reçoivent un lien dans l'email d'invitation.",
+ compNote:"Selon le nombre d'informations, contacts et modèles trouvés. Augmente quand l'usine complète son profil.",cfPending:"Vérification Foire de Canton en attente",notClaimed:"Profil pas encore réclamé",
+ customize:"Personnaliser",colour:"Couleur",qty:"Quantité (unités)",replyBy:"Me répondre par",yourCo:"Votre société",yourContact:"Votre email ou ID",message:"Message",send:"Envoyer la demande",
+ demoSent:(f,v)=>`Démo uniquement, rien n'a été envoyé. Sur le vrai site, la demande part chez ${f} et vous recevez la réponse par ${v}.`,close:"Fermer",
+ adminTitle:"Admin",adminNote:"Vous seul voyez cette page. Les changements sont enregistrés pour tous.",adminNoDb:"Connectez-vous à claude.ai pour enregistrer les changements.",
+ colFactory:"Usine",colEmails:"Emails",colRating:"Note",colStatus:"Statut",colActions:"Actions",live:"En ligne",removed:"Retirée",edit:"Modifier",remove:"Retirer",restore:"Rétablir",select:"Choisir",
+ emailSel:"Écrire à la sélection",emailAll:"Écrire à toutes (avec adresse)",composeTitle:"Email d'invitation",recipients:n=>`${n} destinataires`,subject:"Objet",body:"Message",template:"Langue du modèle",copyAddr:"Copier les adresses (CCI)",copyMsg:"Copier le message",openMail:"Ouvrir dans ma messagerie",
+ mailNotice:"Cette page ne peut pas envoyer d'email. Copiez les adresses en CCI et le message dans votre messagerie, ou touchez Ouvrir dans ma messagerie. Un vrai service d'envoi viendra avec le site final.",
+ save:"Enregistrer",cancel:"Annuler",saved:"Enregistré",editTitle:"Modifier l'usine",noAddr:"Pas encore d'email public",whatsapp:"WhatsApp",wechat:"WeChat",note:"Note admin"},
+zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°展厅视频或虚拟参观。",tourOpen:"打开360°展厅",tourUrl:"360°视频或参观链接",news:"工厂动态",newsEmpty:"暂无动态。新车型、认证和展会信息将在此显示。",addNews:"添加动态",newsTitle:"标题",newsBody:"内容",post:"发布",del:"删除",coType:"企业类型",manufacturer:"生产厂家",trading:"贸易公司",notStated:"未注明",showMore:n=>`再显示 ${n} 家`,mainProducts:"主要产品",b2bShowroom:"B2B展厅",detailed:"详细资料",factorySignIn:"工厂登录",tabFactories:"工厂",tabAdmin:"管理",heroTitle:"寻找您的下一家摩托车工厂",heroSub:"比较中国制造商、EEC目录和价格。浏览无需注册。",sQ:"工厂、品牌或车型",sType:"车型类别",sCat:"目录",search:"搜索",filterBy:"筛选",clearAll:"全部清除",catalog:"目录",province:"省份",type:"车型类别",engine:"排量",euPrice:"欧洲最低零售价",contactAvail:"联系方式",years:"经营年限",showResults:"显示结果",clickHint:"点击工厂查看其EEC目录、车型和联系方式",filter:"筛选",
+ found:n=>`找到 ${n} 家工厂`,anyType:"所有类别",anyCat:"EEC和非EEC",eecOnly:"仅EEC",nonOnly:"有非EEC车型",hasEec:"有EEC车型",hasNon:"有非EEC车型",hasEmail:"已找到公开邮箱",noEmail:"尚需邮箱",
+ sortRec:"推荐",sortPrice:"欧洲价格最低",sortAge:"经营最久",sortEec:"EEC车型最多",sortRating:"管理员评分",
+ since:y=>`成立于 ${y}`,sinceUnknown:"成立年份待确认",eecN:n=>`EEC · ${n} 款`,nonN:n=>`非EEC · ${n} 款`,notVerified:"来自网络，未核实",
+ completeness:"资料完整度",euFrom:"欧洲零售价起",onRequest:"询价",seeProfile:"查看资料",noMatch:"没有符合条件的工厂。请移除筛选条件。",
+ disclaimer:"公司信息、车型和联系方式来自各资料页所列的公开网络来源，尚未与广交会展商名录核对。价格为欧洲零售价，仅供参考。工厂认领资料后可添加标志、照片和FOB价格。",
+ allFactories:"所有工厂",facts:"工厂信息",legal:"公司全称",location:"地址",started:"成立年份",employees:"员工人数",capacity:"产能",markets:"出口市场",website:"网站",notFound:"网上未找到",factoryToComplete:"待工厂补充",sourceLegend:"每项信息均注明来源：",cfVerified:"广交会已核实",
+ models:"车型",eecCatalog:"EEC目录",nonEec:"非EEC车型",eecSub:n=>`${n} 款欧洲认证车型`,nonSub:n=>`${n} 款 · 可开发EEC`,modelYear:y=>`${y} 款`,
+ noEec:"欧洲网站上未找到EEC车型。工厂认领资料后可上传EEC目录。",noNon:"网上未找到非EEC车型清单。工厂认领资料后可添加。",
+ priceReq:"价格面议",euShop:"欧洲零售价 · FOB询价",factoryFob:"待工厂添加FOB价格",reqPrice:"询价",sources:"来源",contactFactory:"联系工厂",email:"邮箱",phone:"电话",copy:"复制",copied:"已复制",addedByFactory:"由工厂添加",contactPage:"联系表单",
+ claimTitle:"这是您的公司吗？",claimText:"认领此资料，添加公司标志、工厂照片、联系方式、EEC目录PDF和FOB价格。",claimBtn:"认领并编辑资料",claimToast:"工厂登录即将推出。工厂将在邀请邮件中收到链接。",
+ compNote:"根据已找到的信息、联系方式和车型数量计算。工厂完善资料后会提高。",cfPending:"广交会核实中",notClaimed:"工厂尚未认领",
+ customize:"定制",colour:"颜色",qty:"数量（台）",replyBy:"回复方式",yourCo:"您的公司",yourContact:"您的邮箱或ID",message:"留言",send:"发送询价",
+ demoSent:(f,v)=>`仅为演示，未发送任何内容。正式网站中，询价将发送给 ${f}，您将通过 ${v} 收到回复。`,close:"关闭",
+ adminTitle:"管理",adminNote:"仅您可见此页面。更改将对所有访问者保存。",adminNoDb:"请登录 claude.ai 以保存更改。",
+ colFactory:"工厂",colEmails:"邮箱",colRating:"评分",colStatus:"状态",colActions:"操作",live:"已上线",removed:"已移除",edit:"编辑",remove:"移除",restore:"恢复",select:"选择",
+ emailSel:"发邮件给所选",emailAll:"发邮件给全部（有邮箱）",composeTitle:"邀请邮件",recipients:n=>`${n} 位收件人`,subject:"主题",body:"正文",template:"模板语言",copyAddr:"复制地址（密送）",copyMsg:"复制正文",openMail:"在邮件应用中打开",
+ mailNotice:"此页面无法直接发送邮件。请将地址复制到密送栏、正文复制到邮件中，或点击“在邮件应用中打开”。正式网站将提供真正的发送服务。",
+ save:"保存",cancel:"取消",saved:"已保存",editTitle:"编辑工厂",noAddr:"暂无公开邮箱",whatsapp:"WhatsApp",wechat:"微信",note:"管理员备注"},
+ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا فيديو أو جولة افتراضية 360° بعد المطالبة بملفه.",tourOpen:"فتح صالة العرض 360°",tourUrl:"رابط فيديو أو جولة 360°",news:"أخبار المصنع",newsEmpty:"لا توجد أخبار بعد. ستظهر هنا الطرازات الجديدة والشهادات ومواعيد المعارض.",addNews:"إضافة خبر",newsTitle:"العنوان",newsBody:"النص",post:"نشر",del:"حذف",coType:"نوع الشركة",manufacturer:"مصنع",trading:"شركة تجارية",notStated:"غير محدد",showMore:n=>`عرض ${n} إضافية`,mainProducts:"المنتجات الرئيسية",b2bShowroom:"صفحة B2B",detailed:"ملف مفصل",factorySignIn:"دخول المصانع",tabFactories:"المصانع",tabAdmin:"الإدارة",heroTitle:"اعثر على مصنع الدراجات النارية المناسب",heroSub:"قارن المصنعين الصينيين وكتالوجات EEC والأسعار. التصفح بدون حساب.",sQ:"مصنع أو علامة أو طراز",sType:"نوع الدراجة",sCat:"الكتالوج",search:"بحث",filterBy:"تصفية حسب",clearAll:"مسح الكل",catalog:"الكتالوج",province:"المقاطعة",type:"نوع الدراجة",engine:"سعة المحرك",euPrice:"أقل سعر بيع في أوروبا",contactAvail:"التواصل",years:"سنوات النشاط",showResults:"عرض النتائج",clickHint:"اضغط على مصنع لرؤية كتالوج EEC والطرازات وطرق التواصل",filter:"تصفية",
+ found:n=>`تم العثور على ${n} مصنع`,anyType:"كل الأنواع",anyCat:"EEC وغير EEC",eecOnly:"EEC فقط",nonOnly:"طرازات غير EEC",hasEec:"لديه طرازات EEC",hasNon:"لديه طرازات غير EEC",hasEmail:"بريد عام متوفر",noEmail:"البريد غير متوفر بعد",
+ sortRec:"اختياراتنا",sortPrice:"أقل سعر أوروبي",sortAge:"الأقدم",sortEec:"أكثر طرازات EEC",sortRating:"تقييم الإدارة",
+ since:y=>`منذ ${y}`,sinceUnknown:"سنة التأسيس غير مؤكدة",eecN:n=>`EEC · ${n} طرازات`,nonN:n=>`غير EEC · ${n} طرازات`,notVerified:"من الإنترنت، غير موثق",
+ completeness:"اكتمال الملف",euFrom:"سعر البيع في أوروبا من",onRequest:"عند الطلب",seeProfile:"عرض الملف",noMatch:"لا يوجد مصنع مطابق. أزل أحد المرشحات.",
+ disclaimer:"معلومات الشركات والطرازات وجهات الاتصال مأخوذة من مصادر عامة مذكورة في كل ملف، ولم تتم مطابقتها بعد مع قائمة عارضي معرض كانتون. الأسعار أسعار بيع أوروبية للاستئناس. تضيف المصانع شعاراتها وصورها وأسعار FOB عند المطالبة بملفها.",
+ allFactories:"كل المصانع",facts:"معلومات المصنع",legal:"الاسم القانوني",location:"الموقع",started:"بداية النشاط",employees:"عدد الموظفين",capacity:"الطاقة الإنتاجية",markets:"أسواق التصدير",website:"الموقع",notFound:"غير متوفر على الإنترنت",factoryToComplete:"يكمله المصنع",sourceLegend:"كل معلومة تبين مصدرها:",cfVerified:"موثق من معرض كانتون",
+ models:"الطرازات",eecCatalog:"كتالوج EEC",nonEec:"طرازات غير EEC",eecSub:n=>`${n} طرازات معتمدة لأوروبا`,nonSub:n=>`${n} طرازات · يمكن تطوير EEC`,modelYear:y=>`طراز ${y}`,
+ noEec:"لم نجد طرازات EEC على المواقع الأوروبية. يمكن للمصنع رفع كتالوج EEC بعد المطالبة بالملف.",noNon:"لم نجد قائمة طرازات غير EEC. يضيفها المصنع بعد المطالبة بالملف.",
+ priceReq:"السعر عند الطلب",euShop:"سعر البيع في أوروبا · FOB عند الطلب",factoryFob:"سعر FOB يضيفه المصنع",reqPrice:"طلب سعر",sources:"المصادر",contactFactory:"تواصل مع المصنع",email:"البريد",phone:"الهاتف",copy:"نسخ",copied:"تم النسخ",addedByFactory:"يضيفه المصنع",contactPage:"نموذج التواصل",
+ claimTitle:"هل هذه شركتك؟",claimText:"طالب بهذا الملف لإضافة شعارك وصور المصنع وجهات الاتصال وكتالوج EEC وأسعار FOB.",claimBtn:"المطالبة بالملف وتعديله",claimToast:"دخول المصانع قريباً. تستلم المصانع رابطاً في بريد الدعوة.",
+ compNote:"حسب عدد المعلومات وجهات الاتصال والطرازات المتوفرة. يرتفع عندما يكمل المصنع ملفه.",cfPending:"التحقق من معرض كانتون قيد الانتظار",notClaimed:"لم يطالب المصنع بالملف بعد",
+ customize:"تخصيص",colour:"اللون",qty:"الكمية (وحدة)",replyBy:"الرد عبر",yourCo:"شركتك",yourContact:"بريدك أو معرفك",message:"الرسالة",send:"إرسال طلب السعر",
+ demoSent:(f,v)=>`عرض تجريبي فقط، لم يتم إرسال شيء. في الموقع الحقيقي يصل الطلب إلى ${f} وتستلم الرد عبر ${v}.`,close:"إغلاق",
+ adminTitle:"الإدارة",adminNote:"هذه الصفحة تظهر لك فقط. تحفظ التغييرات لكل الزوار.",adminNoDb:"سجّل الدخول إلى claude.ai لحفظ التغييرات.",
+ colFactory:"المصنع",colEmails:"البريد",colRating:"التقييم",colStatus:"الحالة",colActions:"إجراءات",live:"منشور",removed:"محذوف",edit:"تعديل",remove:"حذف",restore:"استرجاع",select:"تحديد",
+ emailSel:"مراسلة المحدد",emailAll:"مراسلة الكل (لديهم بريد)",composeTitle:"بريد الدعوة",recipients:n=>`${n} مستلمين`,subject:"الموضوع",body:"الرسالة",template:"لغة القالب",copyAddr:"نسخ العناوين (نسخة مخفية)",copyMsg:"نسخ الرسالة",openMail:"فتح في تطبيق البريد",
+ mailNotice:"لا يمكن لهذه الصفحة إرسال البريد بنفسها. انسخ العناوين في خانة النسخة المخفية والرسالة في بريدك، أو اضغط فتح في تطبيق البريد. خدمة إرسال حقيقية تأتي مع الموقع النهائي.",
+ save:"حفظ",cancel:"إلغاء",saved:"تم الحفظ",editTitle:"تعديل المصنع",noAddr:"لا يوجد بريد عام بعد",whatsapp:"واتساب",wechat:"وي تشات",note:"ملاحظة الإدارة"}
+};
+const MAIL = {
+ en:{s:"Invitation: your free EEC supplier profile on EEC Moto Hub",b:`Dear {name} export team,
+
+We are building EEC Moto Hub, a B2B directory where buyers in Morocco and worldwide find Chinese motorcycle factories, compare EEC and Non-EEC models, and send price requests by email, WeChat or WhatsApp.
+
+We have prepared a free profile for {name} using public information. Please claim it to:
+- check and correct your company facts
+- add your logo, factory photos and contacts
+- upload your EEC catalog and Non-EEC models with FOB prices
+
+Buyers trust verified factories. Profiles confirmed with your Canton Fair listing get a "Canton Fair verified" badge.
+
+Reply to this email and we will send your login link.
+
+Best regards,
+Steve
+EEC Moto Hub`},
+ fr:{s:"Invitation : votre profil fournisseur CEE gratuit sur EEC Moto Hub",b:`Chère équipe export de {name},
+
+Nous créons EEC Moto Hub, un annuaire B2B où les acheteurs du Maroc et du monde entier trouvent des usines de motos chinoises, comparent les modèles CEE et non-CEE et envoient des demandes de prix par email, WeChat ou WhatsApp.
+
+Nous avons préparé un profil gratuit pour {name} à partir d'informations publiques. Réclamez-le pour :
+- vérifier et corriger vos informations
+- ajouter votre logo, vos photos d'usine et vos contacts
+- publier votre catalogue CEE et vos modèles non-CEE avec prix FOB
+
+Les acheteurs font confiance aux usines vérifiées. Les profils confirmés par votre inscription à la Foire de Canton reçoivent le badge « Vérifié Foire de Canton ».
+
+Répondez à cet email et nous vous enverrons votre lien de connexion.
+
+Cordialement,
+Steve
+EEC Moto Hub`},
+ zh:{s:"邀请：在 EEC Moto Hub 免费开通您的EEC供应商资料",b:`尊敬的{name}外贸团队：
+
+我们正在建设 EEC Moto Hub —— 一个B2B平台，帮助摩洛哥及全球采购商寻找中国摩托车工厂、比较EEC与非EEC车型，并通过邮件、微信或WhatsApp发送询价。
+
+我们已根据公开信息为{name}准备了免费资料页。认领后您可以：
+- 核对并更正公司信息
+- 添加公司标志、工厂照片和联系方式
+- 上传EEC目录和非EEC车型及FOB价格
+
+采购商更信任经过核实的工厂。与广交会展商信息核对一致的资料将获得“广交会已核实”标识。
+
+请回复此邮件，我们将发送您的登录链接。
+
+此致
+Steve
+EEC Moto Hub`},
+ ar:{s:"دعوة: ملف مورد EEC مجاني على EEC Moto Hub",b:`إلى فريق التصدير في {name}،
+
+نعمل على إطلاق EEC Moto Hub، دليل B2B يساعد المشترين في المغرب وحول العالم على إيجاد مصانع الدراجات النارية الصينية، ومقارنة طرازات EEC وغير EEC، وإرسال طلبات الأسعار عبر البريد أو وي تشات أو واتساب.
+
+أعددنا ملفاً مجانياً لشركة {name} من معلومات عامة. طالبوا به من أجل:
+- مراجعة معلومات الشركة وتصحيحها
+- إضافة الشعار وصور المصنع وجهات الاتصال
+- رفع كتالوج EEC والطرازات غير EEC مع أسعار FOB
+
+يثق المشترون بالمصانع الموثقة. الملفات المطابقة لتسجيلكم في معرض كانتون تحصل على شارة "موثق من معرض كانتون".
+
+ردوا على هذا البريد وسنرسل لكم رابط الدخول.
+
+مع التحية،
+Steve
+EEC Moto Hub`}
+};
+const TYPES = ["Street","Scooter","Adventure","Sport","Cruiser","Trail","Off-road","Electric","ATV","Cargo tricycle"];
+const CC = [{k:"s",t:"≤ 125 cc",min:0,max:125},{k:"m",t:"126–250 cc",min:126,max:250},{k:"l",t:"251–500 cc",min:251,max:500},{k:"x",t:"> 500 cc",min:501,max:9999}];
+const PR = [{k:"a",t:"< €4,000",ok:p=>p&&p<4000},{k:"b",t:"€4,000–7,000",ok:p=>p&&p>=4000&&p<=7000},{k:"c",t:"> €7,000",ok:p=>p&&p>7000},{k:"n",t:"—",ok:p=>!p}];
+const AGE = [30,20,10];
+
+for (const l in HUB) Object.assign(T[l], HUB[l]);
+let lang = "en";
+try { const l = localStorage.getItem("emh-lang"); if (T[l]) lang = l; } catch(_) {}
+const t = (k,...a) => { const v = (T[lang][k] ?? T.en[k]); return typeof v === "function" ? v(...a) : v; };
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const eur = n => "€ " + n.toLocaleString("en-US");
+
+/* ---------- data: base + admin edits from db ---------- */
+let EDITS = {};
+let NEWS = {};   // fid -> [{id,title,body,date}]       // id -> {removed, rating, note, emails, phone, whatsapp, wechat}
+let db = null, isAdmin = false;
+/* ---------- server API (PHP on Hostinger) ---------- */
+async function api(path, data){
+  const opt = data === undefined ? {credentials:"same-origin"} :
+    {method:"POST", credentials:"same-origin", headers:{"Content-Type":"application/json","X-Requested-With":"eec"}, body:JSON.stringify(data)};
+  const r = await fetch("api/" + path, opt);
+  let j = {}; try { j = await r.json(); } catch(_) {}
+  if (!r.ok || j.error) throw new Error(j.error || ("HTTP " + r.status));
+  return j;
+}
+async function loadServer(){
+  const j = await api("data.php");
+  EDITS = j.edits || {};
+  const next = {}; (j.news || []).forEach(n => { (next[n.fid] = next[n.fid] || []).push(n); }); NEWS = next;
+  isAdmin = !!j.admin; db = isAdmin;
+  $("tab-admin").hidden = !isAdmin;
+}
+
+function factories(includeRemoved){
+  return BASE.map(b => {
+    const e = EDITS[b.id] || {};
+    const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || "",
+      emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
+    const prices = f.eec.map(x=>x.eu).filter(Boolean);
+    f.from = prices.length ? Math.min(...prices) : null;
+    const facts = [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
+    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0))*10)/10;
+    return f;
+  }).filter(f => includeRemoved || !f.removed);
+}
+
+/* ---------- search ---------- */
+const st = {q:"", cat:new Set(), prov:new Set(), type:new Set(), cc:new Set(), price:new Set(), contact:new Set(), bt:new Set(), age:"", sort:"rec", limit:24};
+function matches(f, skip){
+  if (st.q){ const q = st.q.toLowerCase(); if (![f.name,f.legal,f.city,f.prov,...f.types,...f.eec.map(x=>x.n),...f.non.map(x=>x.n)].join(" ").toLowerCase().includes(q)) return false; }
+  if (skip!=="cat" && st.cat.size){ if (st.cat.has("eec") && !f.eec.length) return false; if (st.cat.has("non") && !f.non.length) return false; }
+  if (skip!=="prov" && st.prov.size && !st.prov.has(f.prov)) return false;
+  if (skip!=="type" && st.type.size && !f.types.some(x => st.type.has(x))) return false;
+  if (skip!=="cc" && st.cc.size && !(f.cc && CC.filter(r => st.cc.has(r.k)).some(r => f.cc[0] <= r.max && f.cc[1] >= r.min))) return false;
+  if (skip!=="price" && st.price.size && !PR.filter(r => st.price.has(r.k)).some(r => r.ok(f.from))) return false;
+  if (skip!=="contact" && st.contact.size && !((st.contact.has("y") && f.emails.length) || (st.contact.has("n") && !f.emails.length))) return false;
+  if (skip!=="bt" && st.bt.size && !st.bt.has(btKey(f))) return false;
+  if (skip!=="age" && st.age && !(f.since && NOW - f.since >= +st.age)) return false;
+  return true;
+}
+const btKey = f => f.bt==="Trading company" ? "t" : f.bt==="Manufacturer" ? "m" : "n";
+const opt = (g,k,txt,n,on) => `<label class="f-opt${n?"":" zero"}"><input type="checkbox" data-g="${g}" value="${k}" ${on?"checked":""}><span class="t">${txt}</span><span class="c">${n}</span></label>`;
+function renderFilters(F){
+  const pool = g => F.filter(f => matches(f, g));
+  let p = pool("cat");
+  $("g-cat").innerHTML = opt("cat","eec",t("hasEec"),p.filter(f=>f.eec.length).length,st.cat.has("eec")) + opt("cat","non",t("hasNon"),p.filter(f=>f.non.length).length,st.cat.has("non"));
+  p = pool("prov");
+  $("g-prov").innerHTML = [...new Set(F.map(f=>f.prov))].sort().map(v => opt("prov",v,v,p.filter(f=>f.prov===v).length,st.prov.has(v))).join("");
+  p = pool("type");
+  $("g-type").innerHTML = TYPES.map(v => opt("type",v,v,p.filter(f=>f.types.includes(v)).length,st.type.has(v))).join("");
+  p = pool("cc");
+  $("g-cc").innerHTML = CC.map(r => opt("cc",r.k,r.t,p.filter(f=>f.cc&&f.cc[0]<=r.max&&f.cc[1]>=r.min).length,st.cc.has(r.k))).join("");
+  p = pool("price");
+  $("g-price").innerHTML = PR.map(r => opt("price",r.k,r.k==="n"?t("onRequest"):r.t,p.filter(f=>r.ok(f.from)).length,st.price.has(r.k))).join("");
+  p = pool("contact");
+  $("g-contact").innerHTML = opt("contact","y",t("hasEmail"),p.filter(f=>f.emails.length).length,st.contact.has("y")) + opt("contact","n",t("noEmail"),p.filter(f=>!f.emails.length).length,st.contact.has("n"));
+  p = pool("bt");
+  $("g-bt").innerHTML = [["m","manufacturer"],["t","trading"],["n","notStated"]].map(([k,l]) => opt("bt",k,t(l),p.filter(f=>btKey(f)===k).length,st.bt.has(k))).join("");
+  p = pool("age");
+  $("g-age").innerHTML = AGE.map(a => opt("age",String(a),`${a}+`,p.filter(f=>f.since && NOW-f.since>=a).length,st.age===String(a))).join("");
+}
+function scene(f, w, h, id){
+  const [a,b] = f.sky;
+  const k = (f.id.charCodeAt(0)*7 + f.id.length*13) % 60;
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><linearGradient id="g-${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>
+    <rect width="${w}" height="${h}" fill="url(#g-${id})"/>
+    <g transform="translate(${(w-300)/2},${h-300})">
+    <circle cx="${220+k/2}" cy="${60+k/3}" r="26" fill="#fff" opacity=".22"/>
+    <path d="M-600 170 L60 ${140+k/3} L120 165 L190 ${130+k/4} L250 160 L900 145 L900 300 L-600 300Z" fill="#fff" opacity=".12"/>
+    <g fill="#e6ebf3" opacity=".92"><path d="M10 230 V175 L45 158 L80 175 L115 158 L150 175 V230Z"/><rect x="160" y="${160-k/4}" width="125" height="${70+k/4}"/><rect x="${70+k}" y="105" width="11" height="60"/></g>
+    <rect x="160" y="${152-k/4}" width="125" height="12" fill="${f.c}"/>
+    <g fill="#b9c6da"><rect x="172" y="${180-k/8}" width="22" height="30"/><rect x="202" y="${180-k/8}" width="22" height="30"/><rect x="232" y="${180-k/8}" width="22" height="30"/></g>
+    <rect x="-600" y="228" width="1500" height="72" fill="#3a4250"/><rect x="-600" y="262" width="1500" height="3" fill="#f2c94c" opacity=".6"/>
+    <svg x="70" y="186" width="160" height="96" viewBox="0 0 200 120" style="color:${f.c}"><use href="#moto"/></svg>
+    </g></svg>`;
+}
+const stars = n => n ? `<span class="stars" aria-label="${n}/5">${"★".repeat(n)}${"☆".repeat(5-n)}</span>` : "";
+function renderResults(F){
+  const list = F.filter(f => matches(f));
+  const S = {rec:(a,b)=>(b.rating-a.rating)||(b.score-a.score), price:(a,b)=>(a.from||1e9)-(b.from||1e9), age:(a,b)=>(a.since||9999)-(b.since||9999), eec:(a,b)=>b.eec.length-a.eec.length, rating:(a,b)=>b.rating-a.rating};
+  list.sort(S[st.sort]);
+  $("count").textContent = t("found", list.length);
+  const rest = list.length - st.limit; $("more").hidden = rest <= 0; if (rest > 0) $("more").textContent = t("showMore", Math.min(rest, 24));
+  $("results").innerHTML = list.length ? list.slice(0, st.limit).map(f => {
+    const ccTxt = f.cc ? `${f.cc[0]}–${f.cc[1]} cc` : "";
+    return `<article class="card">
+      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}</a>
+      <div class="info">
+        <h3><a href="#${f.id}">${esc(f.name)}</a> ${stars(f.rating)}</h3>
+        <div class="legal">${esc(f.legal || "")}</div>
+        <div class="loc"><a href="#" data-prov="${esc(f.prov)}">${esc(f.city)}, ${esc(f.prov)}</a><span>· ${f.since ? t("since",f.since) : t("sinceUnknown")}</span></div>
+        <div class="badges">
+          ${f.eec.length ? `<span class="badge b-eec">${t("eecN",f.eec.length)}</span>` : ""}
+          ${f.non.length ? `<span class="badge b-non">${t("nonN",f.non.length)}</span>` : ""}
+          ${f.emails.length ? `<span class="badge b-ok">✉ ${t("hasEmail")}</span>` : ""}
+          <span class="badge ${f.bt==="Trading company"?"b-warn":"b-non"}">${t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated")}</span>
+          ${f.tier==="full" ? `<span class="badge b-eec">${t("detailed")}</span>` : ""}
+          <span class="badge b-warn">${t("notVerified")}</span>
+        </div>
+        <div class="models-line"><b>${f.types.join(" · ")}</b>${ccTxt ? " · " + ccTxt : ""}</div>
+        ${f.products ? `<div class="models-line">${esc(f.products).slice(0,140)}</div>` : ""}
+      </div>
+      <div class="side">
+        <div class="score"><div class="w"><span>${t("completeness")}</span></div><div class="n">${f.score.toFixed(1)}</div></div>
+        <div>${f.from ? `<div class="from">${t("euFrom")}</div><div class="price">${eur(f.from)}</div>` : `<div class="price" style="font-size:20px">${t("onRequest")}</div>`}</div>
+        <div class="btns"><a class="btn" href="#${f.id}">${t("seeProfile")}</a></div>
+      </div>
+    </article>`;}).join("") : `<div class="empty">${t("noMatch")}</div>`;
+}
+function renderChips(){
+  const c = [];
+  for (const g of ["cat","prov","type","cc","price","contact","bt"]) st[g].forEach(v => c.push([g,v,v]));
+  if (st.age) c.push(["age",st.age,st.age+"+"]);
+  if (st.q) c.push(["q","",`“${esc(st.q)}”`]);
+  const label = (g,v) => g==="cat" ? (v==="eec"?t("hasEec"):t("hasNon")) : g==="cc" ? CC.find(r=>r.k===v).t : g==="price" ? (v==="n"?t("onRequest"):PR.find(r=>r.k===v).t) : g==="contact" ? (v==="y"?t("hasEmail"):t("noEmail")) : g==="bt" ? t(v==="m"?"manufacturer":v==="t"?"trading":"notStated") : v;
+  $("chips").innerHTML = c.map(([g,v,x]) => `<button class="chip" type="button" data-rm="${g}" data-v="${esc(v)}">${g==="q"||g==="age"?x:esc(label(g,v))} ✕</button>`).join("");
+}
+$("more").onclick = () => { st.limit += 24; renderSearch(); };
+function renderSearch(){ const F = factories(false); renderFilters(F); renderResults(F); renderChips(); }
+
+/* ---------- profile ---------- */
+let cur = null, showEec = true;
+const OK = () => `<span class="badge b-warn">${t("notVerified")}</span>`;
+const MISS = () => `<span class="badge b-non">${t("factoryToComplete")}</span>`;
+const fact = (label, val) => `<div class="fact"><span class="label">${label}</span>${val ? `<span class="val">${val}</span>${OK()}` : `<span class="val miss">${t("notFound")}</span>${MISS()}`}</div>`;
+const ccLabel = c => c == null || c === "" ? "" : (typeof c === "number" ? `${c} cc` : esc(c));
+function modelRows(f){
+  const list = showEec ? f.eec : f.non;
+  if (!list.length) return `<div class="empty-cat">${showEec ? t("noEec") : t("noNon")}</div>`;
+  return list.map(x => `<div class="mrow">
+    <div class="th"><svg viewBox="0 0 200 120" style="color:${f.c}" aria-hidden="true"><use href="#moto"/></svg></div>
+    <div style="min-width:0"><h3>${esc(x.n)}</h3>
+      <div class="badges" style="margin:5px 0">
+        ${x.year ? `<span class="badge b-non">${t("modelYear",x.year)}</span>` : ""}
+        ${showEec ? `<span class="badge b-eec">EEC</span>` : `<span class="badge b-warn">Non-EEC</span>`}</div>
+      <div class="sp">${[ccLabel(x.cc), x.market ? esc(x.market) : ""].filter(Boolean).join(" · ")}</div></div>
+    <div class="buy">
+      <div class="eu">${x.eu ? eur(x.eu) : t("priceReq")}<small>${x.eu ? t("euShop") : t("factoryFob")}</small></div>
+      <button class="btn" type="button" data-req="${esc(x.n)}">${t("reqPrice")}</button></div>
+  </div>`).join("");
+}
+function crow(label, val, copyId){
+  return `<div class="crow"><div class="k"><span class="label">${label}</span>${val ? `<div class="contact-v" id="${copyId}">${esc(val)}</div>` : `<b>${t("addedByFactory")}</b>`}</div>${val ? `<button class="copy" type="button" data-copy="${copyId}">${t("copy")}</button>` : ""}</div>`;
+}
+function renderProfile(f){
+  cur = f;
+  const wm = f.name.split(" / ")[0].toUpperCase();
+  const link = u => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").replace(/\/$/,""))}</a>` : null;
+  $("profile").innerHTML = `
+  <nav class="crumbs"><a href="#">${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
+  <div class="banner">${scene(f,1600,500,"b"+f.id)}</div>
+  <div class="phead">
+    <div class="wordmark" style="background:${f.sky[0]}">${esc(wm)}</div>
+    <div class="t"><h1>${esc(f.name)} ${stars(f.rating)}</h1>
+      <div class="sub">${esc(f.legal || "")} · ${esc(f.city)}, ${esc(f.prov)}</div>
+      <div class="badges" style="margin-top:8px">
+        <span class="badge b-warn">${t("cfPending")}</span>
+        ${f.eec.length ? `<span class="badge b-eec">${t("eecN",f.eec.length)}</span>` : ""}
+        ${f.non.length ? `<span class="badge b-non">${t("nonN",f.non.length)}</span>` : ""}
+        <span class="badge b-non">${t("notClaimed")}</span></div></div>
+  </div>
+  <div class="pgrid"><div>
+    <section class="box"><h2>${t("facts")}</h2>
+      <div class="legend">${t("sourceLegend")} <span class="badge b-ok">✓ ${t("cfVerified")}</span><span class="badge b-warn">${t("notVerified")}</span><span class="badge b-non">${t("factoryToComplete")}</span></div>
+      <div class="facts">
+        ${fact(t("legal"), esc(f.legal))}${fact(t("location"), esc(`${f.city}, ${f.prov}`))}
+        ${fact(t("started"), f.since ? `${f.since} (${NOW-f.since})` : null)}${fact(t("employees"), esc(f.emp))}
+        ${fact(t("capacity"), esc(f.cap))}${fact(t("markets"), esc(f.markets))}
+        ${fact(t("coType"), t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated"))}${fact(t("mainProducts"), esc(f.products || ""))}
+        ${fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
+      </div></section>
+    <section class="box" id="models"><h2>${t("models")}</h2>
+      <div class="switch">
+        <button type="button" id="t-eec" aria-pressed="${showEec}"><strong>${t("eecCatalog")}</strong><span>${t("eecSub",f.eec.length)}</span></button>
+        <button type="button" id="t-non" aria-pressed="${!showEec}"><strong>${t("nonEec")}</strong><span>${t("nonSub",f.non.length)}</span></button>
+      </div>
+      <div id="mlist">${modelRows(f)}</div>
+    </section>
+    <section class="box"><h2>${t("tour360")}</h2>
+      ${f.tour ? `<a class="btn" href="${esc(f.tour)}" target="_blank" rel="noopener">▶ ${t("tourOpen")}</a>` : `<div class="empty-cat">${t("tourEmpty")}</div>`}
+      ${isAdmin ? `<form class="form" id="tour-f" style="margin-top:12px"><label for="tour-u">${t("tourUrl")}<input id="tour-u" type="url" value="${esc(f.tour)}" placeholder="https://"></label><button class="btn sec" type="submit">${t("save")}</button></form>` : ""}
+    </section>
+    <section class="box"><h2>${t("news")}</h2>
+      <div id="news-list"></div>
+      ${isAdmin ? `<form class="form" id="news-f" style="margin-top:12px"><h3 style="font-size:18px">${t("addNews")}</h3>
+        <label for="nw-t">${t("newsTitle")}<input id="nw-t" type="text" required maxlength="140"></label>
+        <label for="nw-b">${t("newsBody")}<textarea id="nw-b" rows="3" maxlength="2000"></textarea></label>
+        <button class="btn" type="submit">${t("post")}</button></form>` : ""}
+    </section>
+    <section class="box"><h2 style="font-size:20px">${t("sources")}</h2><ol class="srcs">${f.src.map(u=>`<li><a href="${esc(encodeURI(decodeURI(u)))}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,70))}</a></li>`).join("")}</ol></section>
+  </div>
+  <aside>
+    <div class="box"><div class="score"><div class="w"><b>${t("completeness")}</b></div><div class="n">${f.score.toFixed(1)}</div></div>
+      <p class="from" style="margin:10px 0 0">${t("compNote")}</p></div>
+    <div class="box"><h2 style="font-size:22px">${t("contactFactory")}</h2>
+      ${f.emails.length ? f.emails.map((e,i)=>crow(t("email"), e, "c-mail-"+i)).join("") : crow(t("email"), null)}
+      ${crow(t("phone"), f.phone, "c-phone")}
+      ${crow(t("whatsapp"), f.wa, "c-wa")}
+      ${crow(t("wechat"), f.wc, "c-wc")}
+      <button class="btn" type="button" data-req="" style="width:100%;margin-top:10px">${t("reqPrice")}</button></div>
+    <div class="claim" style="margin-top:18px"><h3>${t("claimTitle")}</h3><p>${t("claimText")}</p>
+      <button class="btn sec" type="button" id="claim">${t("claimBtn")}</button></div>
+  </aside></div>`;
+  $("t-eec").onclick = () => { showEec = true; $("mlist").innerHTML = modelRows(f); $("t-eec").setAttribute("aria-pressed","true"); $("t-non").setAttribute("aria-pressed","false"); };
+  $("t-non").onclick = () => { showEec = false; $("mlist").innerHTML = modelRows(f); $("t-eec").setAttribute("aria-pressed","false"); $("t-non").setAttribute("aria-pressed","true"); };
+  $("claim").onclick = () => toast(t("claimToast"));
+  renderNews(f);
+  if (isAdmin){
+    $("tour-f").onsubmit = e => { e.preventDefault(); const u = $("tour-u").value.trim(); saveEdit(f.id, {tour: /^https:\/\//.test(u) ? u : ""}); toast(t("saved")); };
+    $("news-f").onsubmit = async e => { e.preventDefault(); if (!db){ toast(t("adminNoDb")); return; }
+      const title = $("nw-t").value.trim(); if (!title) return;
+      try { await api("news.php", {fid: f.id, title, body: $("nw-b").value.trim()}); $("nw-t").value = ""; $("nw-b").value = ""; await loadServer(); renderNews(f); toast(t("saved")); }
+      catch(err){ toast((err && err.message) || "Save failed"); } };
+  }
+}
+function renderNews(f){
+  const el = $("news-list"); if (!el) return;
+  const items = (NEWS[f.id] || []).slice().sort((a,b) => (b.date||"").localeCompare(a.date||""));
+  el.innerHTML = items.length ? items.map(n => `<article style="border-top:1px solid var(--line);padding:10px 0">
+      <div class="from">${esc((n.date||"").slice(0,10))}</div><h3 style="font-size:18px;font-weight:600">${esc(n.title)}</h3>
+      ${n.body ? `<p style="margin:4px 0 0;white-space:pre-wrap">${esc(n.body)}</p>` : ""}
+      ${isAdmin ? `<button class="mini danger" type="button" data-delnews="${esc(n.id)}" style="margin-top:6px">${t("del")}</button>` : ""}</article>`).join("")
+    : `<div class="empty-cat">${t("newsEmpty")}</div>`;
+}
+document.addEventListener("click", async e => { const d = e.target.closest("[data-delnews]"); if (d && db){ try { await api("news.php", {action:"delete", id: +d.dataset.delnews}); await loadServer(); if (cur) renderNews(cur); } catch(err){ toast((err && err.message) || "Delete failed"); } } });
+
+/* ---------- price request ---------- */
+function openReq(model){
+  const f = cur;
+  $("overlay").innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rq-t">
+    <button class="x" type="button" id="rq-x" aria-label="${t("close")}">×</button>
+    <div class="label">${esc(f.name)}${model ? " · " + esc(model) : ""}</div><h2 id="rq-t">${t("reqPrice")}</h2>
+    <form class="form" id="rq-f">
+      <div><div class="label" style="margin-bottom:6px">${t("customize")}</div><div class="opts">
+        <label><input type="checkbox" id="rq-abs"> ABS</label><label><input type="checkbox" id="rq-logo"> Logo / brand</label>
+        <label><input type="checkbox" id="rq-box"> Top box</label><label><input type="checkbox" id="rq-eec"> EEC</label></div></div>
+      <div class="two"><label for="rq-col">${t("colour")}<input id="rq-col" type="text" value="Black"></label>
+        <label for="rq-qty">${t("qty")}<input id="rq-qty" type="number" min="1" value="60" inputmode="numeric"></label></div>
+      <div><div class="label" style="margin-bottom:6px">${t("replyBy")}</div><div class="opts">
+        <label><input type="radio" name="rq-via" value="${t("email")}" checked> ${t("email")}</label><label><input type="radio" name="rq-via" value="${t("wechat")}"> ${t("wechat")}</label><label><input type="radio" name="rq-via" value="${t("whatsapp")}"> ${t("whatsapp")}</label></div></div>
+      <div class="two"><label for="rq-co">${t("yourCo")}<input id="rq-co" type="text"></label>
+        <label for="rq-ct">${t("yourContact")}<input id="rq-ct" type="text"></label></div>
+      <label for="rq-msg">${t("message")}<textarea id="rq-msg" rows="3">FOB + CIF Casablanca</textarea></label>
+      <button class="btn" type="submit">${t("send")}</button>
+      <div class="done" id="rq-done" hidden></div>
+    </form></div>`;
+  $("overlay").hidden = false; $("rq-x").focus();
+  $("rq-x").onclick = closeOverlay;
+  $("rq-f").onsubmit = e => { e.preventDefault(); $("rq-done").textContent = t("demoSent", f.name, document.querySelector('input[name="rq-via"]:checked').value); $("rq-done").hidden = false; };
+}
+function closeOverlay(){ $("overlay").hidden = true; }
+$("overlay").addEventListener("click", e => { if (e.target.id === "overlay") closeOverlay(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeOverlay(); });
+
+/* ---------- admin ---------- */
+const sel = new Set();
+let mailLang = "en";
+async function saveEdit(id, patch){
+  if (!db){ toast(t("adminNoDb")); return; }
+  EDITS[id] = {...(EDITS[id]||{}), ...patch};
+  try { const j = await api("edit.php", {id, patch}); EDITS[id] = j.edit || EDITS[id]; }
+  catch(err){ toast((err && err.message) || "Save failed"); }
+  render();
+}
+function renderAdmin(){
+  const F = factories(true);
+  const withMail = F.filter(f => !f.removed && f.emails.length);
+  $("admin").innerHTML = `
+    <div class="adm-bar"><div><h2>${t("adminTitle")}</h2><p class="from" style="margin:2px 0 0">${db ? t("adminNote") : t("adminNoDb")}</p></div>
+      <div class="row" style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn sec" type="button" id="m-sel" ${sel.size?"":"disabled"}>${t("emailSel")} (${sel.size})</button>
+        <button class="btn" type="button" id="m-all">${t("emailAll")} (${withMail.length})</button>
+        <button class="btn sec" type="button" id="logout">${t("signOut")}</button></div></div>
+    <div class="adm-table"><table>
+      <thead><tr><th></th><th>${t("colFactory")}</th><th>${t("colEmails")}</th><th>${t("colRating")}</th><th>${t("colStatus")}</th><th>${t("colActions")}</th></tr></thead>
+      <tbody>${F.map(f => `<tr class="${f.removed?"removed":""}">
+        <td><input type="checkbox" aria-label="${t("select")} ${esc(f.name)}" data-sel="${f.id}" ${sel.has(f.id)?"checked":""} ${f.emails.length?"":"disabled"}></td>
+        <td><a href="#${f.id}" style="color:var(--accent);font-weight:600">${esc(f.name)}</a><div class="from">${esc(f.city)} · EEC ${f.eec.length} · Non-EEC ${f.non.length}</div>${f.note?`<div class="from">📝 ${esc(f.note)}</div>`:""}</td>
+        <td class="em">${f.emails.length ? f.emails.map(esc).join("<br>") : `<span class="from">${t("noAddr")}</span>`}</td>
+        <td><span class="rate">${[1,2,3,4,5].map(n=>`<button type="button" class="${n<=f.rating?"on":""}" data-rate="${f.id}" data-n="${n}" aria-label="${n}/5">★</button>`).join("")}</span></td>
+        <td>${f.removed ? t("removed") : t("live")}</td>
+        <td style="white-space:nowrap"><button class="mini" type="button" data-edit="${f.id}">${t("edit")}</button>
+          ${f.emails.length?`<button class="mini" type="button" data-mail1="${f.id}">✉</button>`:""}
+          <button class="mini${f.removed?"":" danger"}" type="button" data-toggle="${f.id}">${f.removed ? t("restore") : t("remove")}</button></td>
+      </tr>`).join("")}</tbody></table></div>
+    <div id="mailbox"></div>`;
+  $("m-all").onclick = () => compose(withMail);
+  $("logout").onclick = async () => { try { await api("login.php", {action:"logout"}); } catch(_) {} isAdmin = false; db = null; $("tab-admin").hidden = true; go("#"); };
+  $("m-sel").onclick = () => compose(F.filter(f => sel.has(f.id)));
+}
+function compose(list){
+  const addrs = list.flatMap(f => f.emails);
+  const name = list.length === 1 ? list[0].name : "your company";
+  const m = MAIL[mailLang];
+  const body = m.b.replaceAll("{name}", list.length === 1 ? list[0].name : (mailLang==="fr"?"votre société":mailLang==="zh"?"贵公司":mailLang==="ar"?"شركتكم":"your company"));
+  $("mailbox").innerHTML = `<div class="mail">
+    <h3 style="font-size:22px">${t("composeTitle")} · ${t("recipients", addrs.length)}</h3>
+    <div class="notice">${t("mailNotice")}</div>
+    <div class="row"><label class="label" for="ml-lang">${t("template")}</label>
+      <select id="ml-lang" style="width:auto">${["en","fr","zh","ar"].map(l=>`<option value="${l}" ${l===mailLang?"selected":""}>${l.toUpperCase()}</option>`).join("")}</select></div>
+    <label class="label" for="ml-to">BCC</label><textarea id="ml-to" rows="2" readonly>${esc(addrs.join(", "))}</textarea>
+    <label class="label" for="ml-s">${t("subject")}</label><input id="ml-s" type="text" value="${esc(m.s)}">
+    <label class="label" for="ml-b">${t("body")}</label><textarea id="ml-b" rows="14" dir="${mailLang==="ar"?"rtl":"ltr"}">${esc(body)}</textarea>
+    <div class="row">
+      <button class="mini" type="button" id="ml-ca">${t("copyAddr")}</button>
+      <button class="mini" type="button" id="ml-cm">${t("copyMsg")}</button>
+      <a class="btn sec" id="ml-open" href="#">${t("openMail")}</a>
+      <button class="btn" type="button" id="ml-send">${t("sendNow")}</button></div>
+    <div class="done" id="ml-res" hidden></div></div>`;
+  const refreshLink = () => { $("ml-open").href = `mailto:?bcc=${encodeURIComponent(addrs.join(","))}&subject=${encodeURIComponent($("ml-s").value)}&body=${encodeURIComponent($("ml-b").value)}`; };
+  refreshLink();
+  $("ml-s").oninput = refreshLink; $("ml-b").oninput = refreshLink;
+  $("ml-lang").onchange = e => { mailLang = e.target.value; compose(list); };
+  $("ml-send").onclick = async () => {
+    const btn = $("ml-send"), res = $("ml-res"); btn.disabled = true; btn.textContent = t("sending");
+    let ok = 0, bad = [];
+    const one = list.length === 1;
+    for (let i = 0; i < addrs.length; i += 25){
+      const batch = addrs.slice(i, i + 25);
+      try {
+        const j = await api("mail.php", {to: batch, subject: $("ml-s").value, body: $("ml-b").value});
+        j.results.forEach(r => r.status === "sent" ? ok++ : bad.push(r.to + " (" + r.status + ")"));
+      } catch(err){ bad.push(...batch.map(a => a + " (" + err.message + ")")); }
+      res.hidden = false; res.textContent = t("sentN").replace("{ok}", ok).replace("{n}", addrs.length).replace("{bad}", bad.length) + (bad.length ? "\n" + bad.join("\n") : "");
+    }
+    btn.disabled = false; btn.textContent = t("sendNow");
+  };
+  $("ml-ca").onclick = () => copyText($("ml-to").value, $("ml-ca"), $("ml-to"));
+  $("ml-cm").onclick = () => copyText($("ml-s").value + "\n\n" + $("ml-b").value, $("ml-cm"), $("ml-b"));
+  $("mailbox").scrollIntoView({behavior:"smooth"});
+}
+function openEdit(id){
+  const f = factories(true).find(x => x.id === id);
+  $("overlay").innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="ed-t">
+    <button class="x" type="button" id="ed-x" aria-label="${t("close")}">×</button>
+    <h2 id="ed-t">${t("editTitle")}: ${esc(f.name)}</h2>
+    <form class="form" id="ed-f">
+      <label for="ed-em">${t("colEmails")}<textarea id="ed-em" rows="3">${esc(f.emails.join("\n"))}</textarea></label>
+      <div class="edit-grid">
+        <label for="ed-ph">${t("phone")}<input id="ed-ph" type="text" value="${esc(f.phone||"")}"></label>
+        <label for="ed-wa">${t("whatsapp")}<input id="ed-wa" type="text" value="${esc(f.wa||"")}"></label>
+        <label for="ed-wc">${t("wechat")}<input id="ed-wc" type="text" value="${esc(f.wc||"")}"></label>
+      </div>
+      <label for="ed-note">${t("note")}<textarea id="ed-note" rows="2">${esc(f.note)}</textarea></label>
+      <div class="two"><button class="btn sec" type="button" id="ed-c">${t("cancel")}</button><button class="btn" type="submit">${t("save")}</button></div>
+    </form></div>`;
+  $("overlay").hidden = false;
+  $("ed-x").onclick = closeOverlay; $("ed-c").onclick = closeOverlay;
+  $("ed-f").onsubmit = async e => { e.preventDefault();
+    await saveEdit(id, {emails: $("ed-em").value.split(/[\s,;]+/).filter(x=>x.includes("@")), phone: $("ed-ph").value.trim()||null, whatsapp: $("ed-wa").value.trim()||null, wechat: $("ed-wc").value.trim()||null, note: $("ed-note").value.trim()});
+    closeOverlay(); toast(t("saved")); };
+}
+$("admin").addEventListener("click", e => {
+  const r = e.target.closest("[data-rate]"); if (r){ const f = factories(true).find(x=>x.id===r.dataset.rate); const n = +r.dataset.n; saveEdit(f.id, {rating: f.rating===n ? 0 : n}); }
+  const tg = e.target.closest("[data-toggle]"); if (tg){ const id = tg.dataset.toggle; saveEdit(id, {removed: !(EDITS[id]||{}).removed}); }
+  const ed = e.target.closest("[data-edit]"); if (ed) openEdit(ed.dataset.edit);
+  const m1 = e.target.closest("[data-mail1]"); if (m1) compose(factories(true).filter(f => f.id === m1.dataset.mail1));
+});
+$("admin").addEventListener("change", e => { const c = e.target.closest("[data-sel]"); if (c){ c.checked ? sel.add(c.dataset.sel) : sel.delete(c.dataset.sel); const b = $("m-sel"); b.disabled = !sel.size; b.textContent = `${t("emailSel")} (${sel.size})`; } });
+
+/* ---------- shared ---------- */
+function copyText(text, btn, el){
+  const ok = () => { const o = btn.textContent; btn.textContent = t("copied"); setTimeout(()=>btn.textContent=o,1500); };
+  const fb = () => { if (el && el.select) el.select(); else if (el){ const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r);} };
+  try { navigator.clipboard.writeText(text).then(ok, fb); } catch(_) { fb(); }
+}
+let tt;
+function toast(msg){ const x=$("toast"); x.textContent=msg; x.hidden=false; clearTimeout(tt); tt=setTimeout(()=>x.hidden=true,3500); }
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-t]").forEach(el => { el.textContent = t(el.dataset.t); });
+  document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  $("s-type").innerHTML = `<option value="">${t("anyType")}</option>` + TYPES.map(x=>`<option>${x}</option>`).join("");
+  $("s-cat").innerHTML = `<option value="">${t("anyCat")}</option><option value="eec">${t("eecOnly")}</option><option value="non">${t("nonOnly")}</option>`;
+  $("sort").innerHTML = ["rec","price","age","eec","rating"].map(k => `<option value="${k}" ${st.sort===k?"selected":""}>${t("sort"+k[0].toUpperCase()+k.slice(1))}</option>`).join("");
+}
+
+function renderLogin(){
+  $("admin").innerHTML = `<div class="box" style="max-width:420px;margin:40px auto"><h2>${t("loginTitle")}</h2>
+    <form class="form" id="lg-f"><label for="lg-p">${t("password")}<input id="lg-p" type="password" autocomplete="current-password" required></label>
+    <button class="btn" type="submit">${t("signIn")}</button><div class="from" id="lg-e" role="alert"></div></form></div>`;
+  $("lg-p").focus();
+  $("lg-f").onsubmit = async e => { e.preventDefault(); $("lg-e").textContent = "";
+    try { await api("login.php", {password: $("lg-p").value}); await loadServer(); render(); }
+    catch(err){ $("lg-e").textContent = err.message === "Wrong password." ? t("wrongPw") : err.message; } };
+}
+let view = "search";
+function render(){
+  const id = location.hash.slice(1);
+  const f = factories(isAdmin).find(x => x.id === id);
+  view = f ? "profile" : (id === "admin" ? "admin" : "search");
+  document.body.classList.toggle("pmode", view !== "search");
+  $("search-view").hidden = view !== "search"; $("profile").hidden = view !== "profile"; $("admin").hidden = view !== "admin";
+  $("tab-dir").classList.toggle("on", view !== "admin"); $("tab-admin").classList.toggle("on", view === "admin");
+  if (view === "profile"){ if (cur !== f) showEec = f.eec.length > 0; renderProfile(f); }
+  else if (view === "admin") (isAdmin ? renderAdmin() : renderLogin());
+  else renderSearch();
+}
+function go(hash){ if (location.hash !== hash){ location.hash = hash; } else render(); window.scrollTo(0,0); }
+window.addEventListener("hashchange", () => { render(); window.scrollTo(0,0); });
+document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { lang = b.dataset.lang; try{ localStorage.setItem("emh-lang", lang); }catch(_){} applyLang(); render(); });
+$("tab-dir").onclick = () => go("#");
+$("tab-admin").onclick = () => go("#admin");
+$("filters").addEventListener("change", e => { const i = e.target, g = i.dataset.g; if (!g) return; st.limit = 24;
+  if (g==="age") st.age = i.checked ? i.value : ""; else i.checked ? st[g].add(i.value) : st[g].delete(i.value); renderSearch(); });
+$("clear").onclick = () => { ["cat","prov","type","cc","price","contact","bt"].forEach(k=>st[k].clear()); st.age=""; st.q=""; $("s-q").value=""; $("s-type").value=""; $("s-cat").value=""; renderSearch(); };
+$("sort").onchange = e => { st.sort = e.target.value; renderSearch(); };
+$("searchbar").addEventListener("submit", e => { e.preventDefault();
+  st.q = $("s-q").value.trim(); st.type.clear(); if ($("s-type").value) st.type.add($("s-type").value);
+  st.cat.clear(); if ($("s-cat").value) st.cat.add($("s-cat").value);
+  renderSearch(); $("count").scrollIntoView({behavior:"smooth", block:"start"}); });
+$("chips").addEventListener("click", e => { const b = e.target.closest("[data-rm]"); if (!b) return;
+  const g = b.dataset.rm, v = b.dataset.v; if (g==="age") st.age=""; else if (g==="q"){ st.q=""; $("s-q").value=""; } else st[g].delete(v); renderSearch(); });
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-prov]"); if (p){ e.preventDefault(); st.prov.clear(); st.prov.add(p.dataset.prov); go("#"); return; }
+  const r = e.target.closest("[data-req]"); if (r) openReq(r.dataset.req);
+  const c = e.target.closest("[data-copy]"); if (c){ const el = $(c.dataset.copy); copyText(el.textContent, c, el); }
+  const home = e.target.closest('a[href="#"]'); if (home){ e.preventDefault(); go("#"); }
+});
+$("factory-login").onclick = () => toast(t("claimToast"));
+$("open-filters").onclick = () => $("filters").classList.add("open");
+$("f-done").onclick = () => $("filters").classList.remove("open");
+applyLang();
+(async () => {
+  try { BASE = await (await fetch("data/factories.json")).json(); } catch(_) { BASE = []; }
+  try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
+  render();
+})();
+</script>
+
+</body>
+</html>
