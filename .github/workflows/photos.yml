@@ -8,7 +8,9 @@ on:
     - cron: "0 3 1 * *"   # refresh monthly
 permissions:
   contents: write
-concurrency: { group: photos-${{ github.ref }}, cancel-in-progress: true }
+concurrency:
+  group: photos-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   photos:
     runs-on: ubuntu-latest
@@ -16,7 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
+        with:
+          python-version: "3.12"
       - run: pip install requests beautifulsoup4 pillow playwright && python -m playwright install --with-deps chromium
       - run: python tools/fetch_photos.py | tee photos.log; tail -1 photos.log >> "$GITHUB_STEP_SUMMARY"
       - name: Commit photos.json
