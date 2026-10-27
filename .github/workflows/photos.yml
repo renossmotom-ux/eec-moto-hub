@@ -30,4 +30,4 @@ jobs:
           git add -A data/photos.json data/thumbs data/thumbs.json
           git diff --cached --quiet && exit 0
           git commit -m "Update factory photos"
-          git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
