@@ -122,6 +122,11 @@ main{padding-top:52px}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block}
 .gallery h3{grid-column:1/-1;font-size:15px;font-weight:600;color:var(--muted);margin-top:4px}
 .ph-src{font-size:12.5px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
+.photo .logo-face,.photo .name-face{position:absolute;inset:0;display:grid;place-items:center;padding:14%}
+.photo .logo-face{background:#fff}
+.photo .logo-face img{position:static;width:100%;height:100%;object-fit:contain;background:none}
+.photo .name-face{color:#fff;font-family:var(--display);font-weight:700;font-size:26px;line-height:1.05;text-align:center;overflow-wrap:anywhere;padding:10%}
+.wordmark img{width:100%;height:100%;object-fit:contain}
 .photo .heart{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:var(--surface);color:var(--fg);display:grid;place-items:center;font-size:17px;line-height:1}
 .photo .heart[aria-pressed="true"]{color:#d4294b}
 .photo .tag{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:5px}
@@ -524,6 +529,7 @@ const eur = n => "€ " + n.toLocaleString("en-US");
 /* ---------- data: base + admin edits from db ---------- */
 let EDITS = {};
 let PHOTOS = {};
+let LOGOS = {};  // id -> {p, from} from tools/fetch_logos.py
 let TH = {};     // photo URL -> local thumbnail, from tools/make_thumbs.py // id -> {page, products:[{u,alt}], factory:[{u,alt}]} from tools/fetch_photos.py
 let NEWS = {};   // fid -> [{id,title,body,date}]       // id -> {removed, rating, note, emails, phone, whatsapp, wechat}
 let db = null, isAdmin = false;
@@ -548,7 +554,7 @@ function factories(includeRemoved){
   return BASE.map(b => {
     const e = EDITS[b.id] || {};
     const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || "",
-      ph: PHOTOS[b.id] || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
+      ph: PHOTOS[b.id] || null, logo: e.logo || (LOGOS[b.id] || {}).p || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = prices.length ? Math.min(...prices) : null;
     const facts = [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
@@ -606,6 +612,9 @@ function modelPhoto(f, n){
   const keys = short.length >= 3 && short !== k ? [k, short] : [k];
   return f.ph.products.find(p => keys.some(q => normM(p.alt).includes(q))) || null;
 }
+// Factory list shows who the company is: its logo, else a photo of the factory, else its name.
+const cardFace = f => f.logo ? `<span class="logo-face"><img src="${esc(f.logo)}" alt="${esc(f.name)} logo" loading="lazy" onerror="this.parentNode.remove()"></span>`
+  : f.ph && f.ph.factory.length ? pimg(f.ph.factory[0]) : `<span class="name-face" style="background:${f.sky[0]}">${esc(f.name.split(" / ")[0])}</span>`;
 const photoCount = f => f.ph ? f.ph.products.length + f.ph.factory.length : 0;
 function todo(f){
   return [["tdPhotos", !!f.ph], ["tdContact", !!(f.emails.length || f.phone || f.wa || f.wc)], ["tdEec", f.eec.length > 0],
@@ -649,7 +658,7 @@ function renderResults(F){
   $("results").innerHTML = list.length ? list.slice(0, st.limit).map(f => {
     const ccTxt = f.cc ? `${f.cc[0]}–${f.cc[1]} cc` : "";
     return `<article class="card">
-      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${f.ph ? pimg(mainPhoto(f), "contain") + `<span class="tag">${t("phN", photoCount(f))}</span>` : `<span class="soon"><b>${t("soonT")}</b>${t("soonS")}</span>`}</a>
+      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${cardFace(f)}${f.ph ? `<span class="tag">${t("phN", photoCount(f))}</span>` : ""}</a>
       <div class="info">
         <h3><a href="#${f.id}">${esc(f.name)}</a> ${stars(f.rating)}</h3>
         <div class="legal">${esc(f.legal || "")}</div>
@@ -716,7 +725,7 @@ function renderProfile(f){
   <nav class="crumbs"><a href="#">${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
   <div class="banner">${scene(f,1600,500,"b"+f.id)}${heroStrip(f)}</div>
   <div class="phead">
-    <div class="wordmark" style="background:${f.sky[0]}">${esc(wm)}</div>
+    <div class="wordmark" style="background:${f.logo ? "#fff" : f.sky[0]}">${f.logo ? `<img src="${esc(f.logo)}" alt="${esc(f.name)} logo">` : esc(wm)}</div>
     <div class="t"><h1>${esc(f.name)} ${stars(f.rating)}</h1>
       <div class="sub">${esc(f.legal || "")} · ${esc(f.city)}, ${esc(f.prov)}</div>
       <div class="badges" style="margin-top:8px">
@@ -994,8 +1003,8 @@ $("open-filters").onclick = () => $("filters").classList.add("open");
 $("f-done").onclick = () => $("filters").classList.remove("open");
 applyLang();
 (async () => {
-  const [b, p, th] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
-  BASE = b; PHOTOS = p; TH = th;
+  const [b, p, th, lg] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
+  BASE = b; PHOTOS = p; TH = th; LOGOS = lg;
   try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
   render();
 })();

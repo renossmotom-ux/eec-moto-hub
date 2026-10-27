@@ -1,0 +1,33 @@
+name: Fetch company logos
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths: ["tools/fetch_logos.py", ".github/workflows/logos.yml"]
+defaults:
+  run:
+    shell: bash
+permissions:
+  contents: write
+concurrency:
+  group: logos-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  logos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 pillow cairosvg playwright && python -m playwright install --with-deps chromium
+      - run: python tools/fetch_logos.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Commit logos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A data/logos data/logos.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update company logos"
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
