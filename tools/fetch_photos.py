@@ -60,6 +60,10 @@ def candidates(html, base):
     for el in soup.select("[style*=background]"):
         for u in re.findall(r"url\(['\"]?([^'\")]+)", el.get("style", "")):
             out.append((u, el.get("title") or ""))
+    # Some showroom templates load photos from JSON inside <script>; pick up any image URL left in the raw page.
+    raw = html.replace("\\/", "/")
+    for u in re.findall(r"(?:https?:)?//[\w.-]+/[^\s\"'<>()]+?\.(?:jpe?g|png|webp)(?=[\"'?\s)<])", raw, re.I):
+        out.append((u, ""))
     seen, res = set(), []
     for src, alt in out:
         u = urljoin(base, src.strip())
@@ -121,6 +125,8 @@ def one(f, use_browser=False):
             except Exception as e:
                 print("  page fail", url, type(e).__name__, file=sys.stderr)
         if not html: continue
+        if DEBUG is not None and len(DEBUG) < 4 and "made-in-china" in url and f["id"] in WANT_DEBUG:
+            DEBUG.append(url); open(f"{ROOT}/debug/{f['id']}.html", "w").write(html)
         cands, links = candidates(html, url)
         if depth == 0:
             host = urlparse(url).netloc
@@ -167,7 +173,13 @@ def commons(f):
     return {"page": "https://commons.wikimedia.org/w/index.php?search=" + requests.utils.quote(f'"{brand}" motorcycle'), "via": "commons",
             "products": items, "factory": [], "at": time.strftime("%Y-%m-%d")}
 
+DEBUG, WANT_DEBUG = None, set()
+
 def main():
+    global DEBUG, WANT_DEBUG
+    if "--debug" in sys.argv:
+        sys.argv.remove("--debug"); DEBUG = []; __import__("os").makedirs(f"{ROOT}/debug", exist_ok=True)
+        WANT_DEBUG = {"yongkang-zhisheng", "jinhua-otmar", "deep-metal-moto", "zhejiang-luyuan-electric-vehicle"}
     F = json.load(open(f"{ROOT}/data/factories.json"))
     only = set(sys.argv[1:])
     path = f"{ROOT}/data/photos.json"
