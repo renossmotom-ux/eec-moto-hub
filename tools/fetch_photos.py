@@ -185,8 +185,26 @@ def commons(f):
 
 DEBUG, WANT_DEBUG = None, set()
 
+def diag(ids):
+    """Print why photos are rejected for a few factories (run by hand when a showroom template changes)."""
+    F = {f["id"]: f for f in json.load(open(f"{ROOT}/data/factories.json"))}
+    for fid in ids:
+        for url in pages_for(F[fid])[:1]:
+            r = get(url); print("PAGE", fid, url, r.status_code, len(r.text))
+            cands, _ = candidates(r.text, url)
+            for u, alt in cands[:6]:
+                for cand in dict.fromkeys([upsize(u), u]):
+                    try:
+                        x = requests.get(cand, headers=H, timeout=25)
+                        try: size = Image.open(io.BytesIO(x.content)).size
+                        except Exception as e: size = type(e).__name__
+                        print("  ", x.status_code, x.headers.get("content-type"), len(x.content), size, cand[-70:], "|", alt[:40])
+                    except Exception as e:
+                        print("  ERR", type(e).__name__, cand[-70:])
+
 def main():
     global DEBUG, WANT_DEBUG
+    if "--diag" in sys.argv: return diag(sys.argv[sys.argv.index("--diag") + 1:])
     if "--debug" in sys.argv:
         sys.argv.remove("--debug"); DEBUG = []; __import__("os").makedirs(f"{ROOT}/debug", exist_ok=True)
         WANT_DEBUG = {"yongkang-zhisheng", "jinhua-otmar", "deep-metal-moto", "zhejiang-luyuan-electric-vehicle"}
