@@ -1,8 +1,9 @@
-"""Save one small local thumbnail per factory (data/thumbs/<id>.jpg) from data/photos.json.
+"""Save small local copies of every photo in data/photos.json into data/thumbs/.
 
-Cards then load a ~20 KB local file instead of the full photo from the factory's server.
+Writes data/thumbs.json: {original photo URL: "data/thumbs/<file>.jpg"}. The site shows the local copy
+(fast, works even if a factory server blocks outside links) and links to the original.
 """
-import io, json, os, sys
+import hashlib, io, json, os, sys
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
@@ -11,40 +12,39 @@ from PIL import Image
 ROOT = __file__.rsplit("/tools/", 1)[0]
 OUT = f"{ROOT}/data/thumbs"
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+SIZE = 360
 
-def thumb(item):
-    fid, v = item
-    path = f"{OUT}/{fid}.jpg"
-    x = (v.get("products") or v.get("factory") or [None])[0]
-    if not x: return fid, False
-    if os.path.exists(path) and v.get("t_src") == x["u"]: return fid, True
+def name(fid, u):
+    return f"{fid}-{hashlib.md5(u.encode()).hexdigest()[:10]}.jpg"
+
+def thumb(job):
+    fid, u = job
+    path = f"{OUT}/{name(fid, u)}"
+    if os.path.exists(path): return u, path
     try:
-        r = requests.get(x["u"], headers=H, timeout=25)
+        r = requests.get(u, headers=H, timeout=25)
         im = Image.open(io.BytesIO(r.content))
         if im.mode in ("RGBA", "LA", "P"):
             im = im.convert("RGBA"); bg = Image.new("RGB", im.size, (255, 255, 255)); bg.paste(im, mask=im.split()[-1]); im = bg
         im = im.convert("RGB")
-        w, h = im.size; s = min(w, h)  # centre square crop, cards are square
-        im = im.crop(((w - s) // 2, (h - s) // 2, (w + s) // 2, (h + s) // 2)).resize((360, 360), Image.LANCZOS)
-        im.save(path, "JPEG", quality=72, optimize=True, progressive=True)
-        v["t_src"] = x["u"]
-        return fid, True
+        im.thumbnail((SIZE, SIZE), Image.LANCZOS)  # keep the whole motorcycle, no crop
+        im.save(path, "JPEG", quality=70, optimize=True, progressive=True)
+        return u, path
     except Exception as e:
-        print("  thumb fail", fid, e, file=sys.stderr); return fid, False
+        print("  thumb fail", fid, u, e, file=sys.stderr); return u, None
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    p = f"{ROOT}/data/photos.json"
-    photos = json.load(open(p))
-    with ThreadPoolExecutor(8) as ex:
-        ok = dict(ex.map(thumb, photos.items()))
-    for fid, v in photos.items():
-        if ok.get(fid): v["t"] = f"data/thumbs/{fid}.jpg"
-        else: v.pop("t", None)
+    photos = json.load(open(f"{ROOT}/data/photos.json"))
+    jobs = [(fid, x["u"]) for fid, v in photos.items() for x in v.get("products", []) + v.get("factory", [])]
+    with ThreadPoolExecutor(12) as ex:
+        done = {u: p for u, p in ex.map(thumb, jobs) if p}
+    keep = {os.path.basename(p) for p in done.values()}
     for f in os.listdir(OUT):
-        if f[:-4] not in photos or not ok.get(f[:-4]): os.remove(f"{OUT}/{f}")
-    json.dump(photos, open(p, "w"), ensure_ascii=False, separators=(",", ":"), sort_keys=True)
-    print(f"SUMMARY: {sum(ok.values())} thumbnails")
+        if f not in keep: os.remove(f"{OUT}/{f}")
+    rel = {u: os.path.relpath(p, ROOT) for u, p in done.items()}
+    json.dump(rel, open(f"{ROOT}/data/thumbs.json", "w"), separators=(",", ":"), sort_keys=True)
+    print(f"SUMMARY: {len(rel)}/{len(jobs)} thumbnails")
 
 if __name__ == "__main__":
     main()

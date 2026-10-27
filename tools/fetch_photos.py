@@ -17,6 +17,7 @@ ROOT = __file__.rsplit("/tools/", 1)[0]
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 H = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9,zh;q=0.6"}
 MAX_PROD, MAX_FACT, MAX_TRY = 8, 4, 40
+MAX_PROD_FULL, MAX_TRY_FULL = 16, 90
 SKIP = re.compile(r"logo|icon|sprite|transparent|avatar|flag|qr|loading|blank|placeholder|default|banner-?bg|\.svg|\.gif|micstatic\.com|captcha|pixel|wechat|whatsapp|share|arrow|button", re.I)
 FACT = re.compile(r"^(our |the )?(factory|workshop|plant|production( line)?|assembly( line)?|warehouse|exhibition|showroom|facilit\w*|office|company|team|工厂|车间|公司)\b", re.I)
 
@@ -31,6 +32,8 @@ def is_factory(alt, u, f):
     if a and norm(a) in {norm(f.get("name", "")), norm(f.get("legal") or "")}: return True
     return bool(FACT.search(a)) and len(a.split()) <= 5
 CERT = re.compile(r"certif|license|licence|patent|award|证书", re.I)
+# Extra model-list pages for brands whose home page shows few models.
+EXTRA = json.load(open(f"{ROOT}/data/photo_pages.json")) if __import__("os").path.exists(f"{ROOT}/data/photo_pages.json") else {}
 ATTRS = ("data-original", "data-src", "data-lazy", "data-lazy-src", "lazy-src", "data-url", "data-echo", "src")
 
 def get(url, **kw):
@@ -79,11 +82,13 @@ def check(u):
         return None
 
 def pages_for(f):
-    ps = [f.get("web"), f.get("contact")] + [s for s in f.get("src", []) if "made-in-china.com" in s or "globalsources.com" in s]
+    # Big brands: their own site first, then the model listings we cite as sources (press photos of their real models).
+    extra = f.get("src", []) if f.get("tier") == "full" else [s for s in f.get("src", []) if "made-in-china.com" in s or "globalsources.com" in s]
+    ps = [f.get("web"), f.get("contact")] + EXTRA.get(f["id"], []) + extra
     out = []
     for p in ps:
         if p and p.startswith("http") and p not in out: out.append(p)
-    return out[:3]
+    return out[:6 if f.get("tier") == "full" else 3]
 
 def render(url):
     try:
@@ -97,10 +102,11 @@ def render(url):
         print("  render fail", url, e, file=sys.stderr); return ""
 
 def one(f, use_browser=False):
+    max_prod, max_try = (MAX_PROD_FULL, MAX_TRY_FULL) if f.get("tier") == "full" else (MAX_PROD, MAX_TRY)
     prods, facts, hashes, page, tried = [], [], set(), None, 0
     queue = [(p, 0) for p in pages_for(f)]
     visited = set()
-    while queue and (len(prods) < MAX_PROD or len(facts) < MAX_FACT) and tried < MAX_TRY:
+    while queue and (len(prods) < max_prod or len(facts) < MAX_FACT) and tried < max_try:
         url, depth = queue.pop(0)
         if url in visited: continue
         visited.add(url)
@@ -120,16 +126,16 @@ def one(f, use_browser=False):
             host = urlparse(url).netloc
             queue += [(l, 1) for l in links[:3] if urlparse(l).netloc == host]
         for u, alt in cands:
-            if tried >= MAX_TRY: break
+            if tried >= max_try: break
             isfact = is_factory(alt, u, f)
             if CERT.search(alt): continue
             if isfact and len(facts) >= MAX_FACT: continue
-            if not isfact and len(prods) >= MAX_PROD: continue
+            if not isfact and len(prods) >= max_prod: continue
             tried += 1
             c = check(u)
             if not c or c[2] in hashes: continue
             hashes.add(c[2])
-            item = {"u": u, "alt": alt[:140], "w": c[0], "h": c[1]}
+            item = {"u": u, "alt": alt[:140], "w": c[0], "h": c[1], "from": url}
             (facts if isfact else prods).append(item)
             page = page or url
     return {"page": page, "products": prods, "factory": facts, "at": time.strftime("%Y-%m-%d")} if (prods or facts) else None
@@ -155,7 +161,7 @@ def commons(f):
         if not lic: continue
         alt = re.sub(r"^File:|\.\w+$", "", title).replace("_", " ")
         items.append({"u": ii.get("thumburl") or ii["url"], "alt": alt[:140], "w": ii.get("thumbwidth", ii["width"]), "h": ii.get("thumbheight", ii["height"]),
-                      "credit": f"{artist or 'Unknown'} · {lic} · Wikimedia Commons", "link": ii.get("descriptionurl")})
+                      "credit": f"{artist or 'Unknown'} · {lic} · Wikimedia Commons", "from": ii.get("descriptionurl")})
         if len(items) >= 6: break
     if not items: return None
     return {"page": "https://commons.wikimedia.org/w/index.php?search=" + requests.utils.quote(f'"{brand}" motorcycle'), "via": "commons",
@@ -172,17 +178,18 @@ def main():
         if k in byid and v.get("via") != "commons":
             allp = v["products"] + v["factory"]
             v["factory"] = [x for x in allp if is_factory(x["alt"], x["u"], byid[k])][:MAX_FACT]
-            v["products"] = [x for x in allp if not is_factory(x["alt"], x["u"], byid[k])][:MAX_PROD]
+            v["products"] = [x for x in allp if not is_factory(x["alt"], x["u"], byid[k])][:MAX_PROD_FULL]
+        v.pop("t", None); v.pop("t_src", None)
     full = "--all" in only; only.discard("--all")
     if only: todo = [f for f in F if f["id"] in only]
-    else: todo = [f for f in F if full or len(out.get(f["id"], {}).get("products", [])) < 2]
+    else: todo = [f for f in F if full or f.get("tier") == "full" or len(out.get(f["id"], {}).get("products", [])) < 2]
     print(f"fetching {len(todo)} factories")
     with ThreadPoolExecutor(4) as ex:
         for f, res in zip(todo, ex.map(one, todo)):
             if res and len(res["products"]) + len(res["factory"]) > len(out.get(f["id"], {}).get("products", [])) + len(out.get(f["id"], {}).get("factory", [])): out[f["id"]] = res
             print(f"{f['id']}: {len(res['products']) if res else 0} products, {len(res['factory']) if res else 0} factory")
     # A real browser only helps brand sites that build pages with JavaScript; B2B showrooms serve plain HTML.
-    weak = [f for f in todo if f.get("tier") == "full" and len(out.get(f["id"], {}).get("products", [])) < 2]
+    weak = [f for f in todo if f.get("tier") == "full" and len(out.get(f["id"], {}).get("products", [])) < 8]
     print(f"browser pass for {len(weak)} factories")
     for f in weak:
         res = one(f, use_browser=True)
@@ -190,9 +197,11 @@ def main():
             out[f["id"]] = res
         print(f"  {f['id']}: {len(res['products']) if res else 0} products (browser)")
     for f in todo:
-        if f.get("tier") == "full" and not out.get(f["id"], {}).get("products"):
+        if f.get("tier") == "full" and len(out.get(f["id"], {}).get("products", [])) < 3:
             res = commons(f)
-            if res: out[f["id"]] = res
+            if res and out.get(f["id"], {}).get("products"):  # keep the brand's own photos first
+                out[f["id"]]["products"] += res["products"]
+            elif res: out[f["id"]] = res
             print(f"  {f['id']}: {len(res['products']) if res else 0} products (commons)")
     json.dump(out, open(path, "w"), ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     have = sum(1 for f in F if out.get(f["id"]))

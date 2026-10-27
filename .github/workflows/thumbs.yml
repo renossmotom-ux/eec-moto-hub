@@ -4,6 +4,9 @@ on:
   push:
     branches: ["claude/**"]
     paths: ["tools/make_thumbs.py", ".github/workflows/thumbs.yml"]
+  workflow_run:
+    workflows: ["Fetch factory photos"]
+    types: [completed]
 permissions:
   contents: write
 jobs:
@@ -21,8 +24,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add data/photos.json data/thumbs
+          git add -A data/thumbs data/thumbs.json
           git diff --cached --quiet && exit 0
           git commit -m "Update photo thumbnails"
-          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || { git rebase --abort; exit 1; }
+          git pull --rebase origin "${GITHUB_REF_NAME}" || { git rebase --abort; exit 1; }
           git push origin "HEAD:${GITHUB_REF_NAME}"
