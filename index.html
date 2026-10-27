@@ -175,6 +175,9 @@ body.pmode .hero .wrap{padding-bottom:12px}
 .crumbs a{color:var(--accent);text-decoration:none;font-weight:600}
 .banner{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:16/5;min-height:160px;max-width:100%}
 .banner svg{position:absolute;inset:0;width:100%;height:100%}
+.banner .strip{position:absolute;inset:0;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;background:#fff}
+.banner .strip div{position:relative;overflow:hidden}
+.banner img.contain,.banner .strip img{object-fit:contain;background:#fff}
 .banner .cap{position:absolute;right:10px;top:10px;font-size:11.5px;color:#fff;background:rgba(0,0,0,.45);padding:3px 9px;border-radius:5px}
 .phead{display:flex;gap:16px;align-items:flex-end;margin-top:-40px;position:relative;padding-inline:16px;flex-wrap:wrap}
 .wordmark{width:92px;height:92px;flex:none;border-radius:14px;border:4px solid var(--surface);box-shadow:0 4px 16px rgba(10,20,40,.2);display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:700;text-align:center;line-height:1;padding:6px;font-size:19px;letter-spacing:.02em;overflow:hidden;overflow-wrap:anywhere}
@@ -590,10 +593,15 @@ function renderFilters(F){
   $("g-age").innerHTML = AGE.map(a => opt("age",String(a),`${a}+`,p.filter(f=>f.since && NOW-f.since>=a).length,st.age===String(a))).join("");
 }
 const pimg = (x, cls) => x ? `<img src="${esc(TH[x.u] || x.u)}" alt="${esc(x.alt || "")}" loading="lazy" referrerpolicy="no-referrer"${cls ? ` class="${cls}"` : ""} onerror="this.remove()">` : "";
-const mainPhoto = (f, fact) => f.ph ? (fact ? f.ph.factory[0] || f.ph.products[0] : f.ph.products[0] || f.ph.factory[0]) : null;
+const byUrl = (f, u) => u && f.ph ? f.ph.products.find(p => p.u === u) || null : null;
+const mainPhoto = f => f.ph ? byUrl(f, (f.ph.hero || [])[0]) || f.ph.products[0] || f.ph.factory[0] : null;
+const heroStrip = f => { const l = f.ph ? (f.ph.hero || []).map(u => byUrl(f, u)).filter(Boolean) : []; const m = mainPhoto(f);
+  return l.length > 1 ? `<div class="strip">${l.map(x => `<div>${pimg(x)}</div>`).join("")}</div>` : pimg(m, "contain"); };
 const normM = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
 function modelPhoto(f, n){
-  const k = normM(n); if (!f.ph || k.length < 3) return null;
+  const k = normM(n); if (!f.ph) return null;
+  if (f.ph.models && f.ph.models[n]) return byUrl(f, f.ph.models[n]);
+  if (k.length < 3) return null;
   const short = k.replace(/^[a-z]+(?=\d)/, "");  // "ZT703-F" also matches "703F"
   const keys = short.length >= 3 && short !== k ? [k, short] : [k];
   return f.ph.products.find(p => keys.some(q => normM(p.alt).includes(q))) || null;
@@ -706,7 +714,7 @@ function renderProfile(f){
   const link = u => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").replace(/\/$/,""))}</a>` : null;
   $("profile").innerHTML = `
   <nav class="crumbs"><a href="#">${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
-  <div class="banner">${scene(f,1600,500,"b"+f.id)}${pimg(mainPhoto(f, true))}</div>
+  <div class="banner">${scene(f,1600,500,"b"+f.id)}${heroStrip(f)}</div>
   <div class="phead">
     <div class="wordmark" style="background:${f.sky[0]}">${esc(wm)}</div>
     <div class="t"><h1>${esc(f.name)} ${stars(f.rating)}</h1>

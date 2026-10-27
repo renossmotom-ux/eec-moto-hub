@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 from PIL import Image
 
 ROOT = __file__.rsplit("/tools/", 1)[0]
+sys.path.insert(0, ROOT + "/tools")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 H = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9,zh;q=0.6"}
 MAX_PROD, MAX_FACT, MAX_TRY = 8, 4, 40
@@ -36,6 +37,8 @@ CERT = re.compile(r"certif|license|licence|patent|award|证书", re.I)
 EXTRA = json.load(open(f"{ROOT}/data/photo_pages.json")) if __import__("os").path.exists(f"{ROOT}/data/photo_pages.json") else {}
 ATTRS = ("data-original", "data-src", "data-lazy", "data-lazy-src", "lazy-src", "data-url", "data-echo", "src")
 
+_rj = f"{ROOT}/data/photo_rejects.json"
+REJECTS = set(json.load(open(_rj))) if __import__("os").path.exists(_rj) else set()  # vans, ads, logos found by tools/clean_photos.py
 BLOCKED = set()  # pages that refused us (403/429): never retried in a browser
 _robots = {}
 
@@ -158,6 +161,7 @@ def one(f, use_browser=False):
             queue += [(l, 1) for l in links[:3] if urlparse(l).netloc == host]
         for u, alt in cands:
             if tried >= max_try: break
+            if u in REJECTS or upsize(u) in REJECTS: continue
             isfact = is_factory(alt, u, f)
             if CERT.search(alt): continue
             if isfact and len(facts) >= MAX_FACT: continue
@@ -204,6 +208,58 @@ def commons(f):
     return {"page": "https://commons.wikimedia.org/w/index.php?search=" + requests.utils.quote(f'"{brand}" motorcycle'), "via": "commons",
             "products": items, "factory": [], "at": time.strftime("%Y-%m-%d")}
 
+MODEL_DB = "https://www.motorradundreisen.de/motorrad-datenbank/{}/{}/"
+
+def model_pages(f):
+    """Pages that list a brand's models with their names: the brand's own site, and a motorcycle database (one photo per model)."""
+    from models import brand_words
+    names = {w for w in brand_words(f)} | {m["n"].split()[0].lower() for m in f["eec"] if m["n"].split()[0].isalpha() and m["n"].split()[0].isupper()}
+    ps = [f.get("web")] + EXTRA.get(f["id"], []) + [s for s in f.get("src", []) if "datenbank" in s]
+    ps += [MODEL_DB.format(re.sub(r"[^a-z0-9]", "", n.lower()), y) for n in sorted(names) for y in ("2026", "2025", "alle")]
+    return list(dict.fromkeys(p for p in ps if p))
+
+def models_pass(f, have):
+    """One real photo for each EEC model that has none yet, matched by the model name next to the photo."""
+    from models import match
+    want = {m["n"] for m in f["eec"]} - have
+    found, hashes = [], set()
+    for url in model_pages(f):
+        if not want: break
+        if not allowed(url): print("  robots.txt disallows", url, file=sys.stderr); continue
+        try:
+            r = get(url)
+            if r.status_code != 200: continue
+            r.encoding = r.apparent_encoding if not r.encoding or r.encoding == "ISO-8859-1" else r.encoding
+        except Exception as e:
+            print("  page fail", url, type(e).__name__, file=sys.stderr); continue
+        cands, _ = candidates(r.text, url)
+        for u, alt in cands:
+            hit = [n for n in match(f, alt) if n in want]
+            if not hit or u in REJECTS: continue
+            c = check(upsize(u)) or check(u, url)
+            if not c or c[2] in hashes: continue
+            hashes.add(c[2]); want -= set(hit)
+            found.append({"u": u, "alt": alt[:140], "w": c[0], "h": c[1], "from": url, "m": hit[0]})
+    for n in sorted(want):  # still missing: free-licence photo of that exact model on Wikimedia Commons
+        brand = n.split()[0] if n.split()[0].isupper() and n.split()[0].isalpha() else f["name"].split(" / ")[0].split()[0]
+        q = n if n.lower().startswith(brand.lower()) else f"{brand} {n}"
+        q = re.sub(r"\(.*?\)", "", q).strip()
+        try:
+            j = get("https://commons.wikimedia.org/w/api.php", params={"action": "query", "format": "json", "generator": "search", "gsrnamespace": 6,
+                "gsrsearch": q, "gsrlimit": 10, "prop": "imageinfo", "iiprop": "url|size|extmetadata|mime", "iiurlwidth": 900}).json()
+        except Exception: continue
+        for pg in sorted(j.get("query", {}).get("pages", {}).values(), key=lambda p: p.get("index", 99)):
+            ii = (pg.get("imageinfo") or [{}])[0]; title = pg.get("title", "")
+            if ii.get("mime") not in ("image/jpeg", "image/png", "image/webp") or n not in match(f, title): continue
+            md = ii.get("extmetadata", {}); lic = md.get("LicenseShortName", {}).get("value", "")
+            if not lic: continue
+            artist = re.sub(r"<[^>]+>", "", md.get("Artist", {}).get("value", "")).strip()
+            found.append({"u": ii.get("thumburl") or ii["url"], "alt": re.sub(r"^File:|\.\w+$", "", title).replace("_", " ")[:140], "m": n,
+                          "w": ii.get("thumbwidth", ii["width"]), "h": ii.get("thumbheight", ii["height"]),
+                          "credit": f"{artist or 'Unknown'} · {lic} · Wikimedia Commons", "from": ii.get("descriptionurl")})
+            break
+    return found
+
 DEBUG, WANT_DEBUG = None, set()
 
 def diag_sizes(u):
@@ -240,6 +296,7 @@ def diag(ids):
 def main():
     global DEBUG, WANT_DEBUG
     if "--diag" in sys.argv: return diag(sys.argv[sys.argv.index("--diag") + 1:])
+    if "--models" in sys.argv: return main_models()
     if "--debug" in sys.argv:
         sys.argv.remove("--debug"); DEBUG = []; __import__("os").makedirs(f"{ROOT}/debug", exist_ok=True)
         WANT_DEBUG = {"yongkang-zhisheng", "jinhua-otmar", "deep-metal-moto", "zhejiang-luyuan-electric-vehicle"}
@@ -281,6 +338,25 @@ def main():
     json.dump(out, open(path, "w"), ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     have = sum(1 for f in F if out.get(f["id"]))
     print(f"SUMMARY: {have}/{len(F)} factories have photos; {sum(len(v['products']) for v in out.values())} product, {sum(len(v['factory']) for v in out.values())} factory photos")
+
+def main_models():
+    from models import match
+    F = json.load(open(f"{ROOT}/data/factories.json"))
+    path = f"{ROOT}/data/photos.json"
+    out = json.load(open(path))
+    todo = [f for f in F if f["eec"] and f.get("tier") == "full"]
+    def run(f):
+        v = out.get(f["id"], {})
+        have = {n for x in v.get("products", []) for n in match(f, x.get("alt", "") + " " + x.get("m", ""))}
+        return models_pass(f, have)
+    with ThreadPoolExecutor(4) as ex:
+        for f, found in zip(todo, ex.map(run, todo)):
+            if not found: continue
+            v = out.setdefault(f["id"], {"page": found[0]["from"], "products": [], "factory": [], "at": time.strftime("%Y-%m-%d")})
+            known = {x["u"] for x in v["products"]}
+            v["products"] = [x for x in found if x["u"] not in known] + v["products"]
+            print(f"{f['id']}: +{len(found)} model photos: {', '.join(x['m'] for x in found)}")
+    json.dump(out, open(path, "w"), ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 
 if __name__ == "__main__":
     main()
