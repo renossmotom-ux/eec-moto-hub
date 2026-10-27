@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from fetch_photos import ROOT, H, allowed, get, render, requests
 
 OUT = f"{ROOT}/data/logos"
-NOT_THEIRS = re.compile(r"made-in-china|micstatic|alibaba|alicdn|globalsources|ec21|wikipedia|wikimedia|facebook|twitter|linkedin|youtube|wechat|whatsapp|google|baidu|payment|visa|flag|qr|icon-|sprite", re.I)
+NOT_THEIRS = re.compile(r"tradewheel|b2brazil|autohome|visordown|wikipedia|made-in-china|micstatic|alibaba|alicdn|globalsources|ec21|wikipedia|wikimedia|facebook|twitter|linkedin|youtube|wechat|whatsapp|google|baidu|payment|visa|flag|qr|icon-|sprite", re.I)
 
 def candidates(html, base, f):
     soup = BeautifulSoup(html, "html.parser")
@@ -55,7 +55,7 @@ def load(u, ref):
 def one(f):
     pages = [f.get("web"), f.get("contact")]
     for page in dict.fromkeys(p for p in pages if p and p.startswith("http")):
-        if not allowed(page): continue
+        if not allowed(page) or NOT_THEIRS.search(page): continue  # directories and news sites, not the company's own site
         try:
             r = get(page)
             html = r.text if r.status_code == 200 else ""
