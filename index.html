@@ -115,6 +115,13 @@ main{padding-top:52px}
 .card{display:grid;grid-template-columns:230px minmax(0,1fr) 190px;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
 .photo{display:block;position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1/1;max-width:100%;background:var(--surface-2)}
 .photo svg{display:block;width:100%;height:100%}
+.photo img,.banner img,.mrow .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--surface-2)}
+.mrow .th{position:relative;overflow:hidden}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.gallery a{display:block;aspect-ratio:4/3;border-radius:7px;overflow:hidden;background:var(--surface-2)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery h3{grid-column:1/-1;font-size:15px;font-weight:600;color:var(--muted);margin-top:4px}
+.ph-src{font-size:12.5px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
 .photo .heart{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:var(--surface);color:var(--fg);display:grid;place-items:center;font-size:17px;line-height:1}
 .photo .heart[aria-pressed="true"]{color:#d4294b}
 .photo .tag{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:5px}
@@ -207,6 +214,18 @@ body.pmode .hero .wrap{padding-bottom:12px}
 .crow .k{flex:1;min-width:0}
 .crow .k b{display:block;font-size:14px;color:var(--muted);font-weight:500;font-style:italic}
 .claim{background:var(--accent-soft);border-radius:var(--r);padding:16px}
+.photo .soon{position:absolute;inset:auto 0 0 0;padding:8px 10px;background:rgba(10,20,40,.62);color:#fff;font-size:12.5px;line-height:1.3}
+.photo .soon b{display:block;font-size:13.5px}
+.photo img.contain,.gallery img,.mrow .th img{object-fit:contain;background:#fff}
+.meter{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin:8px 0 12px}
+.meter i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.todo{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px;font-size:13.5px}
+.todo li{display:flex;gap:8px;align-items:flex-start}
+.todo li span{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700}
+.todo li.ok span{background:var(--ok-soft, #dff3e6);color:var(--ok, #1d7a3e)}
+.todo li.no span{background:var(--surface-2);color:var(--muted)}
+.todo li.no{color:var(--muted)}
+.stat{margin-top:10px;font-size:14px;opacity:.92}
 .claim h3{font-size:20px;font-weight:600;margin-bottom:4px}
 .claim p{margin:0 0 10px;font-size:13.5px}
 .srcs{font-size:12.5px;color:var(--muted);margin:0;padding-left:18px}
@@ -294,6 +313,7 @@ body.pmode .hero .wrap{padding-bottom:12px}
     </div>
     <h1 data-t="heroTitle">Find your next motorcycle factory</h1>
     <p data-t="heroSub">Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.</p>
+    <p class="stat" id="stat"></p>
     <form class="searchbar" id="searchbar">
       <label for="s-q"><span data-t="sQ">Factory, brand or model</span><input id="s-q" type="search" placeholder="Zontes, Chongqing, 125cc…"></label>
       <label for="s-type"><span data-t="sType">Motorcycle type</span><select id="s-type"></select></label>
@@ -342,7 +362,7 @@ const HUB = {"en": {"adminNoDb": "Sign in as admin to save changes.", "mailNotic
 let BASE = [];
 const NOW = 2026;
 const T = {
-en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom video or virtual tour here after claiming the profile.",tourOpen:"Open the 360° showroom",tourUrl:"360° video or tour link",news:"Factory news",newsEmpty:"No news yet. New models, certifications and fair dates will appear here.",addNews:"Add news",newsTitle:"Title",newsBody:"Text",post:"Post",del:"Delete",coType:"Company type",manufacturer:"Manufacturer",trading:"Trading company",notStated:"Not stated",showMore:n=>`Show ${n} more`,mainProducts:"Main products",b2bShowroom:"B2B showroom",detailed:"Detailed profile",factorySignIn:"Factory sign in",tabFactories:"Factories",tabAdmin:"Admin",heroTitle:"Find your next motorcycle factory",heroSub:"Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.",sQ:"Factory, brand or model",sType:"Motorcycle type",sCat:"Catalog",search:"Search",filterBy:"Filter by",clearAll:"Clear all",catalog:"Catalog",province:"Province",type:"Motorcycle type",engine:"Engine size",euPrice:"Cheapest EU shop price",contactAvail:"Contact",years:"Years in business",showResults:"Show results",clickHint:"Tap a factory to see its EEC catalog, models and contacts",filter:"Filter",
+en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom video or virtual tour here after claiming the profile.",tourOpen:"Open the 360° showroom",tourUrl:"360° video or tour link",news:"Factory news",newsEmpty:"No news yet. New models, certifications and fair dates will appear here.",addNews:"Add news",newsTitle:"Title",newsBody:"Text",post:"Post",del:"Delete",coType:"Company type",manufacturer:"Manufacturer",trading:"Trading company",notStated:"Not stated",showMore:n=>`Show ${n} more`,mainProducts:"Main products",b2bShowroom:"B2B showroom",detailed:"Detailed profile",factorySignIn:"Factory sign in",tabFactories:"Factories",tabAdmin:"Admin",heroTitle:"Find your next motorcycle factory",heroSub:"Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.",stat:(n,f,p)=>`${n} factories · ${f} with real photos · ${p.toLocaleString("en")} motorcycle and factory photos`,phN:n=>n===1?"1 photo":`${n} photos`,soonT:"Photos coming soon",soonS:"Your factory? Add your photos",pct:n=>`Profile ${n}% complete`,nudge:"Complete profiles get more price requests from buyers in Morocco and worldwide.",completeBtn:"Complete this profile",tdPhotos:"Factory and motorcycle photos",tdContact:"Export email, phone or WhatsApp",tdEec:"EEC models with year",tdPrice:"Prices for each model",tdFacts:"Company facts (start year, staff, capacity)",tdTour:"360° showroom",tdCat:"EEC catalog (PDF)",hasPhotos:"Has photos",sQ:"Factory, brand or model",sType:"Motorcycle type",sCat:"Catalog",search:"Search",filterBy:"Filter by",clearAll:"Clear all",catalog:"Catalog",province:"Province",type:"Motorcycle type",engine:"Engine size",euPrice:"Cheapest EU shop price",contactAvail:"Contact",years:"Years in business",showResults:"Show results",clickHint:"Tap a factory to see its EEC catalog, models and contacts",filter:"Filter",
  found:n=>`${n} ${n===1?"factory":"factories"} found`,anyType:"Any type",anyCat:"EEC and Non-EEC",eecOnly:"EEC only",nonOnly:"Non-EEC available",hasEec:"Has EEC models",hasNon:"Has Non-EEC models",hasEmail:"Public email found",noEmail:"Email still needed",
  sortRec:"Our top picks",sortPrice:"Lowest EU price",sortAge:"Longest in business",sortEec:"Most EEC models",sortRating:"Admin rating",
  since:y=>`Since ${y}`,sinceUnknown:"Founding year to confirm",eecN:n=>`EEC · ${n} models`,nonN:n=>`Non-EEC · ${n} models`,notVerified:"From internet, not verified",
@@ -351,7 +371,7 @@ en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom vide
  allFactories:"All factories",facts:"Factory facts",legal:"Legal name",location:"Location",started:"Business started",employees:"Employees",capacity:"Production capacity",markets:"Export markets",website:"Website",notFound:"Not found online",factoryToComplete:"Factory to complete",sourceLegend:"Each fact shows its source:",cfVerified:"Canton Fair verified",
  models:"Models",eecCatalog:"EEC catalog",nonEec:"Non-EEC models",eecSub:n=>`${n} models approved for Europe`,nonSub:n=>`${n} models · EEC can be developed`,modelYear:y=>`Model year ${y}`,
  noEec:"No EEC model was found on European sites. The factory can upload its EEC catalog after claiming this profile.",noNon:"No Non-EEC model list was found online. The factory adds it after claiming this profile.",
- priceReq:"Price on request",euShop:"EU shop price · FOB on request",factoryFob:"Factory to add FOB price",reqPrice:"Request a price",sources:"Sources",contactFactory:"Contact the factory",email:"Email",phone:"Phone",copy:"Copy",copied:"Copied",addedByFactory:"Added by the factory",contactPage:"Contact form",
+ priceReq:"Price on request",euShop:"EU shop price · FOB on request",factoryFob:"Factory to add FOB price",reqPrice:"Request a price",photos:"Photos",photosProd:"Motorcycles",photosFact:"Factory",photosFrom:"Photos published by the company on",photosCommons:"Free-licence photos of this brand, credits on each photo:",photosNone:"No photos found online yet. The factory adds them when it claims its profile.",sources:"Sources",contactFactory:"Contact the factory",email:"Email",phone:"Phone",copy:"Copy",copied:"Copied",addedByFactory:"Added by the factory",contactPage:"Contact form",
  claimTitle:"Is this your company?",claimText:"Claim this profile to add your logo, factory photos, contacts, EEC catalog PDF and FOB prices.",claimBtn:"Claim and edit this profile",claimToast:"Factory sign in comes next. Factories get a link in the invitation email.",
  compNote:"Based on how many facts, contacts and models were found. Rises when the factory completes its profile.",cfPending:"Canton Fair check pending",notClaimed:"Not yet claimed by the factory",
  customize:"Customize",colour:"Colour",qty:"Quantity (units)",replyBy:"Reply to me by",yourCo:"Your company",yourContact:"Your email or ID",message:"Message",send:"Send price request",
@@ -361,7 +381,7 @@ en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom vide
  emailSel:"Email selected",emailAll:"Email all with an address",composeTitle:"Invitation email",recipients:n=>`${n} recipients`,subject:"Subject",body:"Message",template:"Template language",copyAddr:"Copy addresses (BCC)",copyMsg:"Copy message",openMail:"Open in my email app",
  mailNotice:"This page cannot send email itself. Copy the addresses into BCC and the message into your email, or tap Open in my email app. A real sending service comes with the live site.",
  save:"Save",cancel:"Cancel",saved:"Saved",editTitle:"Edit factory",noAddr:"No public email yet",whatsapp:"WhatsApp",wechat:"WeChat",note:"Admin note"},
-fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite virtuelle 360° après avoir réclamé son profil.",tourOpen:"Ouvrir le showroom 360°",tourUrl:"Lien vidéo ou visite 360°",news:"Actualités de l'usine",newsEmpty:"Pas encore d'actualités. Nouveaux modèles, certifications et salons apparaîtront ici.",addNews:"Ajouter une actualité",newsTitle:"Titre",newsBody:"Texte",post:"Publier",del:"Supprimer",coType:"Type d'entreprise",manufacturer:"Fabricant",trading:"Société de négoce",notStated:"Non précisé",showMore:n=>`Voir ${n} de plus`,mainProducts:"Produits principaux",b2bShowroom:"Vitrine B2B",detailed:"Profil détaillé",factorySignIn:"Connexion usine",tabFactories:"Usines",tabAdmin:"Admin",heroTitle:"Trouvez votre prochaine usine de motos",heroSub:"Comparez les fabricants chinois, les catalogues CEE et les prix. Aucun compte requis pour consulter.",sQ:"Usine, marque ou modèle",sType:"Type de moto",sCat:"Catalogue",search:"Rechercher",filterBy:"Filtrer par",clearAll:"Tout effacer",catalog:"Catalogue",province:"Province",type:"Type de moto",engine:"Cylindrée",euPrice:"Prix public UE le plus bas",contactAvail:"Contact",years:"Années d'activité",showResults:"Voir les résultats",clickHint:"Touchez une usine pour voir son catalogue CEE, ses modèles et ses contacts",filter:"Filtrer",
+fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite virtuelle 360° après avoir réclamé son profil.",tourOpen:"Ouvrir le showroom 360°",tourUrl:"Lien vidéo ou visite 360°",news:"Actualités de l'usine",newsEmpty:"Pas encore d'actualités. Nouveaux modèles, certifications et salons apparaîtront ici.",addNews:"Ajouter une actualité",newsTitle:"Titre",newsBody:"Texte",post:"Publier",del:"Supprimer",coType:"Type d'entreprise",manufacturer:"Fabricant",trading:"Société de négoce",notStated:"Non précisé",showMore:n=>`Voir ${n} de plus`,mainProducts:"Produits principaux",b2bShowroom:"Vitrine B2B",detailed:"Profil détaillé",factorySignIn:"Connexion usine",tabFactories:"Usines",tabAdmin:"Admin",heroTitle:"Trouvez votre prochaine usine de motos",heroSub:"Comparez les fabricants chinois, les catalogues CEE et les prix. Aucun compte requis pour consulter.",stat:(n,f,p)=>`${n} usines · ${f} avec de vraies photos · ${p.toLocaleString("fr")} photos de motos et d'usines`,phN:n=>n===1?"1 photo":`${n} photos`,soonT:"Photos bientôt disponibles",soonS:"Votre usine ? Ajoutez vos photos",pct:n=>`Profil complet à ${n} %`,nudge:"Les profils complets reçoivent plus de demandes de prix d'acheteurs au Maroc et dans le monde.",completeBtn:"Compléter ce profil",tdPhotos:"Photos de l'usine et des motos",tdContact:"Email export, téléphone ou WhatsApp",tdEec:"Modèles CEE avec année",tdPrice:"Prix de chaque modèle",tdFacts:"Infos société (création, effectif, capacité)",tdTour:"Showroom 360°",tdCat:"Catalogue CEE (PDF)",hasPhotos:"Avec photos",sQ:"Usine, marque ou modèle",sType:"Type de moto",sCat:"Catalogue",search:"Rechercher",filterBy:"Filtrer par",clearAll:"Tout effacer",catalog:"Catalogue",province:"Province",type:"Type de moto",engine:"Cylindrée",euPrice:"Prix public UE le plus bas",contactAvail:"Contact",years:"Années d'activité",showResults:"Voir les résultats",clickHint:"Touchez une usine pour voir son catalogue CEE, ses modèles et ses contacts",filter:"Filtrer",
  found:n=>`${n} usine${n>1?"s":""} trouvée${n>1?"s":""}`,anyType:"Tous types",anyCat:"CEE et non-CEE",eecOnly:"CEE uniquement",nonOnly:"Non-CEE disponible",hasEec:"A des modèles CEE",hasNon:"A des modèles non-CEE",hasEmail:"Email public trouvé",noEmail:"Email à trouver",
  sortRec:"Nos meilleurs choix",sortPrice:"Prix UE le plus bas",sortAge:"Plus ancienne",sortEec:"Plus de modèles CEE",sortRating:"Note admin",
  since:y=>`Depuis ${y}`,sinceUnknown:"Année de création à confirmer",eecN:n=>`CEE · ${n} modèles`,nonN:n=>`Non-CEE · ${n} modèles`,notVerified:"Source internet, non vérifié",
@@ -370,7 +390,7 @@ fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite v
  allFactories:"Toutes les usines",facts:"Informations usine",legal:"Raison sociale",location:"Adresse",started:"Début d'activité",employees:"Employés",capacity:"Capacité de production",markets:"Marchés export",website:"Site web",notFound:"Non trouvé en ligne",factoryToComplete:"À compléter par l'usine",sourceLegend:"Chaque information indique sa source :",cfVerified:"Vérifié Foire de Canton",
  models:"Modèles",eecCatalog:"Catalogue CEE",nonEec:"Modèles non-CEE",eecSub:n=>`${n} modèles homologués pour l'Europe`,nonSub:n=>`${n} modèles · homologation CEE possible`,modelYear:y=>`Modèle ${y}`,
  noEec:"Aucun modèle CEE trouvé sur les sites européens. L'usine pourra ajouter son catalogue CEE après avoir réclamé ce profil.",noNon:"Aucune liste de modèles non-CEE trouvée en ligne. L'usine l'ajoutera après avoir réclamé ce profil.",
- priceReq:"Prix sur demande",euShop:"Prix public UE · FOB sur demande",factoryFob:"Prix FOB à ajouter par l'usine",reqPrice:"Demander un prix",sources:"Sources",contactFactory:"Contacter l'usine",email:"Email",phone:"Téléphone",copy:"Copier",copied:"Copié",addedByFactory:"Ajouté par l'usine",contactPage:"Formulaire de contact",
+ priceReq:"Prix sur demande",euShop:"Prix public UE · FOB sur demande",factoryFob:"Prix FOB à ajouter par l'usine",reqPrice:"Demander un prix",photos:"Photos",photosProd:"Motos",photosFact:"Usine",photosFrom:"Photos publiées par l'entreprise sur",photosCommons:"Photos de la marque sous licence libre, crédits sur chaque photo :",photosNone:"Aucune photo trouvée en ligne pour l'instant. L'usine les ajoute en réclamant son profil.",sources:"Sources",contactFactory:"Contacter l'usine",email:"Email",phone:"Téléphone",copy:"Copier",copied:"Copié",addedByFactory:"Ajouté par l'usine",contactPage:"Formulaire de contact",
  claimTitle:"C'est votre entreprise ?",claimText:"Réclamez ce profil pour ajouter logo, photos d'usine, contacts, catalogue CEE en PDF et prix FOB.",claimBtn:"Réclamer et modifier ce profil",claimToast:"La connexion usine arrive bientôt. Les usines reçoivent un lien dans l'email d'invitation.",
  compNote:"Selon le nombre d'informations, contacts et modèles trouvés. Augmente quand l'usine complète son profil.",cfPending:"Vérification Foire de Canton en attente",notClaimed:"Profil pas encore réclamé",
  customize:"Personnaliser",colour:"Couleur",qty:"Quantité (unités)",replyBy:"Me répondre par",yourCo:"Votre société",yourContact:"Votre email ou ID",message:"Message",send:"Envoyer la demande",
@@ -380,7 +400,7 @@ fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite v
  emailSel:"Écrire à la sélection",emailAll:"Écrire à toutes (avec adresse)",composeTitle:"Email d'invitation",recipients:n=>`${n} destinataires`,subject:"Objet",body:"Message",template:"Langue du modèle",copyAddr:"Copier les adresses (CCI)",copyMsg:"Copier le message",openMail:"Ouvrir dans ma messagerie",
  mailNotice:"Cette page ne peut pas envoyer d'email. Copiez les adresses en CCI et le message dans votre messagerie, ou touchez Ouvrir dans ma messagerie. Un vrai service d'envoi viendra avec le site final.",
  save:"Enregistrer",cancel:"Annuler",saved:"Enregistré",editTitle:"Modifier l'usine",noAddr:"Pas encore d'email public",whatsapp:"WhatsApp",wechat:"WeChat",note:"Note admin"},
-zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°展厅视频或虚拟参观。",tourOpen:"打开360°展厅",tourUrl:"360°视频或参观链接",news:"工厂动态",newsEmpty:"暂无动态。新车型、认证和展会信息将在此显示。",addNews:"添加动态",newsTitle:"标题",newsBody:"内容",post:"发布",del:"删除",coType:"企业类型",manufacturer:"生产厂家",trading:"贸易公司",notStated:"未注明",showMore:n=>`再显示 ${n} 家`,mainProducts:"主要产品",b2bShowroom:"B2B展厅",detailed:"详细资料",factorySignIn:"工厂登录",tabFactories:"工厂",tabAdmin:"管理",heroTitle:"寻找您的下一家摩托车工厂",heroSub:"比较中国制造商、EEC目录和价格。浏览无需注册。",sQ:"工厂、品牌或车型",sType:"车型类别",sCat:"目录",search:"搜索",filterBy:"筛选",clearAll:"全部清除",catalog:"目录",province:"省份",type:"车型类别",engine:"排量",euPrice:"欧洲最低零售价",contactAvail:"联系方式",years:"经营年限",showResults:"显示结果",clickHint:"点击工厂查看其EEC目录、车型和联系方式",filter:"筛选",
+zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°展厅视频或虚拟参观。",tourOpen:"打开360°展厅",tourUrl:"360°视频或参观链接",news:"工厂动态",newsEmpty:"暂无动态。新车型、认证和展会信息将在此显示。",addNews:"添加动态",newsTitle:"标题",newsBody:"内容",post:"发布",del:"删除",coType:"企业类型",manufacturer:"生产厂家",trading:"贸易公司",notStated:"未注明",showMore:n=>`再显示 ${n} 家`,mainProducts:"主要产品",b2bShowroom:"B2B展厅",detailed:"详细资料",factorySignIn:"工厂登录",tabFactories:"工厂",tabAdmin:"管理",heroTitle:"寻找您的下一家摩托车工厂",heroSub:"比较中国制造商、EEC目录和价格。浏览无需注册。",stat:(n,f,p)=>`${n} 家工厂 · ${f} 家有真实图片 · ${p} 张摩托车和工厂图片`,phN:n=>`${n} 张图片`,soonT:"图片即将上线",soonS:"您的工厂？上传图片",pct:n=>`资料完整度 ${n}%`,nudge:"资料完整的工厂会收到更多来自摩洛哥和全球买家的询价。",completeBtn:"完善资料",tdPhotos:"工厂和摩托车图片",tdContact:"外贸邮箱、电话或WhatsApp",tdEec:"EEC车型及年份",tdPrice:"每款车型的价格",tdFacts:"公司信息（成立年份、员工、产能）",tdTour:"360°展厅",tdCat:"EEC目录（PDF）",hasPhotos:"有图片",sQ:"工厂、品牌或车型",sType:"车型类别",sCat:"目录",search:"搜索",filterBy:"筛选",clearAll:"全部清除",catalog:"目录",province:"省份",type:"车型类别",engine:"排量",euPrice:"欧洲最低零售价",contactAvail:"联系方式",years:"经营年限",showResults:"显示结果",clickHint:"点击工厂查看其EEC目录、车型和联系方式",filter:"筛选",
  found:n=>`找到 ${n} 家工厂`,anyType:"所有类别",anyCat:"EEC和非EEC",eecOnly:"仅EEC",nonOnly:"有非EEC车型",hasEec:"有EEC车型",hasNon:"有非EEC车型",hasEmail:"已找到公开邮箱",noEmail:"尚需邮箱",
  sortRec:"推荐",sortPrice:"欧洲价格最低",sortAge:"经营最久",sortEec:"EEC车型最多",sortRating:"管理员评分",
  since:y=>`成立于 ${y}`,sinceUnknown:"成立年份待确认",eecN:n=>`EEC · ${n} 款`,nonN:n=>`非EEC · ${n} 款`,notVerified:"来自网络，未核实",
@@ -389,7 +409,7 @@ zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°�
  allFactories:"所有工厂",facts:"工厂信息",legal:"公司全称",location:"地址",started:"成立年份",employees:"员工人数",capacity:"产能",markets:"出口市场",website:"网站",notFound:"网上未找到",factoryToComplete:"待工厂补充",sourceLegend:"每项信息均注明来源：",cfVerified:"广交会已核实",
  models:"车型",eecCatalog:"EEC目录",nonEec:"非EEC车型",eecSub:n=>`${n} 款欧洲认证车型`,nonSub:n=>`${n} 款 · 可开发EEC`,modelYear:y=>`${y} 款`,
  noEec:"欧洲网站上未找到EEC车型。工厂认领资料后可上传EEC目录。",noNon:"网上未找到非EEC车型清单。工厂认领资料后可添加。",
- priceReq:"价格面议",euShop:"欧洲零售价 · FOB询价",factoryFob:"待工厂添加FOB价格",reqPrice:"询价",sources:"来源",contactFactory:"联系工厂",email:"邮箱",phone:"电话",copy:"复制",copied:"已复制",addedByFactory:"由工厂添加",contactPage:"联系表单",
+ priceReq:"价格面议",euShop:"欧洲零售价 · FOB询价",factoryFob:"待工厂添加FOB价格",reqPrice:"询价",photos:"图片",photosProd:"摩托车",photosFact:"工厂",photosFrom:"图片来自公司发布的页面",photosCommons:"该品牌的自由授权图片，每张图片标注作者：",photosNone:"暂未在网上找到图片。工厂认领资料后可自行上传。",sources:"来源",contactFactory:"联系工厂",email:"邮箱",phone:"电话",copy:"复制",copied:"已复制",addedByFactory:"由工厂添加",contactPage:"联系表单",
  claimTitle:"这是您的公司吗？",claimText:"认领此资料，添加公司标志、工厂照片、联系方式、EEC目录PDF和FOB价格。",claimBtn:"认领并编辑资料",claimToast:"工厂登录即将推出。工厂将在邀请邮件中收到链接。",
  compNote:"根据已找到的信息、联系方式和车型数量计算。工厂完善资料后会提高。",cfPending:"广交会核实中",notClaimed:"工厂尚未认领",
  customize:"定制",colour:"颜色",qty:"数量（台）",replyBy:"回复方式",yourCo:"您的公司",yourContact:"您的邮箱或ID",message:"留言",send:"发送询价",
@@ -399,7 +419,7 @@ zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°�
  emailSel:"发邮件给所选",emailAll:"发邮件给全部（有邮箱）",composeTitle:"邀请邮件",recipients:n=>`${n} 位收件人`,subject:"主题",body:"正文",template:"模板语言",copyAddr:"复制地址（密送）",copyMsg:"复制正文",openMail:"在邮件应用中打开",
  mailNotice:"此页面无法直接发送邮件。请将地址复制到密送栏、正文复制到邮件中，或点击“在邮件应用中打开”。正式网站将提供真正的发送服务。",
  save:"保存",cancel:"取消",saved:"已保存",editTitle:"编辑工厂",noAddr:"暂无公开邮箱",whatsapp:"WhatsApp",wechat:"微信",note:"管理员备注"},
-ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا فيديو أو جولة افتراضية 360° بعد المطالبة بملفه.",tourOpen:"فتح صالة العرض 360°",tourUrl:"رابط فيديو أو جولة 360°",news:"أخبار المصنع",newsEmpty:"لا توجد أخبار بعد. ستظهر هنا الطرازات الجديدة والشهادات ومواعيد المعارض.",addNews:"إضافة خبر",newsTitle:"العنوان",newsBody:"النص",post:"نشر",del:"حذف",coType:"نوع الشركة",manufacturer:"مصنع",trading:"شركة تجارية",notStated:"غير محدد",showMore:n=>`عرض ${n} إضافية`,mainProducts:"المنتجات الرئيسية",b2bShowroom:"صفحة B2B",detailed:"ملف مفصل",factorySignIn:"دخول المصانع",tabFactories:"المصانع",tabAdmin:"الإدارة",heroTitle:"اعثر على مصنع الدراجات النارية المناسب",heroSub:"قارن المصنعين الصينيين وكتالوجات EEC والأسعار. التصفح بدون حساب.",sQ:"مصنع أو علامة أو طراز",sType:"نوع الدراجة",sCat:"الكتالوج",search:"بحث",filterBy:"تصفية حسب",clearAll:"مسح الكل",catalog:"الكتالوج",province:"المقاطعة",type:"نوع الدراجة",engine:"سعة المحرك",euPrice:"أقل سعر بيع في أوروبا",contactAvail:"التواصل",years:"سنوات النشاط",showResults:"عرض النتائج",clickHint:"اضغط على مصنع لرؤية كتالوج EEC والطرازات وطرق التواصل",filter:"تصفية",
+ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا فيديو أو جولة افتراضية 360° بعد المطالبة بملفه.",tourOpen:"فتح صالة العرض 360°",tourUrl:"رابط فيديو أو جولة 360°",news:"أخبار المصنع",newsEmpty:"لا توجد أخبار بعد. ستظهر هنا الطرازات الجديدة والشهادات ومواعيد المعارض.",addNews:"إضافة خبر",newsTitle:"العنوان",newsBody:"النص",post:"نشر",del:"حذف",coType:"نوع الشركة",manufacturer:"مصنع",trading:"شركة تجارية",notStated:"غير محدد",showMore:n=>`عرض ${n} إضافية`,mainProducts:"المنتجات الرئيسية",b2bShowroom:"صفحة B2B",detailed:"ملف مفصل",factorySignIn:"دخول المصانع",tabFactories:"المصانع",tabAdmin:"الإدارة",heroTitle:"اعثر على مصنع الدراجات النارية المناسب",heroSub:"قارن المصنعين الصينيين وكتالوجات EEC والأسعار. التصفح بدون حساب.",stat:(n,f,p)=>`${n} مصنع · ${f} بصور حقيقية · ${p} صورة للدراجات والمصانع`,phN:n=>`${n} صور`,soonT:"الصور قريبًا",soonS:"مصنعك؟ أضف صورك",pct:n=>`الملف مكتمل بنسبة ${n}%`,nudge:"الملفات المكتملة تتلقى طلبات أسعار أكثر من المشترين في المغرب والعالم.",completeBtn:"أكمل هذا الملف",tdPhotos:"صور المصنع والدراجات",tdContact:"بريد التصدير أو الهاتف أو واتساب",tdEec:"طرازات EEC مع السنة",tdPrice:"سعر كل طراز",tdFacts:"معلومات الشركة (سنة التأسيس، الموظفون، الطاقة)",tdTour:"صالة عرض 360°",tdCat:"كتالوج EEC (PDF)",hasPhotos:"بها صور",sQ:"مصنع أو علامة أو طراز",sType:"نوع الدراجة",sCat:"الكتالوج",search:"بحث",filterBy:"تصفية حسب",clearAll:"مسح الكل",catalog:"الكتالوج",province:"المقاطعة",type:"نوع الدراجة",engine:"سعة المحرك",euPrice:"أقل سعر بيع في أوروبا",contactAvail:"التواصل",years:"سنوات النشاط",showResults:"عرض النتائج",clickHint:"اضغط على مصنع لرؤية كتالوج EEC والطرازات وطرق التواصل",filter:"تصفية",
  found:n=>`تم العثور على ${n} مصنع`,anyType:"كل الأنواع",anyCat:"EEC وغير EEC",eecOnly:"EEC فقط",nonOnly:"طرازات غير EEC",hasEec:"لديه طرازات EEC",hasNon:"لديه طرازات غير EEC",hasEmail:"بريد عام متوفر",noEmail:"البريد غير متوفر بعد",
  sortRec:"اختياراتنا",sortPrice:"أقل سعر أوروبي",sortAge:"الأقدم",sortEec:"أكثر طرازات EEC",sortRating:"تقييم الإدارة",
  since:y=>`منذ ${y}`,sinceUnknown:"سنة التأسيس غير مؤكدة",eecN:n=>`EEC · ${n} طرازات`,nonN:n=>`غير EEC · ${n} طرازات`,notVerified:"من الإنترنت، غير موثق",
@@ -408,7 +428,7 @@ ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا في
  allFactories:"كل المصانع",facts:"معلومات المصنع",legal:"الاسم القانوني",location:"الموقع",started:"بداية النشاط",employees:"عدد الموظفين",capacity:"الطاقة الإنتاجية",markets:"أسواق التصدير",website:"الموقع",notFound:"غير متوفر على الإنترنت",factoryToComplete:"يكمله المصنع",sourceLegend:"كل معلومة تبين مصدرها:",cfVerified:"موثق من معرض كانتون",
  models:"الطرازات",eecCatalog:"كتالوج EEC",nonEec:"طرازات غير EEC",eecSub:n=>`${n} طرازات معتمدة لأوروبا`,nonSub:n=>`${n} طرازات · يمكن تطوير EEC`,modelYear:y=>`طراز ${y}`,
  noEec:"لم نجد طرازات EEC على المواقع الأوروبية. يمكن للمصنع رفع كتالوج EEC بعد المطالبة بالملف.",noNon:"لم نجد قائمة طرازات غير EEC. يضيفها المصنع بعد المطالبة بالملف.",
- priceReq:"السعر عند الطلب",euShop:"سعر البيع في أوروبا · FOB عند الطلب",factoryFob:"سعر FOB يضيفه المصنع",reqPrice:"طلب سعر",sources:"المصادر",contactFactory:"تواصل مع المصنع",email:"البريد",phone:"الهاتف",copy:"نسخ",copied:"تم النسخ",addedByFactory:"يضيفه المصنع",contactPage:"نموذج التواصل",
+ priceReq:"السعر عند الطلب",euShop:"سعر البيع في أوروبا · FOB عند الطلب",factoryFob:"سعر FOB يضيفه المصنع",reqPrice:"طلب سعر",photos:"الصور",photosProd:"الدراجات النارية",photosFact:"المصنع",photosFrom:"صور نشرتها الشركة على",photosCommons:"صور بترخيص حر لهذه العلامة، مع ذكر المصدر على كل صورة:",photosNone:"لم نجد صورًا على الإنترنت بعد. يضيفها المصنع عند المطالبة بملفه.",sources:"المصادر",contactFactory:"تواصل مع المصنع",email:"البريد",phone:"الهاتف",copy:"نسخ",copied:"تم النسخ",addedByFactory:"يضيفه المصنع",contactPage:"نموذج التواصل",
  claimTitle:"هل هذه شركتك؟",claimText:"طالب بهذا الملف لإضافة شعارك وصور المصنع وجهات الاتصال وكتالوج EEC وأسعار FOB.",claimBtn:"المطالبة بالملف وتعديله",claimToast:"دخول المصانع قريباً. تستلم المصانع رابطاً في بريد الدعوة.",
  compNote:"حسب عدد المعلومات وجهات الاتصال والطرازات المتوفرة. يرتفع عندما يكمل المصنع ملفه.",cfPending:"التحقق من معرض كانتون قيد الانتظار",notClaimed:"لم يطالب المصنع بالملف بعد",
  customize:"تخصيص",colour:"اللون",qty:"الكمية (وحدة)",replyBy:"الرد عبر",yourCo:"شركتك",yourContact:"بريدك أو معرفك",message:"الرسالة",send:"إرسال طلب السعر",
@@ -500,6 +520,8 @@ const eur = n => "€ " + n.toLocaleString("en-US");
 
 /* ---------- data: base + admin edits from db ---------- */
 let EDITS = {};
+let PHOTOS = {};
+let TH = {};     // photo URL -> local thumbnail, from tools/make_thumbs.py // id -> {page, products:[{u,alt}], factory:[{u,alt}]} from tools/fetch_photos.py
 let NEWS = {};   // fid -> [{id,title,body,date}]       // id -> {removed, rating, note, emails, phone, whatsapp, wechat}
 let db = null, isAdmin = false;
 /* ---------- server API (PHP on Hostinger) ---------- */
@@ -523,11 +545,11 @@ function factories(includeRemoved){
   return BASE.map(b => {
     const e = EDITS[b.id] || {};
     const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || "",
-      emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
+      ph: PHOTOS[b.id] || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = prices.length ? Math.min(...prices) : null;
     const facts = [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
-    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0))*10)/10;
+    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0) + (f.ph?1:0))*10)/10;
     return f;
   }).filter(f => includeRemoved || !f.removed);
 }
@@ -536,7 +558,7 @@ function factories(includeRemoved){
 const st = {q:"", cat:new Set(), prov:new Set(), type:new Set(), cc:new Set(), price:new Set(), contact:new Set(), bt:new Set(), age:"", sort:"rec", limit:24};
 function matches(f, skip){
   if (st.q){ const q = st.q.toLowerCase(); if (![f.name,f.legal,f.city,f.prov,...f.types,...f.eec.map(x=>x.n),...f.non.map(x=>x.n)].join(" ").toLowerCase().includes(q)) return false; }
-  if (skip!=="cat" && st.cat.size){ if (st.cat.has("eec") && !f.eec.length) return false; if (st.cat.has("non") && !f.non.length) return false; }
+  if (skip!=="cat" && st.cat.size){ if (st.cat.has("eec") && !f.eec.length) return false; if (st.cat.has("non") && !f.non.length) return false; if (st.cat.has("ph") && !f.ph) return false; }
   if (skip!=="prov" && st.prov.size && !st.prov.has(f.prov)) return false;
   if (skip!=="type" && st.type.size && !f.types.some(x => st.type.has(x))) return false;
   if (skip!=="cc" && st.cc.size && !(f.cc && CC.filter(r => st.cc.has(r.k)).some(r => f.cc[0] <= r.max && f.cc[1] >= r.min))) return false;
@@ -551,7 +573,7 @@ const opt = (g,k,txt,n,on) => `<label class="f-opt${n?"":" zero"}"><input type="
 function renderFilters(F){
   const pool = g => F.filter(f => matches(f, g));
   let p = pool("cat");
-  $("g-cat").innerHTML = opt("cat","eec",t("hasEec"),p.filter(f=>f.eec.length).length,st.cat.has("eec")) + opt("cat","non",t("hasNon"),p.filter(f=>f.non.length).length,st.cat.has("non"));
+  $("g-cat").innerHTML = opt("cat","eec",t("hasEec"),p.filter(f=>f.eec.length).length,st.cat.has("eec")) + opt("cat","non",t("hasNon"),p.filter(f=>f.non.length).length,st.cat.has("non")) + opt("cat","ph",t("hasPhotos"),p.filter(f=>f.ph).length,st.cat.has("ph"));
   p = pool("prov");
   $("g-prov").innerHTML = [...new Set(F.map(f=>f.prov))].sort().map(v => opt("prov",v,v,p.filter(f=>f.prov===v).length,st.prov.has(v))).join("");
   p = pool("type");
@@ -566,6 +588,32 @@ function renderFilters(F){
   $("g-bt").innerHTML = [["m","manufacturer"],["t","trading"],["n","notStated"]].map(([k,l]) => opt("bt",k,t(l),p.filter(f=>btKey(f)===k).length,st.bt.has(k))).join("");
   p = pool("age");
   $("g-age").innerHTML = AGE.map(a => opt("age",String(a),`${a}+`,p.filter(f=>f.since && NOW-f.since>=a).length,st.age===String(a))).join("");
+}
+const pimg = (x, cls) => x ? `<img src="${esc(TH[x.u] || x.u)}" alt="${esc(x.alt || "")}" loading="lazy" referrerpolicy="no-referrer"${cls ? ` class="${cls}"` : ""} onerror="this.remove()">` : "";
+const mainPhoto = (f, fact) => f.ph ? (fact ? f.ph.factory[0] || f.ph.products[0] : f.ph.products[0] || f.ph.factory[0]) : null;
+const normM = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
+function modelPhoto(f, n){
+  const k = normM(n); if (!f.ph || k.length < 3) return null;
+  const short = k.replace(/^[a-z]+(?=\d)/, "");  // "ZT703-F" also matches "703F"
+  const keys = short.length >= 3 && short !== k ? [k, short] : [k];
+  return f.ph.products.find(p => keys.some(q => normM(p.alt).includes(q))) || null;
+}
+const photoCount = f => f.ph ? f.ph.products.length + f.ph.factory.length : 0;
+function todo(f){
+  return [["tdPhotos", !!f.ph], ["tdContact", !!(f.emails.length || f.phone || f.wa || f.wc)], ["tdEec", f.eec.length > 0],
+    ["tdPrice", f.eec.length > 0 && f.eec.every(x => x.eu)], ["tdFacts", !!(f.since && f.emp && f.cap)], ["tdTour", !!f.tour], ["tdCat", false]];
+}
+const pctOf = f => { const l = todo(f); return Math.round(100 * l.filter(x => x[1]).length / l.length); };
+function srcLinks(f){
+  const pages = [...new Set([f.ph.page, ...f.ph.products.concat(f.ph.factory).filter(x => !x.credit).map(x => x.from)].filter(u => u && !/wikimedia/.test(u)))];
+  const hosts = new Map(); pages.forEach(u => { try { const h = new URL(u).hostname.replace(/^www\./, ""); if (!hosts.has(h)) hosts.set(h, u); } catch(_) {} });
+  return [...hosts].map(([h, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(h)}</a>`).join(", ");
+}
+function gallery(f){
+  if (!f.ph) return `<div class="empty-cat">${t("photosNone")}</div>`;
+  const g = (h, list) => list.length ? `<h3>${h}</h3>` + list.map(x => `<a href="${esc(x.ref ? x.from : x.u)}" target="_blank" rel="noopener noreferrer" title="${esc(x.credit || x.alt || "")}">${pimg(x)}</a>`).join("") : "";
+  return `<div class="gallery">${g(t("photosProd"), f.ph.products)}${g(t("photosFact"), f.ph.factory)}</div>
+    <div class="ph-src">${t("photosFrom")} ${srcLinks(f)}${f.ph.products.some(x => x.credit) ? `. ${t("photosCommons")} <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>` : ""}</div>`;
 }
 function scene(f, w, h, id){
   const [a,b] = f.sky;
@@ -586,14 +634,14 @@ function scene(f, w, h, id){
 const stars = n => n ? `<span class="stars" aria-label="${n}/5">${"★".repeat(n)}${"☆".repeat(5-n)}</span>` : "";
 function renderResults(F){
   const list = F.filter(f => matches(f));
-  const S = {rec:(a,b)=>(b.rating-a.rating)||(b.score-a.score), price:(a,b)=>(a.from||1e9)-(b.from||1e9), age:(a,b)=>(a.since||9999)-(b.since||9999), eec:(a,b)=>b.eec.length-a.eec.length, rating:(a,b)=>b.rating-a.rating};
+  const S = {rec:(a,b)=>(b.rating-a.rating)||((b.ph?1:0)-(a.ph?1:0))||(b.score-a.score), price:(a,b)=>(a.from||1e9)-(b.from||1e9), age:(a,b)=>(a.since||9999)-(b.since||9999), eec:(a,b)=>b.eec.length-a.eec.length, rating:(a,b)=>b.rating-a.rating};
   list.sort(S[st.sort]);
   $("count").textContent = t("found", list.length);
   const rest = list.length - st.limit; $("more").hidden = rest <= 0; if (rest > 0) $("more").textContent = t("showMore", Math.min(rest, 24));
   $("results").innerHTML = list.length ? list.slice(0, st.limit).map(f => {
     const ccTxt = f.cc ? `${f.cc[0]}–${f.cc[1]} cc` : "";
     return `<article class="card">
-      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}</a>
+      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${f.ph ? pimg(mainPhoto(f), "contain") + `<span class="tag">${t("phN", photoCount(f))}</span>` : `<span class="soon"><b>${t("soonT")}</b>${t("soonS")}</span>`}</a>
       <div class="info">
         <h3><a href="#${f.id}">${esc(f.name)}</a> ${stars(f.rating)}</h3>
         <div class="legal">${esc(f.legal || "")}</div>
@@ -621,11 +669,12 @@ function renderChips(){
   for (const g of ["cat","prov","type","cc","price","contact","bt"]) st[g].forEach(v => c.push([g,v,v]));
   if (st.age) c.push(["age",st.age,st.age+"+"]);
   if (st.q) c.push(["q","",`“${esc(st.q)}”`]);
-  const label = (g,v) => g==="cat" ? (v==="eec"?t("hasEec"):t("hasNon")) : g==="cc" ? CC.find(r=>r.k===v).t : g==="price" ? (v==="n"?t("onRequest"):PR.find(r=>r.k===v).t) : g==="contact" ? (v==="y"?t("hasEmail"):t("noEmail")) : g==="bt" ? t(v==="m"?"manufacturer":v==="t"?"trading":"notStated") : v;
+  const label = (g,v) => g==="cat" ? (v==="eec"?t("hasEec"):v==="ph"?t("hasPhotos"):t("hasNon")) : g==="cc" ? CC.find(r=>r.k===v).t : g==="price" ? (v==="n"?t("onRequest"):PR.find(r=>r.k===v).t) : g==="contact" ? (v==="y"?t("hasEmail"):t("noEmail")) : g==="bt" ? t(v==="m"?"manufacturer":v==="t"?"trading":"notStated") : v;
   $("chips").innerHTML = c.map(([g,v,x]) => `<button class="chip" type="button" data-rm="${g}" data-v="${esc(v)}">${g==="q"||g==="age"?x:esc(label(g,v))} ✕</button>`).join("");
 }
 $("more").onclick = () => { st.limit += 24; renderSearch(); };
-function renderSearch(){ const F = factories(false); renderFilters(F); renderResults(F); renderChips(); }
+function renderSearch(){ const F = factories(false);
+  $("stat").textContent = t("stat", F.length, F.filter(f => f.ph).length, F.reduce((n, f) => n + photoCount(f), 0)); renderFilters(F); renderResults(F); renderChips(); }
 
 /* ---------- profile ---------- */
 let cur = null, showEec = true;
@@ -637,7 +686,7 @@ function modelRows(f){
   const list = showEec ? f.eec : f.non;
   if (!list.length) return `<div class="empty-cat">${showEec ? t("noEec") : t("noNon")}</div>`;
   return list.map(x => `<div class="mrow">
-    <div class="th"><svg viewBox="0 0 200 120" style="color:${f.c}" aria-hidden="true"><use href="#moto"/></svg></div>
+    <div class="th"><svg viewBox="0 0 200 120" style="color:${f.c}" aria-hidden="true"><use href="#moto"/></svg>${pimg(modelPhoto(f, x.n))}</div>
     <div style="min-width:0"><h3>${esc(x.n)}</h3>
       <div class="badges" style="margin:5px 0">
         ${x.year ? `<span class="badge b-non">${t("modelYear",x.year)}</span>` : ""}
@@ -657,7 +706,7 @@ function renderProfile(f){
   const link = u => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").replace(/\/$/,""))}</a>` : null;
   $("profile").innerHTML = `
   <nav class="crumbs"><a href="#">${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
-  <div class="banner">${scene(f,1600,500,"b"+f.id)}</div>
+  <div class="banner">${scene(f,1600,500,"b"+f.id)}${pimg(mainPhoto(f, true))}</div>
   <div class="phead">
     <div class="wordmark" style="background:${f.sky[0]}">${esc(wm)}</div>
     <div class="t"><h1>${esc(f.name)} ${stars(f.rating)}</h1>
@@ -678,6 +727,7 @@ function renderProfile(f){
         ${fact(t("coType"), t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated"))}${fact(t("mainProducts"), esc(f.products || ""))}
         ${fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
       </div></section>
+    <section class="box" id="photos"><h2>${t("photos")}</h2>${gallery(f)}</section>
     <section class="box" id="models"><h2>${t("models")}</h2>
       <div class="switch">
         <button type="button" id="t-eec" aria-pressed="${showEec}"><strong>${t("eecCatalog")}</strong><span>${t("eecSub",f.eec.length)}</span></button>
@@ -699,8 +749,11 @@ function renderProfile(f){
     <section class="box"><h2 style="font-size:20px">${t("sources")}</h2><ol class="srcs">${f.src.map(u=>`<li><a href="${esc(encodeURI(decodeURI(u)))}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,70))}</a></li>`).join("")}</ol></section>
   </div>
   <aside>
-    <div class="box"><div class="score"><div class="w"><b>${t("completeness")}</b></div><div class="n">${f.score.toFixed(1)}</div></div>
-      <p class="from" style="margin:10px 0 0">${t("compNote")}</p></div>
+    <div class="box"><h2 style="font-size:20px">${t("pct", pctOf(f))}</h2>
+      <div class="meter" role="progressbar" aria-valuenow="${pctOf(f)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pctOf(f)}%"></i></div>
+      <ul class="todo">${todo(f).map(([k, ok]) => `<li class="${ok ? "ok" : "no"}"><span>${ok ? "✓" : ""}</span>${t(k)}</li>`).join("")}</ul>
+      <p class="from" style="margin:0 0 10px">${t("nudge")}</p>
+      <button class="btn sec" type="button" data-claim style="width:100%">${t("completeBtn")}</button></div>
     <div class="box"><h2 style="font-size:22px">${t("contactFactory")}</h2>
       ${f.emails.length ? f.emails.map((e,i)=>crow(t("email"), e, "c-mail-"+i)).join("") : crow(t("email"), null)}
       ${crow(t("phone"), f.phone, "c-phone")}
@@ -924,6 +977,7 @@ $("chips").addEventListener("click", e => { const b = e.target.closest("[data-rm
 document.addEventListener("click", e => {
   const p = e.target.closest("[data-prov]"); if (p){ e.preventDefault(); st.prov.clear(); st.prov.add(p.dataset.prov); go("#"); return; }
   const r = e.target.closest("[data-req]"); if (r) openReq(r.dataset.req);
+  if (e.target.closest("[data-claim]")) toast(t("claimToast"));
   const c = e.target.closest("[data-copy]"); if (c){ const el = $(c.dataset.copy); copyText(el.textContent, c, el); }
   const home = e.target.closest('a[href="#"]'); if (home){ e.preventDefault(); go("#"); }
 });
@@ -932,7 +986,8 @@ $("open-filters").onclick = () => $("filters").classList.add("open");
 $("f-done").onclick = () => $("filters").classList.remove("open");
 applyLang();
 (async () => {
-  try { BASE = await (await fetch("data/factories.json")).json(); } catch(_) { BASE = []; }
+  const [b, p, th] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
+  BASE = b; PHOTOS = p; TH = th;
   try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
   render();
 })();
