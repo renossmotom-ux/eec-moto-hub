@@ -67,8 +67,8 @@ def main():
             score[u] = (sum(pr[:NV]), sum(pr[NV:NV + NF]), max(range(len(pr)), key=pr.__getitem__), st)
         print(f"  scored {min(i + 64, len(jobs))}/{len(jobs)}", file=sys.stderr)
 
-    def vehicle(x):
-        sc = score.get(x["u"]); return bool(sc) and sc[0] >= 0.5 and sc[2] < NV
+    def vehicle(x):  # tall images are almost always ads or banners
+        sc = score.get(x["u"]); return bool(sc) and sc[0] >= 0.5 and sc[2] < NV and x.get("h", 0) <= 1.15 * x.get("w", 1)
     def factory(x):
         sc = score.get(x["u"]); return bool(sc) and sc[0] + sc[1] >= 0.5 and sc[2] < NV + NF
 
