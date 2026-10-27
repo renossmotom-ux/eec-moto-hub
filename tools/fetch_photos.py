@@ -75,7 +75,7 @@ def candidates(html, base):
 
 def upsize(u):
     """Showroom pages list small thumbnails (e.g. /220f0j00/); /2f0j00/ is the full-size photo."""
-    return re.sub(r"(image\.made-in-china\.com/)\d+(f\dj00)", r"\g<1>2\2", u)
+    return re.sub(r"(image\.made-in-china\.com/)\d+f\dj\d\d", r"\g<1>2f0j00", u)
 
 def check(u, ref=None):
     """Download once: must be a photo-sized raster image. Thumbnails are saved locally, so a Referer is fine."""
