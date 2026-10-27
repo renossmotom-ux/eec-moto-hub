@@ -216,7 +216,7 @@ body.pmode .hero .wrap{padding-bottom:12px}
 .claim{background:var(--accent-soft);border-radius:var(--r);padding:16px}
 .photo .soon{position:absolute;inset:auto 0 0 0;padding:8px 10px;background:rgba(10,20,40,.62);color:#fff;font-size:12.5px;line-height:1.3}
 .photo .soon b{display:block;font-size:13.5px}
-.photo img.contain,.gallery img{object-fit:contain;background:#fff}
+.photo img.contain,.gallery img,.mrow .th img{object-fit:contain;background:#fff}
 .meter{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin:8px 0 12px}
 .meter i{display:block;height:100%;background:var(--brand);border-radius:99px}
 .todo{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px;font-size:13.5px}
@@ -594,7 +594,9 @@ const mainPhoto = (f, fact) => f.ph ? (fact ? f.ph.factory[0] || f.ph.products[0
 const normM = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
 function modelPhoto(f, n){
   const k = normM(n); if (!f.ph || k.length < 3) return null;
-  return f.ph.products.find(p => normM(p.alt).includes(k)) || null;
+  const short = k.replace(/^[a-z]+(?=\d)/, "");  // "ZT703-F" also matches "703F"
+  const keys = short.length >= 3 && short !== k ? [k, short] : [k];
+  return f.ph.products.find(p => keys.some(q => normM(p.alt).includes(q))) || null;
 }
 const photoCount = f => f.ph ? f.ph.products.length + f.ph.factory.length : 0;
 function todo(f){
