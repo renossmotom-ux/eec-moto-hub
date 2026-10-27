@@ -36,6 +36,23 @@ CERT = re.compile(r"certif|license|licence|patent|award|证书", re.I)
 EXTRA = json.load(open(f"{ROOT}/data/photo_pages.json")) if __import__("os").path.exists(f"{ROOT}/data/photo_pages.json") else {}
 ATTRS = ("data-original", "data-src", "data-lazy", "data-lazy-src", "lazy-src", "data-url", "data-echo", "src")
 
+BLOCKED = set()  # pages that refused us (403/429): never retried in a browser
+_robots = {}
+
+def allowed(url):
+    """Respect each site's robots.txt."""
+    from urllib.robotparser import RobotFileParser
+    base = "{0.scheme}://{0.netloc}".format(urlparse(url))
+    if base not in _robots:
+        rp = RobotFileParser()
+        try:
+            r = requests.get(base + "/robots.txt", headers=H, timeout=15)
+            rp.parse(r.text.splitlines() if r.status_code == 200 else [])
+        except Exception:
+            rp.parse([])
+        _robots[base] = rp
+    return _robots[base].can_fetch(UA, url)
+
 def get(url, **kw):
     for i in range(3):
         r = requests.get(url, headers=H, timeout=25, **kw)
@@ -119,10 +136,14 @@ def one(f, use_browser=False):
         if url in visited: continue
         visited.add(url)
         html = ""
+        if not allowed(url):
+            print("  robots.txt disallows", url, file=sys.stderr); continue
+        if use_browser and url in BLOCKED: continue
         if use_browser: html = render(url)
         else:
             try:
                 r = get(url)
+                if r.status_code in (403, 429): BLOCKED.add(url)
                 if r.status_code != 200: print("  page", r.status_code, url, file=sys.stderr)
                 elif len(r.text) < 3000 or re.search(r"captcha|slide to verify|验证", r.text[:20000], re.I): print("  page blocked?", len(r.text), url, file=sys.stderr)
                 if r.status_code == 200: r.encoding = r.apparent_encoding if not r.encoding or r.encoding == "ISO-8859-1" else r.encoding; html = r.text
