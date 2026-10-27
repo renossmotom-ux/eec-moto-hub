@@ -22,11 +22,12 @@ jobs:
           python-version: "3.12"
       - run: pip install requests beautifulsoup4 pillow playwright && python -m playwright install --with-deps chromium
       - run: python tools/fetch_photos.py | tee photos.log; tail -1 photos.log >> "$GITHUB_STEP_SUMMARY"
+      - run: python tools/make_thumbs.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Commit photos.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add data/photos.json
+          git add -A data/photos.json data/thumbs data/thumbs.json
           git diff --cached --quiet && exit 0
           git commit -m "Update factory photos"
           git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
