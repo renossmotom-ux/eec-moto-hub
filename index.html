@@ -520,7 +520,7 @@ const PR = [{k:"a",t:"< €4,000",ok:p=>p&&p<4000},{k:"b",t:"€4,000–7,000",o
 const AGE = [30,20,10];
 // Helmet section: these labels replace the motorcycle ones while the Helmets tab is open.
 const TH_HELMET = {
-en:{heroTitle:"Find your next helmet factory",heroSub:"Compare Chinese motorcycle helmet makers, ECE 22.06 / 22.05 helmets and FOB prices. No account needed to browse.",
+en:{seller:"Sells helmets, not a helmet maker",maker:"Helmet maker",heroTitle:"Find your next helmet factory",heroSub:"Compare Chinese motorcycle helmet makers, ECE 22.06 / 22.05 helmets and FOB prices. No account needed to browse.",
  stat:(n,f,p)=>`${n} helmet factories · ${f} with real photos · ${p.toLocaleString("en")} helmet and factory photos`,
  tdPhotos:"Factory and helmet photos",tdEec:"ECE-certified helmets",tdPrice:"FOB price for each helmet",tdCat:"ECE test certificate (PDF)",
  sQ:"Factory, brand or helmet",sType:"Helmet type",type:"Helmet type",euPrice:"Lowest FOB price",clickHint:"Tap a factory to see its ECE and non-ECE helmets, prices and contacts",
@@ -531,7 +531,7 @@ en:{heroTitle:"Find your next helmet factory",heroSub:"Compare Chinese motorcycl
  noEec:"No helmet in this factory's listings names ECE. Ask the factory: many can certify a model for Europe.",noNon:"Every helmet listed by this factory names ECE.",
  priceReq:"Price on request",fobShown:"FOB price · listed by the factory",factoryFob:"Factory to add FOB price",photosProd:"Helmets",allFactories:"All helmet factories",moq:n=>`MOQ ${n.toLocaleString("en")}`,certNone:"Certificate not stated",
  noMatch:"No helmet factory matches these filters. Remove a filter to see more results.",facts:"Factory facts",address:"Address"},
-fr:{heroTitle:"Trouvez votre usine de casques",heroSub:"Comparez les fabricants chinois de casques moto, les casques ECE 22.06 / 22.05 et les prix FOB. Aucun compte requis.",
+fr:{seller:"Vend des casques, pas fabricant",maker:"Fabricant de casques",heroTitle:"Trouvez votre usine de casques",heroSub:"Comparez les fabricants chinois de casques moto, les casques ECE 22.06 / 22.05 et les prix FOB. Aucun compte requis.",
  stat:(n,f,p)=>`${n} usines de casques · ${f} avec vraies photos · ${p.toLocaleString("fr")} photos de casques et d'usines`,
  tdPhotos:"Photos de l'usine et des casques",tdEec:"Casques certifiés ECE",tdPrice:"Prix FOB de chaque casque",tdCat:"Certificat d'essai ECE (PDF)",
  sQ:"Usine, marque ou casque",sType:"Type de casque",type:"Type de casque",euPrice:"Prix FOB le plus bas",clickHint:"Touchez une usine pour voir ses casques ECE et non-ECE, prix et contacts",
@@ -542,7 +542,7 @@ fr:{heroTitle:"Trouvez votre usine de casques",heroSub:"Comparez les fabricants 
  noEec:"Aucun casque de cette usine n'indique ECE. Demandez à l'usine : beaucoup peuvent certifier un modèle pour l'Europe.",noNon:"Tous les casques de cette usine indiquent ECE.",
  priceReq:"Prix sur demande",fobShown:"Prix FOB · indiqué par l'usine",factoryFob:"Prix FOB à ajouter par l'usine",photosProd:"Casques",allFactories:"Toutes les usines de casques",moq:n=>`MOQ ${n.toLocaleString("fr")}`,certNone:"Certificat non indiqué",
  noMatch:"Aucune usine de casques ne correspond. Retirez un filtre.",address:"Adresse"},
-zh:{heroTitle:"寻找头盔工厂",heroSub:"比较中国摩托车头盔制造商、ECE 22.06 / 22.05 头盔及FOB价格。无需账户即可浏览。",
+zh:{seller:"销售头盔，非头盔制造商",maker:"头盔制造商",heroTitle:"寻找头盔工厂",heroSub:"比较中国摩托车头盔制造商、ECE 22.06 / 22.05 头盔及FOB价格。无需账户即可浏览。",
  stat:(n,f,p)=>`${n} 家头盔工厂 · ${f} 家有真实照片 · ${p.toLocaleString("zh")} 张头盔和工厂照片`,
  tdPhotos:"工厂和头盔照片",tdEec:"ECE认证头盔",tdPrice:"每款头盔的FOB价格",tdCat:"ECE检测证书（PDF）",
  sQ:"工厂、品牌或头盔",sType:"头盔类型",type:"头盔类型",euPrice:"最低FOB价格",clickHint:"点击工厂查看ECE和非ECE头盔、价格及联系方式",
@@ -553,7 +553,7 @@ zh:{heroTitle:"寻找头盔工厂",heroSub:"比较中国摩托车头盔制造商
  noEec:"该工厂的产品信息中没有标明ECE的头盔。可询问工厂：许多工厂可为欧洲市场认证车型。",noNon:"该工厂列出的头盔全部标明ECE。",
  priceReq:"价格面议",fobShown:"FOB价格 · 工厂标价",factoryFob:"待工厂添加FOB价格",photosProd:"头盔",allFactories:"全部头盔工厂",moq:n=>`起订量 ${n}`,certNone:"未注明认证",
  noMatch:"没有符合条件的头盔工厂。请移除筛选条件。",address:"地址"},
-ar:{heroTitle:"اعثر على مصنع الخوذات المناسب",heroSub:"قارن مصنعي خوذات الدراجات النارية الصينيين، وخوذات ECE 22.06 / 22.05 وأسعار FOB. التصفح بدون حساب.",
+ar:{seller:"يبيع الخوذات وليس مصنعاً لها",maker:"مصنع خوذات",heroTitle:"اعثر على مصنع الخوذات المناسب",heroSub:"قارن مصنعي خوذات الدراجات النارية الصينيين، وخوذات ECE 22.06 / 22.05 وأسعار FOB. التصفح بدون حساب.",
  stat:(n,f,p)=>`${n} مصنع خوذات · ${f} بصور حقيقية · ${p.toLocaleString("ar")} صورة خوذات ومصانع`,
  tdPhotos:"صور المصنع والخوذات",tdEec:"خوذات معتمدة ECE",tdPrice:"سعر FOB لكل خوذة",tdCat:"شهادة اختبار ECE (PDF)",
  sQ:"مصنع أو علامة أو خوذة",sType:"نوع الخوذة",type:"نوع الخوذة",euPrice:"أقل سعر FOB",clickHint:"اضغط على مصنع لرؤية خوذات ECE وغير ECE والأسعار وجهات الاتصال",
@@ -613,7 +613,7 @@ function factories(includeRemoved, all){
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = f.kind === "helmet" ? (f.usd ? f.usd[0] : null) : prices.length ? Math.min(...prices) : null;
     const facts = f.kind === "helmet" ? [f.legal,f.city,f.since,f.emp,f.addr,f.products,f.contact] : [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
-    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0) + (f.ph?1:0))*10)/10;
+    f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0) + (f.ph?1:0) + (f.maker?1:0))*10)/10;
     return f;
   }).filter(f => includeRemoved || !f.removed);
 }
@@ -724,6 +724,7 @@ function renderResults(F){
           ${f.emails.length ? `<span class="badge b-ok">✉ ${t("hasEmail")}</span>` : ""}
           <span class="badge ${f.bt==="Trading company"?"b-warn":"b-non"}">${t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated")}</span>
           ${f.tier==="full" ? `<span class="badge b-eec">${t("detailed")}</span>` : ""}
+          ${f.kind==="helmet" ? (f.maker ? `<span class="badge b-ok">🪖 ${t("maker")}</span>` : `<span class="badge b-warn">${t("seller")}</span>`) : ""}
           <span class="badge b-warn">${t("notVerified")}</span>
         </div>
         <div class="models-line"><b>${f.types.join(" · ")}</b>${ccTxt ? " · " + ccTxt : ""}</div>
