@@ -250,6 +250,10 @@ def main():
                 else:
                     rows[r["sub"]] = r
     keep = [r for r in rows.values() if is_helmet_company(r)]
+    if "--rows" in sys.argv:
+        json.dump([{k: r[k] for k in ("sub", "name", "bt", "main", "kw")} | {"n": len(r["prods"]), "t": [p["t"] for p in r["prods"][:3]], "keep": r in keep} for r in rows.values()],
+                  open(f"{ROOT}/data/helmet_rows.json", "w"), ensure_ascii=False, indent=0)
+        return
     print(f"SUMMARY: {len(rows)} suppliers listed, {len(keep)} make motorcycle helmets", file=sys.stderr)
     res, photos, ids = [], {}, set()
     with ThreadPoolExecutor(4) as ex:
