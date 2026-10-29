@@ -316,7 +316,8 @@ body.pmode .hero .wrap{padding-bottom:12px}
       </div>
     </div>
     <div class="tabs" aria-label="Sections">
-      <button type="button" class="on" id="tab-dir" data-t="tabFactories">Factories</button>
+      <button type="button" class="on" id="tab-dir" data-t="tabFactories">Motorcycles</button>
+      <button type="button" id="tab-helmets" data-t="tabHelmets">Helmets</button>
       <button type="button" id="tab-admin" hidden data-t="tabAdmin">Admin</button>
     </div>
     <h1 data-t="heroTitle">Find your next motorcycle factory</h1>
@@ -338,7 +339,7 @@ body.pmode .hero .wrap{padding-bottom:12px}
       <div class="f-group"><h3 data-t="catalog">Catalog</h3><div id="g-cat"></div></div>
       <div class="f-group"><h3 data-t="province">Province</h3><div id="g-prov"></div></div>
       <div class="f-group"><h3 data-t="type">Motorcycle type</h3><div id="g-type"></div></div>
-      <div class="f-group"><h3 data-t="engine">Engine size</h3><div id="g-cc"></div></div>
+      <div class="f-group" id="fg-cc"><h3 data-t="engine">Engine size</h3><div id="g-cc"></div></div>
       <div class="f-group"><h3 data-t="euPrice">Cheapest EU shop price</h3><div id="g-price"></div></div>
       <div class="f-group"><h3 data-t="coType">Company type</h3><div id="g-bt"></div></div>
       <div class="f-group"><h3 data-t="contactAvail">Contact</h3><div id="g-contact"></div></div>
@@ -370,7 +371,7 @@ const HUB = {"en": {"adminNoDb": "Sign in as admin to save changes.", "mailNotic
 let BASE = [];
 const NOW = 2026;
 const T = {
-en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom video or virtual tour here after claiming the profile.",tourOpen:"Open the 360° showroom",tourUrl:"360° video or tour link",news:"Factory news",newsEmpty:"No news yet. New models, certifications and fair dates will appear here.",addNews:"Add news",newsTitle:"Title",newsBody:"Text",post:"Post",del:"Delete",coType:"Company type",manufacturer:"Manufacturer",trading:"Trading company",notStated:"Not stated",showMore:n=>`Show ${n} more`,mainProducts:"Main products",b2bShowroom:"B2B showroom",detailed:"Detailed profile",factorySignIn:"Factory sign in",tabFactories:"Factories",tabAdmin:"Admin",heroTitle:"Find your next motorcycle factory",heroSub:"Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.",stat:(n,f,p)=>`${n} factories · ${f} with real photos · ${p.toLocaleString("en")} motorcycle and factory photos`,phN:n=>n===1?"1 photo":`${n} photos`,soonT:"Photos coming soon",soonS:"Your factory? Add your photos",pct:n=>`Profile ${n}% complete`,nudge:"Complete profiles get more price requests from buyers in Morocco and worldwide.",completeBtn:"Complete this profile",tdPhotos:"Factory and motorcycle photos",tdContact:"Export email, phone or WhatsApp",tdEec:"EEC models with year",tdPrice:"Prices for each model",tdFacts:"Company facts (start year, staff, capacity)",tdTour:"360° showroom",tdCat:"EEC catalog (PDF)",hasPhotos:"Has photos",sQ:"Factory, brand or model",sType:"Motorcycle type",sCat:"Catalog",search:"Search",filterBy:"Filter by",clearAll:"Clear all",catalog:"Catalog",province:"Province",type:"Motorcycle type",engine:"Engine size",euPrice:"Cheapest EU shop price",contactAvail:"Contact",years:"Years in business",showResults:"Show results",clickHint:"Tap a factory to see its EEC catalog, models and contacts",filter:"Filter",
+en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom video or virtual tour here after claiming the profile.",tourOpen:"Open the 360° showroom",tourUrl:"360° video or tour link",news:"Factory news",newsEmpty:"No news yet. New models, certifications and fair dates will appear here.",addNews:"Add news",newsTitle:"Title",newsBody:"Text",post:"Post",del:"Delete",coType:"Company type",manufacturer:"Manufacturer",trading:"Trading company",notStated:"Not stated",showMore:n=>`Show ${n} more`,mainProducts:"Main products",b2bShowroom:"B2B showroom",detailed:"Detailed profile",factorySignIn:"Factory sign in",tabFactories:"Motorcycles",tabHelmets:"Helmets",tabAdmin:"Admin",heroTitle:"Find your next motorcycle factory",heroSub:"Compare Chinese manufacturers, EEC catalogs and prices. No account needed to browse.",stat:(n,f,p)=>`${n} factories · ${f} with real photos · ${p.toLocaleString("en")} motorcycle and factory photos`,phN:n=>n===1?"1 photo":`${n} photos`,soonT:"Photos coming soon",soonS:"Your factory? Add your photos",pct:n=>`Profile ${n}% complete`,nudge:"Complete profiles get more price requests from buyers in Morocco and worldwide.",completeBtn:"Complete this profile",tdPhotos:"Factory and motorcycle photos",tdContact:"Export email, phone or WhatsApp",tdEec:"EEC models with year",tdPrice:"Prices for each model",tdFacts:"Company facts (start year, staff, capacity)",tdTour:"360° showroom",tdCat:"EEC catalog (PDF)",hasPhotos:"Has photos",sQ:"Factory, brand or model",sType:"Motorcycle type",sCat:"Catalog",search:"Search",filterBy:"Filter by",clearAll:"Clear all",catalog:"Catalog",province:"Province",type:"Motorcycle type",engine:"Engine size",euPrice:"Cheapest EU shop price",contactAvail:"Contact",years:"Years in business",showResults:"Show results",clickHint:"Tap a factory to see its EEC catalog, models and contacts",filter:"Filter",
  found:n=>`${n} ${n===1?"factory":"factories"} found`,anyType:"Any type",anyCat:"EEC and Non-EEC",eecOnly:"EEC only",nonOnly:"Non-EEC available",hasEec:"Has EEC models",hasNon:"Has Non-EEC models",hasEmail:"Public email found",noEmail:"Email still needed",
  sortRec:"Our top picks",sortPrice:"Lowest EU price",sortAge:"Longest in business",sortEec:"Most EEC models",sortRating:"Admin rating",
  since:y=>`Since ${y}`,sinceUnknown:"Founding year to confirm",eecN:n=>`EEC · ${n} models`,nonN:n=>`Non-EEC · ${n} models`,notVerified:"From internet, not verified",
@@ -389,7 +390,7 @@ en:{tour360:"360° showroom",tourEmpty:"The factory adds its 360° showroom vide
  emailSel:"Email selected",emailAll:"Email all with an address",composeTitle:"Invitation email",recipients:n=>`${n} recipients`,subject:"Subject",body:"Message",template:"Template language",copyAddr:"Copy addresses (BCC)",copyMsg:"Copy message",openMail:"Open in my email app",
  mailNotice:"This page cannot send email itself. Copy the addresses into BCC and the message into your email, or tap Open in my email app. A real sending service comes with the live site.",
  save:"Save",cancel:"Cancel",saved:"Saved",editTitle:"Edit factory",noAddr:"No public email yet",whatsapp:"WhatsApp",wechat:"WeChat",note:"Admin note"},
-fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite virtuelle 360° après avoir réclamé son profil.",tourOpen:"Ouvrir le showroom 360°",tourUrl:"Lien vidéo ou visite 360°",news:"Actualités de l'usine",newsEmpty:"Pas encore d'actualités. Nouveaux modèles, certifications et salons apparaîtront ici.",addNews:"Ajouter une actualité",newsTitle:"Titre",newsBody:"Texte",post:"Publier",del:"Supprimer",coType:"Type d'entreprise",manufacturer:"Fabricant",trading:"Société de négoce",notStated:"Non précisé",showMore:n=>`Voir ${n} de plus`,mainProducts:"Produits principaux",b2bShowroom:"Vitrine B2B",detailed:"Profil détaillé",factorySignIn:"Connexion usine",tabFactories:"Usines",tabAdmin:"Admin",heroTitle:"Trouvez votre prochaine usine de motos",heroSub:"Comparez les fabricants chinois, les catalogues CEE et les prix. Aucun compte requis pour consulter.",stat:(n,f,p)=>`${n} usines · ${f} avec de vraies photos · ${p.toLocaleString("fr")} photos de motos et d'usines`,phN:n=>n===1?"1 photo":`${n} photos`,soonT:"Photos bientôt disponibles",soonS:"Votre usine ? Ajoutez vos photos",pct:n=>`Profil complet à ${n} %`,nudge:"Les profils complets reçoivent plus de demandes de prix d'acheteurs au Maroc et dans le monde.",completeBtn:"Compléter ce profil",tdPhotos:"Photos de l'usine et des motos",tdContact:"Email export, téléphone ou WhatsApp",tdEec:"Modèles CEE avec année",tdPrice:"Prix de chaque modèle",tdFacts:"Infos société (création, effectif, capacité)",tdTour:"Showroom 360°",tdCat:"Catalogue CEE (PDF)",hasPhotos:"Avec photos",sQ:"Usine, marque ou modèle",sType:"Type de moto",sCat:"Catalogue",search:"Rechercher",filterBy:"Filtrer par",clearAll:"Tout effacer",catalog:"Catalogue",province:"Province",type:"Type de moto",engine:"Cylindrée",euPrice:"Prix public UE le plus bas",contactAvail:"Contact",years:"Années d'activité",showResults:"Voir les résultats",clickHint:"Touchez une usine pour voir son catalogue CEE, ses modèles et ses contacts",filter:"Filtrer",
+fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite virtuelle 360° après avoir réclamé son profil.",tourOpen:"Ouvrir le showroom 360°",tourUrl:"Lien vidéo ou visite 360°",news:"Actualités de l'usine",newsEmpty:"Pas encore d'actualités. Nouveaux modèles, certifications et salons apparaîtront ici.",addNews:"Ajouter une actualité",newsTitle:"Titre",newsBody:"Texte",post:"Publier",del:"Supprimer",coType:"Type d'entreprise",manufacturer:"Fabricant",trading:"Société de négoce",notStated:"Non précisé",showMore:n=>`Voir ${n} de plus`,mainProducts:"Produits principaux",b2bShowroom:"Vitrine B2B",detailed:"Profil détaillé",factorySignIn:"Connexion usine",tabFactories:"Motos",tabHelmets:"Casques",tabAdmin:"Admin",heroTitle:"Trouvez votre prochaine usine de motos",heroSub:"Comparez les fabricants chinois, les catalogues CEE et les prix. Aucun compte requis pour consulter.",stat:(n,f,p)=>`${n} usines · ${f} avec de vraies photos · ${p.toLocaleString("fr")} photos de motos et d'usines`,phN:n=>n===1?"1 photo":`${n} photos`,soonT:"Photos bientôt disponibles",soonS:"Votre usine ? Ajoutez vos photos",pct:n=>`Profil complet à ${n} %`,nudge:"Les profils complets reçoivent plus de demandes de prix d'acheteurs au Maroc et dans le monde.",completeBtn:"Compléter ce profil",tdPhotos:"Photos de l'usine et des motos",tdContact:"Email export, téléphone ou WhatsApp",tdEec:"Modèles CEE avec année",tdPrice:"Prix de chaque modèle",tdFacts:"Infos société (création, effectif, capacité)",tdTour:"Showroom 360°",tdCat:"Catalogue CEE (PDF)",hasPhotos:"Avec photos",sQ:"Usine, marque ou modèle",sType:"Type de moto",sCat:"Catalogue",search:"Rechercher",filterBy:"Filtrer par",clearAll:"Tout effacer",catalog:"Catalogue",province:"Province",type:"Type de moto",engine:"Cylindrée",euPrice:"Prix public UE le plus bas",contactAvail:"Contact",years:"Années d'activité",showResults:"Voir les résultats",clickHint:"Touchez une usine pour voir son catalogue CEE, ses modèles et ses contacts",filter:"Filtrer",
  found:n=>`${n} usine${n>1?"s":""} trouvée${n>1?"s":""}`,anyType:"Tous types",anyCat:"CEE et non-CEE",eecOnly:"CEE uniquement",nonOnly:"Non-CEE disponible",hasEec:"A des modèles CEE",hasNon:"A des modèles non-CEE",hasEmail:"Email public trouvé",noEmail:"Email à trouver",
  sortRec:"Nos meilleurs choix",sortPrice:"Prix UE le plus bas",sortAge:"Plus ancienne",sortEec:"Plus de modèles CEE",sortRating:"Note admin",
  since:y=>`Depuis ${y}`,sinceUnknown:"Année de création à confirmer",eecN:n=>`CEE · ${n} modèles`,nonN:n=>`Non-CEE · ${n} modèles`,notVerified:"Source internet, non vérifié",
@@ -408,7 +409,7 @@ fr:{tour360:"Showroom 360°",tourEmpty:"L'usine ajoute ici sa vidéo ou visite v
  emailSel:"Écrire à la sélection",emailAll:"Écrire à toutes (avec adresse)",composeTitle:"Email d'invitation",recipients:n=>`${n} destinataires`,subject:"Objet",body:"Message",template:"Langue du modèle",copyAddr:"Copier les adresses (CCI)",copyMsg:"Copier le message",openMail:"Ouvrir dans ma messagerie",
  mailNotice:"Cette page ne peut pas envoyer d'email. Copiez les adresses en CCI et le message dans votre messagerie, ou touchez Ouvrir dans ma messagerie. Un vrai service d'envoi viendra avec le site final.",
  save:"Enregistrer",cancel:"Annuler",saved:"Enregistré",editTitle:"Modifier l'usine",noAddr:"Pas encore d'email public",whatsapp:"WhatsApp",wechat:"WeChat",note:"Note admin"},
-zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°展厅视频或虚拟参观。",tourOpen:"打开360°展厅",tourUrl:"360°视频或参观链接",news:"工厂动态",newsEmpty:"暂无动态。新车型、认证和展会信息将在此显示。",addNews:"添加动态",newsTitle:"标题",newsBody:"内容",post:"发布",del:"删除",coType:"企业类型",manufacturer:"生产厂家",trading:"贸易公司",notStated:"未注明",showMore:n=>`再显示 ${n} 家`,mainProducts:"主要产品",b2bShowroom:"B2B展厅",detailed:"详细资料",factorySignIn:"工厂登录",tabFactories:"工厂",tabAdmin:"管理",heroTitle:"寻找您的下一家摩托车工厂",heroSub:"比较中国制造商、EEC目录和价格。浏览无需注册。",stat:(n,f,p)=>`${n} 家工厂 · ${f} 家有真实图片 · ${p} 张摩托车和工厂图片`,phN:n=>`${n} 张图片`,soonT:"图片即将上线",soonS:"您的工厂？上传图片",pct:n=>`资料完整度 ${n}%`,nudge:"资料完整的工厂会收到更多来自摩洛哥和全球买家的询价。",completeBtn:"完善资料",tdPhotos:"工厂和摩托车图片",tdContact:"外贸邮箱、电话或WhatsApp",tdEec:"EEC车型及年份",tdPrice:"每款车型的价格",tdFacts:"公司信息（成立年份、员工、产能）",tdTour:"360°展厅",tdCat:"EEC目录（PDF）",hasPhotos:"有图片",sQ:"工厂、品牌或车型",sType:"车型类别",sCat:"目录",search:"搜索",filterBy:"筛选",clearAll:"全部清除",catalog:"目录",province:"省份",type:"车型类别",engine:"排量",euPrice:"欧洲最低零售价",contactAvail:"联系方式",years:"经营年限",showResults:"显示结果",clickHint:"点击工厂查看其EEC目录、车型和联系方式",filter:"筛选",
+zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°展厅视频或虚拟参观。",tourOpen:"打开360°展厅",tourUrl:"360°视频或参观链接",news:"工厂动态",newsEmpty:"暂无动态。新车型、认证和展会信息将在此显示。",addNews:"添加动态",newsTitle:"标题",newsBody:"内容",post:"发布",del:"删除",coType:"企业类型",manufacturer:"生产厂家",trading:"贸易公司",notStated:"未注明",showMore:n=>`再显示 ${n} 家`,mainProducts:"主要产品",b2bShowroom:"B2B展厅",detailed:"详细资料",factorySignIn:"工厂登录",tabFactories:"摩托车",tabHelmets:"头盔",tabAdmin:"管理",heroTitle:"寻找您的下一家摩托车工厂",heroSub:"比较中国制造商、EEC目录和价格。浏览无需注册。",stat:(n,f,p)=>`${n} 家工厂 · ${f} 家有真实图片 · ${p} 张摩托车和工厂图片`,phN:n=>`${n} 张图片`,soonT:"图片即将上线",soonS:"您的工厂？上传图片",pct:n=>`资料完整度 ${n}%`,nudge:"资料完整的工厂会收到更多来自摩洛哥和全球买家的询价。",completeBtn:"完善资料",tdPhotos:"工厂和摩托车图片",tdContact:"外贸邮箱、电话或WhatsApp",tdEec:"EEC车型及年份",tdPrice:"每款车型的价格",tdFacts:"公司信息（成立年份、员工、产能）",tdTour:"360°展厅",tdCat:"EEC目录（PDF）",hasPhotos:"有图片",sQ:"工厂、品牌或车型",sType:"车型类别",sCat:"目录",search:"搜索",filterBy:"筛选",clearAll:"全部清除",catalog:"目录",province:"省份",type:"车型类别",engine:"排量",euPrice:"欧洲最低零售价",contactAvail:"联系方式",years:"经营年限",showResults:"显示结果",clickHint:"点击工厂查看其EEC目录、车型和联系方式",filter:"筛选",
  found:n=>`找到 ${n} 家工厂`,anyType:"所有类别",anyCat:"EEC和非EEC",eecOnly:"仅EEC",nonOnly:"有非EEC车型",hasEec:"有EEC车型",hasNon:"有非EEC车型",hasEmail:"已找到公开邮箱",noEmail:"尚需邮箱",
  sortRec:"推荐",sortPrice:"欧洲价格最低",sortAge:"经营最久",sortEec:"EEC车型最多",sortRating:"管理员评分",
  since:y=>`成立于 ${y}`,sinceUnknown:"成立年份待确认",eecN:n=>`EEC · ${n} 款`,nonN:n=>`非EEC · ${n} 款`,notVerified:"来自网络，未核实",
@@ -427,7 +428,7 @@ zh:{tour360:"360°展厅",tourEmpty:"工厂认领资料后可在此添加360°�
  emailSel:"发邮件给所选",emailAll:"发邮件给全部（有邮箱）",composeTitle:"邀请邮件",recipients:n=>`${n} 位收件人`,subject:"主题",body:"正文",template:"模板语言",copyAddr:"复制地址（密送）",copyMsg:"复制正文",openMail:"在邮件应用中打开",
  mailNotice:"此页面无法直接发送邮件。请将地址复制到密送栏、正文复制到邮件中，或点击“在邮件应用中打开”。正式网站将提供真正的发送服务。",
  save:"保存",cancel:"取消",saved:"已保存",editTitle:"编辑工厂",noAddr:"暂无公开邮箱",whatsapp:"WhatsApp",wechat:"微信",note:"管理员备注"},
-ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا فيديو أو جولة افتراضية 360° بعد المطالبة بملفه.",tourOpen:"فتح صالة العرض 360°",tourUrl:"رابط فيديو أو جولة 360°",news:"أخبار المصنع",newsEmpty:"لا توجد أخبار بعد. ستظهر هنا الطرازات الجديدة والشهادات ومواعيد المعارض.",addNews:"إضافة خبر",newsTitle:"العنوان",newsBody:"النص",post:"نشر",del:"حذف",coType:"نوع الشركة",manufacturer:"مصنع",trading:"شركة تجارية",notStated:"غير محدد",showMore:n=>`عرض ${n} إضافية`,mainProducts:"المنتجات الرئيسية",b2bShowroom:"صفحة B2B",detailed:"ملف مفصل",factorySignIn:"دخول المصانع",tabFactories:"المصانع",tabAdmin:"الإدارة",heroTitle:"اعثر على مصنع الدراجات النارية المناسب",heroSub:"قارن المصنعين الصينيين وكتالوجات EEC والأسعار. التصفح بدون حساب.",stat:(n,f,p)=>`${n} مصنع · ${f} بصور حقيقية · ${p} صورة للدراجات والمصانع`,phN:n=>`${n} صور`,soonT:"الصور قريبًا",soonS:"مصنعك؟ أضف صورك",pct:n=>`الملف مكتمل بنسبة ${n}%`,nudge:"الملفات المكتملة تتلقى طلبات أسعار أكثر من المشترين في المغرب والعالم.",completeBtn:"أكمل هذا الملف",tdPhotos:"صور المصنع والدراجات",tdContact:"بريد التصدير أو الهاتف أو واتساب",tdEec:"طرازات EEC مع السنة",tdPrice:"سعر كل طراز",tdFacts:"معلومات الشركة (سنة التأسيس، الموظفون، الطاقة)",tdTour:"صالة عرض 360°",tdCat:"كتالوج EEC (PDF)",hasPhotos:"بها صور",sQ:"مصنع أو علامة أو طراز",sType:"نوع الدراجة",sCat:"الكتالوج",search:"بحث",filterBy:"تصفية حسب",clearAll:"مسح الكل",catalog:"الكتالوج",province:"المقاطعة",type:"نوع الدراجة",engine:"سعة المحرك",euPrice:"أقل سعر بيع في أوروبا",contactAvail:"التواصل",years:"سنوات النشاط",showResults:"عرض النتائج",clickHint:"اضغط على مصنع لرؤية كتالوج EEC والطرازات وطرق التواصل",filter:"تصفية",
+ar:{tour360:"صالة عرض 360°",tourEmpty:"يضيف المصنع هنا فيديو أو جولة افتراضية 360° بعد المطالبة بملفه.",tourOpen:"فتح صالة العرض 360°",tourUrl:"رابط فيديو أو جولة 360°",news:"أخبار المصنع",newsEmpty:"لا توجد أخبار بعد. ستظهر هنا الطرازات الجديدة والشهادات ومواعيد المعارض.",addNews:"إضافة خبر",newsTitle:"العنوان",newsBody:"النص",post:"نشر",del:"حذف",coType:"نوع الشركة",manufacturer:"مصنع",trading:"شركة تجارية",notStated:"غير محدد",showMore:n=>`عرض ${n} إضافية`,mainProducts:"المنتجات الرئيسية",b2bShowroom:"صفحة B2B",detailed:"ملف مفصل",factorySignIn:"دخول المصانع",tabFactories:"دراجات نارية",tabHelmets:"خوذات",tabAdmin:"الإدارة",heroTitle:"اعثر على مصنع الدراجات النارية المناسب",heroSub:"قارن المصنعين الصينيين وكتالوجات EEC والأسعار. التصفح بدون حساب.",stat:(n,f,p)=>`${n} مصنع · ${f} بصور حقيقية · ${p} صورة للدراجات والمصانع`,phN:n=>`${n} صور`,soonT:"الصور قريبًا",soonS:"مصنعك؟ أضف صورك",pct:n=>`الملف مكتمل بنسبة ${n}%`,nudge:"الملفات المكتملة تتلقى طلبات أسعار أكثر من المشترين في المغرب والعالم.",completeBtn:"أكمل هذا الملف",tdPhotos:"صور المصنع والدراجات",tdContact:"بريد التصدير أو الهاتف أو واتساب",tdEec:"طرازات EEC مع السنة",tdPrice:"سعر كل طراز",tdFacts:"معلومات الشركة (سنة التأسيس، الموظفون، الطاقة)",tdTour:"صالة عرض 360°",tdCat:"كتالوج EEC (PDF)",hasPhotos:"بها صور",sQ:"مصنع أو علامة أو طراز",sType:"نوع الدراجة",sCat:"الكتالوج",search:"بحث",filterBy:"تصفية حسب",clearAll:"مسح الكل",catalog:"الكتالوج",province:"المقاطعة",type:"نوع الدراجة",engine:"سعة المحرك",euPrice:"أقل سعر بيع في أوروبا",contactAvail:"التواصل",years:"سنوات النشاط",showResults:"عرض النتائج",clickHint:"اضغط على مصنع لرؤية كتالوج EEC والطرازات وطرق التواصل",filter:"تصفية",
  found:n=>`تم العثور على ${n} مصنع`,anyType:"كل الأنواع",anyCat:"EEC وغير EEC",eecOnly:"EEC فقط",nonOnly:"طرازات غير EEC",hasEec:"لديه طرازات EEC",hasNon:"لديه طرازات غير EEC",hasEmail:"بريد عام متوفر",noEmail:"البريد غير متوفر بعد",
  sortRec:"اختياراتنا",sortPrice:"أقل سعر أوروبي",sortAge:"الأقدم",sortEec:"أكثر طرازات EEC",sortRating:"تقييم الإدارة",
  since:y=>`منذ ${y}`,sinceUnknown:"سنة التأسيس غير مؤكدة",eecN:n=>`EEC · ${n} طرازات`,nonN:n=>`غير EEC · ${n} طرازات`,notVerified:"من الإنترنت، غير موثق",
@@ -517,11 +518,64 @@ const TYPES = ["Street","Scooter","Adventure","Sport","Cruiser","Trail","Off-roa
 const CC = [{k:"s",t:"≤ 125 cc",min:0,max:125},{k:"m",t:"126–250 cc",min:126,max:250},{k:"l",t:"251–500 cc",min:251,max:500},{k:"x",t:"> 500 cc",min:501,max:9999}];
 const PR = [{k:"a",t:"< €4,000",ok:p=>p&&p<4000},{k:"b",t:"€4,000–7,000",ok:p=>p&&p>=4000&&p<=7000},{k:"c",t:"> €7,000",ok:p=>p&&p>7000},{k:"n",t:"—",ok:p=>!p}];
 const AGE = [30,20,10];
+// Helmet section: these labels replace the motorcycle ones while the Helmets tab is open.
+const TH_HELMET = {
+en:{heroTitle:"Find your next helmet factory",heroSub:"Compare Chinese motorcycle helmet makers, ECE 22.06 / 22.05 helmets and FOB prices. No account needed to browse.",
+ stat:(n,f,p)=>`${n} helmet factories · ${f} with real photos · ${p.toLocaleString("en")} helmet and factory photos`,
+ tdPhotos:"Factory and helmet photos",tdEec:"ECE-certified helmets",tdPrice:"FOB price for each helmet",tdCat:"ECE test certificate (PDF)",
+ sQ:"Factory, brand or helmet",sType:"Helmet type",type:"Helmet type",euPrice:"Lowest FOB price",clickHint:"Tap a factory to see its ECE and non-ECE helmets, prices and contacts",
+ anyCat:"ECE and non-ECE",eecOnly:"ECE only",nonOnly:"Non-ECE available",hasEec:"Has ECE helmets",hasNon:"Has non-ECE helmets",sortPrice:"Lowest FOB price",sortEec:"Most ECE helmets",
+ eecN:n=>`ECE · ${n} helmets`,nonN:n=>`Non-ECE · ${n} helmets`,euFrom:"FOB price from",found:n=>`${n} helmet ${n===1?"factory":"factories"} found`,
+ disclaimer:"Helmet makers, helmets, certificates and FOB prices come from each company's public made-in-china.com showroom, linked on every profile. ECE means the factory's own listing names ECE 22.05 or 22.06: ask for the test certificate before ordering.",
+ models:"Helmets",eecCatalog:"ECE helmets",nonEec:"Non-ECE helmets",eecSub:n=>`${n} helmets listed as ECE 22.05 / 22.06`,nonSub:n=>`${n} helmets · DOT, CCC or no certificate stated`,
+ noEec:"No helmet in this factory's listings names ECE. Ask the factory: many can certify a model for Europe.",noNon:"Every helmet listed by this factory names ECE.",
+ priceReq:"Price on request",fobShown:"FOB price · listed by the factory",factoryFob:"Factory to add FOB price",photosProd:"Helmets",allFactories:"All helmet factories",moq:n=>`MOQ ${n.toLocaleString("en")}`,certNone:"Certificate not stated",
+ noMatch:"No helmet factory matches these filters. Remove a filter to see more results.",facts:"Factory facts",address:"Address"},
+fr:{heroTitle:"Trouvez votre usine de casques",heroSub:"Comparez les fabricants chinois de casques moto, les casques ECE 22.06 / 22.05 et les prix FOB. Aucun compte requis.",
+ stat:(n,f,p)=>`${n} usines de casques · ${f} avec vraies photos · ${p.toLocaleString("fr")} photos de casques et d'usines`,
+ tdPhotos:"Photos de l'usine et des casques",tdEec:"Casques certifiés ECE",tdPrice:"Prix FOB de chaque casque",tdCat:"Certificat d'essai ECE (PDF)",
+ sQ:"Usine, marque ou casque",sType:"Type de casque",type:"Type de casque",euPrice:"Prix FOB le plus bas",clickHint:"Touchez une usine pour voir ses casques ECE et non-ECE, prix et contacts",
+ anyCat:"ECE et non-ECE",eecOnly:"ECE seulement",nonOnly:"Non-ECE disponible",hasEec:"A des casques ECE",hasNon:"A des casques non-ECE",sortPrice:"Prix FOB le plus bas",sortEec:"Le plus de casques ECE",
+ eecN:n=>`ECE · ${n} casques`,nonN:n=>`Non-ECE · ${n} casques`,euFrom:"Prix FOB à partir de",found:n=>`${n} ${n===1?"usine":"usines"} de casques`,
+ disclaimer:"Les fabricants, casques, certificats et prix FOB viennent de la vitrine publique made-in-china.com de chaque société, liée sur chaque profil. ECE signifie que l'annonce de l'usine indique ECE 22.05 ou 22.06 : demandez le certificat d'essai avant de commander.",
+ models:"Casques",eecCatalog:"Casques ECE",nonEec:"Casques non-ECE",eecSub:n=>`${n} casques annoncés ECE 22.05 / 22.06`,nonSub:n=>`${n} casques · DOT, CCC ou sans certificat indiqué`,
+ noEec:"Aucun casque de cette usine n'indique ECE. Demandez à l'usine : beaucoup peuvent certifier un modèle pour l'Europe.",noNon:"Tous les casques de cette usine indiquent ECE.",
+ priceReq:"Prix sur demande",fobShown:"Prix FOB · indiqué par l'usine",factoryFob:"Prix FOB à ajouter par l'usine",photosProd:"Casques",allFactories:"Toutes les usines de casques",moq:n=>`MOQ ${n.toLocaleString("fr")}`,certNone:"Certificat non indiqué",
+ noMatch:"Aucune usine de casques ne correspond. Retirez un filtre.",address:"Adresse"},
+zh:{heroTitle:"寻找头盔工厂",heroSub:"比较中国摩托车头盔制造商、ECE 22.06 / 22.05 头盔及FOB价格。无需账户即可浏览。",
+ stat:(n,f,p)=>`${n} 家头盔工厂 · ${f} 家有真实照片 · ${p.toLocaleString("zh")} 张头盔和工厂照片`,
+ tdPhotos:"工厂和头盔照片",tdEec:"ECE认证头盔",tdPrice:"每款头盔的FOB价格",tdCat:"ECE检测证书（PDF）",
+ sQ:"工厂、品牌或头盔",sType:"头盔类型",type:"头盔类型",euPrice:"最低FOB价格",clickHint:"点击工厂查看ECE和非ECE头盔、价格及联系方式",
+ anyCat:"ECE和非ECE",eecOnly:"仅ECE",nonOnly:"有非ECE",hasEec:"有ECE头盔",hasNon:"有非ECE头盔",sortPrice:"FOB价格最低",sortEec:"ECE头盔最多",
+ eecN:n=>`ECE · ${n} 款`,nonN:n=>`非ECE · ${n} 款`,euFrom:"FOB价格起",found:n=>`找到 ${n} 家头盔工厂`,
+ disclaimer:"头盔制造商、产品、认证和FOB价格来自各公司在中国制造网的公开展厅，每个资料页均有链接。ECE表示工厂自己的产品信息标明ECE 22.05或22.06：下单前请索取检测证书。",
+ models:"头盔",eecCatalog:"ECE头盔",nonEec:"非ECE头盔",eecSub:n=>`${n} 款标明ECE 22.05 / 22.06`,nonSub:n=>`${n} 款 · DOT、CCC或未注明认证`,
+ noEec:"该工厂的产品信息中没有标明ECE的头盔。可询问工厂：许多工厂可为欧洲市场认证车型。",noNon:"该工厂列出的头盔全部标明ECE。",
+ priceReq:"价格面议",fobShown:"FOB价格 · 工厂标价",factoryFob:"待工厂添加FOB价格",photosProd:"头盔",allFactories:"全部头盔工厂",moq:n=>`起订量 ${n}`,certNone:"未注明认证",
+ noMatch:"没有符合条件的头盔工厂。请移除筛选条件。",address:"地址"},
+ar:{heroTitle:"اعثر على مصنع الخوذات المناسب",heroSub:"قارن مصنعي خوذات الدراجات النارية الصينيين، وخوذات ECE 22.06 / 22.05 وأسعار FOB. التصفح بدون حساب.",
+ stat:(n,f,p)=>`${n} مصنع خوذات · ${f} بصور حقيقية · ${p.toLocaleString("ar")} صورة خوذات ومصانع`,
+ tdPhotos:"صور المصنع والخوذات",tdEec:"خوذات معتمدة ECE",tdPrice:"سعر FOB لكل خوذة",tdCat:"شهادة اختبار ECE (PDF)",
+ sQ:"مصنع أو علامة أو خوذة",sType:"نوع الخوذة",type:"نوع الخوذة",euPrice:"أقل سعر FOB",clickHint:"اضغط على مصنع لرؤية خوذات ECE وغير ECE والأسعار وجهات الاتصال",
+ anyCat:"ECE وغير ECE",eecOnly:"ECE فقط",nonOnly:"غير ECE متوفر",hasEec:"لديه خوذات ECE",hasNon:"لديه خوذات غير ECE",sortPrice:"أقل سعر FOB",sortEec:"أكثر خوذات ECE",
+ eecN:n=>`ECE · ${n} خوذة`,nonN:n=>`غير ECE · ${n} خوذة`,euFrom:"سعر FOB من",found:n=>`${n} مصنع خوذات`,
+ disclaimer:"بيانات المصنعين والخوذات والشهادات وأسعار FOB مأخوذة من صفحة كل شركة العامة على made-in-china.com، والرابط في كل ملف. ECE تعني أن إعلان المصنع نفسه يذكر ECE 22.05 أو 22.06: اطلب شهادة الاختبار قبل الطلب.",
+ models:"الخوذات",eecCatalog:"خوذات ECE",nonEec:"خوذات غير ECE",eecSub:n=>`${n} خوذة معلنة ECE 22.05 / 22.06`,nonSub:n=>`${n} خوذة · DOT أو CCC أو بدون شهادة مذكورة`,
+ noEec:"لا توجد خوذة لدى هذا المصنع تذكر ECE. اسأل المصنع: كثير منهم يمكنه اعتماد طراز لأوروبا.",noNon:"كل خوذات هذا المصنع تذكر ECE.",
+ priceReq:"السعر عند الطلب",fobShown:"سعر FOB · من المصنع",factoryFob:"سعر FOB يضيفه المصنع",photosProd:"خوذات",allFactories:"كل مصانع الخوذات",moq:n=>`الحد الأدنى ${n}`,certNone:"الشهادة غير مذكورة",
+ noMatch:"لا يوجد مصنع خوذات يطابق هذه الفلاتر. أزل فلتراً لرؤية المزيد.",address:"العنوان"}
+};
+const HTYPES = ["Full face","Modular / flip-up","Open face (3/4)","Half face","Motocross / off-road","Kids","Retro","Bluetooth / smart","Carbon fiber"];
+const HPR = [{k:"a",t:"< US$ 15",ok:p=>p&&p<15},{k:"b",t:"US$ 15–30",ok:p=>p&&p>=15&&p<=30},{k:"c",t:"> US$ 30",ok:p=>p&&p>30},{k:"n",t:"—",ok:p=>!p}];
+const usd = p => "US$ " + (p[0] === p[1] ? p[0] : p[0] + "–" + p[1]);
+const types = () => KIND === "helmet" ? HTYPES : TYPES;
+const prices = () => KIND === "helmet" ? HPR : PR;
 
 for (const l in HUB) Object.assign(T[l], HUB[l]);
 let lang = "en";
 try { const l = localStorage.getItem("emh-lang"); if (T[l]) lang = l; } catch(_) {}
-const t = (k,...a) => { const v = (T[lang][k] ?? T.en[k]); return typeof v === "function" ? v(...a) : v; };
+let KIND = "moto";  // "moto" or "helmet": which directory is open
+const t = (k,...a) => { const H = KIND === "helmet" ? (TH_HELMET[lang][k] ?? TH_HELMET.en[k]) : undefined; const v = H ?? (T[lang][k] ?? T.en[k]); return typeof v === "function" ? v(...a) : v; };
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const eur = n => "€ " + n.toLocaleString("en-US");
@@ -529,6 +583,7 @@ const eur = n => "€ " + n.toLocaleString("en-US");
 /* ---------- data: base + admin edits from db ---------- */
 let EDITS = {};
 let PHOTOS = {};
+let HELMETS = [], HPHOTOS = {};  // from tools/fetch_helmets.py
 let LOGOS = {};  // id -> {p, from} from tools/fetch_logos.py
 let TH = {};     // photo URL -> local thumbnail, from tools/make_thumbs.py // id -> {page, products:[{u,alt}], factory:[{u,alt}]} from tools/fetch_photos.py
 let NEWS = {};   // fid -> [{id,title,body,date}]       // id -> {removed, rating, note, emails, phone, whatsapp, wechat}
@@ -550,14 +605,14 @@ async function loadServer(){
   $("tab-admin").hidden = !isAdmin;
 }
 
-function factories(includeRemoved){
-  return BASE.map(b => {
+function factories(includeRemoved, all){
+  return (all ? BASE.concat(HELMETS) : KIND === "helmet" ? HELMETS : BASE).map(b => {
     const e = EDITS[b.id] || {};
-    const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || "",
-      ph: PHOTOS[b.id] || null, logo: e.logo || (LOGOS[b.id] || {}).p || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
+    const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || b.tour || "",
+      ph: (b.kind === "helmet" ? HPHOTOS : PHOTOS)[b.id] || null, logo: e.logo || (LOGOS[b.id] || {}).p || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
-    f.from = prices.length ? Math.min(...prices) : null;
-    const facts = [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
+    f.from = f.kind === "helmet" ? (f.usd ? f.usd[0] : null) : prices.length ? Math.min(...prices) : null;
+    const facts = f.kind === "helmet" ? [f.legal,f.city,f.since,f.emp,f.addr,f.products,f.contact] : [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
     f.score = Math.round(((facts.filter(Boolean).length/7)*5 + (f.emails.length?2:0) + (f.eec.length?2:0) + (f.non.length?1:0) + (f.ph?1:0))*10)/10;
     return f;
   }).filter(f => includeRemoved || !f.removed);
@@ -571,7 +626,7 @@ function matches(f, skip){
   if (skip!=="prov" && st.prov.size && !st.prov.has(f.prov)) return false;
   if (skip!=="type" && st.type.size && !f.types.some(x => st.type.has(x))) return false;
   if (skip!=="cc" && st.cc.size && !(f.cc && CC.filter(r => st.cc.has(r.k)).some(r => f.cc[0] <= r.max && f.cc[1] >= r.min))) return false;
-  if (skip!=="price" && st.price.size && !PR.filter(r => st.price.has(r.k)).some(r => r.ok(f.from))) return false;
+  if (skip!=="price" && st.price.size && !prices().filter(r => st.price.has(r.k)).some(r => r.ok(f.from))) return false;
   if (skip!=="contact" && st.contact.size && !((st.contact.has("y") && f.emails.length) || (st.contact.has("n") && !f.emails.length))) return false;
   if (skip!=="bt" && st.bt.size && !st.bt.has(btKey(f))) return false;
   if (skip!=="age" && st.age && !(f.since && NOW - f.since >= +st.age)) return false;
@@ -586,11 +641,11 @@ function renderFilters(F){
   p = pool("prov");
   $("g-prov").innerHTML = [...new Set(F.map(f=>f.prov))].sort().map(v => opt("prov",v,v,p.filter(f=>f.prov===v).length,st.prov.has(v))).join("");
   p = pool("type");
-  $("g-type").innerHTML = TYPES.map(v => opt("type",v,v,p.filter(f=>f.types.includes(v)).length,st.type.has(v))).join("");
+  $("g-type").innerHTML = types().map(v => opt("type",v,v,p.filter(f=>f.types.includes(v)).length,st.type.has(v))).join("");
   p = pool("cc");
   $("g-cc").innerHTML = CC.map(r => opt("cc",r.k,r.t,p.filter(f=>f.cc&&f.cc[0]<=r.max&&f.cc[1]>=r.min).length,st.cc.has(r.k))).join("");
   p = pool("price");
-  $("g-price").innerHTML = PR.map(r => opt("price",r.k,r.k==="n"?t("onRequest"):r.t,p.filter(f=>r.ok(f.from)).length,st.price.has(r.k))).join("");
+  $("g-price").innerHTML = prices().map(r => opt("price",r.k,r.k==="n"?t("onRequest"):r.t,p.filter(f=>r.ok(f.from)).length,st.price.has(r.k))).join("");
   p = pool("contact");
   $("g-contact").innerHTML = opt("contact","y",t("hasEmail"),p.filter(f=>f.emails.length).length,st.contact.has("y")) + opt("contact","n",t("noEmail"),p.filter(f=>!f.emails.length).length,st.contact.has("n"));
   p = pool("bt");
@@ -598,7 +653,7 @@ function renderFilters(F){
   p = pool("age");
   $("g-age").innerHTML = AGE.map(a => opt("age",String(a),`${a}+`,p.filter(f=>f.since && NOW-f.since>=a).length,st.age===String(a))).join("");
 }
-const pimg = (x, cls) => x ? `<img src="${esc(TH[x.u] || x.u)}" alt="${esc(x.alt || "")}" loading="lazy" referrerpolicy="no-referrer"${cls ? ` class="${cls}"` : ""} onerror="this.remove()">` : "";
+const pimg = (x, cls) => x ? `<img src="${esc(x.t || TH[x.u] || x.u)}" alt="${esc(x.alt || "")}" loading="lazy" referrerpolicy="no-referrer"${cls ? ` class="${cls}"` : ""} onerror="this.remove()">` : "";
 const byUrl = (f, u) => u && f.ph ? f.ph.products.find(p => p.u === u) || null : null;
 const mainPhoto = f => f.ph ? byUrl(f, (f.ph.hero || [])[0]) || f.ph.products[0] || f.ph.factory[0] : null;
 const heroStrip = f => { const l = f.ph ? (f.ph.hero || []).map(u => byUrl(f, u)).filter(Boolean) : []; const m = mainPhoto(f);
@@ -618,7 +673,7 @@ const cardFace = f => f.logo ? `<span class="logo-face"><img src="${esc(f.logo)}
 const photoCount = f => f.ph ? f.ph.products.length + f.ph.factory.length : 0;
 function todo(f){
   return [["tdPhotos", !!f.ph], ["tdContact", !!(f.emails.length || f.phone || f.wa || f.wc)], ["tdEec", f.eec.length > 0],
-    ["tdPrice", f.eec.length > 0 && f.eec.every(x => x.eu)], ["tdFacts", !!(f.since && f.emp && f.cap)], ["tdTour", !!f.tour], ["tdCat", false]];
+    ["tdPrice", f.kind === "helmet" ? f.eec.concat(f.non).some(x => x.usd) : f.eec.length > 0 && f.eec.every(x => x.eu)], ["tdFacts", !!(f.since && f.emp && (f.cap || f.kind === "helmet"))], ["tdTour", !!f.tour], ["tdCat", false]];
 }
 const pctOf = f => { const l = todo(f); return Math.round(100 * l.filter(x => x[1]).length / l.length); };
 function srcLinks(f){
@@ -676,7 +731,7 @@ function renderResults(F){
       </div>
       <div class="side">
         <div class="score"><div class="w"><span>${t("completeness")}</span></div><div class="n">${f.score.toFixed(1)}</div></div>
-        <div>${f.from ? `<div class="from">${t("euFrom")}</div><div class="price">${eur(f.from)}</div>` : `<div class="price" style="font-size:20px">${t("onRequest")}</div>`}</div>
+        <div>${f.from ? `<div class="from">${t("euFrom")}</div><div class="price">${f.kind === "helmet" ? usd(f.usd) : eur(f.from)}</div>` : `<div class="price" style="font-size:20px">${t("onRequest")}</div>`}</div>
         <div class="btns"><a class="btn" href="#${f.id}">${t("seeProfile")}</a></div>
       </div>
     </article>`;}).join("") : `<div class="empty">${t("noMatch")}</div>`;
@@ -686,7 +741,7 @@ function renderChips(){
   for (const g of ["cat","prov","type","cc","price","contact","bt"]) st[g].forEach(v => c.push([g,v,v]));
   if (st.age) c.push(["age",st.age,st.age+"+"]);
   if (st.q) c.push(["q","",`“${esc(st.q)}”`]);
-  const label = (g,v) => g==="cat" ? (v==="eec"?t("hasEec"):v==="ph"?t("hasPhotos"):t("hasNon")) : g==="cc" ? CC.find(r=>r.k===v).t : g==="price" ? (v==="n"?t("onRequest"):PR.find(r=>r.k===v).t) : g==="contact" ? (v==="y"?t("hasEmail"):t("noEmail")) : g==="bt" ? t(v==="m"?"manufacturer":v==="t"?"trading":"notStated") : v;
+  const label = (g,v) => g==="cat" ? (v==="eec"?t("hasEec"):v==="ph"?t("hasPhotos"):t("hasNon")) : g==="cc" ? CC.find(r=>r.k===v).t : g==="price" ? (v==="n"?t("onRequest"):prices().find(r=>r.k===v).t) : g==="contact" ? (v==="y"?t("hasEmail"):t("noEmail")) : g==="bt" ? t(v==="m"?"manufacturer":v==="t"?"trading":"notStated") : v;
   $("chips").innerHTML = c.map(([g,v,x]) => `<button class="chip" type="button" data-rm="${g}" data-v="${esc(v)}">${g==="q"||g==="age"?x:esc(label(g,v))} ✕</button>`).join("");
 }
 $("more").onclick = () => { st.limit += 24; renderSearch(); };
@@ -699,9 +754,23 @@ const OK = () => `<span class="badge b-warn">${t("notVerified")}</span>`;
 const MISS = () => `<span class="badge b-non">${t("factoryToComplete")}</span>`;
 const fact = (label, val) => `<div class="fact"><span class="label">${label}</span>${val ? `<span class="val">${val}</span>${OK()}` : `<span class="val miss">${t("notFound")}</span>${MISS()}`}</div>`;
 const ccLabel = c => c == null || c === "" ? "" : (typeof c === "number" ? `${c} cc` : esc(c));
+function helmetRows(f, list){
+  return list.map(x => `<div class="mrow">
+    <div class="th">${pimg(modelPhoto(f, x.n))}</div>
+    <div style="min-width:0"><h3 style="font-size:16px;line-height:1.25">${esc(x.n)}</h3>
+      <div class="badges" style="margin:5px 0">
+        ${x.cert ? `<span class="badge ${/^ECE/.test(x.cert) ? "b-ok" : "b-warn"}">${esc(x.cert)}</span>` : `<span class="badge b-non">${t("certNone")}</span>`}
+        ${x.ty.map(y => `<span class="badge b-non">${esc(y)}</span>`).join("")}</div>
+      <div class="sp">${x.moq ? t("moq", x.moq) : ""}${x.url ? `${x.moq ? " · " : ""}<a href="${esc(x.url)}" target="_blank" rel="noopener" style="color:var(--accent)">made-in-china.com</a>` : ""}</div></div>
+    <div class="buy">
+      <div class="eu">${x.usd ? usd(x.usd) : t("priceReq")}<small>${x.usd ? t("fobShown") : t("factoryFob")}</small></div>
+      <button class="btn" type="button" data-req="${esc(x.n)}">${t("reqPrice")}</button></div>
+  </div>`).join("");
+}
 function modelRows(f){
   const list = showEec ? f.eec : f.non;
   if (!list.length) return `<div class="empty-cat">${showEec ? t("noEec") : t("noNon")}</div>`;
+  if (f.kind === "helmet") return helmetRows(f, list);
   return list.map(x => `<div class="mrow">
     <div class="th"><svg viewBox="0 0 200 120" style="color:${f.c}" aria-hidden="true"><use href="#moto"/></svg>${pimg(modelPhoto(f, x.n))}</div>
     <div style="min-width:0"><h3>${esc(x.n)}</h3>
@@ -722,7 +791,7 @@ function renderProfile(f){
   const wm = f.name.split(" / ")[0].toUpperCase();
   const link = u => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").replace(/\/$/,""))}</a>` : null;
   $("profile").innerHTML = `
-  <nav class="crumbs"><a href="#">${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
+  <nav class="crumbs"><a href="#${f.kind === "helmet" ? "helmets" : ""}" data-home>${t("allFactories")}</a> › ${esc(f.prov)} › ${esc(f.name)}</nav>
   <div class="banner">${scene(f,1600,500,"b"+f.id)}${heroStrip(f)}</div>
   <div class="phead">
     <div class="wordmark" style="background:${f.logo ? "#fff" : f.sky[0]}">${f.logo ? `<img src="${esc(f.logo)}" alt="${esc(f.name)} logo">` : esc(wm)}</div>
@@ -740,9 +809,9 @@ function renderProfile(f){
       <div class="facts">
         ${fact(t("legal"), esc(f.legal))}${fact(t("location"), esc(`${f.city}, ${f.prov}`))}
         ${fact(t("started"), f.since ? `${f.since} (${NOW-f.since})` : null)}${fact(t("employees"), esc(f.emp))}
-        ${fact(t("capacity"), esc(f.cap))}${fact(t("markets"), esc(f.markets))}
+        ${f.kind === "helmet" ? fact(t("address"), esc(f.addr)) : fact(t("capacity"), esc(f.cap)) + fact(t("markets"), esc(f.markets))}
         ${fact(t("coType"), t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated"))}${fact(t("mainProducts"), esc(f.products || ""))}
-        ${fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
+        ${f.kind === "helmet" ? "" : fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
       </div></section>
     <section class="box" id="photos"><h2>${t("photos")}</h2>${gallery(f)}</section>
     <section class="box" id="models"><h2>${t("models")}</h2>
@@ -811,10 +880,12 @@ function openReq(model){
     <div class="label">${esc(f.name)}${model ? " · " + esc(model) : ""}</div><h2 id="rq-t">${t("reqPrice")}</h2>
     <form class="form" id="rq-f">
       <div><div class="label" style="margin-bottom:6px">${t("customize")}</div><div class="opts">
-        <label><input type="checkbox" id="rq-abs"> ABS</label><label><input type="checkbox" id="rq-logo"> Logo / brand</label>
-        <label><input type="checkbox" id="rq-box"> Top box</label><label><input type="checkbox" id="rq-eec"> EEC</label></div></div>
+        ${f.kind === "helmet" ? `<label><input type="checkbox" id="rq-eec" checked> ECE 22.06</label><label><input type="checkbox" id="rq-logo"> Logo / graphics</label>
+        <label><input type="checkbox" id="rq-bt"> Bluetooth</label><label><input type="checkbox" id="rq-dv"> Sun visor</label><label><input type="checkbox" id="rq-sz"> Sizes XS–XXL</label>`
+        : `<label><input type="checkbox" id="rq-abs"> ABS</label><label><input type="checkbox" id="rq-logo"> Logo / brand</label>
+        <label><input type="checkbox" id="rq-box"> Top box</label><label><input type="checkbox" id="rq-eec"> EEC</label>`}</div></div>
       <div class="two"><label for="rq-col">${t("colour")}<input id="rq-col" type="text" value="Black"></label>
-        <label for="rq-qty">${t("qty")}<input id="rq-qty" type="number" min="1" value="60" inputmode="numeric"></label></div>
+        <label for="rq-qty">${t("qty")}<input id="rq-qty" type="number" min="1" value="${f.kind === "helmet" ? 500 : 60}" inputmode="numeric"></label></div>
       <div><div class="label" style="margin-bottom:6px">${t("replyBy")}</div><div class="opts">
         <label><input type="radio" name="rq-via" value="${t("email")}" checked> ${t("email")}</label><label><input type="radio" name="rq-via" value="${t("wechat")}"> ${t("wechat")}</label><label><input type="radio" name="rq-via" value="${t("whatsapp")}"> ${t("whatsapp")}</label></div></div>
       <div class="two"><label for="rq-co">${t("yourCo")}<input id="rq-co" type="text"></label>
@@ -842,7 +913,7 @@ async function saveEdit(id, patch){
   render();
 }
 function renderAdmin(){
-  const F = factories(true);
+  const F = factories(true, true);
   const withMail = F.filter(f => !f.removed && f.emails.length);
   $("admin").innerHTML = `
     <div class="adm-bar"><div><h2>${t("adminTitle")}</h2><p class="from" style="margin:2px 0 0">${db ? t("adminNote") : t("adminNoDb")}</p></div>
@@ -854,7 +925,7 @@ function renderAdmin(){
       <thead><tr><th></th><th>${t("colFactory")}</th><th>${t("colEmails")}</th><th>${t("colRating")}</th><th>${t("colStatus")}</th><th>${t("colActions")}</th></tr></thead>
       <tbody>${F.map(f => `<tr class="${f.removed?"removed":""}">
         <td><input type="checkbox" aria-label="${t("select")} ${esc(f.name)}" data-sel="${f.id}" ${sel.has(f.id)?"checked":""} ${f.emails.length?"":"disabled"}></td>
-        <td><a href="#${f.id}" style="color:var(--accent);font-weight:600">${esc(f.name)}</a><div class="from">${esc(f.city)} · EEC ${f.eec.length} · Non-EEC ${f.non.length}</div>${f.note?`<div class="from">📝 ${esc(f.note)}</div>`:""}</td>
+        <td><a href="#${f.id}" style="color:var(--accent);font-weight:600">${esc(f.name)}</a><div class="from">${esc(f.city)} · ${f.kind === "helmet" ? "🪖 ECE" : "EEC"} ${f.eec.length} · Non-${f.kind === "helmet" ? "ECE" : "EEC"} ${f.non.length}</div>${f.note?`<div class="from">📝 ${esc(f.note)}</div>`:""}</td>
         <td class="em">${f.emails.length ? f.emails.map(esc).join("<br>") : `<span class="from">${t("noAddr")}</span>`}</td>
         <td><span class="rate">${[1,2,3,4,5].map(n=>`<button type="button" class="${n<=f.rating?"on":""}" data-rate="${f.id}" data-n="${n}" aria-label="${n}/5">★</button>`).join("")}</span></td>
         <td>${f.removed ? t("removed") : t("live")}</td>
@@ -909,7 +980,7 @@ function compose(list){
   $("mailbox").scrollIntoView({behavior:"smooth"});
 }
 function openEdit(id){
-  const f = factories(true).find(x => x.id === id);
+  const f = factories(true, true).find(x => x.id === id);
   $("overlay").innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="ed-t">
     <button class="x" type="button" id="ed-x" aria-label="${t("close")}">×</button>
     <h2 id="ed-t">${t("editTitle")}: ${esc(f.name)}</h2>
@@ -930,10 +1001,10 @@ function openEdit(id){
     closeOverlay(); toast(t("saved")); };
 }
 $("admin").addEventListener("click", e => {
-  const r = e.target.closest("[data-rate]"); if (r){ const f = factories(true).find(x=>x.id===r.dataset.rate); const n = +r.dataset.n; saveEdit(f.id, {rating: f.rating===n ? 0 : n}); }
+  const r = e.target.closest("[data-rate]"); if (r){ const f = factories(true, true).find(x=>x.id===r.dataset.rate); const n = +r.dataset.n; saveEdit(f.id, {rating: f.rating===n ? 0 : n}); }
   const tg = e.target.closest("[data-toggle]"); if (tg){ const id = tg.dataset.toggle; saveEdit(id, {removed: !(EDITS[id]||{}).removed}); }
   const ed = e.target.closest("[data-edit]"); if (ed) openEdit(ed.dataset.edit);
-  const m1 = e.target.closest("[data-mail1]"); if (m1) compose(factories(true).filter(f => f.id === m1.dataset.mail1));
+  const m1 = e.target.closest("[data-mail1]"); if (m1) compose(factories(true, true).filter(f => f.id === m1.dataset.mail1));
 });
 $("admin").addEventListener("change", e => { const c = e.target.closest("[data-sel]"); if (c){ c.checked ? sel.add(c.dataset.sel) : sel.delete(c.dataset.sel); const b = $("m-sel"); b.disabled = !sel.size; b.textContent = `${t("emailSel")} (${sel.size})`; } });
 
@@ -950,7 +1021,8 @@ function applyLang(){
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   document.querySelectorAll("[data-t]").forEach(el => { el.textContent = t(el.dataset.t); });
   document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
-  $("s-type").innerHTML = `<option value="">${t("anyType")}</option>` + TYPES.map(x=>`<option>${x}</option>`).join("");
+  $("s-q").placeholder = KIND === "helmet" ? "LS2, Wenzhou, ECE 22.06…" : "Zontes, Chongqing, 125cc…";
+  $("s-type").innerHTML = `<option value="">${t("anyType")}</option>` + types().map(x=>`<option>${x}</option>`).join("");
   $("s-cat").innerHTML = `<option value="">${t("anyCat")}</option><option value="eec">${t("eecOnly")}</option><option value="non">${t("nonOnly")}</option>`;
   $("sort").innerHTML = ["rec","price","age","eec","rating"].map(k => `<option value="${k}" ${st.sort===k?"selected":""}>${t("sort"+k[0].toUpperCase()+k.slice(1))}</option>`).join("");
 }
@@ -967,11 +1039,14 @@ function renderLogin(){
 let view = "search";
 function render(){
   const id = location.hash.slice(1);
-  const f = factories(isAdmin).find(x => x.id === id);
+  const f = factories(isAdmin, true).find(x => x.id === id);
+  const kind = f ? (f.kind === "helmet" ? "helmet" : "moto") : id === "helmets" ? "helmet" : id === "admin" ? KIND : "moto";
+  if (kind !== KIND){ KIND = kind; clearFilters(); applyLang(); }
   view = f ? "profile" : (id === "admin" ? "admin" : "search");
+  $("fg-cc").hidden = KIND === "helmet";
   document.body.classList.toggle("pmode", view !== "search");
   $("search-view").hidden = view !== "search"; $("profile").hidden = view !== "profile"; $("admin").hidden = view !== "admin";
-  $("tab-dir").classList.toggle("on", view !== "admin"); $("tab-admin").classList.toggle("on", view === "admin");
+  $("tab-dir").classList.toggle("on", view !== "admin" && KIND === "moto"); $("tab-helmets").classList.toggle("on", view !== "admin" && KIND === "helmet"); $("tab-admin").classList.toggle("on", view === "admin");
   if (view === "profile"){ if (cur !== f) showEec = f.eec.length > 0; renderProfile(f); }
   else if (view === "admin") (isAdmin ? renderAdmin() : renderLogin());
   else renderSearch();
@@ -980,10 +1055,12 @@ function go(hash){ if (location.hash !== hash){ location.hash = hash; } else ren
 window.addEventListener("hashchange", () => { render(); window.scrollTo(0,0); });
 document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { lang = b.dataset.lang; try{ localStorage.setItem("emh-lang", lang); }catch(_){} applyLang(); render(); });
 $("tab-dir").onclick = () => go("#");
+$("tab-helmets").onclick = () => go("#helmets");
 $("tab-admin").onclick = () => go("#admin");
 $("filters").addEventListener("change", e => { const i = e.target, g = i.dataset.g; if (!g) return; st.limit = 24;
   if (g==="age") st.age = i.checked ? i.value : ""; else i.checked ? st[g].add(i.value) : st[g].delete(i.value); renderSearch(); });
-$("clear").onclick = () => { ["cat","prov","type","cc","price","contact","bt"].forEach(k=>st[k].clear()); st.age=""; st.q=""; $("s-q").value=""; $("s-type").value=""; $("s-cat").value=""; renderSearch(); };
+function clearFilters(){ ["cat","prov","type","cc","price","contact","bt"].forEach(k=>st[k].clear()); st.age=""; st.q=""; st.limit=24; $("s-q").value=""; $("s-type").value=""; $("s-cat").value=""; }
+$("clear").onclick = () => { clearFilters(); renderSearch(); };
 $("sort").onchange = e => { st.sort = e.target.value; renderSearch(); };
 $("searchbar").addEventListener("submit", e => { e.preventDefault();
   st.q = $("s-q").value.trim(); st.type.clear(); if ($("s-type").value) st.type.add($("s-type").value);
@@ -992,7 +1069,7 @@ $("searchbar").addEventListener("submit", e => { e.preventDefault();
 $("chips").addEventListener("click", e => { const b = e.target.closest("[data-rm]"); if (!b) return;
   const g = b.dataset.rm, v = b.dataset.v; if (g==="age") st.age=""; else if (g==="q"){ st.q=""; $("s-q").value=""; } else st[g].delete(v); renderSearch(); });
 document.addEventListener("click", e => {
-  const p = e.target.closest("[data-prov]"); if (p){ e.preventDefault(); st.prov.clear(); st.prov.add(p.dataset.prov); go("#"); return; }
+  const p = e.target.closest("[data-prov]"); if (p){ e.preventDefault(); st.prov.clear(); st.prov.add(p.dataset.prov); go(KIND === "helmet" ? "#helmets" : "#"); return; }
   const r = e.target.closest("[data-req]"); if (r) openReq(r.dataset.req);
   if (e.target.closest("[data-claim]")) toast(t("claimToast"));
   const c = e.target.closest("[data-copy]"); if (c){ const el = $(c.dataset.copy); copyText(el.textContent, c, el); }
@@ -1003,8 +1080,9 @@ $("open-filters").onclick = () => $("filters").classList.add("open");
 $("f-done").onclick = () => $("filters").classList.remove("open");
 applyLang();
 (async () => {
-  const [b, p, th, lg] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
-  BASE = b; PHOTOS = p; TH = th; LOGOS = lg;
+  const [b, p, th, lg, hb, hp] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetch("data/helmets.json").then(r => r.ok ? r.json() : []).catch(() => []), fetch("data/helmet_photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
+  BASE = b; PHOTOS = p; TH = th; LOGOS = lg; HELMETS = hb; HPHOTOS = hp;
   try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
   render();
 })();
