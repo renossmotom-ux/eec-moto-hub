@@ -170,6 +170,7 @@ def norm(x):
 
 NOT_HELMET = re.compile(r"bag|clean|machine|bluetooth|intercom|headset|headphone|earphone|walkie|decal|sticker|logo|badge|paint|line|mould|mold|"
                         r"safety helmet|hard hat|bump cap|welding|riot|ballistic|tactical|military|police|pad|ski|snow|bicycle|bike helmet|skate|equestrian|horse|climb|cycling|lock|holder|hook|camera", re.I)
+SELLER_NOT = re.compile(r"clean|bluetooth|intercom|headphone|earphone|headset|sunglass|goggle|rack|tent|awning|LED|bag|box|vending|bicycle|e-?bike|electric bike|kick scooter|children|toy|fitness", re.I)
 RIDING = re.compile(r"motor|moto|scooter|riding|rider|atv|dirt|racing|helmet", re.I)
 
 def helmet_maker(main):
@@ -183,7 +184,8 @@ def is_helmet_company(r):
     if helmet_maker(r["main"]) and MOTO.search(blob): return "maker"
     # Helmet specialists whose name says so ("Wenzhou ... Helmet Co.") and who list helmets.
     if re.search(r"helmet", r["name"], re.I) and not NOT_HELMET.search(r["name"]) and r["prods"]: return "maker"
-    if RIDING.search(r["main"]) and not re.search(r"bicycle|e-?bike|electric bike", r["main"], re.I) and sum(bool(moto_helmet(p["t"])) for p in r["prods"]) >= 1: return "seller"
+    if (re.search(r"motor|moto|riding gear|\bATV\b|dirt", r["main"], re.I) and not SELLER_NOT.search(r["main"])
+            and sum(bool(moto_helmet(p["t"])) for p in r["prods"]) >= 1): return "seller"
     return None
 
 def moto_helmet(title):
