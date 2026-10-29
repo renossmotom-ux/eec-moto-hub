@@ -1,6 +1,6 @@
 <?php
 // Minimal SMTP client (SSL on port 465, AUTH LOGIN) for Hostinger mailboxes.
-function smtp_send(array $c, string $to, string $subject, string $text): string {
+function smtp_send(array $c, string $to, string $subject, string $text, string $replyTo = ''): string {
     $fp = @stream_socket_client('ssl://' . $c['smtp_host'] . ':' . (int)$c['smtp_port'], $errno, $errstr, 20);
     if (!$fp) return "connect failed: $errstr";
     $read = function () use ($fp) { $out = ''; while (($line = fgets($fp, 515)) !== false) { $out .= $line; if (isset($line[3]) && $line[3] === ' ') break; } return $out; };
@@ -18,7 +18,7 @@ function smtp_send(array $c, string $to, string $subject, string $text): string 
         $headers = [
             'From: ' . $enc($c['mail_from_name']) . ' <' . $c['smtp_user'] . '>',
             'To: <' . $to . '>',
-            'Reply-To: <' . ($c['mail_reply_to'] ?: $c['smtp_user']) . '>',
+            'Reply-To: <' . ($replyTo ?: ($c['mail_reply_to'] ?: $c['smtp_user'])) . '>',
             'Subject: ' . $enc($subject),
             'Date: ' . date('r'),
             'Message-ID: <' . bin2hex(random_bytes(12)) . '@' . substr(strrchr($c['smtp_user'], '@'), 1) . '>',
