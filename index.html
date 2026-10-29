@@ -252,6 +252,26 @@ body.pmode .hero .wrap{padding-bottom:12px}
 .opts input{width:auto}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .done{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:12px;font-size:14px}
+.acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 18px}
+.acts button{display:flex;align-items:center;gap:10px;text-align:start;border:1.5px solid var(--accent);background:var(--surface);color:var(--fg);border-radius:var(--r);padding:12px 14px;min-width:0}
+.acts button:hover{background:var(--surface-2)}
+.acts .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font-weight:700;font-size:14px}
+.acts strong{display:block;font-size:17px}
+.acts small{display:block;color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
+@media (max-width:640px){.acts{grid-template-columns:1fr}}
+.sheet.wide{max-width:880px}
+.seg{display:flex;gap:4px;background:var(--surface-2);border-radius:10px;padding:4px;margin:12px 0}
+.seg button{flex:1;border:0;background:transparent;color:var(--fg);font-weight:600;padding:8px 6px;border-radius:7px;font-size:14px}
+.seg button[aria-selected="true"]{background:var(--accent);color:var(--accent-fg)}
+.seg button span{opacity:.75;font-weight:500}
+.gallery .vid{grid-column:span 2;aspect-ratio:16/9;border-radius:7px;overflow:hidden;background:#000}
+.gallery .vid iframe,.gallery .vid video{width:100%;height:100%;border:0;display:block}
+.gallery .vlink{display:grid;place-content:center;text-align:center;font-weight:700;color:var(--accent);text-decoration:none;gap:4px}
+.gallery .vlink small{color:var(--muted);font-weight:500}
+.ci{font-size:20px;flex:none;width:26px;text-align:center}
+.crow .btn{padding:6px 10px;font-size:13px}
+.soc{display:flex;flex-wrap:wrap;gap:8px}
+.soc a{background:var(--surface-2);border-radius:8px;padding:7px 12px;color:var(--accent);font-weight:600;text-decoration:none}
 
 /* language + admin additions */
 .lang{display:flex;gap:2px;background:rgba(255,255,255,.12);border-radius:8px;padding:2px}
@@ -608,7 +628,7 @@ async function loadServer(){
 function factories(includeRemoved, all){
   return (all ? BASE.concat(HELMETS) : KIND === "helmet" ? HELMETS : BASE).map(b => {
     const e = EDITS[b.id] || {};
-    const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || b.tour || "",
+    const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || b.tour || "", media: e.media || null, social: Array.isArray(e.social) ? e.social : (b.social || []),
       ph: (b.kind === "helmet" ? HPHOTOS : PHOTOS)[b.id] || null, logo: e.logo || (LOGOS[b.id] || {}).p || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = f.kind === "helmet" ? (f.usd ? f.usd[0] : null) : prices.length ? Math.min(...prices) : null;
@@ -804,6 +824,11 @@ function renderProfile(f){
         ${f.non.length ? `<span class="badge b-non">${t("nonN",f.non.length)}</span>` : ""}
         <span class="badge b-non">${t("notClaimed")}</span></div></div>
   </div>
+  <div class="acts">
+    <button type="button" data-act="photos"><span class="n">1</span><span><strong>📷 ${t("aPhotos")}</strong><small>${t("aPhotosS")}</small></span></button>
+    <button type="button" data-act="comm"><span class="n">2</span><span><strong>💬 ${t("aComm")}</strong><small>${t("aCommS")}</small></span></button>
+    <button type="button" data-act="req"><span class="n">3</span><span><strong>🤝 ${t("aReq")}</strong><small>${t("aReqS")}</small></span></button>
+  </div>
   <div class="pgrid"><div>
     <section class="box"><h2>${t("facts")}</h2>
       <div class="legend">${t("sourceLegend")} <span class="badge b-ok">✓ ${t("cfVerified")}</span><span class="badge b-warn">${t("notVerified")}</span><span class="badge b-non">${t("factoryToComplete")}</span></div>
@@ -872,6 +897,149 @@ function renderNews(f){
     : `<div class="empty-cat">${t("newsEmpty")}</div>`;
 }
 document.addEventListener("click", async e => { const d = e.target.closest("[data-delnews]"); if (d && db){ try { await api("news.php", {action:"delete", id: +d.dataset.delnews}); await loadServer(); if (cur) renderNews(cur); } catch(err){ toast((err && err.message) || "Delete failed"); } } });
+
+/* ---------- profile action buttons: photos, communication, requests ---------- */
+const T3 = {
+ en:{aPhotos:"Photos",aPhotosS:"Factory · Expo · Showroom",aComm:"Communication",aCommS:"Email · WhatsApp · WeChat · Social",aReq:"Requests",aReqS:"Become an agent · Visit the factory",
+  gFactory:"Factory",gExpo:"Expo",gShow:"Showroom",gEmpty:"No photos or videos here yet. The factory adds them after claiming its profile.",gVideo:"Video",
+  gAdd:"Photo or video links (one https:// link per line, YouTube or .mp4 works)",social:"Social media",socialEmpty:"The factory adds its Facebook, Instagram, TikTok, YouTube or LinkedIn after claiming its profile.",
+  socialAdd:"Social media links (one https:// link per line)",call:"Call",openWa:"Chat on WhatsApp",openMail:"Send an email",wcCopy:"Copy the WeChat ID, then add it in WeChat → Add contacts",
+  noContact:"Not published yet",rAgent:"Become an agent",rAgentS:"Sell this factory's products in your country",rVisit:"Book a factory visit",rVisitS:"Plan an appointment at the factory",
+  fName:"Your name",fCo:"Company",fCountry:"Country",fCity:"City",fEmail:"Email",fPhone:"Phone / WhatsApp",fBrands:"Brands you sell now",fVol:"Expected units per year",fShop:"Showroom or shop",fShopY:"I have a showroom or shop",
+  fDate:"Preferred date",fPeople:"Number of visitors",fNeed:"What do you want to see?",fMsg:"Message",fSend:"Send request",
+  rSent:n=>`Sent. ${n} and EEC Moto Hub have your request and will answer by email or WhatsApp.`,rMail:"Your email app is opening with the request ready. Press Send there to deliver it.",rErr:"Please fill in your name and email."},
+ fr:{aPhotos:"Photos",aPhotosS:"Usine · Salon · Showroom",aComm:"Communication",aCommS:"Email · WhatsApp · WeChat · Réseaux",aReq:"Demandes",aReqS:"Devenir agent · Visiter l'usine",
+  gFactory:"Usine",gExpo:"Salon",gShow:"Showroom",gEmpty:"Pas encore de photos ou vidéos ici. L'usine les ajoute après avoir réclamé son profil.",gVideo:"Vidéo",
+  gAdd:"Liens photo ou vidéo (un lien https:// par ligne, YouTube ou .mp4)",social:"Réseaux sociaux",socialEmpty:"L'usine ajoute son Facebook, Instagram, TikTok, YouTube ou LinkedIn après avoir réclamé son profil.",
+  socialAdd:"Liens réseaux sociaux (un lien https:// par ligne)",call:"Appeler",openWa:"Discuter sur WhatsApp",openMail:"Envoyer un email",wcCopy:"Copiez l'ID WeChat puis ajoutez-le dans WeChat → Ajouter des contacts",
+  noContact:"Pas encore publié",rAgent:"Devenir agent",rAgentS:"Vendre les produits de cette usine dans votre pays",rVisit:"Réserver une visite d'usine",rVisitS:"Planifier un rendez-vous à l'usine",
+  fName:"Votre nom",fCo:"Société",fCountry:"Pays",fCity:"Ville",fEmail:"Email",fPhone:"Téléphone / WhatsApp",fBrands:"Marques que vous vendez",fVol:"Unités prévues par an",fShop:"Showroom ou magasin",fShopY:"J'ai un showroom ou un magasin",
+  fDate:"Date souhaitée",fPeople:"Nombre de visiteurs",fNeed:"Que voulez-vous voir ?",fMsg:"Message",fSend:"Envoyer la demande",
+  rSent:n=>`Envoyé. ${n} et EEC Moto Hub ont votre demande et répondront par email ou WhatsApp.`,rMail:"Votre application email s'ouvre avec la demande prête. Appuyez sur Envoyer.",rErr:"Indiquez votre nom et votre email."},
+ zh:{aPhotos:"图片",aPhotosS:"工厂 · 展会 · 展厅",aComm:"联系",aCommS:"邮箱 · WhatsApp · 微信 · 社交媒体",aReq:"申请",aReqS:"成为代理 · 预约参观工厂",
+  gFactory:"工厂",gExpo:"展会",gShow:"展厅",gEmpty:"暂无图片或视频。工厂认领资料后可上传。",gVideo:"视频",
+  gAdd:"图片或视频链接（每行一个 https:// 链接，支持 YouTube 或 .mp4）",social:"社交媒体",socialEmpty:"工厂认领资料后可添加 Facebook、Instagram、TikTok、YouTube 或 LinkedIn。",
+  socialAdd:"社交媒体链接（每行一个 https:// 链接）",call:"致电",openWa:"WhatsApp 聊天",openMail:"发送邮件",wcCopy:"复制微信号，然后在微信 → 添加朋友 中搜索",
+  noContact:"尚未公开",rAgent:"成为代理",rAgentS:"在您的国家销售该工厂产品",rVisit:"预约参观工厂",rVisitS:"安排工厂参观时间",
+  fName:"您的姓名",fCo:"公司",fCountry:"国家",fCity:"城市",fEmail:"邮箱",fPhone:"电话 / WhatsApp",fBrands:"目前销售的品牌",fVol:"预计年采购量",fShop:"展厅或门店",fShopY:"我有展厅或门店",
+  fDate:"希望日期",fPeople:"参观人数",fNeed:"想参观什么？",fMsg:"留言",fSend:"提交申请",
+  rSent:n=>`已发送。${n} 和 EEC Moto Hub 已收到您的申请，将通过邮件或 WhatsApp 回复。`,rMail:"邮件应用已打开并填好申请，请点击发送。",rErr:"请填写姓名和邮箱。"},
+ ar:{aPhotos:"الصور",aPhotosS:"المصنع · المعرض · صالة العرض",aComm:"التواصل",aCommS:"بريد · واتساب · وي تشات · شبكات اجتماعية",aReq:"الطلبات",aReqS:"كن وكيلاً · زيارة المصنع",
+  gFactory:"المصنع",gExpo:"المعرض",gShow:"صالة العرض",gEmpty:"لا توجد صور أو فيديوهات بعد. يضيفها المصنع بعد المطالبة بملفه.",gVideo:"فيديو",
+  gAdd:"روابط صور أو فيديو (رابط https:// في كل سطر، يوتيوب أو mp4.)",social:"الشبكات الاجتماعية",socialEmpty:"يضيف المصنع فيسبوك أو إنستغرام أو تيك توك أو يوتيوب أو لينكدإن بعد المطالبة بملفه.",
+  socialAdd:"روابط الشبكات الاجتماعية (رابط https:// في كل سطر)",call:"اتصال",openWa:"محادثة واتساب",openMail:"إرسال بريد",wcCopy:"انسخ معرف وي تشات ثم أضفه في وي تشات ← إضافة جهات اتصال",
+  noContact:"غير منشور بعد",rAgent:"كن وكيلاً",rAgentS:"بِع منتجات هذا المصنع في بلدك",rVisit:"احجز زيارة للمصنع",rVisitS:"حدد موعدًا في المصنع",
+  fName:"اسمك",fCo:"الشركة",fCountry:"البلد",fCity:"المدينة",fEmail:"البريد",fPhone:"الهاتف / واتساب",fBrands:"العلامات التي تبيعها",fVol:"الوحدات المتوقعة سنويًا",fShop:"صالة عرض أو متجر",fShopY:"لدي صالة عرض أو متجر",
+  fDate:"التاريخ المفضل",fPeople:"عدد الزوار",fNeed:"ماذا تريد أن ترى؟",fMsg:"رسالة",fSend:"إرسال الطلب",
+  rSent:n=>`تم الإرسال. لدى ${n} و EEC Moto Hub طلبك وسيردون بالبريد أو واتساب.`,rMail:"يفتح تطبيق البريد والطلب جاهز. اضغط إرسال هناك.",rErr:"يرجى كتابة اسمك وبريدك."}
+};
+Object.keys(T3).forEach(l => Object.assign(T[l], T3[l]));
+const HUB_MAIL = "invite@renossmoto.com";
+const isVideo = u => /youtube\.com|youtu\.be|bilibili\.com|youku\.com|vimeo\.com|douyin\.com|\.(mp4|webm|mov)(\?|$)/i.test(u);
+const ytId = u => (u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/) || [])[1];
+const links = s => String(s || "").split(/\s+/).filter(u => /^https:\/\/\S+$/.test(u)).slice(0, 40);
+
+function mediaOf(f){
+  const m = f.media || {};
+  const u = x => ({u: x});
+  return {factory: (f.ph ? f.ph.factory : []).concat((m.factory || []).map(u)),
+    expo: (m.expo || []).map(u),
+    showroom: (m.showroom || []).map(u).concat(f.ph ? f.ph.products : [])};
+}
+function mediaTile(x){
+  if (!isVideo(x.u)) return x.alt !== undefined || x.from ? `<a href="${esc(x.ref ? x.from : x.u)}" target="_blank" rel="noopener noreferrer" title="${esc(x.credit || x.alt || "")}">${pimg(x)}</a>`
+    : `<a href="${esc(x.u)}" target="_blank" rel="noopener noreferrer"><img src="${esc(x.u)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></a>`;
+  const y = ytId(x.u);
+  if (y) return `<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/${esc(y)}" title="${t("gVideo")}" loading="lazy" allowfullscreen></iframe></div>`;
+  if (/\.(mp4|webm|mov)(\?|$)/i.test(x.u)) return `<div class="vid"><video src="${esc(x.u)}" controls preload="metadata"></video></div>`;
+  return `<a class="vlink" href="${esc(x.u)}" target="_blank" rel="noopener noreferrer">▶ ${t("gVideo")}<small>${esc(x.u.replace(/^https:\/\//,"").split("/")[0])}</small></a>`;
+}
+function sheet(title, inner, wide){
+  $("overlay").innerHTML = `<div class="sheet${wide ? " wide" : ""}" role="dialog" aria-modal="true" aria-labelledby="sh-t">
+    <button class="x" type="button" id="sh-x" aria-label="${t("close")}">×</button>
+    <div class="label">${esc(cur.name)}</div><h2 id="sh-t">${title}</h2>${inner}</div>`;
+  $("overlay").hidden = false; $("sh-x").focus(); $("sh-x").onclick = closeOverlay;
+}
+function seg(id, items, on){
+  return `<div class="seg" role="tablist" id="${id}">${items.map(([k, label, n]) => `<button type="button" role="tab" data-seg="${k}" aria-selected="${k === on}">${label}${n !== undefined ? ` <span>${n}</span>` : ""}</button>`).join("")}</div>`;
+}
+function bindSeg(id, fn){ $(id).onclick = e => { const b = e.target.closest("[data-seg]"); if (!b) return;
+  $(id).querySelectorAll("[data-seg]").forEach(x => x.setAttribute("aria-selected", x === b)); fn(b.dataset.seg); }; }
+
+function openPhotos(tab){
+  const f = cur, M = mediaOf(f);
+  tab = tab || (M.factory.length ? "factory" : M.showroom.length ? "showroom" : M.expo.length ? "expo" : "factory");
+  const body = k => (M[k].length ? `<div class="gallery">${M[k].map(mediaTile).join("")}</div>` : `<div class="empty-cat">${t("gEmpty")}</div>`)
+    + (k === "showroom" && f.tour ? `<a class="btn sec" style="margin-top:12px" href="${esc(f.tour)}" target="_blank" rel="noopener">▶ ${t("tourOpen")}</a>` : "")
+    + (k !== "expo" && f.ph && M[k].length ? `<div class="ph-src">${t("photosFrom")} ${srcLinks(f)}</div>` : "")
+    + (isAdmin ? `<form class="form" id="md-f"><label for="md-u">${t("gAdd")}<textarea id="md-u" rows="4" placeholder="https://">${esc(((f.media || {})[k] || []).join("\n"))}</textarea></label><button class="btn sec" type="submit">${t("save")}</button></form>` : "");
+  sheet(t("aPhotos"), seg("ph-seg", [["factory", t("gFactory"), M.factory.length], ["expo", t("gExpo"), M.expo.length], ["showroom", t("gShow"), M.showroom.length]], tab) + `<div id="ph-body"></div>`, true);
+  const show = k => { $("ph-body").innerHTML = body(k);
+    if (isAdmin) $("md-f").onsubmit = async e => { e.preventDefault(); const media = {...(f.media || {}), [k]: links($("md-u").value)};
+      await saveEdit(f.id, {media}); f.media = media; toast(t("saved")); openPhotos(k); }; };
+  bindSeg("ph-seg", show); show(tab);
+}
+
+function openComm(){
+  const f = cur, digits = s => String(s || "").replace(/[^\d]/g, "");
+  const row = (icon, label, val, href, act, copyId) => `<div class="crow"><span class="ci" aria-hidden="true">${icon}</span><div class="k"><span class="label">${label}</span>${val ? `<div class="contact-v" id="${copyId}">${esc(val)}</div>` : `<b>${t("noContact")}</b>`}</div>
+    ${val && href ? `<a class="btn" href="${esc(href)}" target="_blank" rel="noopener">${act}</a>` : ""}${val ? `<button class="copy" type="button" data-copy="${copyId}">${t("copy")}</button>` : ""}</div>`;
+  const soc = f.social || [];
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch(_) { return u; } };
+  sheet(t("aComm"), `
+    ${(f.emails.length ? f.emails : [null]).map((e, i) => row("✉", t("email"), e, e && `mailto:${e}?subject=${encodeURIComponent("EEC Moto Hub: " + f.name)}`, t("openMail"), "cm-mail-" + i)).join("")}
+    ${row("🟢", t("whatsapp"), f.wa, digits(f.wa).length > 6 && `https://wa.me/${digits(f.wa)}`, t("openWa"), "cm-wa")}
+    ${row("💬", t("wechat"), f.wc, null, "", "cm-wc")}${f.wc ? `<p class="from" style="margin:6px 0 0">${t("wcCopy")}</p>` : ""}
+    ${row("📞", t("phone"), f.phone, f.phone && `tel:${String(f.phone).replace(/[^\d+]/g, "")}`, t("call"), "cm-ph")}
+    <h3 style="font-size:18px;margin-top:16px">${t("social")}</h3>
+    ${soc.length ? `<div class="soc">${soc.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join("")}</div>` : `<div class="empty-cat">${t("socialEmpty")}</div>`}
+    ${isAdmin ? `<form class="form" id="so-f"><label for="so-u">${t("socialAdd")}<textarea id="so-u" rows="3" placeholder="https://">${esc(soc.join("\n"))}</textarea></label><button class="btn sec" type="submit">${t("save")}</button></form>` : ""}`);
+  if (isAdmin) $("so-f").onsubmit = async e => { e.preventDefault(); const social = links($("so-u").value).slice(0, 12);
+    await saveEdit(f.id, {social}); f.social = social; toast(t("saved")); openComm(); };
+}
+
+function openRequests(kind){
+  const f = cur; kind = kind || "agent";
+  const inp = (id, label, type, extra) => `<label for="${id}">${label}<input id="${id}" type="${type || "text"}" ${extra || ""}></label>`;
+  const forms = {
+    agent: `<p class="from" style="margin:0">${t("rAgentS")}</p>
+      <div class="two">${inp("rq-name", t("fName"), "text", 'required maxlength="100" autocomplete="name"')}${inp("rq-co", t("fCo"), "text", 'maxlength="120" autocomplete="organization"')}</div>
+      <div class="two">${inp("rq-country", t("fCountry"), "text", 'value="Morocco" maxlength="60"')}${inp("rq-city", t("fCity"), "text", 'maxlength="60"')}</div>
+      <div class="two">${inp("rq-email", t("fEmail"), "email", 'required maxlength="120" autocomplete="email"')}${inp("rq-phone", t("fPhone"), "tel", 'maxlength="40" autocomplete="tel"')}</div>
+      <div class="two">${inp("rq-brands", t("fBrands"), "text", 'maxlength="160"')}${inp("rq-vol", t("fVol"), "number", 'min="1" inputmode="numeric"')}</div>
+      <div class="opts"><label><input type="checkbox" id="rq-shop"> ${t("fShopY")}</label></div>`,
+    visit: `<p class="from" style="margin:0">${t("rVisitS")}</p>
+      <div class="two">${inp("rq-name", t("fName"), "text", 'required maxlength="100" autocomplete="name"')}${inp("rq-co", t("fCo"), "text", 'maxlength="120" autocomplete="organization"')}</div>
+      <div class="two">${inp("rq-country", t("fCountry"), "text", 'value="Morocco" maxlength="60"')}${inp("rq-people", t("fPeople"), "number", 'min="1" max="50" value="1" inputmode="numeric"')}</div>
+      <div class="two">${inp("rq-email", t("fEmail"), "email", 'required maxlength="120" autocomplete="email"')}${inp("rq-phone", t("fPhone"), "tel", 'maxlength="40" autocomplete="tel"')}</div>
+      <div class="two">${inp("rq-date", t("fDate"), "date", `min="${new Date().toISOString().slice(0,10)}"`)}${inp("rq-need", t("fNeed"), "text", 'maxlength="160"')}</div>`};
+  sheet(t("aReq"), seg("rq-seg", [["agent", t("rAgent")], ["visit", t("rVisit")]], kind) + `<form class="form" id="rq-f" novalidate>${forms[kind]}
+    <label for="rq-msg">${t("fMsg")}<textarea id="rq-msg" rows="3" maxlength="2000"></textarea></label>
+    <input type="text" id="rq-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <button class="btn" type="submit">${t("fSend")}</button><div class="done" id="rq-done" hidden></div></form>`);
+  bindSeg("rq-seg", k => { if (k !== kind) openRequests(k); });
+  $("rq-f").onsubmit = async e => { e.preventDefault();
+    const v = id => ($(id) ? String($(id).type === "checkbox" ? ($(id).checked ? "yes" : "no") : $(id).value).trim() : "");
+    const fields = kind === "agent" ? {[t("fName")]: v("rq-name"), [t("fCo")]: v("rq-co"), [t("fCountry")]: v("rq-country"), [t("fCity")]: v("rq-city"), [t("fEmail")]: v("rq-email"), [t("fPhone")]: v("rq-phone"), [t("fBrands")]: v("rq-brands"), [t("fVol")]: v("rq-vol"), [t("fShop")]: v("rq-shop"), [t("fMsg")]: v("rq-msg")}
+      : {[t("fName")]: v("rq-name"), [t("fCo")]: v("rq-co"), [t("fCountry")]: v("rq-country"), [t("fPeople")]: v("rq-people"), [t("fEmail")]: v("rq-email"), [t("fPhone")]: v("rq-phone"), [t("fDate")]: v("rq-date"), [t("fNeed")]: v("rq-need"), [t("fMsg")]: v("rq-msg")};
+    const done = $("rq-done");
+    if (!v("rq-name") || !/^\S+@\S+\.\S+$/.test(v("rq-email"))){ done.textContent = t("rErr"); done.hidden = false; return; }
+    const subject = `${kind === "agent" ? t("rAgent") : t("rVisit")}: ${f.name} (EEC Moto Hub)`;
+    const text = Object.entries(fields).filter(([, x]) => x).map(([k, x]) => `${k}: ${x}`).join("\n") + `\n\n${location.origin}${location.pathname}#${f.id}`;
+    try {
+      const j = await api("request.php", {fid: f.id, kind, name: v("rq-name"), email: v("rq-email"), subject, text, hp: v("rq-hp")});
+      if (!j || !j.ok) throw new Error();
+      done.textContent = t("rSent", f.name);
+    } catch(_) {
+      // No mail server yet: hand the request to the visitor's email app instead.
+      const to = f.emails.length ? f.emails.join(",") : HUB_MAIL;
+      location.href = `mailto:${to}?${f.emails.length ? `cc=${HUB_MAIL}&` : ""}subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+      done.textContent = t("rMail");
+    }
+    done.hidden = false; };
+}
+document.addEventListener("click", e => { const a = e.target.closest("[data-act]"); if (!a || !cur) return;
+  ({photos: openPhotos, comm: openComm, req: openRequests})[a.dataset.act](); });
 
 /* ---------- price request ---------- */
 function openReq(model){
