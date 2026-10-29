@@ -1,0 +1,17 @@
+name: Deploy live site
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sleep 20   # let GitHub's main.zip catch up with the new commit
+          for i in 1 2 3; do
+            out=$(curl -s -m 120 https://eec.renossmoto.com/api/update.php) && echo "$out" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "$out" | grep -q "^Updated" && exit 0
+            sleep 65
+          done
+          exit 1
