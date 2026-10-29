@@ -1,27 +1,378 @@
 [
- {"id":"h-ls2-mhr","kind":"helmet","name":"LS2 Helmets (MHR)","legal":"MHR, maker of LS2 Helmets","city":"Heshan (Jiangmen)","prov":"Guangdong","since":1990,
-  "emp":null,"cap":"Up to 80,000 helmets / month at its new Vietnam plant alone","area":null,"markets":"Over 130 countries; European HQ in Terrassa, Spain, with 7,500+ dealers",
-  "web":"https://www.ls2helmets.com","contact":"https://www.ls2helmets.com","addr":null,"emails":[],"emailNotes":[],"phone":null,"wa":null,"wc":null,
-  "types":["Full face","Modular / flip-up","Open face (3/4)","Motocross / off-road"],"cc":null,
-  "eec":[],"non":[],"usd":null,
-  "src":["https://britishdealernews.co.uk/news/uk/ls2-boosts-global-production-with-vietnam-factory-acquisition/","https://bikebd.com/motorcycle/brand/ls2"],
-  "notes":"Founded in 1990 by Arthur Liao; LS2 launched as its own brand in 2007.","products":"Motorcycle helmets: full face, modular, open face, off-road","bt":"Manufacturer","via":"press","tier":"full","tour":null,"maker":true,
-  "sky":["#5a1030","#c4608c"],"c":"#b8155e"},
- {"id":"h-yohe","kind":"helmet","name":"YOHE Helmet","legal":"Foshan Nanhai YOHE Helmet Manufacturing Co., Ltd.","city":"Foshan","prov":"Guangdong","since":1993,
-  "emp":null,"cap":"More than 4 million helmets / year","area":null,"markets":null,
-  "web":null,"contact":null,"addr":"Yannan Industrial Area, Jiujiang Town, Nanhai District, Foshan, Guangdong, China","emails":[],"emailNotes":[],"phone":null,"wa":null,"wc":null,
-  "types":["Full face","Modular / flip-up","Open face (3/4)"],"cc":null,"eec":[],
-  "non":[{"n":"YOHE 950","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"YOHE 967","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"YOHE 978","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"YOHE 977","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"YOHE 987","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null}],"usd":null,
-  "src":["https://bikebd.com/motorcycle/brand/yohe"],
-  "notes":"Can produce to SNELL, DOT, ECE, AS, NBR, SG and JIS standards; ISO 9001:2015.","products":"Motorcycle helmets (SNELL, DOT, ECE, JIS capable)","bt":"Manufacturer","via":"press","tier":"full","tour":null,"maker":true,
-  "sky":["#5a1030","#c4608c"],"c":"#b8155e"},
- {"id":"h-soman","kind":"helmet","name":"SOMAN Helmets","legal":"Foshan SOMAN Gear Co., Ltd.","city":"Foshan","prov":"Guangdong","since":2015,
-  "emp":null,"cap":null,"area":null,"markets":null,
-  "web":null,"contact":null,"addr":null,"emails":[],"emailNotes":[],"phone":null,"wa":null,"wc":null,
-  "types":["Full face","Retro"],"cc":null,
-  "eec":[{"n":"SOMAN Taiko Fiberglass","cert":"ECE 22.05","ty":["Full face"],"usd":null,"moq":null,"url":null}],
-  "non":[{"n":"SOMAN SM961-S","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"SOMAN SM965","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"SOMAN SM955-S","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"SOMAN SM968","cert":null,"ty":["Full face"],"usd":null,"moq":null,"url":null},{"n":"SOMAN SM521 Retro","cert":null,"ty":["Retro"],"usd":null,"moq":null,"url":null}],"usd":null,
-  "src":["https://www.bikebd.com/motorcycle/brand/soman"],
-  "notes":"OEM, ODM and OTM production; DOT FMVSS 218 and ECE 22.05 named for its helmets.","products":"Motorcycle helmets, OEM/ODM","bt":"Manufacturer","via":"press","tier":"full","tour":null,"maker":true,
-  "sky":["#5a1030","#c4608c"],"c":"#b8155e"}
+ {
+  "id": "h-ls2-mhr",
+  "kind": "helmet",
+  "name": "LS2 Helmets (MHR)",
+  "legal": "MHR, maker of LS2 Helmets",
+  "city": "Heshan (Jiangmen)",
+  "prov": "Guangdong",
+  "since": 1990,
+  "emp": null,
+  "cap": "Up to 80,000 helmets / month at its new Vietnam plant alone",
+  "area": null,
+  "markets": "Over 130 countries; European HQ in Terrassa, Spain, with 7,500+ dealers",
+  "web": "https://www.ls2helmets.com",
+  "contact": "https://www.ls2helmets.com",
+  "addr": null,
+  "emails": [],
+  "emailNotes": [],
+  "phone": null,
+  "wa": null,
+  "wc": null,
+  "types": [
+   "Full face",
+   "Modular / flip-up",
+   "Open face (3/4)",
+   "Motocross / off-road",
+   "Carbon fiber",
+   "Kids"
+  ],
+  "cc": null,
+  "eec": [
+   {
+    "n": "LS2 FF800 Storm II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 FF808 Stream II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 FF811 Vector II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 FF353 Rapid II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 FF908 Strobe II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Modular / flip-up"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 OF616 Airflow II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Open face (3/4)"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 OF599 Spitfire II",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Open face (3/4)"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 FF807 Dragon Carbon",
+    "cert": "ECE 22.06",
+    "ty": [
+     "Full face",
+     "Carbon fiber"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   }
+  ],
+  "non": [
+   {
+    "n": "LS2 MX708 Fast II",
+    "cert": null,
+    "ty": [
+     "Motocross / off-road"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 MX702 Pioneer II",
+    "cert": null,
+    "ty": [
+     "Motocross / off-road"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 MX701 Explorer",
+    "cert": null,
+    "ty": [
+     "Motocross / off-road"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "LS2 MX706 COZ",
+    "cert": null,
+    "ty": [
+     "Motocross / off-road"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   }
+  ],
+  "usd": null,
+  "src": [
+   "https://britishdealernews.co.uk/news/uk/ls2-boosts-global-production-with-vietnam-factory-acquisition/",
+   "https://bikebd.com/motorcycle/brand/ls2",
+   "https://www.rideapart.com/news/681932/ls2-ff800-storm-ii-launched/",
+   "https://www.sharkleathers.com.au/helmets/ls2/"
+  ],
+  "notes": "Founded in 1990 by Arthur Liao; LS2 launched as its own brand in 2007.",
+  "products": "Motorcycle helmets: full face, modular, open face, off-road",
+  "bt": "Manufacturer",
+  "via": "press",
+  "tier": "full",
+  "tour": null,
+  "maker": true,
+  "sky": [
+   "#5a1030",
+   "#c4608c"
+  ],
+  "c": "#b8155e"
+ },
+ {
+  "id": "h-yohe",
+  "kind": "helmet",
+  "name": "YOHE Helmet",
+  "legal": "Foshan Nanhai YOHE Helmet Manufacturing Co., Ltd.",
+  "city": "Foshan",
+  "prov": "Guangdong",
+  "since": 1993,
+  "emp": null,
+  "cap": "More than 4 million helmets / year",
+  "area": null,
+  "markets": null,
+  "web": null,
+  "contact": null,
+  "addr": "Yannan Industrial Area, Jiujiang Town, Nanhai District, Foshan, Guangdong, China",
+  "emails": [],
+  "emailNotes": [],
+  "phone": null,
+  "wa": null,
+  "wc": null,
+  "types": [
+   "Full face",
+   "Modular / flip-up",
+   "Open face (3/4)"
+  ],
+  "cc": null,
+  "eec": [],
+  "non": [
+   {
+    "n": "YOHE 950",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "YOHE 967",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "YOHE 978",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "YOHE 977",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "YOHE 987",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   }
+  ],
+  "usd": null,
+  "src": [
+   "https://bikebd.com/motorcycle/brand/yohe"
+  ],
+  "notes": "Can produce to SNELL, DOT, ECE, AS, NBR, SG and JIS standards; ISO 9001:2015.",
+  "products": "Motorcycle helmets (SNELL, DOT, ECE, JIS capable)",
+  "bt": "Manufacturer",
+  "via": "press",
+  "tier": "full",
+  "tour": null,
+  "maker": true,
+  "sky": [
+   "#5a1030",
+   "#c4608c"
+  ],
+  "c": "#b8155e"
+ },
+ {
+  "id": "h-soman",
+  "kind": "helmet",
+  "name": "SOMAN Helmets",
+  "legal": "Foshan SOMAN Gear Co., Ltd.",
+  "city": "Foshan",
+  "prov": "Guangdong",
+  "since": 2015,
+  "emp": null,
+  "cap": null,
+  "area": null,
+  "markets": null,
+  "web": null,
+  "contact": null,
+  "addr": null,
+  "emails": [],
+  "emailNotes": [],
+  "phone": null,
+  "wa": null,
+  "wc": null,
+  "types": [
+   "Full face",
+   "Retro"
+  ],
+  "cc": null,
+  "eec": [
+   {
+    "n": "SOMAN Taiko Fiberglass",
+    "cert": "ECE 22.05",
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   }
+  ],
+  "non": [
+   {
+    "n": "SOMAN SM961-S",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "SOMAN SM965",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "SOMAN SM955-S",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "SOMAN SM968",
+    "cert": null,
+    "ty": [
+     "Full face"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   },
+   {
+    "n": "SOMAN SM521 Retro",
+    "cert": null,
+    "ty": [
+     "Retro"
+    ],
+    "usd": null,
+    "moq": null,
+    "url": null
+   }
+  ],
+  "usd": null,
+  "src": [
+   "https://www.bikebd.com/motorcycle/brand/soman"
+  ],
+  "notes": "OEM, ODM and OTM production; DOT FMVSS 218 and ECE 22.05 named for its helmets.",
+  "products": "Motorcycle helmets, OEM/ODM",
+  "bt": "Manufacturer",
+  "via": "press",
+  "tier": "full",
+  "tour": null,
+  "maker": true,
+  "sky": [
+   "#5a1030",
+   "#c4608c"
+  ],
+  "c": "#b8155e"
+ }
 ]
