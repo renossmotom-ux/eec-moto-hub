@@ -306,6 +306,9 @@ def main():
             while f["id"] in ids: f["id"] = f"{base}-{i}"; i += 1
             ids.add(f["id"]); res.append(f); photos[f["id"]] = ph
     res.sort(key=lambda f: (-len(f["eec"]), f["name"]))
+    # Big brands checked by hand (data/helmet_brands.json) come first.
+    brands = json.load(open(f"{ROOT}/data/helmet_brands.json"))
+    res = brands + [f for f in res if f["id"] not in {b["id"] for b in brands}]
     json.dump(res, open(f"{ROOT}/data/helmets.json", "w"), ensure_ascii=False, separators=(",", ":"))
     json.dump(photos, open(f"{ROOT}/data/helmet_photos.json", "w"), ensure_ascii=False, separators=(",", ":"))
     n_ece = sum(len(f["eec"]) for f in res); n_non = sum(len(f["non"]) for f in res)

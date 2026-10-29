@@ -809,9 +809,9 @@ function renderProfile(f){
       <div class="facts">
         ${fact(t("legal"), esc(f.legal))}${fact(t("location"), esc(`${f.city}, ${f.prov}`))}
         ${fact(t("started"), f.since ? `${f.since} (${NOW-f.since})` : null)}${fact(t("employees"), esc(f.emp))}
-        ${f.kind === "helmet" ? fact(t("address"), esc(f.addr)) : fact(t("capacity"), esc(f.cap)) + fact(t("markets"), esc(f.markets))}
+        ${f.kind === "helmet" ? fact(t("address"), esc(f.addr)) + (f.cap ? fact(t("capacity"), esc(f.cap)) : "") + (f.markets ? fact(t("markets"), esc(f.markets)) : "") : fact(t("capacity"), esc(f.cap)) + fact(t("markets"), esc(f.markets))}
         ${fact(t("coType"), t(btKey(f)==="m"?"manufacturer":btKey(f)==="t"?"trading":"notStated"))}${fact(t("mainProducts"), esc(f.products || ""))}
-        ${f.kind === "helmet" ? "" : fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
+        ${f.kind === "helmet" && !f.web ? "" : fact(t("website"), link(f.web))}${fact(f.tier==="full" ? t("contactPage") : t("b2bShowroom"), link(f.contact))}
       </div></section>
     <section class="box" id="photos"><h2>${t("photos")}</h2>${gallery(f)}</section>
     <section class="box" id="models"><h2>${t("models")}</h2>
