@@ -27,7 +27,10 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 H = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"}
 KEYWORDS = ["motorcycle-helmet", "motorcycle-helmets", "motorbike-helmet", "ece-helmet", "dot-helmet", "full-face-helmet",
             "modular-helmet", "flip-up-helmet", "open-face-helmet", "half-face-helmet", "motocross-helmet", "off-road-helmet",
-            "kids-motorcycle-helmet", "carbon-fiber-helmet", "helmet-motorcycle", "scooter-helmet", "racing-helmet", "dot-ece-helmet"]
+            "kids-motorcycle-helmet", "carbon-fiber-helmet", "helmet-motorcycle", "scooter-helmet", "racing-helmet", "dot-ece-helmet",
+            "helmet", "helmets", "moto-helmet", "abs-helmet", "fiberglass-helmet", "dual-visor-helmet", "bluetooth-helmet", "retro-helmet",
+            "vintage-helmet", "electric-bike-helmet", "electric-scooter-helmet", "casco-moto", "ece-22-06-helmet", "dot-approved-helmet",
+            "motorcycle-helmet-ece", "cross-helmet", "dirt-bike-helmet", "jet-helmet", "helmet-visor", "smart-helmet"]
 MAX_PAGES = 20
 MAX_PRODUCT_PAGES = 3
 MAX_MODELS = 40
@@ -79,48 +82,83 @@ def field(text, label, stop=r"(?:Business Type|Main Products|R&D Capacity|Fast D
 MOTO = re.compile(r"motor|moto|full.?face|modular|flip|motocross|off.?road|open.?face|scooter|\bDOT\b|\bECE\b|racing helmet|casco", re.I)
 NOT_MOTO = re.compile(r"hard hat|construction|industrial|mining|miner|firefight|police|military|bulletproof|ballistic|welding|riot|tactical", re.I)
 
-def listing(kw):
-    """All supplier blocks for one keyword, page by page."""
+def parse_nodes(h, kw):
+    """Supplier blocks on a listing page: /manufacturers/, /company-search/ (.list-node) or /factory/ (.company-item)."""
+    s = BeautifulSoup(h, "html.parser")
     out = []
-    for p in range(1, MAX_PAGES + 1):
-        url = f"https://www.made-in-china.com/manufacturers/{kw}{'' if p == 1 else f'_{p}'}.html"
-        h = get(url)
+    for n in s.select(".list-node, .company-item"):
+        sub = None
+        for a in n.find_all("a", href=True):
+            m = re.match(r"(?:https?:)?//([\w-]+)\.en\.made-in-china\.com", a["href"])
+            if m and m.group(1) != "www": sub = m.group(1); break
+        if not sub: continue
+        name = txt(n.select_one(".company-name-link") or n.select_one(".company-name"))
+        if not name:
+            name = next((txt(a) for a in n.find_all("a") if re.search(r"\b(Co|Ltd|Limited|Inc|Company|Corp|Factory|Group)\b", txt(a)) and len(txt(a)) < 120), "")
+        if not name: continue
+        t = txt(n)
+        prods = []
+        for a in n.find_all("a", href=True):
+            if "/product/" not in a["href"]: continue
+            im = a.find("img") or (a.find_parent() and a.find_parent().find("img"))
+            title = (im.get("alt") if im else "") or a.get("title") or ""
+            prods.append({"t": title, "url": absu(a["href"]), "img": absu(img_src(im)) if im else None, "price": txt(a)})
+        co_imgs = [absu(img_src(im)) for im in n.find_all("img") if img_src(im) and norm(im.get("alt", "")) == norm(name)]
+        out.append({"sub": sub, "name": name, "bt": field(t, "Business Type") or (re.search(r"(Manufacturer/Factory(?: & Trading Company)?|Trading Company)", t) or [None, ""])[1],
+                    "main": field(t, "Main Products", r"(?:Country/Region|R&D Capacity|Business Type|Fast Delivery|Sample Service|Company Profile|Year of Establishment|Number of Employees|Address|Plant Area|Request Free|Send Inquiry)"),
+                    "emp": (re.search(r"(\d[\d,+-]*)\s*Number of Employees", t) or [None, None])[1],
+                    "area": ((re.search(r"(\d[\d,+-]*)\s*(?:square meters|m2|㎡)?\s*Plant Area", t) or [None, None])[1] or "").strip() or None,
+                    "tour": next((absu(a["href"]) for a in n.find_all("a", href=True) if "360-Virtual-Tour" in a["href"]), None),
+                    "co_imgs": [u for u in dict.fromkeys(co_imgs) if u], "prods": prods, "kw": kw})
+    total = s.select_one(".page-total")
+    return out, int(txt(total)) if total and txt(total).isdigit() else None
+
+def paged(kw, url_of, max_pages=MAX_PAGES):
+    out, seen = [], set()
+    for p in range(1, max_pages + 1):
+        h = get(url_of(p))
         if not h: break
-        s = BeautifulSoup(h, "html.parser")
-        nodes = s.select(".list-node")
-        if not nodes: break
-        for n in nodes:
-            sub = None
-            for a in n.find_all("a", href=True):
-                m = re.match(r"(?:https?:)?//([\w-]+)\.en\.made-in-china\.com", a["href"])
-                if m and m.group(1) not in ("www",): sub = m.group(1); break
-            if not sub: continue
-            name = txt(n.select_one(".company-name-link") or n.select_one(".company-name"))
-            t = txt(n)
-            prods = []
-            for a in n.find_all("a", href=True):
-                if "/product/" not in a["href"]: continue
-                im = a.find("img") or (a.find_parent() and a.find_parent().find("img"))
-                title = (im.get("alt") if im else "") or a.get("title") or ""
-                prods.append({"t": title, "url": absu(a["href"]), "img": absu(img_src(im)) if im else None, "price": txt(a)})
-            co_imgs = [absu(img_src(im)) for im in n.find_all("img") if img_src(im) and norm(im.get("alt", "")) == norm(name)]
-            out.append({"sub": sub, "name": name, "bt": field(t, "Business Type"), "main": field(t, "Main Products"),
-                        "emp": (re.search(r"(\d[\d,+-]*)\s*Number of Employees", t) or [None, None])[1],
-                        "area": ((re.search(r"(\d[\d,+-]*)\s*(?:square meters|m2|㎡)?\s*Plant Area", t) or [None, None])[1] or "").strip() or None,
-                        "tour": next((absu(a["href"]) for a in n.find_all("a", href=True) if "360-Virtual-Tour" in a["href"]), None),
-                        "co_imgs": [u for u in dict.fromkeys(co_imgs) if u], "prods": prods, "kw": kw})
-        total = s.select_one(".page-total")
-        if total and txt(total).isdigit() and p >= int(txt(total)): break
+        rows, total = parse_nodes(h, kw)
+        fresh = [r for r in rows if r["sub"] not in seen]
+        if not fresh: break
+        seen.update(r["sub"] for r in fresh); out += fresh
+        if total and p >= total: break
+    return out
+
+def listing(kw):
+    """All supplier blocks for one keyword: the supplier list, the verified-factory page, and the per-province company search."""
+    out = paged(kw, lambda p: f"https://www.made-in-china.com/manufacturers/{kw}{'' if p == 1 else f'_{p}'}.html")
+    h = get(f"https://www.made-in-china.com/factory/{kw}.html")
+    if h: out += parse_nodes(h, kw)[0]
+    if kw in DEEP:
+        for prov in DEEP_PROVS:
+            out += paged(kw, lambda p: f"https://www.made-in-china.com/company-search/{kw}/huntq--CP_{prov}/{p}.html", 10)
     print(f"{kw}: {len(out)} supplier rows", file=sys.stderr)
     return out
+
+DEEP = ["motorcycle-helmet", "helmet", "full-face-helmet", "motocross-helmet", "ece-helmet", "modular-helmet", "open-face-helmet", "half-face-helmet"]
+DEEP_PROVS = ["Zhejiang", "Guangdong", "Chongqing", "Fujian", "Jiangsu", "Shandong", "Hebei", "Shanghai", "Henan", "Tianjin", "Anhui", "Jiangxi", "Hubei", "Hunan", "Guangxi", "Sichuan"]
 
 def norm(x):
     return re.sub(r"[^a-z0-9]", "", (x or "").lower())
 
+NOT_HELMET = re.compile(r"bag|clean|machine|bluetooth|intercom|headset|headphone|earphone|walkie|decal|sticker|logo|badge|paint|line|mould|mold|"
+                        r"safety helmet|hard hat|bump cap|welding|riot|ballistic|tactical|military|police|pad|ski|snow|bicycle|bike helmet|skate|equestrian|horse|climb|cycling|lock|holder|hook|camera", re.I)
+RIDING = re.compile(r"motor|moto|scooter|riding|rider|atv|dirt|racing|helmet", re.I)
+
+def helmet_maker(main):
+    """Main products name a real motorcycle helmet (not a helmet bag, cleaner, intercom, hard hat...)."""
+    return any("helmet" in x.lower() and not NOT_HELMET.search(x) for x in re.split(r"[,;/]", main))
+
 def is_helmet_company(r):
     blob = r["main"] + " " + " ".join(p["t"] for p in r["prods"])
     if NOT_MOTO.search(r["main"]) and not re.search(r"motor", r["main"], re.I): return False
-    return "helmet" in r["main"].lower() and MOTO.search(blob) is not None
+    if helmet_maker(r["main"]) and MOTO.search(blob): return True
+    # Helmet specialists whose name says so ("Wenzhou ... Helmet Co.") and who list motorcycle helmets.
+    return "helmet" in r["name"].lower() and any(moto_helmet(p["t"]) for p in r["prods"])
+
+def moto_helmet(title):
+    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b", title, re.I)
 
 PROVS = ["Zhejiang", "Guangdong", "Jiangsu", "Fujian", "Shandong", "Chongqing", "Shanghai", "Hebei", "Henan", "Anhui", "Hunan", "Hubei",
          "Jiangxi", "Tianjin", "Beijing", "Sichuan", "Liaoning", "Shanxi", "Shaanxi", "Guangxi", "Yunnan", "Guizhou", "Hainan", "Jilin",
@@ -130,8 +168,10 @@ def company_info(sub):
     h = get(f"https://{sub}.en.made-in-china.com/company-info.html") or get(f"https://{sub}.en.made-in-china.com")
     if not h: return {}
     s = BeautifulSoup(h, "html.parser")
+    title = txt(s.title) if s.title else ""
     for x in s(["script", "style", "noscript"]): x.decompose()
     t = txt(s)
+    name = title.split(" - ", 1)[1].strip() if title.startswith("Company Overview") and " - " in title else None
     addr = field(t, "Address")
     prov = next((p for p in PROVS if re.search(r"\b" + p + r"\b", addr)), None) or next((p for p in PROVS if re.search(r"\b" + p + r", China", t)), None)
     city = None
@@ -150,7 +190,7 @@ def company_info(sub):
         x = txt(p)
         if 150 < len(x) < 900 and re.search(r"(found|establish|located|professional|manufactur)", x, re.I) and "Main Products" not in x:
             about = x; break
-    return {"addr": addr or None, "prov": prov, "city": city, "since": int(yr.group(1)) if yr else None,
+    return {"name": name, "addr": addr or None, "prov": prov, "city": city, "since": int(yr.group(1)) if yr else None,
             "emp": field(t, "Number of Employees") or None, "bt": field(t, "Business Type"), "main": field(t, "Main Products"), "about": about}
 
 ECE = re.compile(r"\bECE\b|\bR\s?22|22[.\-\s]?0[56]\b|\b220[56]\b", re.I)
@@ -193,12 +233,12 @@ def products(sub, seed):
             if not a or not im: continue
             title = (im.get("alt") or im.get("title") or a.get("title") or "").strip()
             u = absu(a["href"]).split("?")[0]
-            if u in seen or "helmet" not in title.lower(): continue
+            if u in seen or not moto_helmet(title): continue
             seen.add(u); t = txt(c)
             items.append({"t": title, "url": u, "img": absu(img_src(im)), "usd": price(t), "moq": moq(t), "extra": t})
         if len(items) >= MAX_MODELS: break
     for x in seed:  # helmets shown on the supplier listing, if the showroom pages gave none
-        if x["url"] and x["url"].split("?")[0] not in seen and "helmet" in x["t"].lower():
+        if x["url"] and x["url"].split("?")[0] not in seen and moto_helmet(x["t"]):
             seen.add(x["url"].split("?")[0])
             items.append({"t": x["t"], "url": x["url"].split("?")[0], "img": x["img"], "usd": price(x["price"]), "moq": moq(x["price"]), "extra": ""})
     return items[:MAX_MODELS]
@@ -211,7 +251,7 @@ def slug(name, sub):
 def build(r):
     info = company_info(r["sub"])
     items = products(r["sub"], r["prods"])
-    if not items: return None
+    if len(items) < 3: return None  # a real helmet supplier lists at least 3 motorcycle helmets
     showroom = f"https://{r['sub']}.en.made-in-china.com"
     ece, non, ph_prod, models, types = [], [], [], {}, set()
     for x in items:
@@ -226,13 +266,14 @@ def build(r):
     bt = info.get("bt") or r["bt"]
     btn = "Manufacturer" if "Manufacturer" in bt and "Trading" not in bt else ("Trading company" if bt == "Trading Company" else ("Manufacturer & trading" if "Manufacturer" in bt else "Not stated"))
     prices = [m["usd"][0] for m in ece + non if m["usd"]]
-    f = {"id": slug(r["name"], r["sub"]), "kind": "helmet", "name": r["name"], "legal": r["name"],
+    name = info.get("name") or r["name"]
+    f = {"id": slug(name, r["sub"]), "kind": "helmet", "name": name, "legal": name,
          "city": info.get("city") or info.get("prov") or "China", "prov": info.get("prov") or "Not stated",
          "since": info.get("since"), "emp": info.get("emp") or r["emp"], "cap": None, "area": r["area"], "markets": None, "web": None,
          "contact": showroom, "addr": info.get("addr"), "about": info.get("about") or None, "emails": [], "emailNotes": [], "phone": None, "wa": None, "wc": None,
          "types": sorted(types), "cc": None, "eec": ece, "non": non, "usd": [min(prices), max(prices)] if prices else None,
          "src": [showroom, f"https://www.made-in-china.com/manufacturers/{r['kw']}.html"], "notes": None,
-         "products": info.get("main") or r["main"], "bt": btn, "via": "made-in-china.com", "tier": "basic", "tour": r["tour"],
+         "products": info.get("main") or r["main"], "bt": btn, "via": "made-in-china.com", "tier": "basic", "tour": r["tour"], "maker": helmet_maker(info.get("main") or r["main"]),
          "sky": ["#5a1030", "#c4608c"], "c": "#b8155e"}
     fact = [{"u": full(u), "t": u, "alt": r["name"], "from": showroom} for u in r["co_imgs"][:4]]
     hero = [p["u"] for p in ph_prod[:3]]
@@ -241,11 +282,13 @@ def build(r):
 
 def main():
     rows = {}
-    with ThreadPoolExecutor(3) as ex:
+    with ThreadPoolExecutor(4) as ex:
         for out in ex.map(listing, KEYWORDS):
             for r in out:
                 if r["sub"] in rows:
                     rows[r["sub"]]["prods"] += r["prods"]
+                    for k in ("main", "bt", "emp", "area"):
+                        rows[r["sub"]][k] = rows[r["sub"]][k] or r[k]
                     if not rows[r["sub"]]["tour"]: rows[r["sub"]]["tour"] = r["tour"]
                 else:
                     rows[r["sub"]] = r
@@ -253,7 +296,6 @@ def main():
     if "--rows" in sys.argv:
         json.dump([{k: r[k] for k in ("sub", "name", "bt", "main", "kw")} | {"n": len(r["prods"]), "t": [p["t"] for p in r["prods"][:3]], "keep": r in keep} for r in rows.values()],
                   open(f"{ROOT}/data/helmet_rows.json", "w"), ensure_ascii=False, indent=0)
-        return
     print(f"SUMMARY: {len(rows)} suppliers listed, {len(keep)} make motorcycle helmets", file=sys.stderr)
     res, photos, ids = [], {}, set()
     with ThreadPoolExecutor(4) as ex:
