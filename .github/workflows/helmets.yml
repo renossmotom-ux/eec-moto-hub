@@ -1,0 +1,30 @@
+name: Fetch helmet factories
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths: ["tools/fetch_helmets.py", ".github/workflows/helmets.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: helmets-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  helmets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4 pillow
+      - run: python tools/fetch_helmets.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A data/helmets.json data/helmet_photos.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update helmet factories"
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
