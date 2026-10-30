@@ -329,6 +329,85 @@ def build(r):
     photos = {"page": showroom, "products": ph_prod, "factory": fact, "hero": hero, "models": models, "at": time.strftime("%Y-%m-%d")}
     return f, photos
 
+# ---------- Reevol Source (source.reevol.com): supplier cards from business registries and trade-fair exhibitor lists ----------
+# Its robots.txt allows crawlers (Crawl-delay: 5) and it publishes machine-readable cards at /en/suppliers/<slug>/ai-card.md.
+REEVOL = "https://source.reevol.com"
+_last_reevol = [0.0]
+
+def reevol_get(url):
+    if not allowed(url): print("  robots.txt disallows", url, file=sys.stderr); return None
+    for i in range(3):
+        wait = 5.2 - (time.time() - _last_reevol[0])
+        if wait > 0: time.sleep(wait)
+        _last_reevol[0] = time.time()
+        try:
+            r = requests.get(url, headers=H, timeout=30)
+        except Exception as e:
+            print("  fail", url, type(e).__name__, file=sys.stderr); continue
+        if r.status_code == 429: time.sleep(30 * (i + 1)); continue
+        return r.text if r.status_code == 200 else None
+    return None
+
+ZH = {"摩托头盔": "Motorcycle helmet", "电动车头盔": "E-bike / scooter helmet", "全盔": "Full face helmet", "半盔": "Half helmet", "3/4盔": "3/4 helmet",
+      "揭面盔": "Flip-up helmet", "越野盔": "Off-road helmet", "儿童盔": "Kids helmet", "碳纤盔": "Carbon fiber helmet", "头盔": "Helmet", "复古盔": "Retro helmet",
+      "安全帽": "Safety helmet", "骑行头盔": "Cycling helmet", "头盔镜片": "Helmet visor"}
+ZH_TYPES = {"全盔": "Full face", "半盔": "Half face", "3/4盔": "Open face (3/4)", "揭面盔": "Modular / flip-up", "越野盔": "Motocross / off-road",
+            "儿童盔": "Kids", "碳纤盔": "Carbon fiber", "复古盔": "Retro"}
+
+def card_field(md, label):
+    m = re.search(r"^- " + re.escape(label) + r":\s*(.+)$", md, re.M)
+    return m.group(1).strip() if m else None
+
+def reevol_card(slug):
+    url = f"{REEVOL}/en/suppliers/{slug}/"
+    md = reevol_get(url + "ai-card.md")
+    if not md: return None
+    subs = card_field(md, "Sub-industries") or ""
+    summary = md.split("## Summary", 1)[1][:1500] if "## Summary" in md else ""
+    blob = subs + " " + summary
+    # Motorcycle / e-bike helmets only: not hard hats, bicycle or tactical helmets.
+    if not (re.search(r"摩托头盔|电动车头盔|全盔|半盔|揭面盔|越野盔|3/4盔", subs) or re.search(r"motorcycle helmet|motorbike helmet|full[- ]face helmet|off-road helmet", blob, re.I)):
+        return None
+    name = card_field(md, "Legal name (en)") or slug.replace("-", " ").title()
+    loc = card_field(md, "Location") or ""
+    prov = next((p for p in PROVS if p.upper() in loc.upper()), None)
+    m = re.search(r"based in ([A-Z][a-zA-Z ]+?), " + (prov or "China"), summary) or re.search(r"located in ([A-Z][a-zA-Z ]+?)(?: City)?,", md)
+    city = m.group(1).strip() if m else (prov or "China")
+    yr = card_field(md, "Year founded")
+    words = [x.strip() for x in re.split(r"[,，]", subs) if x.strip()]
+    products = ", ".join(dict.fromkeys(ZH.get(w, w) for w in words if re.search(r"盔|helmet", w, re.I)))
+    types = sorted({ZH_TYPES[w] for w in words if w in ZH_TYPES}) or ["Full face"]
+    bt = (card_field(md, "Business type") or "").lower()
+    fairs = card_field(md, "Trade fairs")
+    web = card_field(md, "Website")
+    return {"id": "h-" + slug[:40].strip("-"), "kind": "helmet", "name": name, "legal": name, "zh": card_field(md, "Legal name (zh-CN)"),
+            "city": city, "prov": prov or "Not stated", "since": int(yr) if yr and yr.isdigit() else None,
+            "emp": (card_field(md, "Employee range") or "").replace("~", "–") or None, "cap": None, "area": None, "markets": None,
+            "web": web if web and web.startswith("http") else None, "contact": url, "addr": None, "about": None,
+            "emails": [], "emailNotes": [], "phone": None, "wa": None, "wc": None, "types": types, "cc": None, "eec": [], "non": [], "usd": None,
+            "src": [url], "notes": ("Trade fairs: " + fairs) if fairs else None, "products": products or "Motorcycle helmets",
+            "bt": "Manufacturer" if "manufacturer" in bt else ("Trading company" if "trad" in bt else "Not stated"), "via": "reevol",
+            "tier": "basic", "tour": None, "maker": "manufacturer" in bt or not bt, "sky": ["#5a1030", "#c4608c"], "c": "#b8155e"}
+
+HELMET_SLUG = re.compile(r"helmet|kask|casco|capacete")
+MAYBE_SLUG = re.compile(r"motorcycle-fitting|motor-fitting|motorcycle-part|motorcycle-accessor|moto-fitting|safety-protect|sports-goods|sport-goods|protective")
+
+def reevol_suppliers():
+    slugs = []
+    for i in range(2):
+        xml = reevol_get(f"{REEVOL}/sitemap/suppliers/{i}.xml") or ""
+        slugs += re.findall(r"/en/suppliers/([a-z0-9-]+)/</loc>", xml)
+    slugs = list(dict.fromkeys(slugs))
+    sure = [x for x in slugs if HELMET_SLUG.search(x)]
+    maybe = [x for x in slugs if not HELMET_SLUG.search(x) and MAYBE_SLUG.search(x)][:350]
+    print(f"reevol: {len(slugs)} suppliers in sitemap, {len(sure)} helmet names, {len(maybe)} other candidates", file=sys.stderr)
+    out = []
+    for slug in sure + maybe:
+        f = reevol_card(slug)
+        if f: out.append(f)
+    print(f"reevol: {len(out)} motorcycle helmet companies", file=sys.stderr)
+    return out
+
 def main():
     rows = {}
     with ThreadPoolExecutor(4) as ex:
@@ -376,6 +455,8 @@ def main():
             base, i = f["id"], 2
             while f["id"] in ids: f["id"] = f"{base}-{i}"; i += 1
             ids.add(f["id"]); res.append(f); photos[f["id"]] = ph
+    # Reevol cards add helmet companies made-in-china doesn't list (no helmet list yet: the factory adds it when it claims the profile).
+    res += reevol_suppliers()
     # One profile per company (some run two showrooms): keep the one with more helmets.
     best = {}
     for f in res:
@@ -386,6 +467,11 @@ def main():
     # Big brands checked by hand (data/helmet_brands.json) come first.
     brands = json.load(open(f"{ROOT}/data/helmet_brands.json"))
     res = brands + [f for f in res if f["id"] not in {b["id"] for b in brands}]
+    seen_ids = set()
+    for f in res:
+        base, i = f["id"], 2
+        while f["id"] in seen_ids: f["id"] = f"{base}-{i}"; i += 1
+        seen_ids.add(f["id"])
     json.dump(res, open(f"{ROOT}/data/helmets.json", "w"), ensure_ascii=False, separators=(",", ":"))
     json.dump(photos, open(f"{ROOT}/data/helmet_photos.json", "w"), ensure_ascii=False, separators=(",", ":"))
     n_ece = sum(len(f["eec"]) for f in res); n_non = sum(len(f["non"]) for f in res)
