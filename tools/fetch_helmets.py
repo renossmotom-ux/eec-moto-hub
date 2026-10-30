@@ -161,7 +161,7 @@ def product_search(term, max_pages=30):
             r["prods"].append({"t": title, "url": absu(a["href"]).split("?")[0], "img": absu(img_src(im)) if im else None, "price": ""})
         stale = stale + 1 if len(out) == before else 0
         if stale >= 2: break
-    print(f"products {term}: {len(out)} suppliers on {len(seen_pages)} pages", file=sys.stderr)
+    print(f"products {term}: {len(out)} suppliers on {p} pages", file=sys.stderr)
     return list(out.values())
 
 def norm(x):
