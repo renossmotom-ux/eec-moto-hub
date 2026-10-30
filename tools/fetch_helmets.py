@@ -133,20 +133,43 @@ def listing(kw):
     print(f"{kw}: {len(out)} supplier rows", file=sys.stderr)
     return out
 
-PRODUCT_TERMS = ["Motorcycle_Helmet", "Motorcycle_Helmets", "Helmet", "Full_Face_Helmet", "Modular_Helmet", "Flip_up_Helmet", "Open_Face_Helmet",
+# made-in-china's verified-factory pages (/factory/<slug>.html) for helmet words: mostly helmet specialists.
+FACTORY_SLUGS = ["ece-helmets", "helmets-ece", "ece-dot-helmets", "dot-ece-helmet", "dot-helmets", "dot-approved-helmets", "ece-casco",
+                 "helmets-cross-ece", "open-helmets", "offroad-helmet", "abs-helmets", "open-half-helmets", "atv-helmets", "full-face-helmets",
+                 "double-visor", "full-helmets", "half-helmets", "open-face-helmets", "halley-helmets", "pp-helmets", "eps-shell",
+                 "modular-helmets", "summer-helmets", "new-helmets", "are-helmets", "kask", "motorcycle-helmets", "helmets", "kids-helmets",
+                 "motocross-helmets", "flip-up-helmets", "racing-helmets", "carbon-helmets", "carbon-fiber-helmets", "vintage-helmets",
+                 "retro-helmets", "bluetooth-helmets", "dirt-bike-helmets", "casco", "cascos", "casco-moto", "moto-helmets", "helmet-factory",
+                 "helmet-manufacturer", "dual-visor-helmets", "jet-helmets", "half-face-helmets", "full-face-helmet", "motorcycle-helmet-factory",
+                 "off-road-helmets", "cross-helmets", "fiberglass-helmets", "helmet-shell", "helmet-visor", "helmet-liner", "ece-2206-helmet",
+                 "ece-22-06-helmets", "scooter-helmets", "electric-scooter-helmets", "motorbike-helmets", "helmet-moto", "capacete",
+                 "kids-motorcycle-helmets", "children-helmets", "adult-helmets", "street-helmets", "sport-helmets", "touring-helmets",
+                 "adventure-helmets", "dual-sport-helmets", "smart-helmets", "led-helmets", "motorcycle-helmet-ece", "helmets-dot"]
+
+def factory_page(slug):
+    h = get(f"https://www.made-in-china.com/factory/{slug}.html")
+    rows = parse_nodes(h, slug)[0] if h else []
+    print(f"factory {slug}: {len(rows)} suppliers", file=sys.stderr)
+    return rows
+
+PRODUCT_TERMS = ["Motorcycle_Helmet", "Motorcycle_Helmets", "Motorcycle_Helmet_Factory", "Motorcycle_Helmet_Price", "Motorcycle_Helmet_Manufacturer",
+                 "Motorcycle_Helmet_Wholesale", "Motorcycle_Helmet_Ece", "Motorcycle_Helmet_DOT", "Ece_Motorcycle_Helmet", "DOT_Motorcycle_Helmet",
+                 "Full_Face_Motorcycle_Helmet", "Open_Face_Motorcycle_Helmet", "Half_Face_Motorcycle_Helmet", "Modular_Motorcycle_Helmet",
+                 "Motorcycle_Helmet_with_Bluetooth", "Children_Motorcycle_Helmet", "Electric_Scooter_Helmet", "Moto_Helmet", "Casco_Moto",
+                 "Helmet", "Full_Face_Helmet", "Modular_Helmet", "Flip_up_Helmet", "Open_Face_Helmet",
                  "Half_Face_Helmet", "Motocross_Helmet", "Off_Road_Helmet", "Ece_Helmet", "DOT_Helmet", "Kids_Motorcycle_Helmet", "Racing_Helmet",
                  "Carbon_Fiber_Helmet", "Fiberglass_Helmet", "Retro_Helmet", "Scooter_Helmet", "Motorbike_Helmet", "Dual_Visor_Helmet"]
 
-def product_search(term, max_pages=12):
-    """Product search pages: every helmet listing names its supplier's showroom. Only finds names; facts come from company_info."""
-    out, url, seen_pages = {}, f"https://www.made-in-china.com/products-search/hot-china-products/{term}.html", set()
-    stem = url.rsplit(".html", 1)[0]
-    for _ in range(max_pages):
-        if not url or url in seen_pages: break
-        seen_pages.add(url)
-        h = get(url)
+def product_search(term, max_pages=30):
+    """Product search pages (<term>.html, <term>-2.html, ...): every helmet listing names its supplier's showroom.
+    Only finds showrooms; company facts come from company_info."""
+    out = {}
+    stale = 0
+    for p in range(1, max_pages + 1):
+        h = get(f"https://www.made-in-china.com/products-search/hot-china-products/{term}{'' if p == 1 else f'-{p}'}.html")
         if not h: break
         s = BeautifulSoup(h, "html.parser")
+        before = len(out)
         for a in s.find_all("a", href=True):
             m = re.match(r"(?:https?:)?//([\w-]+)\.en\.made-in-china\.com/product/", a["href"])
             if not m: continue
@@ -155,14 +178,9 @@ def product_search(term, max_pages=12):
             if not moto_helmet(title): continue
             r = out.setdefault(m.group(1), {"sub": m.group(1), "name": "", "bt": "", "main": "", "emp": None, "area": None, "tour": None, "co_imgs": [], "prods": [], "kw": term, "via_products": True})
             r["prods"].append({"t": title, "url": absu(a["href"]).split("?")[0], "img": absu(img_src(im)) if im else None, "price": ""})
-        nxt = None
-        for a in s.find_all("a", href=True):
-            u = absu(a["href"])
-            if u and u.startswith(stem) and re.search(r"[_-]\d+\.html$", u) and u not in seen_pages:
-                n = int(re.search(r"(\d+)\.html$", u).group(1))
-                if n == len(seen_pages) + 1: nxt = u; break
-        url = nxt
-    print(f"products {term}: {len(out)} suppliers on {len(seen_pages)} pages", file=sys.stderr)
+        stale = stale + 1 if len(out) == before else 0
+        if stale >= 2: break
+    print(f"products {term}: {len(out)} suppliers on {p} pages", file=sys.stderr)
     return list(out.values())
 
 def norm(x):
@@ -282,7 +300,7 @@ def slug(name, sub):
 def build(r):
     info = r.get("info") or company_info(r["sub"])
     items = products(r["sub"], r["prods"])
-    if len(items) < 3: return None  # a real helmet supplier lists at least 3 motorcycle helmets
+    if len(items) < (2 if r["tierk"] == "maker" else 3): return None  # a real helmet supplier lists several motorcycle helmets
     showroom = f"https://{r['sub']}.en.made-in-china.com"
     ece, non, ph_prod, models, types = [], [], [], {}, set()
     for x in items:
@@ -311,6 +329,140 @@ def build(r):
     photos = {"page": showroom, "products": ph_prod, "factory": fact, "hero": hero, "models": models, "at": time.strftime("%Y-%m-%d")}
     return f, photos
 
+# ---------- Reevol Source (source.reevol.com): supplier cards from business registries and trade-fair exhibitor lists ----------
+# Its robots.txt allows crawlers (Crawl-delay: 5) and it publishes machine-readable cards at /en/suppliers/<slug>/ai-card.md.
+REEVOL = "https://source.reevol.com"
+_last_reevol = [0.0]
+
+def reevol_get(url):
+    if not allowed(url): print("  robots.txt disallows", url, file=sys.stderr); return None
+    for i in range(3):
+        wait = 5.2 - (time.time() - _last_reevol[0])
+        if wait > 0: time.sleep(wait)
+        _last_reevol[0] = time.time()
+        try:
+            r = requests.get(url, headers=H, timeout=30)
+        except Exception as e:
+            print("  fail", url, type(e).__name__, file=sys.stderr); continue
+        if r.status_code == 429: time.sleep(30 * (i + 1)); continue
+        return r.text if r.status_code == 200 else None
+    return None
+
+ZH = {"摩托头盔": "Motorcycle helmet", "电动车头盔": "E-bike / scooter helmet", "全盔": "Full face helmet", "半盔": "Half helmet", "3/4盔": "3/4 helmet",
+      "揭面盔": "Flip-up helmet", "越野盔": "Off-road helmet", "儿童盔": "Kids helmet", "碳纤盔": "Carbon fiber helmet", "头盔": "Helmet", "复古盔": "Retro helmet",
+      "安全帽": "Safety helmet", "骑行头盔": "Cycling helmet", "头盔镜片": "Helmet visor"}
+ZH_TYPES = {"全盔": "Full face", "半盔": "Half face", "3/4盔": "Open face (3/4)", "揭面盔": "Modular / flip-up", "越野盔": "Motocross / off-road",
+            "儿童盔": "Kids", "碳纤盔": "Carbon fiber", "复古盔": "Retro"}
+
+def card_field(md, label):
+    m = re.search(r"^- " + re.escape(label) + r":\s*(.+)$", md, re.M)
+    return m.group(1).strip() if m else None
+
+def reevol_card(slug):
+    url = f"{REEVOL}/en/suppliers/{slug}/"
+    md = reevol_get(url + "ai-card.md")
+    if not md: return None
+    subs = card_field(md, "Sub-industries") or ""
+    summary = md.split("## Summary", 1)[1][:1500] if "## Summary" in md else ""
+    blob = subs + " " + summary
+    # Motorcycle / e-bike helmets only: not hard hats, bicycle or tactical helmets.
+    if not (re.search(r"摩托头盔|电动车头盔|全盔|半盔|揭面盔|越野盔|3/4盔", subs) or re.search(r"motorcycle helmet|motorbike helmet|full[- ]face helmet|off-road helmet", blob, re.I)):
+        return None
+    name = card_field(md, "Legal name (en)") or slug.replace("-", " ").title()
+    loc = card_field(md, "Location") or ""
+    prov = next((p for p in PROVS if p.upper() in loc.upper()), None)
+    m = re.search(r"based in ([A-Z][a-zA-Z ]+?), " + (prov or "China"), summary) or re.search(r"located in ([A-Z][a-zA-Z ]+?)(?: City)?,", md)
+    city = m.group(1).strip() if m else (prov or "China")
+    yr = card_field(md, "Year founded")
+    words = [x.strip() for x in re.split(r"[,，]", subs) if x.strip()]
+    products = ", ".join(dict.fromkeys(ZH.get(w, w) for w in words if re.search(r"盔|helmet", w, re.I)))
+    types = sorted({ZH_TYPES[w] for w in words if w in ZH_TYPES}) or ["Full face"]
+    bt = (card_field(md, "Business type") or "").lower()
+    fairs = card_field(md, "Trade fairs")
+    web = card_field(md, "Website")
+    return {"id": "h-" + slug[:40].strip("-"), "kind": "helmet", "name": name, "legal": name, "zh": card_field(md, "Legal name (zh-CN)"),
+            "city": city, "prov": prov or "Not stated", "since": int(yr) if yr and yr.isdigit() else None,
+            "emp": (card_field(md, "Employee range") or "").replace("~", "–") or None, "cap": None, "area": None, "markets": None,
+            "web": web if web and web.startswith("http") else None, "contact": url, "addr": None, "about": None,
+            "emails": [], "emailNotes": [], "phone": None, "wa": None, "wc": None, "types": types, "cc": None, "eec": [], "non": [], "usd": None,
+            "src": [url], "notes": ("Trade fairs: " + fairs) if fairs else None, "products": products or "Motorcycle helmets",
+            "bt": "Manufacturer" if "manufacturer" in bt else ("Trading company" if "trad" in bt else "Not stated"), "via": "reevol",
+            "tier": "basic", "tour": None, "maker": "manufacturer" in bt or not bt, "sky": ["#5a1030", "#c4608c"], "c": "#b8155e"}
+
+HELMET_SLUG = re.compile(r"helmet|kask|casco|capacete")
+MAYBE_SLUG = re.compile(r"motorcycle-fitting|motor-fitting|motorcycle-part|motorcycle-accessor|moto-fitting|safety-protect|sports-goods|sport-goods|protective")
+
+_last_api = [0.0]
+
+def reevol_api(path, body=None):
+    """Reevol's public REST API for agents (/api/v1, no key, 60 requests/minute)."""
+    url = f"{REEVOL}/api/v1{path}"
+    if not allowed(url): return []
+    for i in range(3):
+        wait = 1.1 - (time.time() - _last_api[0])
+        if wait > 0: time.sleep(wait)
+        _last_api[0] = time.time()
+        try:
+            r = requests.post(url, json=body, headers=H, timeout=40) if body else requests.get(url, headers=H, timeout=40)
+        except Exception as e:
+            print("  fail", url, type(e).__name__, file=sys.stderr); continue
+        if r.status_code == 429: time.sleep(30 * (i + 1)); continue
+        if r.status_code != 200: print("  api", r.status_code, url, file=sys.stderr); return []
+        try: return r.json().get("results") or []
+        except Exception: return []
+    return []
+
+SEARCHES = ["helmet", "helmets", "motorcycle helmet", "moto helmet", "helmet co", "helmet manufacturing", "helmet industry", "helmet technology", "helmet factory",
+            "safety helmet", "sports helmet", "protective helmet", "头盔", "摩托车头盔", "头盔有限公司", "头盔制造", "安全帽", "盔业", "ECE helmet", "DOT helmet"]
+CITIES = ["Foshan", "Shunde", "Nanhai", "Jiangmen", "Heshan", "Guangzhou", "Dongguan", "Shenzhen", "Huizhou", "Xiamen", "Jinjiang", "Taizhou", "Wenzhou",
+          "Yongkang", "Jinhua", "Ningbo", "Hangzhou", "Wuyi", "Lishui", "Chongqing", "Changzhou", "Wuxi", "Suzhou", "Danyang", "Tianjin", "Hebei", "Yiwu", "Jiangsu", "Fujian", "Zhejiang"]
+BRIEFS = ["Motorcycle helmet manufacturer: full face, open face, modular and off-road helmets with ECE 22.06 / DOT certification",
+          "Factory producing ABS and fiberglass motorcycle helmets for export, OEM and ODM",
+          "Electric scooter and e-bike helmet maker, half helmets, 3C certified",
+          "Motocross off-road helmet and kids helmet manufacturer",
+          "Carbon fiber motorcycle helmet producer", "摩托车头盔生产厂家 全盔 半盔 揭面盔", "电动车头盔 安全头盔 工厂",
+          "Helmet visor, helmet liner and motorcycle riding gear factory"]
+
+def helmet_hit(x):
+    if (x.get("hqCountry") or "China") not in ("China", "CN", "中国"): return False
+    blob = " ".join(str(x.get(k) or "") for k in ("slug", "legalNameEn", "legalNameZh"))
+    return bool(re.search(r"helmet|头盔|盔业|盔", blob, re.I) or any(str(h).startswith("6506") for h in x.get("hsCodes") or []))
+
+def reevol_suppliers():
+    found = {}
+    def add(rs):
+        for x in rs:
+            if x.get("slug") and helmet_hit(x): found.setdefault(x["slug"], x)
+    for q in SEARCHES + [f"{c} helmet" for c in CITIES]:
+        add(reevol_api("/suppliers/search?query=" + requests.utils.quote(q) + "&limit=25"))
+    for hs in ("6506", "650610", "650691", "650699"):
+        for bt in ("", "&businessType=manufacturer", "&businessType=trading_company"):
+            add(reevol_api(f"/suppliers/by-hs-code/{hs}?country=China&limit=25{bt}"))
+    for b in BRIEFS:
+        for lo, hi in [(None, 1996), (1995, 2003), (2002, 2008), (2007, 2011), (2010, 2014), (2013, 2017), (2016, 2020), (2019, 2030), (None, None)]:
+            body = {"brief": b, "country": "China", "limit": 25}
+            if lo: body["foundedAfter"] = lo
+            if hi: body["foundedBefore"] = hi
+            add(reevol_api("/suppliers/match", body))
+        add(reevol_api("/suppliers/match", {"brief": b, "country": "China", "hsCodes": ["6506"], "limit": 25}))
+    print(f"reevol api: {len(found)} candidates before similar-suppliers pass", file=sys.stderr)
+    for slug in list(found)[:250]:
+        add(reevol_api(f"/suppliers/{slug}/similar?limit=25"))
+    # Plus helmet names in the public sitemap.
+    for i in range(2):
+        xml = reevol_get(f"{REEVOL}/sitemap/suppliers/{i}.xml") or ""
+        for sl in re.findall(r"/en/suppliers/([a-z0-9-]+)/</loc>", xml):
+            if HELMET_SLUG.search(sl): found.setdefault(sl, {"slug": sl})
+    # Strongest candidates first: helmet in the name, then HS 6506.
+    cand = sorted(found, key=lambda s: (not HELMET_SLUG.search(s) and not re.search("盔", found[s].get("legalNameZh") or ""), s))[:550]
+    print(f"reevol: {len(found)} candidates, checking {len(cand)} cards", file=sys.stderr)
+    out = []
+    for slug in cand:
+        f = reevol_card(slug)
+        if f: out.append(f)
+    print(f"reevol: {len(out)} motorcycle helmet companies", file=sys.stderr)
+    return out
+
 def main():
     rows = {}
     with ThreadPoolExecutor(4) as ex:
@@ -324,12 +476,21 @@ def main():
                 else:
                     rows[r["sub"]] = r
     with ThreadPoolExecutor(4) as ex:
+        for out in ex.map(factory_page, FACTORY_SLUGS):
+            for r in out:
+                if r["sub"] in rows:
+                    rows[r["sub"]]["prods"] += r["prods"]
+                    for k in ("main", "bt", "emp", "area"):
+                        rows[r["sub"]][k] = rows[r["sub"]][k] or r[k]
+                else:
+                    rows[r["sub"]] = r
+    with ThreadPoolExecutor(4) as ex:
         for out in ex.map(product_search, PRODUCT_TERMS):
             for r in out:
                 if r["sub"] in rows: rows[r["sub"]]["prods"] += r["prods"]
                 else: rows[r["sub"]] = r
     # Suppliers found only through product search: read their company page for name and main products.
-    bare = [r for r in rows.values() if r.get("via_products") and not r["main"]][:900]
+    bare = [r for r in rows.values() if r.get("via_products") and not r["main"]][:3000]
     with ThreadPoolExecutor(4) as ex:
         for r, info in zip(bare, ex.map(lambda r: company_info(r["sub"]), bare)):
             r["info"] = info
@@ -349,6 +510,8 @@ def main():
             base, i = f["id"], 2
             while f["id"] in ids: f["id"] = f"{base}-{i}"; i += 1
             ids.add(f["id"]); res.append(f); photos[f["id"]] = ph
+    # Reevol cards add helmet companies made-in-china doesn't list (no helmet list yet: the factory adds it when it claims the profile).
+    res += reevol_suppliers()
     # One profile per company (some run two showrooms): keep the one with more helmets.
     best = {}
     for f in res:
@@ -359,10 +522,35 @@ def main():
     # Big brands checked by hand (data/helmet_brands.json) come first.
     brands = json.load(open(f"{ROOT}/data/helmet_brands.json"))
     res = brands + [f for f in res if f["id"] not in {b["id"] for b in brands}]
+    seen_ids = set()
+    for f in res:
+        base, i = f["id"], 2
+        while f["id"] in seen_ids: f["id"] = f"{base}-{i}"; i += 1
+        seen_ids.add(f["id"])
     json.dump(res, open(f"{ROOT}/data/helmets.json", "w"), ensure_ascii=False, separators=(",", ":"))
     json.dump(photos, open(f"{ROOT}/data/helmet_photos.json", "w"), ensure_ascii=False, separators=(",", ":"))
     n_ece = sum(len(f["eec"]) for f in res); n_non = sum(len(f["non"]) for f in res)
     print(f"SUMMARY: {len(res)} helmet factories · {sum(1 for f in res if f['eec'])} with ECE helmets · {n_ece} ECE helmets · {n_non} non-ECE helmets · {sum(1 for f in res if f['prov'] != 'Not stated')} with province")
 
+def probe():
+    """Save a few raw pages into debug/ to check page formats and robots.txt answers."""
+    import os
+    os.makedirs(f"{ROOT}/debug", exist_ok=True)
+    urls = ["https://source.reevol.com/api/v1/openapi.json",
+            "https://source.reevol.com/api/v1/suppliers/search?query=motorcycle%20helmet",
+            "https://source.reevol.com/api/v1/suppliers/search?query=helmet&country=CN"]
+    with open(f"{ROOT}/debug/probe.txt", "w") as out:
+        for i, u in enumerate(urls):
+            ok = allowed(u)
+            st, n = "-", 0
+            if ok:
+                try:
+                    time.sleep(3); r = requests.get(u, headers=H, timeout=30); st, n = r.status_code, len(r.text)
+                    open(f"{ROOT}/debug/{i}.html", "w").write(r.text)
+                except Exception as e:
+                    st = type(e).__name__
+            out.write(f"{i} robots_ok={ok} status={st} len={n} {u}\n")
+
 if __name__ == "__main__":
-    main()
+    if "--probe" in sys.argv: probe()
+    else: main()
