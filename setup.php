@@ -12,6 +12,7 @@ db()->exec("CREATE TABLE IF NOT EXISTS edits (fid VARCHAR(64) PRIMARY KEY, data 
 db()->exec("CREATE TABLE IF NOT EXISTS news (id INTEGER PRIMARY KEY " . ($isMysql ? 'AUTO_INCREMENT' : 'AUTOINCREMENT') . ", fid VARCHAR(64) NOT NULL, title VARCHAR(200) NOT NULL, body $text, created_at VARCHAR(32) NOT NULL)");
 db()->exec("CREATE TABLE IF NOT EXISTS mail_log (id INTEGER PRIMARY KEY " . ($isMysql ? 'AUTO_INCREMENT' : 'AUTOINCREMENT') . ", recipient VARCHAR(200) NOT NULL, subject VARCHAR(250) NOT NULL, status VARCHAR(250) NOT NULL, sent_at VARCHAR(32) NOT NULL)");
 db()->exec("CREATE TABLE IF NOT EXISTS requests (id INTEGER PRIMARY KEY " . ($isMysql ? 'AUTO_INCREMENT' : 'AUTOINCREMENT') . ", fid VARCHAR(64) NOT NULL, kind VARCHAR(16) NOT NULL, name VARCHAR(120) NOT NULL, email VARCHAR(200) NOT NULL, body $text NOT NULL, created_at VARCHAR(32) NOT NULL)");
+db()->exec("CREATE TABLE IF NOT EXISTS buyers (id INTEGER PRIMARY KEY " . ($isMysql ? 'AUTO_INCREMENT' : 'AUTOINCREMENT') . ", email VARCHAR(200) NOT NULL UNIQUE, pass_hash VARCHAR(255) NOT NULL, profile $text NOT NULL, created_at VARCHAR(32) NOT NULL, updated_at VARCHAR(32) NOT NULL)");
 $hash = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && strlen((string)($_POST['password'] ?? '')) >= 10) {
     $hash = password_hash((string)$_POST['password'], PASSWORD_DEFAULT);

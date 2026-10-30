@@ -5,6 +5,8 @@ Live address: https://eec.renossmoto.com
 
 - `index.html` is the whole site (English, French, Chinese, Arabic).
 - `data/factories.json` holds the 485 factory profiles.
+- `data/expos.json` is the world motorcycle expo calendar (`#expos`). `ok: true` means the dates were checked on the linked source; `month: true` means only the usual month is known.
+- Buyer accounts (`#buyer`, `api/buyer.php`) store the buyer's interests in the `buyers` table, which is created automatically. Until the database is connected, a buyer's profile is kept on their own device. Admin sees all buyers at the bottom of the Admin page.
 - `api/` is the PHP backend: admin login, saved edits (rating, remove, contacts, 360° link), factory news, and email sending.
 - `setup.php` creates the database tables and your admin password hash.
 - `config.php` holds passwords. It lives only on the server and is never in Git.
