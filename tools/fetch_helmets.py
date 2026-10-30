@@ -211,7 +211,7 @@ def is_helmet_company(r):
     return None
 
 def moto_helmet(title):
-    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b|tape|reflective|buckle|tail box|luggage|\bbox\b|hat\b|\bpin\b|badge|keychain|key chain|medal|coin|display|stand|mannequin|wig|foam|epp|eps\b|charm|ornament", title, re.I)
+    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b|tape|reflective|buckle|tail box|luggage|\bbox\b|hat\b|\bpin\b|badge|keychain|key chain|medal|coin|display|stand|mannequin|wig|foam|epp|eps\b|charm|ornament|goggle|boxing|martial|\blights?\b|fire|\bwith (?:two |2 |a )?helmets?|bag\b|backpack|tricycle|\bmtb\b|bicycle|children|storage|space|compartment|\bwith (?:large|big)\b|\d+ ?w\b|forestry|industrial|skateboard|toddler", title, re.I)
 
 PROVS = ["Zhejiang", "Guangdong", "Jiangsu", "Fujian", "Shandong", "Chongqing", "Shanghai", "Hebei", "Henan", "Anhui", "Hunan", "Hubei",
          "Jiangxi", "Tianjin", "Beijing", "Sichuan", "Liaoning", "Shanxi", "Shaanxi", "Guangxi", "Yunnan", "Guizhou", "Hainan", "Jilin",
