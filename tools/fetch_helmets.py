@@ -364,5 +364,32 @@ def main():
     n_ece = sum(len(f["eec"]) for f in res); n_non = sum(len(f["non"]) for f in res)
     print(f"SUMMARY: {len(res)} helmet factories · {sum(1 for f in res if f['eec'])} with ECE helmets · {n_ece} ECE helmets · {n_non} non-ECE helmets · {sum(1 for f in res if f['prov'] != 'Not stated')} with province")
 
+def probe():
+    """Save a few raw pages into debug/ to check page formats and robots.txt answers."""
+    import os
+    os.makedirs(f"{ROOT}/debug", exist_ok=True)
+    urls = ["https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet.html",
+            "https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet-2.html",
+            "https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet_2.html",
+            "https://www.alibaba.com/showroom/motorcycle-helmet.html",
+            "https://www.alibaba.com/countrysearch/CN/motorcycle-helmet-supplier.html",
+            "https://www.globalsources.com/manufacturers/motorcycle-helmet.html",
+            "https://www.tradewheel.com/manufacturers/motorcycle-helmet/",
+            "https://www.hktdc.com/en/sourcing/motorcycle-helmet",
+            "https://www.diytrade.com/china/manufacturer/motorcycle-helmet.html",
+            "https://www.cantonfair.org.cn/en-US/search?keyword=helmet"]
+    with open(f"{ROOT}/debug/probe.txt", "w") as out:
+        for i, u in enumerate(urls):
+            ok = allowed(u)
+            st, n = "-", 0
+            if ok:
+                try:
+                    r = requests.get(u, headers=H, timeout=30); st, n = r.status_code, len(r.text)
+                    open(f"{ROOT}/debug/{i}.html", "w").write(r.text)
+                except Exception as e:
+                    st = type(e).__name__
+            out.write(f"{i} robots_ok={ok} status={st} len={n} {u}\n")
+
 if __name__ == "__main__":
-    main()
+    if "--probe" in sys.argv: probe()
+    else: main()
