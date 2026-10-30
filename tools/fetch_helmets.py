@@ -133,20 +133,24 @@ def listing(kw):
     print(f"{kw}: {len(out)} supplier rows", file=sys.stderr)
     return out
 
-PRODUCT_TERMS = ["Motorcycle_Helmet", "Motorcycle_Helmets", "Helmet", "Full_Face_Helmet", "Modular_Helmet", "Flip_up_Helmet", "Open_Face_Helmet",
+PRODUCT_TERMS = ["Motorcycle_Helmet", "Motorcycle_Helmets", "Motorcycle_Helmet_Factory", "Motorcycle_Helmet_Price", "Motorcycle_Helmet_Manufacturer",
+                 "Motorcycle_Helmet_Wholesale", "Motorcycle_Helmet_Ece", "Motorcycle_Helmet_DOT", "Ece_Motorcycle_Helmet", "DOT_Motorcycle_Helmet",
+                 "Full_Face_Motorcycle_Helmet", "Open_Face_Motorcycle_Helmet", "Half_Face_Motorcycle_Helmet", "Modular_Motorcycle_Helmet",
+                 "Motorcycle_Helmet_with_Bluetooth", "Children_Motorcycle_Helmet", "Electric_Scooter_Helmet", "Moto_Helmet", "Casco_Moto",
+                 "Helmet", "Full_Face_Helmet", "Modular_Helmet", "Flip_up_Helmet", "Open_Face_Helmet",
                  "Half_Face_Helmet", "Motocross_Helmet", "Off_Road_Helmet", "Ece_Helmet", "DOT_Helmet", "Kids_Motorcycle_Helmet", "Racing_Helmet",
                  "Carbon_Fiber_Helmet", "Fiberglass_Helmet", "Retro_Helmet", "Scooter_Helmet", "Motorbike_Helmet", "Dual_Visor_Helmet"]
 
-def product_search(term, max_pages=12):
-    """Product search pages: every helmet listing names its supplier's showroom. Only finds names; facts come from company_info."""
-    out, url, seen_pages = {}, f"https://www.made-in-china.com/products-search/hot-china-products/{term}.html", set()
-    stem = url.rsplit(".html", 1)[0]
-    for _ in range(max_pages):
-        if not url or url in seen_pages: break
-        seen_pages.add(url)
-        h = get(url)
+def product_search(term, max_pages=30):
+    """Product search pages (<term>.html, <term>-2.html, ...): every helmet listing names its supplier's showroom.
+    Only finds showrooms; company facts come from company_info."""
+    out = {}
+    stale = 0
+    for p in range(1, max_pages + 1):
+        h = get(f"https://www.made-in-china.com/products-search/hot-china-products/{term}{'' if p == 1 else f'-{p}'}.html")
         if not h: break
         s = BeautifulSoup(h, "html.parser")
+        before = len(out)
         for a in s.find_all("a", href=True):
             m = re.match(r"(?:https?:)?//([\w-]+)\.en\.made-in-china\.com/product/", a["href"])
             if not m: continue
@@ -155,13 +159,8 @@ def product_search(term, max_pages=12):
             if not moto_helmet(title): continue
             r = out.setdefault(m.group(1), {"sub": m.group(1), "name": "", "bt": "", "main": "", "emp": None, "area": None, "tour": None, "co_imgs": [], "prods": [], "kw": term, "via_products": True})
             r["prods"].append({"t": title, "url": absu(a["href"]).split("?")[0], "img": absu(img_src(im)) if im else None, "price": ""})
-        nxt = None
-        for a in s.find_all("a", href=True):
-            u = absu(a["href"])
-            if u and u.startswith(stem) and re.search(r"[_-]\d+\.html$", u) and u not in seen_pages:
-                n = int(re.search(r"(\d+)\.html$", u).group(1))
-                if n == len(seen_pages) + 1: nxt = u; break
-        url = nxt
+        stale = stale + 1 if len(out) == before else 0
+        if stale >= 2: break
     print(f"products {term}: {len(out)} suppliers on {len(seen_pages)} pages", file=sys.stderr)
     return list(out.values())
 
@@ -282,7 +281,7 @@ def slug(name, sub):
 def build(r):
     info = r.get("info") or company_info(r["sub"])
     items = products(r["sub"], r["prods"])
-    if len(items) < 3: return None  # a real helmet supplier lists at least 3 motorcycle helmets
+    if len(items) < (2 if r["tierk"] == "maker" else 3): return None  # a real helmet supplier lists several motorcycle helmets
     showroom = f"https://{r['sub']}.en.made-in-china.com"
     ece, non, ph_prod, models, types = [], [], [], {}, set()
     for x in items:
@@ -329,7 +328,7 @@ def main():
                 if r["sub"] in rows: rows[r["sub"]]["prods"] += r["prods"]
                 else: rows[r["sub"]] = r
     # Suppliers found only through product search: read their company page for name and main products.
-    bare = [r for r in rows.values() if r.get("via_products") and not r["main"]][:900]
+    bare = [r for r in rows.values() if r.get("via_products") and not r["main"]][:3000]
     with ThreadPoolExecutor(4) as ex:
         for r, info in zip(bare, ex.map(lambda r: company_info(r["sub"]), bare)):
             r["info"] = info
