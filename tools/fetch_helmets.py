@@ -189,6 +189,8 @@ def norm(x):
 NOT_HELMET = re.compile(r"bag|clean|machine|bluetooth|intercom|headset|headphone|earphone|walkie|decal|sticker|logo|badge|paint|line|mould|mold|"
                         r"safety helmet|hard hat|bump cap|welding|riot|ballistic|tactical|military|police|pad|ski|snow|bicycle|bike helmet|skate|equestrian|horse|climb|cycling|lock|holder|hook|camera", re.I)
 SELLER_NOT = re.compile(r"clean|bluetooth|intercom|headphone|earphone|headset|sunglass|goggle|rack|tent|awning|LED|bag|box|vending|bicycle|e-?bike|electric bike|kick scooter|children|toy|fitness", re.I)
+SELLER_FAR = re.compile(r"clean|bluetooth|intercom|headphone|earphone|headset|sunglass|tent|awning|vending|toy|fitness|car mat|seat cover", re.I)
+RIDE_MAIN = re.compile(r"motor|moto|scooter|helmet|riding|e-?bike|electric (?:bike|bicycle|vehicle)|sport|outdoor|protective|auto(?:mobile)? (?:and|&) motorcycle", re.I)
 RIDING = re.compile(r"motor|moto|scooter|riding|rider|atv|dirt|racing|helmet", re.I)
 
 def helmet_maker(main):
@@ -204,10 +206,12 @@ def is_helmet_company(r):
     if re.search(r"helmet", r["name"], re.I) and not NOT_HELMET.search(r["name"]) and r["prods"]: return "maker"
     if (re.search(r"motor|moto|riding gear|\bATV\b|dirt", r["main"], re.I) and not SELLER_NOT.search(r["main"])
             and sum(bool(moto_helmet(p["t"])) for p in r["prods"]) >= 1): return "seller"
+    # Any other supplier showing motorcycle helmets in product search; build() keeps it only if its own showroom lists 3+ of them.
+    if RIDE_MAIN.search(r["main"]) and not SELLER_FAR.search(r["main"]) and not NOT_HELMET.search(r["name"] or "") and any(moto_helmet(p["t"]) for p in r["prods"]): return "seller"
     return None
 
 def moto_helmet(title):
-    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b", title, re.I)
+    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b|tape|reflective|buckle|tail box|luggage|\bbox\b|hat\b|\bpin\b|badge|keychain|key chain|medal|coin|display|stand|mannequin|wig|foam|epp|eps\b|charm|ornament|goggle|boxing|martial|\blights?\b|fire|\bwith (?:two |2 |a )?helmets?|bag\b|backpack|tricycle|\bmtb\b|bicycle|children|storage|space|compartment|\bwith (?:large|big)\b|\d+ ?w\b|forestry|industrial|skateboard|toddler", title, re.I)
 
 PROVS = ["Zhejiang", "Guangdong", "Jiangsu", "Fujian", "Shandong", "Chongqing", "Shanghai", "Hebei", "Henan", "Anhui", "Hunan", "Hubei",
          "Jiangxi", "Tianjin", "Beijing", "Sichuan", "Liaoning", "Shanxi", "Shaanxi", "Guangxi", "Yunnan", "Guizhou", "Hainan", "Jilin",
@@ -363,6 +367,7 @@ def reevol_card(slug):
     md = reevol_get(url + "ai-card.md")
     if not md: return None
     subs = card_field(md, "Sub-industries") or ""
+    CARDS.append({"slug": slug, "subs": subs, "ind": card_field(md, "Industry"), "bt": card_field(md, "Business type"), "sum": md.split("## Summary", 1)[1][:400] if "## Summary" in md else md[:400]})
     summary = md.split("## Summary", 1)[1][:1500] if "## Summary" in md else ""
     blob = subs + " " + summary
     # Motorcycle / e-bike helmets only: not hard hats, bicycle or tactical helmets.
@@ -393,6 +398,8 @@ HELMET_SLUG = re.compile(r"helmet|kask|casco|capacete")
 MAYBE_SLUG = re.compile(r"motorcycle-fitting|motor-fitting|motorcycle-part|motorcycle-accessor|moto-fitting|safety-protect|sports-goods|sport-goods|protective")
 
 _last_api = [0.0]
+CARDS = []
+SEEN = {}
 
 def reevol_api(path, body=None):
     """Reevol's public REST API for agents (/api/v1, no key, 60 requests/minute)."""
@@ -407,7 +414,7 @@ def reevol_api(path, body=None):
         except Exception as e:
             print("  fail", url, type(e).__name__, file=sys.stderr); continue
         if r.status_code == 429: time.sleep(30 * (i + 1)); continue
-        if r.status_code != 200: print("  api", r.status_code, url, file=sys.stderr); return []
+        if r.status_code != 200: print("  api", r.status_code, url, r.text[:200], file=sys.stderr); return []
         try: return r.json().get("results") or []
         except Exception: return []
     return []
@@ -432,6 +439,7 @@ def reevol_suppliers():
     found = {}
     def add(rs):
         for x in rs:
+            if x.get("slug"): SEEN.setdefault(x["slug"], [x.get("legalNameEn"), x.get("legalNameZh"), x.get("hqCountry"), x.get("industryPrimary"), x.get("hsCodes")])
             if x.get("slug") and helmet_hit(x): found.setdefault(x["slug"], x)
     for q in SEARCHES + [f"{c} helmet" for c in CITIES]:
         add(reevol_api("/suppliers/search?query=" + requests.utils.quote(q) + "&limit=25"))
@@ -446,8 +454,10 @@ def reevol_suppliers():
             add(reevol_api("/suppliers/match", body))
         add(reevol_api("/suppliers/match", {"brief": b, "country": "China", "hsCodes": ["6506"], "limit": 25}))
     print(f"reevol api: {len(found)} candidates before similar-suppliers pass", file=sys.stderr)
+    sims = []
     for slug in list(found)[:250]:
-        add(reevol_api(f"/suppliers/{slug}/similar?limit=25"))
+        rs = reevol_api(f"/suppliers/{slug}/similar?limit=25"); sims += rs; add(rs)
+    print(f"reevol similar: {len(sims)} results, {len(found)} candidates after", file=sys.stderr)
     # Plus helmet names in the public sitemap.
     for i in range(2):
         xml = reevol_get(f"{REEVOL}/sitemap/suppliers/{i}.xml") or ""
@@ -498,6 +508,8 @@ def main():
             r["main"] = info.get("main") or ""; r["bt"] = info.get("bt") or ""
     for r in rows.values(): r["tierk"] = is_helmet_company(r)
     keep = [r for r in rows.values() if r["tierk"]]
+    keep.sort(key=lambda r: (r["tierk"] != "maker", -sum(bool(moto_helmet(p["t"])) for p in r["prods"])))
+    keep = keep[:1200]
     if "--rows" in sys.argv:
         json.dump([{k: r[k] for k in ("sub", "name", "bt", "main", "kw")} | {"n": len(r["prods"]), "t": [p["t"] for p in r["prods"][:3]], "keep": r["tierk"]} for r in rows.values()],
                   open(f"{ROOT}/data/helmet_rows.json", "w"), ensure_ascii=False, indent=0)
@@ -553,4 +565,7 @@ def probe():
 
 if __name__ == "__main__":
     if "--probe" in sys.argv: probe()
+    elif "--reevol" in sys.argv:
+        out = reevol_suppliers()
+        json.dump({"kept": [f["id"] for f in out], "cards": CARDS, "seen": SEEN}, open(f"{ROOT}/data/reevol_cards.json", "w"), ensure_ascii=False, indent=0)
     else: main()
