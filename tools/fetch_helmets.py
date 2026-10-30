@@ -481,19 +481,16 @@ def probe():
     """Save a few raw pages into debug/ to check page formats and robots.txt answers."""
     import os
     os.makedirs(f"{ROOT}/debug", exist_ok=True)
-    urls = ["https://source.reevol.com/robots.txt", "https://source.reevol.com/sitemap.xml", "https://source.reevol.com/llms.txt",
-            "https://source.reevol.com/en/suppliers/lanxi-yema-motorcycle-fittings/ai-card.md",
-            "https://source.reevol.com/en/search/?q=motorcycle+helmet", "https://source.reevol.com/en/industry/apparel/china/",
-            "https://www.alibaba.com/motorcycl-helmet-supplier-china-suppliers.html", "https://www.alibaba.com/motorcycle-helmet-suppliers.html",
-            "https://zjwatson.en.alibaba.com/company_profile.html", "https://leiden.en.alibaba.com/company_profile.html",
-            "https://freshdi.com/robots.txt", "https://freshdi.com/supplier/Foshan-Nanhai-Fushi-Helmet-Factory"]
+    urls = ["https://source.reevol.com/api/v1/openapi.json",
+            "https://source.reevol.com/api/v1/suppliers/search?query=motorcycle%20helmet",
+            "https://source.reevol.com/api/v1/suppliers/search?query=helmet&country=CN"]
     with open(f"{ROOT}/debug/probe.txt", "w") as out:
         for i, u in enumerate(urls):
             ok = allowed(u)
             st, n = "-", 0
             if ok:
                 try:
-                    r = requests.get(u, headers=H, timeout=30); st, n = r.status_code, len(r.text)
+                    time.sleep(3); r = requests.get(u, headers=H, timeout=30); st, n = r.status_code, len(r.text)
                     open(f"{ROOT}/debug/{i}.html", "w").write(r.text)
                 except Exception as e:
                     st = type(e).__name__
