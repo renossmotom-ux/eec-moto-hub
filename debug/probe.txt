@@ -1,0 +1,10 @@
+0 robots_ok=True status=200 len=884952 https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet.html
+1 robots_ok=True status=200 len=736032 https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet-2.html
+2 robots_ok=True status=200 len=735969 https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet_2.html
+3 robots_ok=True status=410 len=2671 https://www.alibaba.com/showroom/motorcycle-helmet.html
+4 robots_ok=True status=200 len=269980 https://www.alibaba.com/countrysearch/CN/motorcycle-helmet-supplier.html
+5 robots_ok=True status=429 len=138 https://www.globalsources.com/manufacturers/motorcycle-helmet.html
+6 robots_ok=True status=404 len=7950 https://www.tradewheel.com/manufacturers/motorcycle-helmet/
+7 robots_ok=True status=404 len=5620 https://www.hktdc.com/en/sourcing/motorcycle-helmet
+8 robots_ok=True status=403 len=2183 https://www.diytrade.com/china/manufacturer/motorcycle-helmet.html
+9 robots_ok=True status=200 len=1738 https://www.cantonfair.org.cn/en-US/search?keyword=helmet
