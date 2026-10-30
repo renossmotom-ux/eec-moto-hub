@@ -133,6 +133,25 @@ def listing(kw):
     print(f"{kw}: {len(out)} supplier rows", file=sys.stderr)
     return out
 
+# made-in-china's verified-factory pages (/factory/<slug>.html) for helmet words: mostly helmet specialists.
+FACTORY_SLUGS = ["ece-helmets", "helmets-ece", "ece-dot-helmets", "dot-ece-helmet", "dot-helmets", "dot-approved-helmets", "ece-casco",
+                 "helmets-cross-ece", "open-helmets", "offroad-helmet", "abs-helmets", "open-half-helmets", "atv-helmets", "full-face-helmets",
+                 "double-visor", "full-helmets", "half-helmets", "open-face-helmets", "halley-helmets", "pp-helmets", "eps-shell",
+                 "modular-helmets", "summer-helmets", "new-helmets", "are-helmets", "kask", "motorcycle-helmets", "helmets", "kids-helmets",
+                 "motocross-helmets", "flip-up-helmets", "racing-helmets", "carbon-helmets", "carbon-fiber-helmets", "vintage-helmets",
+                 "retro-helmets", "bluetooth-helmets", "dirt-bike-helmets", "casco", "cascos", "casco-moto", "moto-helmets", "helmet-factory",
+                 "helmet-manufacturer", "dual-visor-helmets", "jet-helmets", "half-face-helmets", "full-face-helmet", "motorcycle-helmet-factory",
+                 "off-road-helmets", "cross-helmets", "fiberglass-helmets", "helmet-shell", "helmet-visor", "helmet-liner", "ece-2206-helmet",
+                 "ece-22-06-helmets", "scooter-helmets", "electric-scooter-helmets", "motorbike-helmets", "helmet-moto", "capacete",
+                 "kids-motorcycle-helmets", "children-helmets", "adult-helmets", "street-helmets", "sport-helmets", "touring-helmets",
+                 "adventure-helmets", "dual-sport-helmets", "smart-helmets", "led-helmets", "motorcycle-helmet-ece", "helmets-dot"]
+
+def factory_page(slug):
+    h = get(f"https://www.made-in-china.com/factory/{slug}.html")
+    rows = parse_nodes(h, slug)[0] if h else []
+    print(f"factory {slug}: {len(rows)} suppliers", file=sys.stderr)
+    return rows
+
 PRODUCT_TERMS = ["Motorcycle_Helmet", "Motorcycle_Helmets", "Motorcycle_Helmet_Factory", "Motorcycle_Helmet_Price", "Motorcycle_Helmet_Manufacturer",
                  "Motorcycle_Helmet_Wholesale", "Motorcycle_Helmet_Ece", "Motorcycle_Helmet_DOT", "Ece_Motorcycle_Helmet", "DOT_Motorcycle_Helmet",
                  "Full_Face_Motorcycle_Helmet", "Open_Face_Motorcycle_Helmet", "Half_Face_Motorcycle_Helmet", "Modular_Motorcycle_Helmet",
@@ -320,6 +339,15 @@ def main():
                     for k in ("main", "bt", "emp", "area"):
                         rows[r["sub"]][k] = rows[r["sub"]][k] or r[k]
                     if not rows[r["sub"]]["tour"]: rows[r["sub"]]["tour"] = r["tour"]
+                else:
+                    rows[r["sub"]] = r
+    with ThreadPoolExecutor(4) as ex:
+        for out in ex.map(factory_page, FACTORY_SLUGS):
+            for r in out:
+                if r["sub"] in rows:
+                    rows[r["sub"]]["prods"] += r["prods"]
+                    for k in ("main", "bt", "emp", "area"):
+                        rows[r["sub"]][k] = rows[r["sub"]][k] or r[k]
                 else:
                     rows[r["sub"]] = r
     with ThreadPoolExecutor(4) as ex:
