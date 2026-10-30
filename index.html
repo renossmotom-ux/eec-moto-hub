@@ -253,13 +253,19 @@ body.pmode .hero .wrap{padding-bottom:12px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .done{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:12px;font-size:14px}
 .acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 18px}
-.acts button{display:flex;align-items:center;gap:10px;text-align:start;border:1.5px solid var(--accent);background:var(--surface);color:var(--fg);border-radius:var(--r);padding:12px 14px;min-width:0}
+.acts button{display:flex;align-items:center;gap:10px;text-align:start;border:1.5px solid var(--c,var(--accent));background:var(--surface);color:var(--fg);border-radius:var(--r);padding:12px 14px;min-width:0}
 .acts button:hover{background:var(--surface-2)}
-.acts .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font-weight:700;font-size:14px}
+.acts .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--c,var(--accent));color:var(--accent-fg);display:grid;place-items:center;font-weight:700;font-size:14px}
 .acts strong{display:block;font-size:17px}
 .acts small{display:block;color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
 @media (max-width:640px){.acts{grid-template-columns:1fr}}
 .sheet.wide{max-width:880px}
+.a-ph{--c:#1d4ed8}.a-cm{--c:#15803d}.a-rq{--c:#c2410c}
+.pcol{display:grid;gap:8px;align-content:start;min-width:0}
+.cacts{display:grid;gap:5px}
+.cacts button{border:0;border-radius:7px;background:var(--c);color:#fff;font-weight:700;font-size:13.5px;padding:8px 6px;text-align:center;overflow-wrap:anywhere;line-height:1.2}
+.cacts button:hover{filter:brightness(1.12)}
+@media (max-width:700px){.cacts button{font-size:12px;padding:7px 4px}}
 .seg{display:flex;gap:4px;background:var(--surface-2);border-radius:10px;padding:4px;margin:12px 0}
 .seg button{flex:1;border:0;background:transparent;color:var(--fg);font-weight:600;padding:8px 6px;border-radius:7px;font-size:14px}
 .seg button[aria-selected="true"]{background:var(--accent);color:var(--accent-fg)}
@@ -733,7 +739,11 @@ function renderResults(F){
   $("results").innerHTML = list.length ? list.slice(0, st.limit).map(f => {
     const ccTxt = f.cc ? `${f.cc[0]}–${f.cc[1]} cc` : "";
     return `<article class="card">
-      <a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${cardFace(f)}${f.ph ? `<span class="tag">${t("phN", photoCount(f))}</span>` : ""}</a>
+      <div class="pcol"><a class="photo" href="#${f.id}" aria-label="${esc(f.name)}">${scene(f,300,300,"c"+f.id)}${cardFace(f)}${f.ph ? `<span class="tag">${t("phN", photoCount(f))}</span>` : ""}</a>
+        <div class="cacts">
+          <button type="button" class="a-ph" data-act="photos" data-fid="${f.id}">📷 ${t("aPhotos")}</button>
+          <button type="button" class="a-cm" data-act="comm" data-fid="${f.id}">💬 ${t("aComm")}</button>
+          <button type="button" class="a-rq" data-act="req" data-fid="${f.id}">🤝 ${t("aReq")}</button></div></div>
       <div class="info">
         <h3><a href="#${f.id}">${esc(f.name)}</a> ${stars(f.rating)}</h3>
         <div class="legal">${esc(f.legal || "")}</div>
@@ -825,9 +835,9 @@ function renderProfile(f){
         <span class="badge b-non">${t("notClaimed")}</span></div></div>
   </div>
   <div class="acts">
-    <button type="button" data-act="photos"><span class="n">1</span><span><strong>📷 ${t("aPhotos")}</strong><small>${t("aPhotosS")}</small></span></button>
-    <button type="button" data-act="comm"><span class="n">2</span><span><strong>💬 ${t("aComm")}</strong><small>${t("aCommS")}</small></span></button>
-    <button type="button" data-act="req"><span class="n">3</span><span><strong>🤝 ${t("aReq")}</strong><small>${t("aReqS")}</small></span></button>
+    <button type="button" class="a-ph" data-act="photos"><span class="n">1</span><span><strong>📷 ${t("aPhotos")}</strong><small>${t("aPhotosS")}</small></span></button>
+    <button type="button" class="a-cm" data-act="comm"><span class="n">2</span><span><strong>💬 ${t("aComm")}</strong><small>${t("aCommS")}</small></span></button>
+    <button type="button" class="a-rq" data-act="req"><span class="n">3</span><span><strong>🤝 ${t("aReq")}</strong><small>${t("aReqS")}</small></span></button>
   </div>
   <div class="pgrid"><div>
     <section class="box"><h2>${t("facts")}</h2>
@@ -1038,7 +1048,9 @@ function openRequests(kind){
     }
     done.hidden = false; };
 }
-document.addEventListener("click", e => { const a = e.target.closest("[data-act]"); if (!a || !cur) return;
+document.addEventListener("click", e => { const a = e.target.closest("[data-act]"); if (!a) return;
+  if (a.dataset.fid) cur = factories(false, true).find(x => x.id === a.dataset.fid) || cur;
+  if (!cur) return;
   ({photos: openPhotos, comm: openComm, req: openRequests})[a.dataset.act](); });
 
 /* ---------- price request ---------- */
@@ -1206,7 +1218,7 @@ function renderLogin(){
     catch(err){ $("lg-e").textContent = err.message === "Wrong password." ? t("wrongPw") : err.message; } };
 }
 let view = "search";
-function render(){
+function render(){ closeOverlay();
   const id = location.hash.slice(1);
   const f = factories(isAdmin, true).find(x => x.id === id);
   const kind = f ? (f.kind === "helmet" ? "helmet" : "moto") : id === "helmets" ? "helmet" : id === "admin" ? KIND : "moto";
