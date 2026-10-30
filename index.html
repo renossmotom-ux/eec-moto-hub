@@ -290,7 +290,40 @@ body.pmode .hero .wrap{padding-bottom:12px}
 .stars{display:inline-flex;gap:1px;color:var(--brand-2);font-size:15px;letter-spacing:1px}
 .contact-v{font-weight:600;font-size:14px;overflow-wrap:anywhere}
 .copy{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;font-size:12px;padding:5px 9px;flex:none}
-#admin{padding-block:20px 40px}
+#admin,#expos,#buyer{padding-block:20px 40px}
+.ex-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:14px}
+.ex-bar label{display:grid;gap:4px;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.ex-bar label.f-opt{display:flex;text-transform:none;letter-spacing:0;font-size:14px;color:var(--fg)}
+.ex-bar select{font:inherit;font-size:14px;text-transform:none;letter-spacing:0;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+@media (max-width:760px){.ex-bar{grid-template-columns:1fr 1fr}.ex-bar label:first-child{grid-column:1/-1}}
+.ex-count{font-size:24px;margin-bottom:8px}
+.ex-month{font-size:20px;margin-top:10px;color:var(--accent)}
+.ex-card{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.ex-card.past{opacity:.6}
+.ex-card h3{font-size:20px}.ex-card h3 a{color:var(--fg);text-decoration:none}
+.ex-card .loc{color:var(--muted);font-size:14px;margin:2px 0 6px}
+.ex-card .badges{display:flex;gap:5px;flex-wrap:wrap}
+.ex-date{display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:6px 0;text-align:center;line-height:1.1}
+.ex-date b{font-family:var(--display);font-size:26px}.ex-date span{font-size:12px;font-weight:700;text-transform:uppercase}
+.ex-acts{display:grid;gap:6px;justify-items:end}
+.ex-acts .mini{text-decoration:none;white-space:nowrap}
+@media (max-width:640px){.ex-card{grid-template-columns:52px minmax(0,1fr)}.ex-acts{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center}}
+fieldset.int{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0}
+fieldset.int legend{font-weight:700;font-size:13px;padding:0 4px}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px}
+.form .int-opt{display:flex;align-items:center;gap:8px;font-weight:500;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer}
+.form .int-opt input{width:18px;height:18px;accent-color:var(--accent);flex:none}
+.int-opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.dash{display:grid;gap:18px}.dash .box + .box{margin-top:0}
+.mcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.mcard{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px;color:var(--fg);text-decoration:none;background:var(--bg)}
+.mcard > span:last-child{display:grid;gap:3px;min-width:0}
+.mcard .badges{display:flex;gap:4px;flex-wrap:wrap}
+.mface{position:relative;display:block;width:64px;height:64px;border-radius:8px;overflow:hidden;background:var(--surface-2)}
+.mface img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mface .logo-face{position:absolute;inset:0;display:grid;place-items:center;background:#fff;padding:6px}.mface .logo-face img{position:static;width:100%;height:100%;object-fit:contain}
+.mface .name-face{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700;text-align:center;padding:2px}
+.svc{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}.svc .box{margin:0}.svc p{font-size:14px;margin:6px 0 10px}
 .adm-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px}
 .adm-bar h2{font-size:28px;font-weight:700}
 .adm-table{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
@@ -338,12 +371,14 @@ body.pmode .hero .wrap{padding-bottom:12px}
         <div class="lang" role="group" aria-label="Language">
           <button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ar">عربي</button>
         </div>
+        <button class="out" type="button" id="buyer-login">Buyer sign in</button>
         <button class="out" type="button" id="factory-login" data-t="factorySignIn">Factory sign in</button>
       </div>
     </div>
     <div class="tabs" aria-label="Sections">
       <button type="button" class="on" id="tab-dir" data-t="tabFactories">Motorcycles</button>
       <button type="button" id="tab-helmets" data-t="tabHelmets">Helmets</button>
+      <button type="button" id="tab-expos" data-t="tabExpos">Expos</button>
       <button type="button" id="tab-admin" hidden data-t="tabAdmin">Admin</button>
     </div>
     <h1 data-t="heroTitle">Find your next motorcycle factory</h1>
@@ -389,6 +424,8 @@ body.pmode .hero .wrap{padding-bottom:12px}
 </main>
 <main class="wrap" id="profile" hidden></main>
 <main class="wrap" id="admin" hidden></main>
+<main class="wrap" id="expos" hidden></main>
+<main class="wrap" id="buyer" hidden></main>
 <div class="overlay" id="overlay" hidden></div>
 <div class="toast" id="toast" hidden></div>
 
@@ -598,6 +635,93 @@ const types = () => KIND === "helmet" ? HTYPES : TYPES;
 const prices = () => KIND === "helmet" ? HPR : PR;
 
 for (const l in HUB) Object.assign(T[l], HUB[l]);
+// Buyer accounts and expo calendar
+const BX = {
+en:{tabExpos:"Expos",buyerSignIn:"Buyer sign in",myDash:"My dashboard",
+ expoTitle:"World motorcycle expo calendar",expoSub:"Motorcycle, scooter, e-bike, helmet and parts fairs worldwide. Filter by country, month and product.",
+ exCountry:"Country",exProduct:"Product",exMonth:"Month",allCountries:"All countries",allProducts:"All products",allMonths:"All months",showPast:"Show past expos",
+ exFound:n=>`${n} ${n===1?"expo":"expos"}`,exOk:"Dates confirmed",exTbc:"Date to confirm",exUsually:"Usually in",exPast:"Past",
+ aud_trade:"Trade fair",aud_public:"Public show",aud_both:"Trade + public",exWeb:"Official website",exSrc:"Source",addCal:"Add to calendar",
+ exNone:"No expo matches these filters.",exNote:"Dates come from the organisers' sites and public trade-fair calendars, linked on each expo. “Date to confirm” means only the usual month is known: check the official website before booking travel.",
+ p_moto:"Motorcycles",p_electric:"Electric",p_scooter:"Scooters",p_offroad:"Off-road & ATV",p_helmets:"Helmets",p_parts:"Parts & accessories",p_apparel:"Riding gear",p_ebike:"E-bikes",p_services:"Services",
+ i_moto_eec:"Motorcycles with EEC",i_moto_non:"Motorcycles without EEC",i_electric:"Electric motorcycles",i_scooter:"Scooters",i_offroad:"Off-road, dirt bikes & ATV",i_tricycle:"Cargo tricycles",i_helmet_ece:"Helmets with ECE",i_helmet_non:"Helmets without ECE",i_parts:"Spare parts & accessories",i_apparel:"Riding gear & apparel",i_ebike:"E-bikes",
+ i_svc_eec:"EEC homologation help",i_svc_ship:"Shipping & customs to Morocco",i_svc_agent:"Become an agent or distributor",i_svc_visit:"Factory visits & sourcing trips",i_expos:"Expos & trade fairs",
+ g_products:"Products",g_services:"Services",
+ suTitle:"Create your buyer account",suSub:"Free. Tell us what you buy and your dashboard shows the matching factories, helmets and expos.",liTitle:"Buyer sign in",
+ yourName:"Your name",company:"Company",country:"Country",pwHint:"Password (at least 8 characters)",interestsQ:"What products or services are you interested in? Pick as many as you want.",
+ createAcc:"Create my account",haveAcc:"Already have an account? Sign in",noAcc:"New buyer? Create an account",needOne:"Pick at least one product or service.",
+ localNote:"Saved on this device. Online buyer accounts open as soon as the site's database is connected.",noDbLogin:"Online buyer accounts open as soon as the site's database is connected. Create your profile on this device for now.",
+ hello:n=>`Welcome, ${n}`,editInterests:"Edit my interests",dFactories:"Motorcycle factories for you",dHelmets:"Helmet companies for you",dExpos:"Upcoming expos for you",dServices:"Services you asked for",
+ seeAll:n=>`See all ${n}`,dNone:"Nothing matches yet.",askHub:"Ask EEC Moto Hub",
+ s_svc_eec:"We work with the factory to get EEC (e-mark) homologation for a non-EEC model you want to sell in Morocco or Europe.",
+ s_svc_ship:"Sea freight from Chinese ports to Casablanca or Tanger Med, customs clearance and inspection before loading.",
+ s_svc_agent:"Represent a Chinese factory in your country. Open a factory profile and press Requests → Become an agent.",
+ s_svc_visit:"Visit factories in Chongqing, Zhejiang, Jiangsu or Guangdong, often combined with the Canton Fair or CIMAMotor.",
+ adminBuyers:"Buyers",buyersNone:"No buyer accounts yet.",buyersNoDb:"Buyer accounts appear here once the database is connected.",emailBuyers:"Email all buyers (BCC)",colInterests:"Interests",colSince:"Since"},
+fr:{tabExpos:"Salons",buyerSignIn:"Connexion acheteur",myDash:"Mon tableau de bord",
+ expoTitle:"Calendrier mondial des salons moto",expoSub:"Salons de motos, scooters, vélos électriques, casques et pièces dans le monde. Filtrez par pays, mois et produit.",
+ exCountry:"Pays",exProduct:"Produit",exMonth:"Mois",allCountries:"Tous les pays",allProducts:"Tous les produits",allMonths:"Tous les mois",showPast:"Afficher les salons passés",
+ exFound:n=>`${n} salon${n>1?"s":""}`,exOk:"Dates confirmées",exTbc:"Date à confirmer",exUsually:"Habituellement en",exPast:"Passé",
+ aud_trade:"Salon professionnel",aud_public:"Salon grand public",aud_both:"Pro + grand public",exWeb:"Site officiel",exSrc:"Source",addCal:"Ajouter au calendrier",
+ exNone:"Aucun salon ne correspond à ces filtres.",exNote:"Les dates viennent des sites des organisateurs et de calendriers publics de salons, indiqués pour chaque salon. « Date à confirmer » signifie que seul le mois habituel est connu : vérifiez le site officiel avant de réserver.",
+ p_moto:"Motos",p_electric:"Électrique",p_scooter:"Scooters",p_offroad:"Tout-terrain & quad",p_helmets:"Casques",p_parts:"Pièces & accessoires",p_apparel:"Équipement",p_ebike:"Vélos électriques",p_services:"Services",
+ i_moto_eec:"Motos homologuées CEE",i_moto_non:"Motos non CEE",i_electric:"Motos électriques",i_scooter:"Scooters",i_offroad:"Tout-terrain, cross & quad",i_tricycle:"Triporteurs",i_helmet_ece:"Casques ECE",i_helmet_non:"Casques non ECE",i_parts:"Pièces détachées & accessoires",i_apparel:"Équipement du motard",i_ebike:"Vélos électriques",
+ i_svc_eec:"Aide à l'homologation CEE",i_svc_ship:"Transport & douane vers le Maroc",i_svc_agent:"Devenir agent ou distributeur",i_svc_visit:"Visites d'usines & voyages d'achat",i_expos:"Salons & foires",
+ g_products:"Produits",g_services:"Services",
+ suTitle:"Créez votre compte acheteur",suSub:"Gratuit. Dites-nous ce que vous achetez et votre tableau de bord affiche les usines, casques et salons qui correspondent.",liTitle:"Connexion acheteur",
+ yourName:"Votre nom",company:"Société",country:"Pays",pwHint:"Mot de passe (8 caractères minimum)",interestsQ:"Quels produits ou services vous intéressent ? Choisissez-en autant que vous voulez.",
+ createAcc:"Créer mon compte",haveAcc:"Déjà un compte ? Connectez-vous",noAcc:"Nouvel acheteur ? Créez un compte",needOne:"Choisissez au moins un produit ou service.",
+ localNote:"Enregistré sur cet appareil. Les comptes acheteurs en ligne ouvrent dès que la base de données du site est connectée.",noDbLogin:"Les comptes acheteurs en ligne ouvrent dès que la base de données du site est connectée. Créez votre profil sur cet appareil en attendant.",
+ hello:n=>`Bienvenue, ${n}`,editInterests:"Modifier mes intérêts",dFactories:"Usines de motos pour vous",dHelmets:"Fabricants de casques pour vous",dExpos:"Prochains salons pour vous",dServices:"Services demandés",
+ seeAll:n=>`Voir les ${n}`,dNone:"Rien ne correspond pour l'instant.",askHub:"Demander à EEC Moto Hub",
+ s_svc_eec:"Nous travaillons avec l'usine pour obtenir l'homologation CEE (e-mark) d'un modèle non CEE que vous voulez vendre au Maroc ou en Europe.",
+ s_svc_ship:"Fret maritime des ports chinois vers Casablanca ou Tanger Med, dédouanement et inspection avant chargement.",
+ s_svc_agent:"Représentez une usine chinoise dans votre pays. Ouvrez un profil d'usine puis Demandes → Devenir agent.",
+ s_svc_visit:"Visitez des usines à Chongqing, Zhejiang, Jiangsu ou Guangdong, souvent avec la Foire de Canton ou CIMAMotor.",
+ adminBuyers:"Acheteurs",buyersNone:"Aucun compte acheteur pour l'instant.",buyersNoDb:"Les comptes acheteurs apparaîtront ici dès que la base de données sera connectée.",emailBuyers:"Écrire à tous les acheteurs (CCI)",colInterests:"Intérêts",colSince:"Depuis"},
+zh:{tabExpos:"展会",buyerSignIn:"买家登录",myDash:"我的主页",
+ expoTitle:"全球摩托车展会日历",expoSub:"全球摩托车、踏板车、电动自行车、头盔和配件展会。可按国家、月份和产品筛选。",
+ exCountry:"国家",exProduct:"产品",exMonth:"月份",allCountries:"所有国家",allProducts:"所有产品",allMonths:"所有月份",showPast:"显示已结束的展会",
+ exFound:n=>`${n} 个展会`,exOk:"日期已确认",exTbc:"日期待确认",exUsually:"通常在",exPast:"已结束",
+ aud_trade:"专业展",aud_public:"公众展",aud_both:"专业 + 公众",exWeb:"官方网站",exSrc:"来源",addCal:"加入日历",
+ exNone:"没有符合筛选条件的展会。",exNote:"日期来自主办方网站和公开的展会日历，每个展会都附有来源。“日期待确认”表示只知道通常举办的月份：订行程前请查看官网。",
+ p_moto:"摩托车",p_electric:"电动",p_scooter:"踏板车",p_offroad:"越野车和全地形车",p_helmets:"头盔",p_parts:"配件",p_apparel:"骑行装备",p_ebike:"电动自行车",p_services:"服务",
+ i_moto_eec:"有 EEC 认证的摩托车",i_moto_non:"无 EEC 认证的摩托车",i_electric:"电动摩托车",i_scooter:"踏板车",i_offroad:"越野车、林道车和全地形车",i_tricycle:"货运三轮车",i_helmet_ece:"有 ECE 认证的头盔",i_helmet_non:"无 ECE 认证的头盔",i_parts:"零配件",i_apparel:"骑行装备和服装",i_ebike:"电动自行车",
+ i_svc_eec:"EEC 认证协助",i_svc_ship:"运输和清关到摩洛哥",i_svc_agent:"成为代理或经销商",i_svc_visit:"工厂参观和采购之旅",i_expos:"展会",
+ g_products:"产品",g_services:"服务",
+ suTitle:"创建买家账户",suSub:"免费。告诉我们您采购什么，您的主页会显示匹配的工厂、头盔和展会。",liTitle:"买家登录",
+ yourName:"您的姓名",company:"公司",country:"国家",pwHint:"密码（至少 8 个字符）",interestsQ:"您对哪些产品或服务感兴趣？可多选。",
+ createAcc:"创建账户",haveAcc:"已有账户？登录",noAcc:"新买家？创建账户",needOne:"请至少选择一项产品或服务。",
+ localNote:"已保存在此设备上。网站数据库连接后即可开通在线买家账户。",noDbLogin:"网站数据库连接后即可开通在线买家账户。请先在此设备上创建资料。",
+ hello:n=>`欢迎，${n}`,editInterests:"修改我的兴趣",dFactories:"为您推荐的摩托车工厂",dHelmets:"为您推荐的头盔公司",dExpos:"为您推荐的近期展会",dServices:"您需要的服务",
+ seeAll:n=>`查看全部 ${n} 个`,dNone:"暂无匹配。",askHub:"咨询 EEC Moto Hub",
+ s_svc_eec:"我们与工厂合作，为您想在摩洛哥或欧洲销售的非 EEC 车型办理 EEC（e-mark）认证。",
+ s_svc_ship:"从中国港口海运到卡萨布兰卡或丹吉尔地中海港，清关及装船前验货。",
+ s_svc_agent:"在您的国家代理一家中国工厂。打开工厂资料，点击“请求 → 成为代理”。",
+ s_svc_visit:"参观重庆、浙江、江苏或广东的工厂，通常与广交会或重庆摩博会同行。",
+ adminBuyers:"买家",buyersNone:"还没有买家账户。",buyersNoDb:"数据库连接后，买家账户会显示在这里。",emailBuyers:"群发邮件给所有买家（密送）",colInterests:"兴趣",colSince:"注册时间"},
+ar:{tabExpos:"المعارض",buyerSignIn:"دخول المشتري",myDash:"لوحتي",
+ expoTitle:"تقويم معارض الدراجات النارية في العالم",expoSub:"معارض الدراجات النارية والسكوتر والدراجات الكهربائية والخوذ وقطع الغيار حول العالم. صفِّ حسب البلد والشهر والمنتج.",
+ exCountry:"البلد",exProduct:"المنتج",exMonth:"الشهر",allCountries:"كل البلدان",allProducts:"كل المنتجات",allMonths:"كل الأشهر",showPast:"عرض المعارض السابقة",
+ exFound:n=>`${n} معرض`,exOk:"التواريخ مؤكدة",exTbc:"التاريخ قيد التأكيد",exUsually:"عادةً في",exPast:"انتهى",
+ aud_trade:"معرض مهني",aud_public:"معرض للجمهور",aud_both:"مهني + جمهور",exWeb:"الموقع الرسمي",exSrc:"المصدر",addCal:"أضف إلى التقويم",
+ exNone:"لا يوجد معرض يطابق هذه الفلاتر.",exNote:"التواريخ مأخوذة من مواقع المنظمين وتقاويم المعارض العامة، والمصدر مذكور لكل معرض. «التاريخ قيد التأكيد» يعني أن الشهر المعتاد فقط معروف: تحقق من الموقع الرسمي قبل حجز السفر.",
+ p_moto:"دراجات نارية",p_electric:"كهربائية",p_scooter:"سكوتر",p_offroad:"طرق وعرة و ATV",p_helmets:"خوذ",p_parts:"قطع غيار وإكسسوارات",p_apparel:"معدات القيادة",p_ebike:"دراجات كهربائية",p_services:"خدمات",
+ i_moto_eec:"دراجات نارية بشهادة EEC",i_moto_non:"دراجات نارية بدون EEC",i_electric:"دراجات نارية كهربائية",i_scooter:"سكوتر",i_offroad:"طرق وعرة، موتوكروس و ATV",i_tricycle:"دراجات ثلاثية للبضائع",i_helmet_ece:"خوذ بشهادة ECE",i_helmet_non:"خوذ بدون ECE",i_parts:"قطع غيار وإكسسوارات",i_apparel:"معدات وملابس القيادة",i_ebike:"دراجات كهربائية",
+ i_svc_eec:"المساعدة في شهادة EEC",i_svc_ship:"الشحن والجمارك إلى المغرب",i_svc_agent:"أن تصبح وكيلاً أو موزعاً",i_svc_visit:"زيارة المصانع ورحلات الشراء",i_expos:"المعارض",
+ g_products:"المنتجات",g_services:"الخدمات",
+ suTitle:"أنشئ حساب المشتري",suSub:"مجاناً. أخبرنا بما تشتريه وستعرض لوحتك المصانع والخوذ والمعارض المناسبة.",liTitle:"دخول المشتري",
+ yourName:"اسمك",company:"الشركة",country:"البلد",pwHint:"كلمة المرور (8 أحرف على الأقل)",interestsQ:"ما المنتجات أو الخدمات التي تهمك؟ اختر ما تشاء.",
+ createAcc:"إنشاء حسابي",haveAcc:"لديك حساب؟ سجّل الدخول",noAcc:"مشترٍ جديد؟ أنشئ حساباً",needOne:"اختر منتجاً أو خدمة واحدة على الأقل.",
+ localNote:"حُفظ على هذا الجهاز. تُفتح حسابات المشترين على الإنترنت فور ربط قاعدة بيانات الموقع.",noDbLogin:"تُفتح حسابات المشترين على الإنترنت فور ربط قاعدة بيانات الموقع. أنشئ ملفك على هذا الجهاز الآن.",
+ hello:n=>`مرحباً، ${n}`,editInterests:"تعديل اهتماماتي",dFactories:"مصانع دراجات نارية لك",dHelmets:"شركات خوذ لك",dExpos:"معارض قادمة لك",dServices:"الخدمات التي طلبتها",
+ seeAll:n=>`عرض الكل (${n})`,dNone:"لا توجد نتائج بعد.",askHub:"اسأل EEC Moto Hub",
+ s_svc_eec:"نعمل مع المصنع للحصول على شهادة EEC (e-mark) لطراز غير معتمد تريد بيعه في المغرب أو أوروبا.",
+ s_svc_ship:"شحن بحري من الموانئ الصينية إلى الدار البيضاء أو طنجة المتوسط، تخليص جمركي وفحص قبل التحميل.",
+ s_svc_agent:"مثّل مصنعاً صينياً في بلدك. افتح ملف المصنع ثم الطلبات ← أن تصبح وكيلاً.",
+ s_svc_visit:"زر مصانع في تشونغتشينغ أو تشجيانغ أو جيانغسو أو قوانغدونغ، غالباً مع معرض كانتون أو CIMAMotor.",
+ adminBuyers:"المشترون",buyersNone:"لا توجد حسابات مشترين بعد.",buyersNoDb:"ستظهر حسابات المشترين هنا بعد ربط قاعدة البيانات.",emailBuyers:"راسل كل المشترين (نسخة مخفية)",colInterests:"الاهتمامات",colSince:"منذ"}};
+for (const l in BX) Object.assign(T[l], BX[l]);
 let lang = "en";
 try { const l = localStorage.getItem("emh-lang"); if (T[l]) lang = l; } catch(_) {}
 let KIND = "moto";  // "moto" or "helmet": which directory is open
@@ -620,7 +744,7 @@ async function api(path, data){
     {method:"POST", credentials:"same-origin", headers:{"Content-Type":"application/json","X-Requested-With":"eec"}, body:JSON.stringify(data)};
   const r = await fetch("api/" + path, opt);
   let j = {}; try { j = await r.json(); } catch(_) {}
-  if (!r.ok || j.error) throw new Error(j.error || ("HTTP " + r.status));
+  if (!r.ok || j.error) throw Object.assign(new Error(j.error || ("HTTP " + r.status)), {status: r.status});
   return j;
 }
 async function loadServer(){
@@ -1114,7 +1238,8 @@ function renderAdmin(){
           ${f.emails.length?`<button class="mini" type="button" data-mail1="${f.id}">✉</button>`:""}
           <button class="mini${f.removed?"":" danger"}" type="button" data-toggle="${f.id}">${f.removed ? t("restore") : t("remove")}</button></td>
       </tr>`).join("")}</tbody></table></div>
-    <div id="mailbox"></div>`;
+    <div id="mailbox"></div><div id="adm-buyers"></div>`;
+  renderAdminBuyers();
   $("m-all").onclick = () => compose(withMail);
   $("logout").onclick = async () => { try { await api("login.php", {action:"logout"}); } catch(_) {} isAdmin = false; db = null; $("tab-admin").hidden = true; go("#"); };
   $("m-sel").onclick = () => compose(F.filter(f => sel.has(f.id)));
@@ -1189,6 +1314,185 @@ $("admin").addEventListener("click", e => {
 });
 $("admin").addEventListener("change", e => { const c = e.target.closest("[data-sel]"); if (c){ c.checked ? sel.add(c.dataset.sel) : sel.delete(c.dataset.sel); const b = $("m-sel"); b.disabled = !sel.size; b.textContent = `${t("emailSel")} (${sel.size})`; } });
 
+/* ---------- expo calendar ---------- */
+let EXPOS = [];  // data/expos.json: {id,name,city,country,cc,start,end,month (only the usual month is known),ok (dates checked),aud,p,web,src,note}
+const ex = {country:"", prod:"", month:"", past:false};
+const EX_PRODUCTS = ["moto","electric","scooter","offroad","helmets","parts","apparel","ebike","services"];
+const today = () => new Date().toISOString().slice(0, 10);
+const monthEnd = d => { const [y, m] = d.split("-").map(Number); return new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10); };
+const exEnd = e => e.month ? monthEnd(e.start) : e.end;
+const flag = cc => String.fromCodePoint(...[...cc].map(c => 127397 + c.charCodeAt(0)));
+const loc = () => lang === "zh" ? "zh-CN" : lang === "ar" ? "ar-MA" : lang;
+const fmtD = (d, o) => new Intl.DateTimeFormat(loc(), {timeZone:"UTC", ...o}).format(new Date(d + "T00:00:00Z"));
+const fmtMonth = ym => fmtD(ym + "-01", {month:"long", year:"numeric"});
+function exDates(e){
+  if (e.month) return `${t("exUsually")} ${fmtMonth(e.start.slice(0, 7))}`;
+  if (e.start === e.end) return fmtD(e.start, {day:"numeric", month:"short", year:"numeric"});
+  return `${fmtD(e.start, {day:"numeric", month:"short"})} – ${fmtD(e.end, {day:"numeric", month:"short", year:"numeric"})}`;
+}
+function icsHref(e){
+  const d = s => s.replaceAll("-", ""), next = new Date(e.end + "T00:00:00Z"); next.setUTCDate(next.getUTCDate() + 1);
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//EEC Moto Hub//Expos//EN","BEGIN:VEVENT",`UID:${e.id}@eec.renossmoto.com`,`DTSTAMP:${d(today())}T000000Z`,
+    `DTSTART;VALUE=DATE:${d(e.start)}`,`DTEND;VALUE=DATE:${d(next.toISOString().slice(0, 10))}`,`SUMMARY:${e.name}`,`LOCATION:${e.city}, ${e.country}`,`URL:${e.web}`,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  return "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+}
+function expoCard(e){
+  const past = exEnd(e) < today();
+  return `<article class="ex-card${past ? " past" : ""}">
+    <div class="ex-date"><b>${e.month ? "~" : esc(fmtD(e.start, {day:"numeric"}))}</b><span>${esc(fmtD(e.start, {month:"short"}))}</span></div>
+    <div class="ex-info">
+      <h3><a href="${esc(e.web)}" target="_blank" rel="noopener">${esc(e.name)}</a></h3>
+      <div class="loc">${flag(e.cc)} ${esc(e.city)}, ${esc(e.country)} · ${esc(exDates(e))}</div>
+      <div class="badges">${e.p.map(p => `<span class="badge b-non">${t("p_" + p)}</span>`).join("")}
+        <span class="badge b-eec">${t("aud_" + e.aud)}</span>
+        ${past ? `<span class="badge b-non">${t("exPast")}</span>` : e.ok ? `<span class="badge b-ok">✓ ${t("exOk")}</span>` : `<span class="badge b-warn">${t("exTbc")}</span>`}</div>
+      ${e.note ? `<div class="from">${esc(e.note)}</div>` : ""}
+    </div>
+    <div class="ex-acts"><a class="btn sec" href="${esc(e.web)}" target="_blank" rel="noopener">${t("exWeb")}</a>
+      ${e.ok && !past ? `<a class="mini" href="${icsHref(e)}" download="${e.id}.ics">📅 ${t("addCal")}</a>` : ""}
+      <a class="from" href="${esc(e.src)}" target="_blank" rel="noopener">${t("exSrc")} ↗</a></div>
+  </article>`;
+}
+function expoList(f){
+  return EXPOS.filter(e => (f.past || exEnd(e) >= today()) && (!f.country || e.country === f.country) && (!f.prod || e.p.includes(f.prod))
+    && (!f.prods || e.p.some(p => f.prods.includes(p))) && (!f.month || e.start.slice(0, 7) === f.month)).sort((a, b) => a.start.localeCompare(b.start));
+}
+function renderExpos(){
+  const list = expoList(ex);
+  const months = [...new Set(EXPOS.filter(e => ex.past || exEnd(e) >= today()).map(e => e.start.slice(0, 7)))].sort();
+  const sel = (id, all, opts, v) => `<select id="${id}"><option value="">${all}</option>${opts.map(([k, l]) => `<option value="${esc(k)}" ${k === v ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
+  let lastM = "";
+  $("expos").innerHTML = `<div class="adm-bar"><div><h2>${t("expoTitle")}</h2><p class="from" style="margin:2px 0 0">${t("expoSub")}</p></div></div>
+    <div class="ex-bar">
+      <label>${t("exCountry")}${sel("ex-c", t("allCountries"), [...new Set(EXPOS.map(e => e.country))].sort().map(c => [c, flag(EXPOS.find(e => e.country === c).cc) + " " + c]), ex.country)}</label>
+      <label>${t("exMonth")}${sel("ex-m", t("allMonths"), months.map(m => [m, fmtMonth(m)]), ex.month)}</label>
+      <label>${t("exProduct")}${sel("ex-p", t("allProducts"), EX_PRODUCTS.map(p => [p, t("p_" + p)]), ex.prod)}</label>
+      <label class="f-opt"><input type="checkbox" id="ex-past" ${ex.past ? "checked" : ""}><span class="t">${t("showPast")}</span></label>
+    </div>
+    <h2 class="ex-count">${t("exFound", list.length)}</h2>
+    <div class="results">${list.length ? list.map(e => { const m = e.start.slice(0, 7); const h = m !== lastM ? `<h3 class="ex-month">${esc(fmtMonth(m))}</h3>` : ""; lastM = m; return h + expoCard(e); }).join("") : `<div class="empty">${t("exNone")}</div>`}</div>
+    <p class="disclaimer">${t("exNote")}</p>`;
+  $("ex-c").onchange = e => { ex.country = e.target.value; renderExpos(); };
+  $("ex-m").onchange = e => { ex.month = e.target.value; renderExpos(); };
+  $("ex-p").onchange = e => { ex.prod = e.target.value; renderExpos(); };
+  $("ex-past").onchange = e => { ex.past = e.target.checked; if (!ex.past) ex.month = ""; renderExpos(); };
+}
+
+/* ---------- buyer accounts ---------- */
+// Accounts live in the database (api/buyer.php). Until the database is connected, the profile is kept on this device only.
+const INTERESTS = {products:["moto_eec","moto_non","electric","scooter","offroad","tricycle","helmet_ece","helmet_non","parts","apparel","ebike"],
+  services:["svc_eec","svc_ship","svc_agent","svc_visit","expos"]};
+const TYPEMAP = {electric:["Electric"], scooter:["Scooter"], offroad:["ATV","Off-road"], tricycle:["Cargo tricycle"]};
+const EXMAP = {moto_eec:"moto", moto_non:"moto", tricycle:"moto", electric:"electric", scooter:"scooter", offroad:"offroad", helmet_ece:"helmets", helmet_non:"helmets",
+  parts:"parts", apparel:"apparel", ebike:"ebike", svc_eec:"services", svc_ship:"services"};
+let BUYER = null, buyerMode = "signup", editingInt = false;
+const LOCAL_KEY = "emh-buyer";
+const localBuyer = () => { try { return JSON.parse(localStorage.getItem(LOCAL_KEY) || "null"); } catch(_) { return null; } };
+const keepLocal = b => { try { b ? localStorage.setItem(LOCAL_KEY, JSON.stringify(b)) : localStorage.removeItem(LOCAL_KEY); } catch(_) {} };
+const noDb = err => !err.status || err.status >= 500;
+async function loadBuyer(){
+  try { BUYER = (await api("buyer.php")).buyer; } catch(err){ BUYER = noDb(err) ? localBuyer() : null; }
+  navBuyer();
+}
+function navBuyer(){ $("buyer-login").textContent = BUYER ? "👤 " + t("myDash") : t("buyerSignIn"); }
+const intBoxes = on => Object.entries(INTERESTS).map(([g, keys]) => `<fieldset class="int"><legend>${t("g_" + g)}</legend><div class="int-grid">
+  ${keys.map(k => `<label class="int-opt"><input type="checkbox" name="int" value="${k}" ${on.includes(k) ? "checked" : ""}><span>${t("i_" + k)}</span></label>`).join("")}</div></fieldset>`).join("");
+const pickedInts = form => [...form.querySelectorAll('input[name="int"]:checked')].map(i => i.value);
+function renderBuyer(){ BUYER ? renderDash() : renderSignup(); }
+function renderSignup(){
+  const up = buyerMode === "signup";
+  $("buyer").innerHTML = `<div class="box" style="max-width:${up ? 760 : 420}px;margin:0 auto">
+    <h2 style="font-size:28px">${up ? t("suTitle") : t("liTitle")}</h2>${up ? `<p class="from">${t("suSub")}</p>` : ""}
+    <form class="form" id="bu-f">
+      ${up ? `<div class="edit-grid"><label>${t("yourName")}<input id="bu-n" required autocomplete="name"></label><label>${t("company")}<input id="bu-co" autocomplete="organization"></label>
+        <label>${t("country")}<input id="bu-ct" list="bu-cl" autocomplete="country-name"></label><label>${t("whatsapp")}<input id="bu-wa" type="tel" autocomplete="tel"></label></div>
+        <datalist id="bu-cl">${["Morocco","Algeria","Tunisia","Egypt","Senegal","Côte d'Ivoire","Nigeria","France","Spain","Italy","Germany","Belgium","Netherlands","United Kingdom","Türkiye","Saudi Arabia","United Arab Emirates","China"].map(c => `<option value="${c}">`).join("")}</datalist>` : ""}
+      <div class="edit-grid"><label>${t("email")}<input id="bu-e" type="email" required autocomplete="email"></label>
+        <label>${up ? t("pwHint") : t("password")}<input id="bu-p" type="password" required minlength="${up ? 8 : 1}" autocomplete="${up ? "new-password" : "current-password"}"></label></div>
+      ${up ? `<p style="margin:6px 0 0;font-weight:700">${t("interestsQ")}</p>${intBoxes([])}` : ""}
+      <input id="bu-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <div class="from" id="bu-err" role="alert"></div>
+      <button class="btn" type="submit">${up ? t("createAcc") : t("signIn")}</button>
+      <button class="mini" type="button" id="bu-sw" style="justify-self:start">${up ? t("haveAcc") : t("noAcc")}</button>
+    </form></div>`;
+  $("bu-sw").onclick = () => { buyerMode = up ? "login" : "signup"; renderSignup(); };
+  $("bu-f").onsubmit = async e => { e.preventDefault(); const err = $("bu-err"); err.textContent = "";
+    const email = $("bu-e").value.trim(), password = $("bu-p").value;
+    if (!up){
+      try { BUYER = (await api("buyer.php", {action:"login", email, password})).buyer; }
+      catch(x){ const l = localBuyer(); if (noDb(x) && l && l.email === email.toLowerCase()) BUYER = l; else { err.textContent = noDb(x) ? t("noDbLogin") : x.message; return; } }
+    } else {
+      const profile = {name:$("bu-n").value.trim(), company:$("bu-co").value.trim(), country:$("bu-ct").value.trim(), whatsapp:$("bu-wa").value.trim(), interests:pickedInts(e.target)};
+      if (!profile.interests.length){ err.textContent = t("needOne"); return; }
+      try { BUYER = (await api("buyer.php", {action:"signup", email, password, profile, hp:$("bu-hp").value})).buyer; }
+      catch(x){ if (!noDb(x)){ err.textContent = x.message; return; }
+        BUYER = {...profile, email:email.toLowerCase(), since:new Date().toISOString(), local:true}; keepLocal(BUYER); toast(t("localNote")); }
+    }
+    navBuyer(); renderBuyer(); window.scrollTo(0, 0); };
+}
+function motoFor(I){
+  const types = Object.keys(TYPEMAP).filter(k => I.includes(k)).flatMap(k => TYPEMAP[k]);
+  const e = I.includes("moto_eec"), n = I.includes("moto_non");
+  if (!types.length && !e && !n) return null;
+  return {types, e, n, list: factories(false, true).filter(f => f.kind !== "helmet" && (!types.length || f.types.some(x => types.includes(x))) && (!(e || n) || (e && f.eec.length) || (n && f.non.length)))};
+}
+function helmetsFor(I){
+  const e = I.includes("helmet_ece"), n = I.includes("helmet_non");
+  if (!e && !n) return null;
+  return {e, n, list: factories(false, true).filter(f => f.kind === "helmet" && ((e && f.eec.length) || (n && f.non.length)))};
+}
+const best = (a, b) => (b.rating - a.rating) || ((b.logo ? 1 : 0) - (a.logo ? 1 : 0)) || ((b.ph ? 1 : 0) - (a.ph ? 1 : 0)) || (b.score - a.score);
+const miniCard = f => `<a class="mcard" href="#${f.id}"><span class="mface">${cardFace(f)}</span><span><b>${esc(f.name)}</b>
+  <span class="from">${esc(f.city)}, ${esc(f.prov)}</span><span class="badges">${f.eec.length ? `<span class="badge b-eec">${f.kind === "helmet" ? "ECE" : "EEC"} · ${f.eec.length}</span>` : ""}${f.non.length ? `<span class="badge b-non">Non-${f.kind === "helmet" ? "ECE" : "EEC"} · ${f.non.length}</span>` : ""}</span></span></a>`;
+function renderDash(){
+  const I = BUYER.interests || [];
+  const m = motoFor(I), h = helmetsFor(I);
+  const prods = I.includes("expos") ? null : [...new Set(I.map(k => EXMAP[k]).filter(Boolean))];
+  const xs = expoList({prods: prods && prods.length ? prods : null});
+  const svc = I.filter(k => k.startsWith("svc_"));
+  const block = (title, body, more) => `<section class="box"><div class="adm-bar" style="margin-bottom:10px"><h2 style="font-size:22px">${title}</h2>${more || ""}</div>${body}</section>`;
+  const mcards = r => r.list.length ? `<div class="mcards">${r.list.slice().sort(best).slice(0, 12).map(miniCard).join("")}</div>` : `<div class="empty">${t("dNone")}</div>`;
+  $("buyer").innerHTML = `<div class="adm-bar"><div><h2>${t("hello", esc(BUYER.name || BUYER.email))}</h2>
+      <p class="from" style="margin:2px 0 0">${esc([BUYER.company, BUYER.country, BUYER.email].filter(Boolean).join(" · "))}</p>
+      ${BUYER.local ? `<div class="notice" style="margin-top:8px">${t("localNote")}</div>` : ""}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sec" type="button" id="bu-ed">${t("editInterests")}</button><button class="btn sec" type="button" id="bu-out">${t("signOut")}</button></div></div>
+    <div class="chips">${I.map(k => `<span class="chip">${t("i_" + k)}</span>`).join("")}</div>
+    ${editingInt ? `<form class="box form" id="bu-if"><p style="margin:0;font-weight:700">${t("interestsQ")}</p>${intBoxes(I)}<div class="from" id="bu-ierr" role="alert"></div>
+      <div class="two"><button class="btn sec" type="button" id="bu-ic">${t("cancel")}</button><button class="btn" type="submit">${t("save")}</button></div></form>` : ""}
+    <div class="dash">
+    ${m ? block(t("dFactories"), mcards(m), `<button class="mini" type="button" id="bu-allm">${t("seeAll", m.list.length)}</button>`) : ""}
+    ${h ? block(t("dHelmets"), mcards(h), `<button class="mini" type="button" id="bu-allh">${t("seeAll", h.list.length)}</button>`) : ""}
+    ${block(t("dExpos"), xs.length ? `<div class="results">${xs.slice(0, 6).map(expoCard).join("")}</div>` : `<div class="empty">${t("dNone")}</div>`, `<button class="mini" type="button" id="bu-allx">${t("seeAll", xs.length)}</button>`)}
+    ${svc.length ? block(t("dServices"), `<div class="svc">${svc.map(k => `<div class="box"><h3 style="font-size:19px">${t("i_" + k)}</h3><p>${t("s_" + k)}</p>
+      <a class="btn sec" href="mailto:invite@renossmoto.com?subject=${encodeURIComponent(t("i_" + k) + " · " + (BUYER.name || ""))}&body=${encodeURIComponent((BUYER.company || "") + " " + (BUYER.country || "") + "\n" + (BUYER.whatsapp || ""))}">${t("askHub")}</a></div>`).join("")}</div>`) : ""}
+    </div>`;
+  $("bu-out").onclick = async () => { if (!BUYER.local){ try { await api("buyer.php", {action:"logout"}); } catch(_) {} } keepLocal(null); BUYER = null; editingInt = false; buyerMode = "login"; navBuyer(); renderBuyer(); };
+  $("bu-ed").onclick = () => { editingInt = !editingInt; renderDash(); };
+  if (editingInt){
+    $("bu-ic").onclick = () => { editingInt = false; renderDash(); };
+    $("bu-if").onsubmit = async e => { e.preventDefault(); const interests = pickedInts(e.target);
+      if (!interests.length){ $("bu-ierr").textContent = t("needOne"); return; }
+      const next = {...BUYER, interests};
+      if (BUYER.local) keepLocal(next);
+      else { try { Object.assign(next, (await api("buyer.php", {action:"save", profile:next})).buyer); } catch(x){ $("bu-ierr").textContent = x.message; return; } }
+      BUYER = next; editingInt = false; toast(t("saved")); renderDash(); };
+  }
+  const allBtn = (id, fn) => { const b = $(id); if (b) b.onclick = fn; };
+  allBtn("bu-allm", () => { KIND = "moto"; clearFilters(); applyLang(); if (m.e !== m.n) st.cat.add(m.e ? "eec" : "non"); m.types.forEach(x => st.type.add(x)); go("#"); });
+  allBtn("bu-allh", () => { KIND = "helmet"; clearFilters(); applyLang(); if (h.e !== h.n) st.cat.add(h.e ? "eec" : "non"); go("#helmets"); });
+  allBtn("bu-allx", () => { Object.assign(ex, {country:"", month:"", past:false, prod: prods && prods.length === 1 ? prods[0] : ""}); go("#expos"); });
+}
+async function renderAdminBuyers(){
+  const el = $("adm-buyers"); if (!el) return;
+  let list;
+  try { list = (await api("buyer.php?list=1")).buyers; } catch(err){ el.innerHTML = `<h2 style="font-size:24px;margin-top:24px">${t("adminBuyers")}</h2><p class="from">${t("buyersNoDb")}</p>`; return; }
+  el.innerHTML = `<div class="adm-bar" style="margin-top:24px"><h2 style="font-size:24px">${t("adminBuyers")} (${list.length})</h2>
+    ${list.length ? `<a class="btn sec" href="mailto:?bcc=${encodeURIComponent(list.map(b => b.email).join(","))}">${t("emailBuyers")}</a>` : ""}</div>
+    ${list.length ? `<div class="adm-table"><table><thead><tr><th>${t("yourName")}</th><th>${t("company")}</th><th>${t("country")}</th><th>${t("colEmails")}</th><th>${t("whatsapp")}</th><th>${t("colInterests")}</th><th>${t("colSince")}</th></tr></thead>
+    <tbody>${list.map(b => `<tr><td>${esc(b.name)}</td><td>${esc(b.company)}</td><td>${esc(b.country)}</td><td class="em"><a href="mailto:${esc(b.email)}">${esc(b.email)}</a></td><td>${esc(b.whatsapp)}</td>
+      <td>${(b.interests || []).map(k => t("i_" + k)).join(", ")}</td><td>${esc((b.since || "").slice(0, 10))}</td></tr>`).join("")}</tbody></table></div>` : `<p class="from">${t("buyersNone")}</p>`}`;
+}
+
 /* ---------- shared ---------- */
 function copyText(text, btn, el){
   const ok = () => { const o = btn.textContent; btn.textContent = t("copied"); setTimeout(()=>btn.textContent=o,1500); };
@@ -1221,23 +1525,28 @@ let view = "search";
 function render(){ closeOverlay();
   const id = location.hash.slice(1);
   const f = factories(isAdmin, true).find(x => x.id === id);
-  const kind = f ? (f.kind === "helmet" ? "helmet" : "moto") : id === "helmets" ? "helmet" : id === "admin" ? KIND : "moto";
+  const kind = f ? (f.kind === "helmet" ? "helmet" : "moto") : id === "helmets" ? "helmet" : ["admin","expos","buyer"].includes(id) ? KIND : "moto";
   if (kind !== KIND){ KIND = kind; clearFilters(); applyLang(); }
-  view = f ? "profile" : (id === "admin" ? "admin" : "search");
+  view = f ? "profile" : ["admin","expos","buyer"].includes(id) ? id : "search";
   $("fg-cc").hidden = KIND === "helmet";
   document.body.classList.toggle("pmode", view !== "search");
-  $("search-view").hidden = view !== "search"; $("profile").hidden = view !== "profile"; $("admin").hidden = view !== "admin";
-  $("tab-dir").classList.toggle("on", view !== "admin" && KIND === "moto"); $("tab-helmets").classList.toggle("on", view !== "admin" && KIND === "helmet"); $("tab-admin").classList.toggle("on", view === "admin");
+  $("search-view").hidden = view !== "search"; $("profile").hidden = view !== "profile"; $("admin").hidden = view !== "admin"; $("expos").hidden = view !== "expos"; $("buyer").hidden = view !== "buyer";
+  const dirView = view === "search" || view === "profile";
+  $("tab-dir").classList.toggle("on", dirView && KIND === "moto"); $("tab-helmets").classList.toggle("on", dirView && KIND === "helmet"); $("tab-expos").classList.toggle("on", view === "expos"); $("tab-admin").classList.toggle("on", view === "admin");
   if (view === "profile"){ if (cur !== f) showEec = f.eec.length > 0; renderProfile(f); }
   else if (view === "admin") (isAdmin ? renderAdmin() : renderLogin());
+  else if (view === "expos") renderExpos();
+  else if (view === "buyer") renderBuyer();
   else renderSearch();
 }
 function go(hash){ if (location.hash !== hash){ location.hash = hash; } else render(); window.scrollTo(0,0); }
 window.addEventListener("hashchange", () => { render(); window.scrollTo(0,0); });
-document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { lang = b.dataset.lang; try{ localStorage.setItem("emh-lang", lang); }catch(_){} applyLang(); render(); });
+document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { lang = b.dataset.lang; try{ localStorage.setItem("emh-lang", lang); }catch(_){} applyLang(); navBuyer(); render(); });
 $("tab-dir").onclick = () => go("#");
 $("tab-helmets").onclick = () => go("#helmets");
 $("tab-admin").onclick = () => go("#admin");
+$("tab-expos").onclick = () => go("#expos");
+$("buyer-login").onclick = () => go("#buyer");
 $("filters").addEventListener("change", e => { const i = e.target, g = i.dataset.g; if (!g) return; st.limit = 24;
   if (g==="age") st.age = i.checked ? i.value : ""; else i.checked ? st[g].add(i.value) : st[g].delete(i.value); renderSearch(); });
 function clearFilters(){ ["cat","prov","type","cc","price","contact","bt"].forEach(k=>st[k].clear()); st.age=""; st.q=""; st.limit=24; $("s-q").value=""; $("s-type").value=""; $("s-cat").value=""; }
@@ -1261,10 +1570,12 @@ $("open-filters").onclick = () => $("filters").classList.add("open");
 $("f-done").onclick = () => $("filters").classList.remove("open");
 applyLang();
 (async () => {
-  const [b, p, th, lg, hb, hp] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-    fetch("data/helmets.json").then(r => r.ok ? r.json() : []).catch(() => []), fetch("data/helmet_photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
-  BASE = b; PHOTOS = p; TH = th; LOGOS = lg; HELMETS = hb; HPHOTOS = hp;
+  const [b, p, th, lg, hb, hp, xp] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetch("data/helmets.json").then(r => r.ok ? r.json() : []).catch(() => []), fetch("data/helmet_photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetch("data/expos.json").then(r => r.ok ? r.json() : []).catch(() => [])]);
+  BASE = b; PHOTOS = p; TH = th; LOGOS = lg; HELMETS = hb; HPHOTOS = hp; EXPOS = xp;
   try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
+  await loadBuyer();
   render();
 })();
 </script>
