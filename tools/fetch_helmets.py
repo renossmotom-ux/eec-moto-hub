@@ -204,6 +204,8 @@ def is_helmet_company(r):
     if re.search(r"helmet", r["name"], re.I) and not NOT_HELMET.search(r["name"]) and r["prods"]: return "maker"
     if (re.search(r"motor|moto|riding gear|\bATV\b|dirt", r["main"], re.I) and not SELLER_NOT.search(r["main"])
             and sum(bool(moto_helmet(p["t"])) for p in r["prods"]) >= 1): return "seller"
+    # Any other supplier showing motorcycle helmets in product search; build() keeps it only if its own showroom lists 3+ of them.
+    if r["main"] and not SELLER_NOT.search(r["main"]) and not NOT_HELMET.search(r["name"] or "") and any(moto_helmet(p["t"]) for p in r["prods"]): return "seller"
     return None
 
 def moto_helmet(title):
@@ -504,6 +506,8 @@ def main():
             r["main"] = info.get("main") or ""; r["bt"] = info.get("bt") or ""
     for r in rows.values(): r["tierk"] = is_helmet_company(r)
     keep = [r for r in rows.values() if r["tierk"]]
+    keep.sort(key=lambda r: (r["tierk"] != "maker", -sum(bool(moto_helmet(p["t"])) for p in r["prods"])))
+    keep = keep[:1200]
     if "--rows" in sys.argv:
         json.dump([{k: r[k] for k in ("sub", "name", "bt", "main", "kw")} | {"n": len(r["prods"]), "t": [p["t"] for p in r["prods"][:3]], "keep": r["tierk"]} for r in rows.values()],
                   open(f"{ROOT}/data/helmet_rows.json", "w"), ensure_ascii=False, indent=0)
