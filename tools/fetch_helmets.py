@@ -189,6 +189,8 @@ def norm(x):
 NOT_HELMET = re.compile(r"bag|clean|machine|bluetooth|intercom|headset|headphone|earphone|walkie|decal|sticker|logo|badge|paint|line|mould|mold|"
                         r"safety helmet|hard hat|bump cap|welding|riot|ballistic|tactical|military|police|pad|ski|snow|bicycle|bike helmet|skate|equestrian|horse|climb|cycling|lock|holder|hook|camera", re.I)
 SELLER_NOT = re.compile(r"clean|bluetooth|intercom|headphone|earphone|headset|sunglass|goggle|rack|tent|awning|LED|bag|box|vending|bicycle|e-?bike|electric bike|kick scooter|children|toy|fitness", re.I)
+SELLER_FAR = re.compile(r"clean|bluetooth|intercom|headphone|earphone|headset|sunglass|tent|awning|vending|toy|fitness|car mat|seat cover", re.I)
+RIDE_MAIN = re.compile(r"motor|moto|scooter|helmet|riding|e-?bike|electric (?:bike|bicycle|vehicle)|sport|outdoor|protective|auto(?:mobile)? (?:and|&) motorcycle", re.I)
 RIDING = re.compile(r"motor|moto|scooter|riding|rider|atv|dirt|racing|helmet", re.I)
 
 def helmet_maker(main):
@@ -205,11 +207,11 @@ def is_helmet_company(r):
     if (re.search(r"motor|moto|riding gear|\bATV\b|dirt", r["main"], re.I) and not SELLER_NOT.search(r["main"])
             and sum(bool(moto_helmet(p["t"])) for p in r["prods"]) >= 1): return "seller"
     # Any other supplier showing motorcycle helmets in product search; build() keeps it only if its own showroom lists 3+ of them.
-    if r["main"] and not SELLER_NOT.search(r["main"]) and not NOT_HELMET.search(r["name"] or "") and any(moto_helmet(p["t"]) for p in r["prods"]): return "seller"
+    if RIDE_MAIN.search(r["main"]) and not SELLER_FAR.search(r["main"]) and not NOT_HELMET.search(r["name"] or "") and any(moto_helmet(p["t"]) for p in r["prods"]): return "seller"
     return None
 
 def moto_helmet(title):
-    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b", title, re.I)
+    return "helmet" in title.lower() and MOTO.search(title) and not re.search(r"tactical|riot|ballistic|military|police|welding|hard hat|construction|bag|cleaning|machine|mould|mold|decal|sticker|lock|holder|intercom|headset|camera|paragliding|equestrian|ski\b|tape|reflective|buckle|tail box|luggage|\bbox\b|hat\b|\bpin\b|badge|keychain|key chain|medal|coin|display|stand|mannequin|wig|foam|epp|eps\b|charm|ornament", title, re.I)
 
 PROVS = ["Zhejiang", "Guangdong", "Jiangsu", "Fujian", "Shandong", "Chongqing", "Shanghai", "Hebei", "Henan", "Anhui", "Hunan", "Hubei",
          "Jiangxi", "Tianjin", "Beijing", "Sichuan", "Liaoning", "Shanxi", "Shaanxi", "Guangxi", "Yunnan", "Guizhou", "Hainan", "Jilin",
