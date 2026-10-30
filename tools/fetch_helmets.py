@@ -395,16 +395,12 @@ def probe():
     """Save a few raw pages into debug/ to check page formats and robots.txt answers."""
     import os
     os.makedirs(f"{ROOT}/debug", exist_ok=True)
-    urls = ["https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet.html",
-            "https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet-2.html",
-            "https://www.made-in-china.com/products-search/hot-china-products/Motorcycle_Helmet_2.html",
-            "https://www.alibaba.com/showroom/motorcycle-helmet.html",
-            "https://www.alibaba.com/countrysearch/CN/motorcycle-helmet-supplier.html",
-            "https://www.globalsources.com/manufacturers/motorcycle-helmet.html",
-            "https://www.tradewheel.com/manufacturers/motorcycle-helmet/",
-            "https://www.hktdc.com/en/sourcing/motorcycle-helmet",
-            "https://www.diytrade.com/china/manufacturer/motorcycle-helmet.html",
-            "https://www.cantonfair.org.cn/en-US/search?keyword=helmet"]
+    urls = ["https://source.reevol.com/robots.txt", "https://source.reevol.com/sitemap.xml", "https://source.reevol.com/llms.txt",
+            "https://source.reevol.com/en/suppliers/lanxi-yema-motorcycle-fittings/ai-card.md",
+            "https://source.reevol.com/en/search/?q=motorcycle+helmet", "https://source.reevol.com/en/industry/apparel/china/",
+            "https://www.alibaba.com/motorcycl-helmet-supplier-china-suppliers.html", "https://www.alibaba.com/motorcycle-helmet-suppliers.html",
+            "https://zjwatson.en.alibaba.com/company_profile.html", "https://leiden.en.alibaba.com/company_profile.html",
+            "https://freshdi.com/robots.txt", "https://freshdi.com/supplier/Foshan-Nanhai-Fushi-Helmet-Factory"]
     with open(f"{ROOT}/debug/probe.txt", "w") as out:
         for i, u in enumerate(urls):
             ok = allowed(u)
