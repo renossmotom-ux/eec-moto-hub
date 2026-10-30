@@ -1,0 +1,12 @@
+0 robots_ok=True status=200 len=606 https://source.reevol.com/robots.txt
+1 robots_ok=True status=200 len=646 https://source.reevol.com/sitemap.xml
+2 robots_ok=True status=200 len=8113 https://source.reevol.com/llms.txt
+3 robots_ok=True status=200 len=3718 https://source.reevol.com/en/suppliers/lanxi-yema-motorcycle-fittings/ai-card.md
+4 robots_ok=True status=429 len=18 https://source.reevol.com/en/search/?q=motorcycle+helmet
+5 robots_ok=True status=429 len=18 https://source.reevol.com/en/industry/apparel/china/
+6 robots_ok=True status=200 len=269980 https://www.alibaba.com/motorcycl-helmet-supplier-china-suppliers.html
+7 robots_ok=True status=200 len=269980 https://www.alibaba.com/motorcycle-helmet-suppliers.html
+8 robots_ok=True status=200 len=89694 https://zjwatson.en.alibaba.com/company_profile.html
+9 robots_ok=True status=200 len=89688 https://leiden.en.alibaba.com/company_profile.html
+10 robots_ok=True status=403 len=5702 https://freshdi.com/robots.txt
+11 robots_ok=True status=403 len=5844 https://freshdi.com/supplier/Foshan-Nanhai-Fushi-Helmet-Factory
