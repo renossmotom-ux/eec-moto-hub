@@ -363,6 +363,7 @@ def reevol_card(slug):
     md = reevol_get(url + "ai-card.md")
     if not md: return None
     subs = card_field(md, "Sub-industries") or ""
+    CARDS.append({"slug": slug, "subs": subs, "ind": card_field(md, "Industry"), "bt": card_field(md, "Business type"), "sum": md.split("## Summary", 1)[1][:400] if "## Summary" in md else md[:400]})
     summary = md.split("## Summary", 1)[1][:1500] if "## Summary" in md else ""
     blob = subs + " " + summary
     # Motorcycle / e-bike helmets only: not hard hats, bicycle or tactical helmets.
@@ -393,6 +394,8 @@ HELMET_SLUG = re.compile(r"helmet|kask|casco|capacete")
 MAYBE_SLUG = re.compile(r"motorcycle-fitting|motor-fitting|motorcycle-part|motorcycle-accessor|moto-fitting|safety-protect|sports-goods|sport-goods|protective")
 
 _last_api = [0.0]
+CARDS = []
+SEEN = {}
 
 def reevol_api(path, body=None):
     """Reevol's public REST API for agents (/api/v1, no key, 60 requests/minute)."""
@@ -407,7 +410,7 @@ def reevol_api(path, body=None):
         except Exception as e:
             print("  fail", url, type(e).__name__, file=sys.stderr); continue
         if r.status_code == 429: time.sleep(30 * (i + 1)); continue
-        if r.status_code != 200: print("  api", r.status_code, url, file=sys.stderr); return []
+        if r.status_code != 200: print("  api", r.status_code, url, r.text[:200], file=sys.stderr); return []
         try: return r.json().get("results") or []
         except Exception: return []
     return []
@@ -432,6 +435,7 @@ def reevol_suppliers():
     found = {}
     def add(rs):
         for x in rs:
+            if x.get("slug"): SEEN.setdefault(x["slug"], [x.get("legalNameEn"), x.get("legalNameZh"), x.get("hqCountry"), x.get("industryPrimary"), x.get("hsCodes")])
             if x.get("slug") and helmet_hit(x): found.setdefault(x["slug"], x)
     for q in SEARCHES + [f"{c} helmet" for c in CITIES]:
         add(reevol_api("/suppliers/search?query=" + requests.utils.quote(q) + "&limit=25"))
@@ -446,8 +450,10 @@ def reevol_suppliers():
             add(reevol_api("/suppliers/match", body))
         add(reevol_api("/suppliers/match", {"brief": b, "country": "China", "hsCodes": ["6506"], "limit": 25}))
     print(f"reevol api: {len(found)} candidates before similar-suppliers pass", file=sys.stderr)
+    sims = []
     for slug in list(found)[:250]:
-        add(reevol_api(f"/suppliers/{slug}/similar?limit=25"))
+        rs = reevol_api(f"/suppliers/{slug}/similar?limit=25"); sims += rs; add(rs)
+    print(f"reevol similar: {len(sims)} results, {len(found)} candidates after", file=sys.stderr)
     # Plus helmet names in the public sitemap.
     for i in range(2):
         xml = reevol_get(f"{REEVOL}/sitemap/suppliers/{i}.xml") or ""
@@ -553,4 +559,7 @@ def probe():
 
 if __name__ == "__main__":
     if "--probe" in sys.argv: probe()
+    elif "--reevol" in sys.argv:
+        out = reevol_suppliers()
+        json.dump({"kept": [f["id"] for f in out], "cards": CARDS, "seen": SEEN}, open(f"{ROOT}/data/reevol_cards.json", "w"), ensure_ascii=False, indent=0)
     else: main()
