@@ -392,17 +392,72 @@ def reevol_card(slug):
 HELMET_SLUG = re.compile(r"helmet|kask|casco|capacete")
 MAYBE_SLUG = re.compile(r"motorcycle-fitting|motor-fitting|motorcycle-part|motorcycle-accessor|moto-fitting|safety-protect|sports-goods|sport-goods|protective")
 
+_last_api = [0.0]
+
+def reevol_api(path, body=None):
+    """Reevol's public REST API for agents (/api/v1, no key, 60 requests/minute)."""
+    url = f"{REEVOL}/api/v1{path}"
+    if not allowed(url): return []
+    for i in range(3):
+        wait = 1.1 - (time.time() - _last_api[0])
+        if wait > 0: time.sleep(wait)
+        _last_api[0] = time.time()
+        try:
+            r = requests.post(url, json=body, headers=H, timeout=40) if body else requests.get(url, headers=H, timeout=40)
+        except Exception as e:
+            print("  fail", url, type(e).__name__, file=sys.stderr); continue
+        if r.status_code == 429: time.sleep(30 * (i + 1)); continue
+        if r.status_code != 200: print("  api", r.status_code, url, file=sys.stderr); return []
+        try: return r.json().get("results") or []
+        except Exception: return []
+    return []
+
+SEARCHES = ["helmet", "helmets", "motorcycle helmet", "moto helmet", "helmet co", "helmet manufacturing", "helmet industry", "helmet technology", "helmet factory",
+            "safety helmet", "sports helmet", "protective helmet", "头盔", "摩托车头盔", "头盔有限公司", "头盔制造", "安全帽", "盔业", "ECE helmet", "DOT helmet"]
+CITIES = ["Foshan", "Shunde", "Nanhai", "Jiangmen", "Heshan", "Guangzhou", "Dongguan", "Shenzhen", "Huizhou", "Xiamen", "Jinjiang", "Taizhou", "Wenzhou",
+          "Yongkang", "Jinhua", "Ningbo", "Hangzhou", "Wuyi", "Lishui", "Chongqing", "Changzhou", "Wuxi", "Suzhou", "Danyang", "Tianjin", "Hebei", "Yiwu", "Jiangsu", "Fujian", "Zhejiang"]
+BRIEFS = ["Motorcycle helmet manufacturer: full face, open face, modular and off-road helmets with ECE 22.06 / DOT certification",
+          "Factory producing ABS and fiberglass motorcycle helmets for export, OEM and ODM",
+          "Electric scooter and e-bike helmet maker, half helmets, 3C certified",
+          "Motocross off-road helmet and kids helmet manufacturer",
+          "Carbon fiber motorcycle helmet producer", "摩托车头盔生产厂家 全盔 半盔 揭面盔", "电动车头盔 安全头盔 工厂",
+          "Helmet visor, helmet liner and motorcycle riding gear factory"]
+
+def helmet_hit(x):
+    if (x.get("hqCountry") or "China") not in ("China", "CN", "中国"): return False
+    blob = " ".join(str(x.get(k) or "") for k in ("slug", "legalNameEn", "legalNameZh"))
+    return bool(re.search(r"helmet|头盔|盔业|盔", blob, re.I) or any(str(h).startswith("6506") for h in x.get("hsCodes") or []))
+
 def reevol_suppliers():
-    slugs = []
+    found = {}
+    def add(rs):
+        for x in rs:
+            if x.get("slug") and helmet_hit(x): found.setdefault(x["slug"], x)
+    for q in SEARCHES + [f"{c} helmet" for c in CITIES]:
+        add(reevol_api("/suppliers/search?query=" + requests.utils.quote(q) + "&limit=25"))
+    for hs in ("6506", "650610", "650691", "650699"):
+        for bt in ("", "&businessType=manufacturer", "&businessType=trading_company"):
+            add(reevol_api(f"/suppliers/by-hs-code/{hs}?country=China&limit=25{bt}"))
+    for b in BRIEFS:
+        for lo, hi in [(None, 1996), (1995, 2003), (2002, 2008), (2007, 2011), (2010, 2014), (2013, 2017), (2016, 2020), (2019, 2030), (None, None)]:
+            body = {"brief": b, "country": "China", "limit": 25}
+            if lo: body["foundedAfter"] = lo
+            if hi: body["foundedBefore"] = hi
+            add(reevol_api("/suppliers/match", body))
+        add(reevol_api("/suppliers/match", {"brief": b, "country": "China", "hsCodes": ["6506"], "limit": 25}))
+    print(f"reevol api: {len(found)} candidates before similar-suppliers pass", file=sys.stderr)
+    for slug in list(found)[:250]:
+        add(reevol_api(f"/suppliers/{slug}/similar?limit=25"))
+    # Plus helmet names in the public sitemap.
     for i in range(2):
         xml = reevol_get(f"{REEVOL}/sitemap/suppliers/{i}.xml") or ""
-        slugs += re.findall(r"/en/suppliers/([a-z0-9-]+)/</loc>", xml)
-    slugs = list(dict.fromkeys(slugs))
-    sure = [x for x in slugs if HELMET_SLUG.search(x)]
-    maybe = [x for x in slugs if not HELMET_SLUG.search(x) and MAYBE_SLUG.search(x)][:350]
-    print(f"reevol: {len(slugs)} suppliers in sitemap, {len(sure)} helmet names, {len(maybe)} other candidates", file=sys.stderr)
+        for sl in re.findall(r"/en/suppliers/([a-z0-9-]+)/</loc>", xml):
+            if HELMET_SLUG.search(sl): found.setdefault(sl, {"slug": sl})
+    # Strongest candidates first: helmet in the name, then HS 6506.
+    cand = sorted(found, key=lambda s: (not HELMET_SLUG.search(s) and not re.search("盔", found[s].get("legalNameZh") or ""), s))[:550]
+    print(f"reevol: {len(found)} candidates, checking {len(cand)} cards", file=sys.stderr)
     out = []
-    for slug in sure + maybe:
+    for slug in cand:
         f = reevol_card(slug)
         if f: out.append(f)
     print(f"reevol: {len(out)} motorcycle helmet companies", file=sys.stderr)
