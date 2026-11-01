@@ -204,15 +204,18 @@ def resolve(url):
         if not PLATFORM.search(urlparse(url).netloc): return url
     return None
 
-def email_ok(e, src, web):
+def email_ok(e, src, web, toks=()):
     """Keep company-domain mail anywhere; free mail (163/qq/gmail...) only from the company's own pages."""
     d = e.split("@")[1]
     if PLATFORM.search(d): return False
     srch = urlparse(src).netloc
     if web and d.split(".")[-2:] == urlparse(web).netloc.split(".")[-2:]: return True
     if FREEMAIL.search(e): return True
-    # other domains: accept only when found on the company's own website (not a directory page)
-    return bool(web) and urlparse(web).netloc.split(".")[-2:] == srch.split(".")[-2:]
+    # other domains: only on the company's own website, and only when the domain carries the company's or site's name
+    # (drops web-designer / agency addresses printed in footers)
+    if not (web and urlparse(web).netloc.split(".")[-2:] == srch.split(".")[-2:]): return False
+    names = [t for t in list(toks) + core(urlparse(web).netloc.split(".")[-2]) if len(t) > 3]
+    return any(t in d or d.split(".")[0] in t for t in names)
 
 # ---------- NHTSA vPIC: public US filings by foreign vehicle makers (company head + contact) ----------
 STOP = set("co ltd company limited corp corporation inc industry industrial industries technology tech motorcycle motorcycles motor motors vehicle vehicles "
@@ -221,6 +224,8 @@ STOP = set("co ltd company limited corp corporation inc industry industrial indu
            "taizhou jinhua wuxi yongkang hangzhou guangzhou jiangmen foshan wenzhou ningbo".split())
 def core(n): return [w for w in re.findall(r"[a-z0-9]+", (n or "").lower()) if w not in STOP and len(w) > 1]
 _nhtsa = {}
+PROVW = set("zhejiang guangdong jiangsu fujian shandong chongqing shanghai hebei henan anhui hunan hubei jiangxi tianjin beijing sichuan "
+            "guangzhou jiangmen foshan wenzhou ningbo taizhou jinhua wuxi yongkang hangzhou luoyang".split())
 def nhtsa(r):
     words = core(r.get("legal")) or core(r.get("name"))
     if not words: return []
@@ -239,6 +244,9 @@ def nhtsa(r):
         if "china" not in str(g.get("country", "")).lower(): continue
         got = set(core(g.get("mfr_name")))
         if not got or len(want & got) / len(want | got) < 0.6: continue
+        pa = {w for w in re.findall(r"[a-z]+", (r.get("legal") or "").lower()) if w in PROVW}
+        pb = {w for w in re.findall(r"[a-z]+", str(g.get("mfr_name")).lower()) if w in PROVW}
+        if pa and pb and not pa & pb: continue  # same brand word, different province: another company
         out.append(g)
     return out
 
@@ -254,12 +262,13 @@ DIRECTORY = re.compile(r"tradewheel\.com|sourceready\.com|b2brazil\.com|source\.
 def scan(r):
     res = {"emails": [], "wa": None, "wc": None, "phone": None, "web": r.get("web"), "staff": []}
     seen = set()
+    toks = core(r.get("legal")) + core(r.get("name"))
     def take(found, src, own):
         for e in found["emails"]:
-            if email_ok(e, src, res["web"] if own else None) and e not in [x["v"] for x in res["emails"]]:
+            if email_ok(e, src, res["web"] if own else None, toks) and e not in [x["v"] for x in res["emails"]]:
                 res["emails"].append({"v": e, "src": src})
         for p in found["staff"]:
-            if p["email"] and not email_ok(p["email"], src, res["web"] if own else None): p["email"] = None
+            if p["email"] and not email_ok(p["email"], src, res["web"] if own else None, toks): p["email"] = None
             if not (p["name"] or p["email"]): continue
             if not any((p["name"] and p["name"] == q.get("name")) or (p["email"] and p["email"] == q.get("email")) for q in res["staff"]):
                 res["staff"].append({k: v for k, v in p.items() if v})
