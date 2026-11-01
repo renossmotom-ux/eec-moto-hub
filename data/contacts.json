@@ -87,7 +87,8 @@
     "role": "Owner",
     "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/12293"
    }
-  ]
+  ],
+  "web": "https://www.chianbashan.com"
  },
  "beijing-xinfeng": {
   "staff": [
@@ -383,6 +384,14 @@
    {
     "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/25938",
     "v": "ruby@fuegopower.com"
+   },
+   {
+    "src": "https://www.fuegopower.com",
+    "v": "174829806@qq.com"
+   },
+   {
+    "src": "https://www.fuegopower.com/lxfs",
+    "v": "kalatadavid866@gmail.com"
    }
   ],
   "phone": {
@@ -400,7 +409,8 @@
     "role": "President",
     "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/25938"
    }
-  ]
+  ],
+  "web": "https://www.fuegopower.com"
  },
  "chongqing-g-ever-electric-vehicle": {
   "staff": [
@@ -1713,7 +1723,62 @@
     "role": "Vice President",
     "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/22594"
    }
-  ]
+  ],
+  "web": "https://bendamoto.com"
+ },
+ "haojin": {
+  "emails": [
+   {
+    "src": "https://en.haojin.com.cn/",
+    "v": "service@haojin.com.cn"
+   },
+   {
+    "src": "https://en.haojin.com.cn/",
+    "v": "branding@haojin.com.cn"
+   },
+   {
+    "src": "https://en.haojin.com.cn/",
+    "v": "zhongsy@haojin.com.cn"
+   },
+   {
+    "src": "https://en.haojin.com.cn/",
+    "v": "export03@haojin.com.cn"
+   },
+   {
+    "src": "https://en.haojin.com.cn/",
+    "v": "export53@haojin.com.cn"
+   },
+   {
+    "src": "https://en.haojin.com.cn/",
+    "v": "oey@haojin.com.cn"
+   }
+  ],
+  "staff": [
+   {
+    "email": "oey@haojin.com.cn",
+    "market": "Europe",
+    "src": "https://en.haojin.com.cn/"
+   },
+   {
+    "email": "zhongsy@haojin.com.cn",
+    "market": "Middle East",
+    "src": "https://en.haojin.com.cn/h-col-231.html"
+   },
+   {
+    "email": "export03@haojin.com.cn",
+    "market": "Africa",
+    "src": "https://en.haojin.com.cn/h-col-231.html"
+   }
+  ],
+  "wa": {
+   "src": "https://en.haojin.com.cn/",
+   "v": "0086-18623530037"
+  },
+  "wc": {
+   "src": "https://en.haojin.com.cn/",
+   "v": "0086-13480223054"
+  },
+  "web": "https://en.haojin.com.cn/"
  },
  "haojue": {
   "emails": [
@@ -2268,16 +2333,16 @@
     "v": "yuki@lvnengebike.com"
    },
    {
-    "src": "http://www.lvnengebike.com/",
+    "src": "https://www.lvnengebike.com",
     "v": "gleen@lvnengebike.com"
    },
    {
-    "src": "http://www.lvnengebike.com/",
+    "src": "https://www.lvnengebike.com",
     "v": "jambo@lvnengebike.com"
    }
   ],
   "phone": {
-   "src": "http://www.lvnengebike.com/",
+   "src": "https://www.lvnengebike.com",
    "v": "008617721702600"
   },
   "staff": [
@@ -2292,10 +2357,10 @@
    }
   ],
   "wa": {
-   "src": "http://www.lvnengebike.com/",
+   "src": "https://www.lvnengebike.com",
    "v": "+008615686400557"
   },
-  "web": "http://www.lvnengebike.com/"
+  "web": "https://www.lvnengebike.com"
  },
  "jiangsu-sacin-motorcycle": {
   "phone": {
@@ -2509,6 +2574,16 @@
   ]
  },
  "jinhua-otmar": {
+  "emails": [
+   {
+    "src": "http://www.otmarebikes.com",
+    "v": "jollity@otmarebike.com"
+   }
+  ],
+  "phone": {
+   "src": "http://www.otmarebikes.com/?about_5/",
+   "v": "86-15988591827"
+  },
   "staff": [
    {
     "name": "Ms. Jollity Xue",
@@ -2593,6 +2668,12 @@
   ]
  },
  "juneng-motorcycle": {
+  "emails": [
+   {
+    "src": "https://www.jnen.cn/",
+    "v": "jnen@jnen.cn"
+   }
+  ],
   "phone": {
    "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/1706",
    "v": "+8657682739965"
@@ -2603,7 +2684,8 @@
     "role": "Ceo",
     "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/1706"
    }
-  ]
+  ],
+  "web": "https://www.jnen.cn/"
  },
  "kangqi-motorcycle-products": {
   "staff": [
@@ -3180,32 +3262,32 @@
  "shandong-jingpin-electric-vehicle": {
   "emails": [
    {
-    "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+    "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
     "v": "rollerli@cn-electricbicycle.com"
    },
    {
-    "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+    "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
     "v": "dylanwong@cn-electricbicycle.com"
    },
    {
-    "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+    "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
     "v": "benzhou@cn-electricbicycle.com"
    },
    {
-    "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+    "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
     "v": "lena@cn-electricbicycle.com"
    },
    {
-    "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+    "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
     "v": "ericxu@cn-electricbicycle.com"
    },
    {
-    "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+    "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
     "v": "eloisefang@cn-electricbicycle.com"
    }
   ],
   "phone": {
-   "src": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=8",
+   "src": "https://www.cn-electricbicycle.com/index.php?a=lists&catid=8",
    "v": "+8616567173333"
   },
   "staff": [
@@ -3214,7 +3296,7 @@
     "src": "https://jing-pin.en.made-in-china.com/contact-info.html"
    }
   ],
-  "web": "https://china.cn-electricbicycle.com/index.php?a=lists&catid=2"
+  "web": "https://www.cn-electricbicycle.com/"
  },
  "shandong-liwang-new-energy": {
   "staff": [
@@ -4140,21 +4222,21 @@
  "wuxi-shenyun-development": {
   "emails": [
    {
-    "src": "https://www.shenyunscooters.com",
-    "v": "zoe@shenyunscooters.com"
-   },
-   {
-    "src": "https://www.shenyunscooters.com",
-    "v": "zoe@wxfhddc.cn"
+    "src": "https://www.syevglobal.com",
+    "v": "gina@shenyunglobal.com"
    }
   ],
   "staff": [
    {
     "name": "Mrs. Zoe",
     "src": "https://sy-electric-scooter.en.made-in-china.com/contact-info.html"
+   },
+   {
+    "name": "Gina",
+    "src": "https://www.syevglobal.com"
    }
   ],
-  "web": "https://www.shenyunscooters.com"
+  "web": "https://www.syevglobal.com"
  },
  "wuxi-shilu-electric": {
   "staff": [
@@ -4228,11 +4310,11 @@
  "wuxi-tourwe-electric": {
   "emails": [
    {
-    "src": "https://www.wxtourwe.com",
+    "src": "https://www.wxtourwe.com/",
     "v": "tourwecs1@aliyun.com"
    },
    {
-    "src": "https://www.wxtourwe.com",
+    "src": "https://www.wxtourwe.com/",
     "v": "tourwecs3@aliyun.com"
    }
   ],
@@ -4246,7 +4328,7 @@
     "src": "https://www.wxtourwe.com/contact.shtml"
    }
   ],
-  "web": "https://www.wxtourwe.com"
+  "web": "https://www.wxtourwe.com/"
  },
  "wuxi-weiyun-motor": {
   "emails": [
@@ -4301,12 +4383,12 @@
  "wuxi-xushi-thunder-trade": {
   "emails": [
    {
-    "src": "http://www.saigebikes.com",
+    "src": "http://saigebikes.com",
     "v": "info@saigebikes.com"
    }
   ],
   "phone": {
-   "src": "http://www.saigebikes.com",
+   "src": "http://saigebikes.com",
    "v": "+8617851122137"
   },
   "staff": [
@@ -4315,7 +4397,7 @@
     "src": "https://wxxshileiting.en.made-in-china.com/contact-info.html"
    }
   ],
-  "web": "http://www.saigebikes.com"
+  "web": "http://saigebikes.com"
  },
  "wuxi-yingkesong": {
   "staff": [
@@ -4544,7 +4626,7 @@
     "src": "https://xdaoev.en.made-in-china.com/contact-info.html"
    }
   ],
-  "web": "https://www.xdaoev.com/"
+  "web": "https://xdaoebike.com/#/pages/index/index"
  },
  "xingtai-huolingniao-electric-bicycle": {
   "staff": [
@@ -4602,12 +4684,6 @@
   ]
  },
  "xuzhou-lilong-locomotive": {
-  "emails": [
-   {
-    "src": "https://lilong-autobike.com/contact/",
-    "v": "sales01@lilong-autobike.cn"
-   }
-  ],
   "staff": [
    {
     "name": "Mr. Darren Koo",
@@ -4787,12 +4863,23 @@
   ]
  },
  "yongkang-karman-vehicle": {
+  "emails": [
+   {
+    "src": "https://www.electricbikesbattery.com",
+    "v": "joe@electricbikesbattery.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.electricbikesbattery.com",
+   "v": "+86-572-6390631"
+  },
   "staff": [
    {
     "name": "Mrs. Elly Xu",
     "src": "https://karmanmotor.en.made-in-china.com/contact-info.html"
    }
-  ]
+  ],
+  "web": "https://www.electricbikesbattery.com"
  },
  "yongkang-kenuolei-and-trade": {
   "staff": [
