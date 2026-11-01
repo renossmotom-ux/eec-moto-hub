@@ -73,8 +73,14 @@ def one(f):
 def main():
     os.makedirs(OUT, exist_ok=True)
     F = json.load(open(f"{ROOT}/data/factories.json"))
+    only = set(sys.argv[1:])
+    res = {}
+    if only:  # refresh just these companies, keep everyone else's logo
+        F = [f for f in F if f["id"] in only]
+        try: res = json.load(open(f"{ROOT}/data/logos.json"))
+        except Exception: res = {}
     with ThreadPoolExecutor(8) as ex:
-        res = {k: v for k, v in ex.map(one, F) if v}
+        res.update({k: v for k, v in ex.map(one, F) if v})
     json.dump(res, open(f"{ROOT}/data/logos.json", "w"), separators=(",", ":"), sort_keys=True)
     print(f"SUMMARY: {len(res)}/{len(F)} logos")
 
