@@ -1,178 +1,429 @@
+len=3686755 china=781
 
+----- SNIP
+and align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    AJP MOTOS LDA
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 9 - Stand C80
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    PORTUGAL - PT
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_20354" data-aziendaId="20354" data-catalogoId="53444" data-brandType="3">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/20354.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+                        <div class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    AKEEYO - SHENZHEN MUSHENG TECHNOLOGY CO.,LTD.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 24 - Stand B67
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_40" data-aziendaId="40" data-catalogoId="53695" data-brandType="1">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/40.jpg?v=pswcXRiKEMMskL3QQ7lNzb0C5-jaKXZNCauCRWHq72o" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+     
+----- SNIP
+tems-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    AKRAPOVIC D.D.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 14 - Stand I48
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    SLOVENIA - SI
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_20295" data-aziendaId="20295" data-catalogoId="53405" data-brandType="3">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/20295.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+                        <div class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    AKRONT - D.MAG NEW MATERIAL TECHNOLOGY CO., LTD.  (GLM)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 5 - Stand C62
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_83842" data-aziendaId="83842" data-catalogoId="53644" data-brandType="2">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/83842.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body"
+----- SNIP
+class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    AMC INNOVATIVE SRL
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 18 - Stand ST4
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    ITALY - IT
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_19873" data-aziendaId="19873" data-catalogoId="53871" data-brandType="1">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/19873.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+                        <div class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    AMPACE TECHNOLOGY LIMITED
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 6 - Stand G07
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_11479" data-aziendaId="11479" data-catalogoId="54074" data-brandType="1">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/11479.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body"
+----- SNIP
+     <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    ANCHILEX - TRINITY ELECTRONIC TRADING CO., LTD.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 9 - Stand S71
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    TAIWAN - TW
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_20888" data-aziendaId="20888" data-catalogoId="53756" data-brandType="3">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/20888.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+                        <div class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    ANDITAI - JIANGSU LVNENG ELECTRICAL BICYCLE TECHNOLOGY CO.  LTD
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 9 - Stand S82
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_60" data-aziendaId="60" data-catalogoId="54005" data-brandType="1">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/60.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+      
+----- SNIP
+     <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    ANGER - RELIAN MFG 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 14 - Stand A10
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    PAKISTAN - PK
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_83886" data-aziendaId="83886" data-catalogoId="53409" data-brandType="2">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/83886.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+                        <div class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    ANHUI DEERFU AUTO PARTS CO., LTD - SINOLIGHT INTERNATIONAL HOLDINGS CORPORATION (CLETC)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 24 - Stand M74
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_83866" data-aziendaId="83866" data-catalogoId="53819" data-brandType="2">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/83866.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body"
+----- SNIP
+                              <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    ANHUI DEERFU AUTO PARTS CO., LTD - SINOLIGHT INTERNATIONAL HOLDINGS CORPORATION (CLETC)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 24 - Stand M74
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_83866" data-aziendaId="83866" data-catalogoId="53819" data-brandType="2">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/83866.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body">
+                        <div class="row card-stand align-items-center">
+                            <div class="col pt-lg-2 pb-lg-2">
+                                <p class="text-lg-center mt-lg-0 float-lg-none padiglione mb-lg-0 mb-0 mt-0">
+                                    ANHUI DEHONG WORK MANUFACTURE CO.,LTD - BR&#xD8;DRESKIFT TECH AS
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row rappresentanza-card">
+                            <div class="col">
+                                <h5 class="mt-lg-3 mt-0 mb-0 mb-lg-0 rappresentato ">
+                                    Pad. 24 - Stand M64
+                                </h5>
+                                <p class="mt-0 mb-0 brand">
+                                    <!-- Motoplastic sa -->
+                                    CHINA - CN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-start">
+                <div class="card scheda-blocco divOpenPopupBrand" id="divOpenPopupBrand_84041" data-aziendaId="84041" data-catalogoId="53747" data-brandType="2">
+                    <!-- data-bs-toggle="modal" data-bs-target="#popup-espositore"-->
+                    <div class="card-header">
+                        <img src="/img/loghi/84041.jpg" onerror="this.onerror=null; this.src='../img/loghi/logo_eicma_nero.svg';" class="img-fluid mx-auto d-block img-style lazyload" alt="Logo">
+                    </div>
+                    <div class="card-body"
 
-===== https://catalogo.eicma.it/Espositore
-allowed=True status=200 len=3686755
---- robots
-(robots 404)
---- links
+----- HREFS (25)
 /Espositore
-/Espositore
-/Espositore
-https://www.linkedin.com/company/eicma-spa/
---- text
- Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next eicma 2026 exhibitors SEARCH SHOW ALL Sector -- All Associations and institutions Clothing and equipment for motorcyclists Components Helmets Insurance Parts Services sector Specialist press Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles Products -- All 50 cc mopeds and scooters Accessories Accessories for bicycles Accumulators Air and oil filter Air spraying All-terrain mountain bikes Altimeters - barometers Anti-misting products for motorbike helmets and glasses Anti-theft devices Associations (bike) Associations (motorcycle) Atv and vehicles for special uses Atv farm implements Atv guards Atv steering arms Atv tracks Atv wheel rims Auxiliary engines and related spare parts Axles and spacers for atv Baby seats Bags Ball and roller and bearing Balls, rollers and needle rollers Baskets Batteries Battery chargers Bells Bicycle frames Bicycle helmets Bicycle pedals Bicycle racks Bicycle-wheelchairs Bikes for the disabled people Biomechanics equipment Bodies for three-wheeled vans Brake pads Brakes Brakes , brake levers Brake-shoes Bumpers Cables, wires and sheaths Carburettors - injection systems Carrier tricycles Carriers Carriers for motorcycle Case for scooters and motorcycles Catalysts for bicycle Chain guards Chains Children's bicycles and tricycles City bikes Clothing and equipment for cyclists Clothing and equipment for motorcyclists Clutches, joints and related components Coils and condensers Connecting rod systems Connecting rods Consortiums (bike) Consortiums (motorcycle) Covers for motorcycles Crank-set and accessories Cross - bmx bicycles Customized vehicles Cycle-computers Cycle-simulators Cylinders Decalcomanias Decorative accessories Dietary supplements for sports Direction indicatores Disk brakes Dynamos Electric auxiliary motors and relative parts Electric bikes (epac) Electric blankets for tyres Electric contacts and switches Electric vehicles Electrical mopeds Electronic devices and accessories Electronic gear case Engine shafts Engines Equipment and accessories for atv Equipment and accessories for bicycle tourism Equipment and accessories for the motorcycle tourism Equipment and special machinery for the bicycle industry Equipment and special machinery for the motorcycle industry Equipment for cyclists training Ergonomic equipment Exhaust pipes Eyewear Fairing, footboards and footreast Federations (bike) Federations (motorcycle) Finished and semi-finished products for the motorcycle industry Fitness bikes Fitness equipment Fittings kits Folding bicycles Folding mopeds Footwear Footwear and boots Forks and fork tubes Forks and fork tubes Frames Fuel and oil indicators Fuel pipes Fuel tank plugs Fuel tanks Gear cases Gearboxes for motorcycles Generators and components Gps Hand grips Handlebars Headlights and signal lights Heart-frequency meters Helmets Horns and acoustic warning signals Hubs Hybrid bikes Ignition systems Injector Institutions and organisations (bike) Institutions and organisations (motorcycle) Insurance Insurance Interphones Karts Kustom clothing Kustom lifestyle Lamp brackets Leasing and financing companies (bike) Leasing and financing companies (motorcycle) Led-guards for scooters Leisure-time bikes License plate holders Lighting equipment Liners, cyclinders and heads Lubricants, oils, paints, chemical products Luggage grids Metal catalysts Mini mopeds Minicross Minicross and atv bikes Motorbike wash equipment Motorcycles and motoscooters Mud guards Mudguards Nipples Not destructive checks Nuts, bolts and screws Nuts, bolts and screws Oils, paints and lubricants Packings for vehicles Parts for bicycle Pedal cranks Pinstriper Piston rings Pistons Pliers Polishing, detergent, rust-proofing products Pressure resistant flexible tubes Protection Pumps Puncture-proof polyurethane tyres Quadricycles Racing bicycles Racing fuels Radiators Rear view mirrors Recoumbent bicycles Reed valves Reflectors Rental electric bicycle Rental of mopeds motorcycles and scooters Rim assemblers Rims Rims for mopeds and motorcycles Ring gears and pinions Rubber and plastic parts Saddles Saddless cover Scooters Seals and gaskets Seat posts Services and routes for bicycle tourism Services sector (bike) Services sector (motorcycle) Shields for cyclists Shock absorbers Sidecars Silencers Small metal parts Snowmobiles and water-scooters Spare parts Spark plugs Special fabrics for cyclist clothing Special fabrics for motorcyclist' clothing Specialist press (bike) Specialist press (motorcycle) Speedometers Spokes Springs Stands Starter pedals and gear levers Steering gear Steering shock absorbers Stems Suspensions Suspensions Tandems Taps Tatoo Technical clothing (airbag, protections) Technical underwear Test beds Thermic auxiliary motors and relative parts Three-wheeled delivery vans Tools and equipment for workshops Touring sport bicycles Tourism on 2 wheels Tourist boards (bike) Tourist 
---- scripts
-https://fonts.googleapis.com/css?family=Kdam&#x2B;Thmor&#x2B;Pro&amp;display=swap&amp;subset=latin,latin-ext
-https://fonts.googleapis.com/css?family=Open&#x2B;Sans:400,600,800,40&amp;display=swap&amp;subset=latin,latin-ext
---- forms
-<form id="formRicerca" method="post">
-<!-- content-exibitor -->
-<div class="bloc l-bloc none content-espositori" id="content-exibitor">
-<div class="container bloc-no-padding-lg">
-<div class="row ps-lg-4 pe-lg-4 pt-lg-0 pb-lg-0 mt-lg-0 mb-lg-0">
-<div class="col-md-6 text-start align-self-center text-lg-center col-lg-12 ps-lg-0 pe-lg-0">
-<div class="row title-bicolor">
-<div class="col ps-lg-0">
-<h1 class="mb-4 title-bicolor-red ms-lg-0">
-                                eicma 2026 exhibitors
-                            </h1>
-</div>
-</div>
-<div class="row">
-<div class="mt-3 ps-lg-0 pe-lg-0 col-lg-11">
-<div class="form-group mb-3 home-ricerca-search">
-<input class="form-control search-home" id="Nominativo" name="Nominativo" placeholder="type exhibitor name" type="text" value=""/>
-</div>
-</div>
-<div class="align-self-center text-center pb-lg-0 ps-lg-0 pe-lg-0 col-filter col-6">
-<div class="text-center container-div-style">
-<a id="lnkSearch">
-<span class="icon-search-advanced et-icon-adjustments"></span>
-<h6 class="label-search mb-0 mt-2">
-                                        SEARCH
-                                    </h6>
-</a>
-</div>
-</div>
-<div class="align-self-center text-center pb-lg-0 ps-lg-0 pe-lg-0 col-all col-lg-1 col-6 col-sm-12">
-<div class="text-center">
-<a href="/Espositore">
-<span class="icon-search-advanced et-icon-grid"></span>
-<h6 class="label-search mb-lg-1 mb-0 mt-2">
-                                        SHOW ALL
-                                    </
-<select class="form-control select2" id="ddlMacroMerc" name="MerceologiaId">
-<option selected="selected" value="">-- All</option>
-<option value="6">Associations and institutions</option>
-<option value="3">Clothing and equipment for motorcyclists</option>
-<option value="2">Components</option>
-<option value="4">Helmets</option>
-<option value="5">Insurance</option>
-<option value="9">Parts</option>
-<option value="7">Services sector</option>
-<option value="8">Specialist press</option>
-<option value="1">Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles</option>
-</select>
-<select class="form-control select2" id="ddlMicroMerc" name="MicroMerceologiaId">
-<option value="">-- All</option>
-<option value="123">50 cc mopeds and scooters</option>
-<option value="174">Accessories</option>
-<option value="20">Accessories  for bicycles</option>
-<option value="139">Accumulators</option>
-<option value="190">Air and oil filter</option>
-<option value="140">Air spraying </option>
-<option value="1">All-terrain mountain bikes</option>
-<option value="24">Altimeters - barometers</option>
-<option value="143">Anti-misting products for motorbike  helmets and glasses</option>
-<option value="144">Anti-theft devices</option>
-<option value="297">Associations (bike)</option>
-<option value="254">Associations (motorcycle)</option>
-<option value="136">Atv and vehicles for special uses</option>
-<option value="281">Atv farm implements</option>
-<option value="276">Atv guards</option>
-<option value="275">Atv steering arms </option>
-<option value="278">Atv tracks</option>
-<option value="277">Atv wheel rims</option>
-<option value="212">Auxiliary engines and related spare parts</option>
-<option value="280">Axles and spacers for atv</option>
-<option value="101">Baby seats</option>
-<option value="154">Bags</option>
-<option value="185">Ball and roller and bearing</option>
-<option value="234">Balls, rollers  and  needle rollers</option>
-<option value="50">Baskets</option>
-<option value="150">Batteries</option>
-<option value="164">Battery chargers</option>
-<option value="41">Bells</optio
-<select class="form-control select2" id="Padiglione" name="Padiglione">
-<option selected="selected" value="">-- All</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
-<option value="14">14</option>
-<option value="18">18</option>
-<option value="22">22</option>
-<option value="24">24</option>
-</select>
-<select class="form-control select2" id="Nazione" name="Nazione">
-<option selected="selected" value="">-- All</option>
-<option value="IT">Italy</option>
-<option value="AF">Afghanistan</option>
-<option value="AL">Albania</option>
-<option value="DZ">Algeria</option>
-<option value="AS">American Samoa</option>
-<option value="AD">Andorra</option>
-<option value="AO">Angola</option>
-<option value="AI">Anguilla</option>
-<option value="AQ">Antarctica</option>
-<option value="AG">Antigua and Barbuda</option>
-<option value="AR">Argentina</option>
-<option value="AM">Armenia</option>
-<option value="AW">Aruba</option>
-<option value="AU">Australia</option>
-<option value="AT">Austria</option>
-<option value="AZ">Azerbaijan</option>
-<option value="BS">Bahamas</option>
-<option value="BH">Bahrain</option>
-<option value="BD">Bangladesh</option>
-<option value="BB">Barbados</option>
-<option value="BY">Belarus</option>
-<option value="BE">Belgium</option>
-<option value="BZ">Belize</option>
-<option value="BJ">Benin</option>
-<option value="BM">Bermuda</option>
-<option value="BT">Bhutan</option>
-<option value="BO">Bolivia</option>
-<option value="BA">Bosnia and Herzegovina</option>
-<option value="BW">Botswana</option>
-<option value="BV">Bouvet Island</option>
-<option value="BR">Brazil</option>
-<option value="IO">British Indian Ocean Territory</option>
-<option value="BN">Brunei Darussalam</option>
-<option value="BG">Bulgaria</option>
-<option value="BF">Burkina Faso</option>
-<option value="BI">Burundi</opti
---- detail links
 
+----- ONCLICK
+scrollToTarget('1',this)
 
-===== https://catalogo.eicma.it/Espositore?culture=en-US&nazione=CINA
-allowed=True status=200 len=75416
---- robots
-(robots 404)
---- links
-/Espositore
-/Espositore
-/Espositore
-https://www.linkedin.com/company/eicma-spa/
---- text
- Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next eicma 2026 exhibitors SEARCH SHOW ALL Sector -- All Associations and institutions Clothing and equipment for motorcyclists Components Helmets Insurance Parts Services sector Specialist press Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles Products -- All 50 cc mopeds and scooters Accessories Accessories for bicycles Accumulators Air and oil filter Air spraying All-terrain mountain bikes Altimeters - barometers Anti-misting products for motorbike helmets and glasses Anti-theft devices Associations (bike) Associations (motorcycle) Atv and vehicles for special uses Atv farm implements Atv guards Atv steering arms Atv tracks Atv wheel rims Auxiliary engines and related spare parts Axles and spacers for atv Baby seats Bags Ball and roller and bearing Balls, rollers and needle rollers Baskets Batteries Battery chargers Bells Bicycle frames Bicycle helmets Bicycle pedals Bicycle racks Bicycle-wheelchairs Bikes for the disabled people Biomechanics equipment Bodies for three-wheeled vans Brake pads Brakes Brakes , brake levers Brake-shoes Bumpers Cables, wires and sheaths Carburettors - injection systems Carrier tricycles Carriers Carriers for motorcycle Case for scooters and motorcycles Catalysts for bicycle Chain guards Chains Children's bicycles and tricycles City bikes Clothing and equipment for cyclists Clothing and equipment for motorcyclists Clutches, joints and related components Coils and condensers Connecting rod systems Connecting rods Consortiums (bike) Consortiums (motorcycle) Covers for motorcycles Crank-set and accessories Cross - bmx bicycles Customized vehicles Cycle-computers Cycle-simulators Cylinders Decalcomanias Decorative accessories Dietary supplements for sports Direction indicatores Disk brakes Dynamos Electric auxiliary motors and relative parts Electric bikes (epac) Electric blankets for tyres Electric contacts and switches Electric vehicles Electrical mopeds Electronic devices and accessories Electronic gear case Engine shafts Engines Equipment and accessories for atv Equipment and accessories for bicycle tourism Equipment and accessories for the motorcycle tourism Equipment and special machinery for the bicycle industry Equipment and special machinery for the motorcycle industry Equipment for cyclists training Ergonomic equipment Exhaust pipes Eyewear Fairing, footboards and footreast Federations (bike) Federations (motorcycle) Finished and semi-finished products for the motorcycle industry Fitness bikes Fitness equipment Fittings kits Folding bicycles Folding mopeds Footwear Footwear and boots Forks and fork tubes Forks and fork tubes Frames Fuel and oil indicators Fuel pipes Fuel tank plugs Fuel tanks Gear cases Gearboxes for motorcycles Generators and components Gps Hand grips Handlebars Headlights and signal lights Heart-frequency meters Helmets Horns and acoustic warning signals Hubs Hybrid bikes Ignition systems Injector Institutions and organisations (bike) Institutions and organisations (motorcycle) Insurance Insurance Interphones Karts Kustom clothing Kustom lifestyle Lamp brackets Leasing and financing companies (bike) Leasing and financing companies (motorcycle) Led-guards for scooters Leisure-time bikes License plate holders Lighting equipment Liners, cyclinders and heads Lubricants, oils, paints, chemical products Luggage grids Metal catalysts Mini mopeds Minicross Minicross and atv bikes Motorbike wash equipment Motorcycles and motoscooters Mud guards Mudguards Nipples Not destructive checks Nuts, bolts and screws Nuts, bolts and screws Oils, paints and lubricants Packings for vehicles Parts for bicycle Pedal cranks Pinstriper Piston rings Pistons Pliers Polishing, detergent, rust-proofing products Pressure resistant flexible tubes Protection Pumps Puncture-proof polyurethane tyres Quadricycles Racing bicycles Racing fuels Radiators Rear view mirrors Recoumbent bicycles Reed valves Reflectors Rental electric bicycle Rental of mopeds motorcycles and scooters Rim assemblers Rims Rims for mopeds and motorcycles Ring gears and pinions Rubber and plastic parts Saddles Saddless cover Scooters Seals and gaskets Seat posts Services and routes for bicycle tourism Services sector (bike) Services sector (motorcycle) Shields for cyclists Shock absorbers Sidecars Silencers Small metal parts Snowmobiles and water-scooters Spare parts Spark plugs Special fabrics for cyclist clothing Special fabrics for motorcyclist' clothing Specialist press (bike) Specialist press (motorcycle) Speedometers Spokes Springs Stands Starter pedals and gear levers Steering gear Steering shock absorbers Stems Suspensions Suspensions Tandems Taps Tatoo Technical clothing (airbag, protections) Technical underwear Test beds Thermic auxiliary motors and relative parts Three-wheeled delivery vans Tools and equipment for workshops Touring sport bicycles Tourism on 2 wheels Tourist boards (bike) Tourist 
---- scripts
-https://fonts.googleapis.com/css?family=Kdam&#x2B;Thmor&#x2B;Pro&amp;display=swap&amp;subset=latin,latin-ext
-https://fonts.googleapis.com/css?family=Open&#x2B;Sans:400,600,800,40&amp;display=swap&amp;subset=latin,latin-ext
-
-===== https://catalogo.eicma.it/Espositore?page=2
-allowed=True status=200 len=3686755
---- robots
-(robots 404)
---- links
-/Espositore
-/Espositore
-/Espositore
-https://www.linkedin.com/company/eicma-spa/
---- text
- Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next eicma 2026 exhibitors SEARCH SHOW ALL Sector -- All Associations and institutions Clothing and equipment for motorcyclists Components Helmets Insurance Parts Services sector Specialist press Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles Products -- All 50 cc mopeds and scooters Accessories Accessories for bicycles Accumulators Air and oil filter Air spraying All-terrain mountain bikes Altimeters - barometers Anti-misting products for motorbike helmets and glasses Anti-theft devices Associations (bike) Associations (motorcycle) Atv and vehicles for special uses Atv farm implements Atv guards Atv steering arms Atv tracks Atv wheel rims Auxiliary engines and related spare parts Axles and spacers for atv Baby seats Bags Ball and roller and bearing Balls, rollers and needle rollers Baskets Batteries Battery chargers Bells Bicycle frames Bicycle helmets Bicycle pedals Bicycle racks Bicycle-wheelchairs Bikes for the disabled people Biomechanics equipment Bodies for three-wheeled vans Brake pads Brakes Brakes , brake levers Brake-shoes Bumpers Cables, wires and sheaths Carburettors - injection systems Carrier tricycles Carriers Carriers for motorcycle Case for scooters and motorcycles Catalysts for bicycle Chain guards Chains Children's bicycles and tricycles City bikes Clothing and equipment for cyclists Clothing and equipment for motorcyclists Clutches, joints and related components Coils and condensers Connecting rod systems Connecting rods Consortiums (bike) Consortiums (motorcycle) Covers for motorcycles Crank-set and accessories Cross - bmx bicycles Customized vehicles Cycle-computers Cycle-simulators Cylinders Decalcomanias Decorative accessories Dietary supplements for sports Direction indicatores Disk brakes Dynamos Electric auxiliary motors and relative parts Electric bikes (epac) Electric blankets for tyres Electric contacts and switches Electric vehicles Electrical mopeds Electronic devices and accessories Electronic gear case Engine shafts Engines Equipment and accessories for atv Equipment and accessories for bicycle tourism Equipment and accessories for the motorcycle tourism Equipment and special machinery for the bicycle industry Equipment and special machinery for the motorcycle industry Equipment for cyclists training Ergonomic equipment Exhaust pipes Eyewear Fairing, footboards and footreast Federations (bike) Federations (motorcycle) Finished and semi-finished products for the motorcycle industry Fitness bikes Fitness equipment Fittings kits Folding bicycles Folding mopeds Footwear Footwear and boots Forks and fork tubes Forks and fork tubes Frames Fuel and oil indicators Fuel pipes Fuel tank plugs Fuel tanks Gear cases Gearboxes for motorcycles Generators and components Gps Hand grips Handlebars Headlights and signal lights Heart-frequency meters Helmets Horns and acoustic warning signals Hubs Hybrid bikes Ignition systems Injector Institutions and organisations (bike) Institutions and organisations (motorcycle) Insurance Insurance Interphones Karts Kustom clothing Kustom lifestyle Lamp brackets Leasing and financing companies (bike) Leasing and financing companies (motorcycle) Led-guards for scooters Leisure-time bikes License plate holders Lighting equipment Liners, cyclinders and heads Lubricants, oils, paints, chemical products Luggage grids Metal catalysts Mini mopeds Minicross Minicross and atv bikes Motorbike wash equipment Motorcycles and motoscooters Mud guards Mudguards Nipples Not destructive checks Nuts, bolts and screws Nuts, bolts and screws Oils, paints and lubricants Packings for vehicles Parts for bicycle Pedal cranks Pinstriper Piston rings Pistons Pliers Polishing, detergent, rust-proofing products Pressure resistant flexible tubes Protection Pumps Puncture-proof polyurethane tyres Quadricycles Racing bicycles Racing fuels Radiators Rear view mirrors Recoumbent bicycles Reed valves Reflectors Rental electric bicycle Rental of mopeds motorcycles and scooters Rim assemblers Rims Rims for mopeds and motorcycles Ring gears and pinions Rubber and plastic parts Saddles Saddless cover Scooters Seals and gaskets Seat posts Services and routes for bicycle tourism Services sector (bike) Services sector (motorcycle) Shields for cyclists Shock absorbers Sidecars Silencers Small metal parts Snowmobiles and water-scooters Spare parts Spark plugs Special fabrics for cyclist clothing Special fabrics for motorcyclist' clothing Specialist press (bike) Specialist press (motorcycle) Speedometers Spokes Springs Stands Starter pedals and gear levers Steering gear Steering shock absorbers Stems Suspensions Suspensions Tandems Taps Tatoo Technical clothing (airbag, protections) Technical underwear Test beds Thermic auxiliary motors and relative parts Three-wheeled delivery vans Tools and equipment for workshops Touring sport bicycles Tourism on 2 wheels Tourist boards (bike) Tourist 
---- scripts
-https://fonts.googleapis.com/css?family=Kdam&#x2B;Thmor&#x2B;Pro&amp;display=swap&amp;subset=latin,latin-ext
-https://fonts.googleapis.com/css?family=Open&#x2B;Sans:400,600,800,40&amp;display=swap&amp;subset=latin,latin-ext
+----- AJAX
+/Policy/Cookie
+/Policy/Privacy
+/css/all.min.css?v=ssNLSUXVC-KlbQ7yRrdYmUCs0Bzsqio2djFU1BdE5QQ
+/css/animate.css?2064&amp;v=S_hIGCt1lJ_RePL_lLgQl_f7slUfoMFY4MSQcDTCK1E
+/css/bootstrap.css?2047&amp;v=F3o4_w_Yk_M-BfleNqObVA6uAoRvUtAZOptnHhWfrew
+/css/et-line.min.css?v=q7Ggr6F06v_X0aDqXPn1YAl4SRPcgnKtj73pOBu8dhA
+/css/infinite-slide.css?6698&amp;v=5uKiXEwbaQh9cgd2_5Vp6WmMnsUr3VZZw0a8rKnOKNU
+/css/ionicons.min.css?v=6ngiQOrvn0bplUiDdGUgU1qsCxL6ppr-_f5rxOd0TGM
+/css/marquee.css?2468&amp;v=8R14WQmHLesKr55xQd7BZxo6DDBk0Jvh_V9SQXdD7EQ
+/css/select2.min.css?v=BE7-p4IIN2MCqtOAiqq988L3vdgLqdVcng5NO6p6OQg
+/css/select2_custom.css?v=MlohA6SI6tkAwkqp77QOaxdm5wLPuabdfygtG3PWisY
+/css/style.css?6509&amp;v=v54OyYQxOlkC44VZD53YnP-o6qJVujwoZdXP4c-ofQw
+/img/EICMA_logo.png
+/img/loghi/10037.jpg
+/img/loghi/1006.jpg
+/img/loghi/10113.jpg
+/img/loghi/10138.jpg
+/img/loghi/10156.jpg
+/img/loghi/10171.jpg
+/img/loghi/10186.jpg
+/img/loghi/1024.jpg
+/img/loghi/1025.jpg
+/img/loghi/10319.jpg
+/img/loghi/10340.jpg
+/img/loghi/10349.jpg
+/img/loghi/10351.jpg
+/img/loghi/10364.jpg
+/img/loghi/10386.jpg
+/img/loghi/10388.jpg?v=6EQGvXQpgIMUxrBNHtiKJj0WjTw2aMArfsya_4vjjAk
+/img/loghi/10403.jpg
+/img/loghi/1042.jpg
+/img/loghi/1046.jpg
+/img/loghi/10486.jpg
+/img/loghi/10512.jpg
+/img/loghi/1053.jpg
+/img/loghi/1055.jpg
+/img/loghi/10582.jpg?v=oZK-6zslhKwowzA74Lw4MSxCzsm6oqxT6bJulSM_NUU
+/img/loghi/10659.jpg
+/img/loghi/10665.jpg
+/img/loghi/10696.jpg
+/img/loghi/10726.jpg
+/img/loghi/10739.jpg
+/img/loghi/1076.jpg
+/img/loghi/10792.jpg
+/img/loghi/10903.jpg
+/img/loghi/1093.jpg
+/img/loghi/10936.jpg
+/img/loghi/11002.jpg
+/img/loghi/1101.jpg
+/img/loghi/11011.jpg
+/img/loghi/1102.jpg
+/img/loghi/11023.jpg
+/img/loghi/11028.jpg
+/img/loghi/1103.jpg
+/img/loghi/11040.jpg
+/img/loghi/11109.jpg
+/img/loghi/1112.jpg?v=E-JBLa2pSHXrOXw9bqToF8_zxkarX4QVaVYcdzg-Iy0
+/img/loghi/1114.jpg
+/img/loghi/11162.jpg
+/img/loghi/11165.jpg
+/img/loghi/11166.jpg
+/img/loghi/11171.jpg
+/img/loghi/11173.jpg?v=7w0cjHXHGr0ngVnF79aIOtqcJAOFNPLFHfBZC7MG44Y
+/img/loghi/11177.jpg
+/img/loghi/11182.jpg
+/img/loghi/1119.jpg
+/img/loghi/11210.jpg
+/img/loghi/11254.jpg
+/img/loghi/11259.jpg
+/img/loghi/11263.jpg?v=bRBxAj7Lf4TrfGmqUJEOyWK7WWGuqS6E95pv3tqSB-k
+/img/loghi/11280.jpg
+/img/loghi/11306.jpg
+/img/loghi/11316.jpg
+/img/loghi/11378.jpg
+/img/loghi/11425.jpg
+/img/loghi/11471.jpg
+/img/loghi/11479.jpg
+/img/loghi/11520.jpg
+/img/loghi/11527.jpg
+/img/loghi/11558.jpg
