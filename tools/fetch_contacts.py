@@ -181,13 +181,28 @@ def extract(html, url):
         if re.fullmatch(r"\s*(?:Website|Official Website|Homepage|Home Page|官网|公司网站)\s*", a.get_text(" ", strip=True), re.I):
             h = a["href"].strip()
             if h.startswith("//"): h = "https:" + h
-            if h.startswith("http") and urlparse(h).netloc != host and not PLATFORM.search(urlparse(h).netloc) and not out["web"]:
+            if "redirect.do" in h and not out["web"]:
+                out["web"] = resolve(h)
+            elif h.startswith("http") and urlparse(h).netloc != host and not PLATFORM.search(urlparse(h).netloc) and not out["web"]:
                 out["web"] = h
     m = re.search(r"(?:Website|Homepage|Home Page|Web Site|官网|网址)\s*[:：]?\s*((?:https?://)?(?:www\.)?[a-z0-9\-]+(?:\.[a-z0-9\-]+)+(?:/\S*)?)", text, re.I)
     if m and not PLATFORM.search(m.group(1)):
         w = m.group(1).rstrip(".,;)")
         out["web"] = w if w.startswith("http") else "http://" + w
     return out
+
+def resolve(url):
+    """Follow a directory's 'Website' redirect link to the company's own site (reads the Location header only)."""
+    if not allowed(url): print("  robots.txt disallows", url, file=sys.stderr); return None
+    for _ in range(4):
+        polite(urlparse(url).netloc)
+        try: r = requests.get(url, headers=H, timeout=20, allow_redirects=False)
+        except Exception: return None
+        loc = r.headers.get("location")
+        if not loc: return None
+        url = urljoin(url, loc)
+        if not PLATFORM.search(urlparse(url).netloc): return url
+    return None
 
 def email_ok(e, src, web):
     """Keep company-domain mail anywhere; free mail (163/qq/gmail...) only from the company's own pages."""
