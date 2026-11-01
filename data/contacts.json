@@ -1,0 +1,196 @@
+{
+ "baotian": {
+  "emails": [
+   {
+    "src": "https://www.baotianmotor.com/",
+    "v": "baotiandongban@gmail.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.baotianmotor.com/contact-us.html",
+   "v": "86-750-2039008"
+  }
+ },
+ "chongqing-jianya-motorcycle": {
+  "wa": {
+   "src": "https://b2brazil.com/hotsite/chongqingjianya",
+   "v": "+5511989133675"
+  }
+ },
+ "chongqing-wonjan-motorcycle-mfg": {
+  "wa": {
+   "src": "https://b2brazil.com/hotsite/chongqingwonjan/details",
+   "v": "+5511989133675"
+  }
+ },
+ "h-foshan-nanhai-jiujiang-jiadeshi-helmet": {
+  "emails": [
+   {
+    "src": "http://www.jdshelmet.com/contact_en.asp",
+    "v": "export01@jdshelmet.com"
+   },
+   {
+    "src": "http://www.jdshelmet.com/contact_en.asp",
+    "v": "vicher9886@126.com"
+   }
+  ],
+  "phone": {
+   "src": "http://www.jdshelmet.com/contact_en.asp",
+   "v": "0757-86511920"
+  },
+  "wc": {
+   "src": "http://www.jdshelmet.com/contact_en.asp",
+   "v": "vicher_sky"
+  }
+ },
+ "h-guangzhou-jinhao-sporting-goods": {
+  "emails": [
+   {
+    "src": "http://www.gsb-helmet.com/i/contact.html",
+    "v": "info@gsb-helmet.com"
+   }
+  ]
+ },
+ "h-jiangmen-sonlink-motorcycle": {
+  "phone": {
+   "src": "https://sonlink.en.made-in-china.com/company-info.html",
+   "v": "86-20-87866239"
+  }
+ },
+ "haojue": {
+  "emails": [
+   {
+    "src": "https://en.haojue.com/contact.html",
+    "v": "export@haojue.com"
+   }
+  ],
+  "phone": {
+   "src": "https://en.haojue.com/contact.html",
+   "v": "0086-750-3228439"
+  }
+ },
+ "jiangmen-sonlink-motorcycle": {
+  "phone": {
+   "src": "https://sonlink.en.made-in-china.com/company-info.html",
+   "v": "86-20-87866239"
+  }
+ },
+ "kove": {
+  "emails": [
+   {
+    "src": "https://www.kovemoto.com",
+    "v": "export@kovemoto.com"
+   },
+   {
+    "src": "https://www.kovemoto.com",
+    "v": "aftersales@kovemoto.com"
+   },
+   {
+    "src": "https://www.kovemoto.com",
+    "v": "overseas_marketing@kovemoto.com"
+   }
+  ]
+ },
+ "niu": {
+  "emails": [
+   {
+    "src": "https://global.niu.com/contact",
+    "v": "hello@niu.com"
+   },
+   {
+    "src": "https://global.niu.com/contact",
+    "v": "questions@niu.com"
+   },
+   {
+    "src": "https://global.niu.com/contact",
+    "v": "global-service@niu.com"
+   },
+   {
+    "src": "https://global.niu.com/contact",
+    "v": "audit@niu.com"
+   }
+  ]
+ },
+ "shineray": {
+  "emails": [
+   {
+    "src": "https://www.shineraymoto.com",
+    "v": "impexp@shineray.com"
+   },
+   {
+    "src": "https://www.shineraymoto.com",
+    "v": "srexp@shineray.com"
+   },
+   {
+    "src": "https://www.shineraymoto.com",
+    "v": "trade@shineray.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.shineraymoto.com/contact/",
+   "v": "86-23-65733914"
+  }
+ },
+ "tailg": {
+  "emails": [
+   {
+    "src": "https://www.tailg.com/",
+    "v": "brand@tailg.com.cn"
+   },
+   {
+    "src": "https://www.tailg.com/",
+    "v": "market@tailg.cc"
+   }
+  ]
+ },
+ "taizhou-qiman": {
+  "wa": {
+   "src": "https://b2brazil.com/hotsite/taizhouqiman",
+   "v": "+5511989133675"
+  }
+ },
+ "yinxiang": {
+  "emails": [
+   {
+    "src": "https://yinxiangmotor.com/",
+    "v": "morgen.yang@d-cw.com"
+   },
+   {
+    "src": "https://yinxiangmotor.com/gwlxfs.html",
+    "v": "teng.yun@d-cw.com"
+   },
+   {
+    "src": "https://yinxiangmotor.com/gwlxfs.html",
+    "v": "li.tianxing@d-cw.com"
+   },
+   {
+    "src": "https://yinxiangmotor.com/gwlxfs.html",
+    "v": "he.wei@d-cw.com"
+   },
+   {
+    "src": "https://yinxiangmotor.com/gwlxfs.html",
+    "v": "ma.chi@d-cw.com"
+   },
+   {
+    "src": "https://yinxiangmotor.com/gwlxfs.html",
+    "v": "yang.bo@d-cw.com"
+   }
+  ],
+  "phone": {
+   "src": "https://yinxiangmotor.com/",
+   "v": "023-81663070"
+  }
+ },
+ "znen": {
+  "emails": [
+   {
+    "src": "https://www.znen.com/",
+    "v": "milton@zhongneng.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.znen.com/contact",
+   "v": "0086-576-82629001"
+  }
+ }
+}
