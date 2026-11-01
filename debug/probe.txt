@@ -1,156 +1,178 @@
 
 
-===== https://catalogo.eicma.it/?culture=en-US
-allowed=True status=200 len=86590
+===== https://catalogo.eicma.it/Espositore
+allowed=True status=200 len=3686755
 --- robots
 (robots 404)
 --- links
 /Espositore
-https://www.linkedin.com/company/eicma-spa/
+/Espositore
 /Espositore
 https://www.linkedin.com/company/eicma-spa/
 --- text
- Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next X Heading content Primo Elemento Secondo Elemento Terzo Elemento Quarto Elemento 3rd-8th November 2026 Tuesday 3rd from 8:30 AM to 6:30 PM Press Tuesday 3rd from 1:00 PM to 6:30 PM Trade Visitors Wednesday 4th from 8:30 AM to 6:30 PM Trade visitors and Press From Thursday 5th to Sunday 8th from 9:30 AM to 6:30 PM Public, Trade Visitors and Press On Tuesday 3rd and Wednesday 4th, entry is reserved for those over 18 years of age only product search CLOTHING AND EQUIPMENT discover all the exhibitors READ MORE INSURANCE discover all the exhibitors READ MORE ASSOCIATIONS AND INSTITUTIONS discover all the exhibitors READ MORE HELMETS discover all the exhibitors READ MORE SPECIALISED MAGAZINES discover all the exhibitors READ MORE PARTS discover all the exhibitors READ MORE SERVICES discover all the exhibitors READ MORE VEHICLES discover all the exhibitors READ MORE COMPONENTS discover all the exhibitors READ MORE eicma wall eicmaofficial Manca pochissimo a #EI... eicmaofficial 🏜️ La Dakar torna a M... eicmaofficial After an amazing 2025 ... eicmaofficial Motori a tutto gas, sa... eicmaofficial EICMA sì, ma senza sba... eicmaofficial A EICMA non si viene s... eicmaofficial Le moto del mito. Le s... eicmaofficial Quest’anno a EICMA abb... eicmaofficial -10 GIORNI A #EICMA202... eicmaofficial Quando una fiera diven... eicmaofficial 🎬 Settimo episodio de... eicmaofficial Come raggiungere #EICM... COMPANY NAME Title Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Previous Next EICMA SPA Via Fabio Filzi 25/a 20124 Milano - Tel. 026773511 eicma@eicma.it Catalog Home Exhibitors Product Research Social Wall Disclaimer Privacy Policy Cookie Policy Follow us © Copyright 2025 Esposizione internazionale del ciclo, motociclo, accessori S.p.A. in sigla E.I.C.M.A. S.p.A Sede legale: Via Fabio Filzi 25/a, 20124 Milano - Pi e cf: 04145450153 N.iscrizione 04145450153 - Capitale sociale sottoscritto e versato: 100.000 euro Made by Nyx Solutions 
+ Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next eicma 2026 exhibitors SEARCH SHOW ALL Sector -- All Associations and institutions Clothing and equipment for motorcyclists Components Helmets Insurance Parts Services sector Specialist press Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles Products -- All 50 cc mopeds and scooters Accessories Accessories for bicycles Accumulators Air and oil filter Air spraying All-terrain mountain bikes Altimeters - barometers Anti-misting products for motorbike helmets and glasses Anti-theft devices Associations (bike) Associations (motorcycle) Atv and vehicles for special uses Atv farm implements Atv guards Atv steering arms Atv tracks Atv wheel rims Auxiliary engines and related spare parts Axles and spacers for atv Baby seats Bags Ball and roller and bearing Balls, rollers and needle rollers Baskets Batteries Battery chargers Bells Bicycle frames Bicycle helmets Bicycle pedals Bicycle racks Bicycle-wheelchairs Bikes for the disabled people Biomechanics equipment Bodies for three-wheeled vans Brake pads Brakes Brakes , brake levers Brake-shoes Bumpers Cables, wires and sheaths Carburettors - injection systems Carrier tricycles Carriers Carriers for motorcycle Case for scooters and motorcycles Catalysts for bicycle Chain guards Chains Children's bicycles and tricycles City bikes Clothing and equipment for cyclists Clothing and equipment for motorcyclists Clutches, joints and related components Coils and condensers Connecting rod systems Connecting rods Consortiums (bike) Consortiums (motorcycle) Covers for motorcycles Crank-set and accessories Cross - bmx bicycles Customized vehicles Cycle-computers Cycle-simulators Cylinders Decalcomanias Decorative accessories Dietary supplements for sports Direction indicatores Disk brakes Dynamos Electric auxiliary motors and relative parts Electric bikes (epac) Electric blankets for tyres Electric contacts and switches Electric vehicles Electrical mopeds Electronic devices and accessories Electronic gear case Engine shafts Engines Equipment and accessories for atv Equipment and accessories for bicycle tourism Equipment and accessories for the motorcycle tourism Equipment and special machinery for the bicycle industry Equipment and special machinery for the motorcycle industry Equipment for cyclists training Ergonomic equipment Exhaust pipes Eyewear Fairing, footboards and footreast Federations (bike) Federations (motorcycle) Finished and semi-finished products for the motorcycle industry Fitness bikes Fitness equipment Fittings kits Folding bicycles Folding mopeds Footwear Footwear and boots Forks and fork tubes Forks and fork tubes Frames Fuel and oil indicators Fuel pipes Fuel tank plugs Fuel tanks Gear cases Gearboxes for motorcycles Generators and components Gps Hand grips Handlebars Headlights and signal lights Heart-frequency meters Helmets Horns and acoustic warning signals Hubs Hybrid bikes Ignition systems Injector Institutions and organisations (bike) Institutions and organisations (motorcycle) Insurance Insurance Interphones Karts Kustom clothing Kustom lifestyle Lamp brackets Leasing and financing companies (bike) Leasing and financing companies (motorcycle) Led-guards for scooters Leisure-time bikes License plate holders Lighting equipment Liners, cyclinders and heads Lubricants, oils, paints, chemical products Luggage grids Metal catalysts Mini mopeds Minicross Minicross and atv bikes Motorbike wash equipment Motorcycles and motoscooters Mud guards Mudguards Nipples Not destructive checks Nuts, bolts and screws Nuts, bolts and screws Oils, paints and lubricants Packings for vehicles Parts for bicycle Pedal cranks Pinstriper Piston rings Pistons Pliers Polishing, detergent, rust-proofing products Pressure resistant flexible tubes Protection Pumps Puncture-proof polyurethane tyres Quadricycles Racing bicycles Racing fuels Radiators Rear view mirrors Recoumbent bicycles Reed valves Reflectors Rental electric bicycle Rental of mopeds motorcycles and scooters Rim assemblers Rims Rims for mopeds and motorcycles Ring gears and pinions Rubber and plastic parts Saddles Saddless cover Scooters Seals and gaskets Seat posts Services and routes for bicycle tourism Services sector (bike) Services sector (motorcycle) Shields for cyclists Shock absorbers Sidecars Silencers Small metal parts Snowmobiles and water-scooters Spare parts Spark plugs Special fabrics for cyclist clothing Special fabrics for motorcyclist' clothing Specialist press (bike) Specialist press (motorcycle) Speedometers Spokes Springs Stands Starter pedals and gear levers Steering gear Steering shock absorbers Stems Suspensions Suspensions Tandems Taps Tatoo Technical clothing (airbag, protections) Technical underwear Test beds Thermic auxiliary motors and relative parts Three-wheeled delivery vans Tools and equipment for workshops Touring sport bicycles Tourism on 2 wheels Tourist boards (bike) Tourist 
+--- scripts
+https://fonts.googleapis.com/css?family=Kdam&#x2B;Thmor&#x2B;Pro&amp;display=swap&amp;subset=latin,latin-ext
+https://fonts.googleapis.com/css?family=Open&#x2B;Sans:400,600,800,40&amp;display=swap&amp;subset=latin,latin-ext
+--- forms
+<form id="formRicerca" method="post">
+<!-- content-exibitor -->
+<div class="bloc l-bloc none content-espositori" id="content-exibitor">
+<div class="container bloc-no-padding-lg">
+<div class="row ps-lg-4 pe-lg-4 pt-lg-0 pb-lg-0 mt-lg-0 mb-lg-0">
+<div class="col-md-6 text-start align-self-center text-lg-center col-lg-12 ps-lg-0 pe-lg-0">
+<div class="row title-bicolor">
+<div class="col ps-lg-0">
+<h1 class="mb-4 title-bicolor-red ms-lg-0">
+                                eicma 2026 exhibitors
+                            </h1>
+</div>
+</div>
+<div class="row">
+<div class="mt-3 ps-lg-0 pe-lg-0 col-lg-11">
+<div class="form-group mb-3 home-ricerca-search">
+<input class="form-control search-home" id="Nominativo" name="Nominativo" placeholder="type exhibitor name" type="text" value=""/>
+</div>
+</div>
+<div class="align-self-center text-center pb-lg-0 ps-lg-0 pe-lg-0 col-filter col-6">
+<div class="text-center container-div-style">
+<a id="lnkSearch">
+<span class="icon-search-advanced et-icon-adjustments"></span>
+<h6 class="label-search mb-0 mt-2">
+                                        SEARCH
+                                    </h6>
+</a>
+</div>
+</div>
+<div class="align-self-center text-center pb-lg-0 ps-lg-0 pe-lg-0 col-all col-lg-1 col-6 col-sm-12">
+<div class="text-center">
+<a href="/Espositore">
+<span class="icon-search-advanced et-icon-grid"></span>
+<h6 class="label-search mb-lg-1 mb-0 mt-2">
+                                        SHOW ALL
+                                    </
+<select class="form-control select2" id="ddlMacroMerc" name="MerceologiaId">
+<option selected="selected" value="">-- All</option>
+<option value="6">Associations and institutions</option>
+<option value="3">Clothing and equipment for motorcyclists</option>
+<option value="2">Components</option>
+<option value="4">Helmets</option>
+<option value="5">Insurance</option>
+<option value="9">Parts</option>
+<option value="7">Services sector</option>
+<option value="8">Specialist press</option>
+<option value="1">Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles</option>
+</select>
+<select class="form-control select2" id="ddlMicroMerc" name="MicroMerceologiaId">
+<option value="">-- All</option>
+<option value="123">50 cc mopeds and scooters</option>
+<option value="174">Accessories</option>
+<option value="20">Accessories  for bicycles</option>
+<option value="139">Accumulators</option>
+<option value="190">Air and oil filter</option>
+<option value="140">Air spraying </option>
+<option value="1">All-terrain mountain bikes</option>
+<option value="24">Altimeters - barometers</option>
+<option value="143">Anti-misting products for motorbike  helmets and glasses</option>
+<option value="144">Anti-theft devices</option>
+<option value="297">Associations (bike)</option>
+<option value="254">Associations (motorcycle)</option>
+<option value="136">Atv and vehicles for special uses</option>
+<option value="281">Atv farm implements</option>
+<option value="276">Atv guards</option>
+<option value="275">Atv steering arms </option>
+<option value="278">Atv tracks</option>
+<option value="277">Atv wheel rims</option>
+<option value="212">Auxiliary engines and related spare parts</option>
+<option value="280">Axles and spacers for atv</option>
+<option value="101">Baby seats</option>
+<option value="154">Bags</option>
+<option value="185">Ball and roller and bearing</option>
+<option value="234">Balls, rollers  and  needle rollers</option>
+<option value="50">Baskets</option>
+<option value="150">Batteries</option>
+<option value="164">Battery chargers</option>
+<option value="41">Bells</optio
+<select class="form-control select2" id="Padiglione" name="Padiglione">
+<option selected="selected" value="">-- All</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="14">14</option>
+<option value="18">18</option>
+<option value="22">22</option>
+<option value="24">24</option>
+</select>
+<select class="form-control select2" id="Nazione" name="Nazione">
+<option selected="selected" value="">-- All</option>
+<option value="IT">Italy</option>
+<option value="AF">Afghanistan</option>
+<option value="AL">Albania</option>
+<option value="DZ">Algeria</option>
+<option value="AS">American Samoa</option>
+<option value="AD">Andorra</option>
+<option value="AO">Angola</option>
+<option value="AI">Anguilla</option>
+<option value="AQ">Antarctica</option>
+<option value="AG">Antigua and Barbuda</option>
+<option value="AR">Argentina</option>
+<option value="AM">Armenia</option>
+<option value="AW">Aruba</option>
+<option value="AU">Australia</option>
+<option value="AT">Austria</option>
+<option value="AZ">Azerbaijan</option>
+<option value="BS">Bahamas</option>
+<option value="BH">Bahrain</option>
+<option value="BD">Bangladesh</option>
+<option value="BB">Barbados</option>
+<option value="BY">Belarus</option>
+<option value="BE">Belgium</option>
+<option value="BZ">Belize</option>
+<option value="BJ">Benin</option>
+<option value="BM">Bermuda</option>
+<option value="BT">Bhutan</option>
+<option value="BO">Bolivia</option>
+<option value="BA">Bosnia and Herzegovina</option>
+<option value="BW">Botswana</option>
+<option value="BV">Bouvet Island</option>
+<option value="BR">Brazil</option>
+<option value="IO">British Indian Ocean Territory</option>
+<option value="BN">Brunei Darussalam</option>
+<option value="BG">Bulgaria</option>
+<option value="BF">Burkina Faso</option>
+<option value="BI">Burundi</opti
+--- detail links
+
+
+===== https://catalogo.eicma.it/Espositore?culture=en-US&nazione=CINA
+allowed=True status=200 len=75416
+--- robots
+(robots 404)
+--- links
+/Espositore
+/Espositore
+/Espositore
+https://www.linkedin.com/company/eicma-spa/
+--- text
+ Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next eicma 2026 exhibitors SEARCH SHOW ALL Sector -- All Associations and institutions Clothing and equipment for motorcyclists Components Helmets Insurance Parts Services sector Specialist press Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles Products -- All 50 cc mopeds and scooters Accessories Accessories for bicycles Accumulators Air and oil filter Air spraying All-terrain mountain bikes Altimeters - barometers Anti-misting products for motorbike helmets and glasses Anti-theft devices Associations (bike) Associations (motorcycle) Atv and vehicles for special uses Atv farm implements Atv guards Atv steering arms Atv tracks Atv wheel rims Auxiliary engines and related spare parts Axles and spacers for atv Baby seats Bags Ball and roller and bearing Balls, rollers and needle rollers Baskets Batteries Battery chargers Bells Bicycle frames Bicycle helmets Bicycle pedals Bicycle racks Bicycle-wheelchairs Bikes for the disabled people Biomechanics equipment Bodies for three-wheeled vans Brake pads Brakes Brakes , brake levers Brake-shoes Bumpers Cables, wires and sheaths Carburettors - injection systems Carrier tricycles Carriers Carriers for motorcycle Case for scooters and motorcycles Catalysts for bicycle Chain guards Chains Children's bicycles and tricycles City bikes Clothing and equipment for cyclists Clothing and equipment for motorcyclists Clutches, joints and related components Coils and condensers Connecting rod systems Connecting rods Consortiums (bike) Consortiums (motorcycle) Covers for motorcycles Crank-set and accessories Cross - bmx bicycles Customized vehicles Cycle-computers Cycle-simulators Cylinders Decalcomanias Decorative accessories Dietary supplements for sports Direction indicatores Disk brakes Dynamos Electric auxiliary motors and relative parts Electric bikes (epac) Electric blankets for tyres Electric contacts and switches Electric vehicles Electrical mopeds Electronic devices and accessories Electronic gear case Engine shafts Engines Equipment and accessories for atv Equipment and accessories for bicycle tourism Equipment and accessories for the motorcycle tourism Equipment and special machinery for the bicycle industry Equipment and special machinery for the motorcycle industry Equipment for cyclists training Ergonomic equipment Exhaust pipes Eyewear Fairing, footboards and footreast Federations (bike) Federations (motorcycle) Finished and semi-finished products for the motorcycle industry Fitness bikes Fitness equipment Fittings kits Folding bicycles Folding mopeds Footwear Footwear and boots Forks and fork tubes Forks and fork tubes Frames Fuel and oil indicators Fuel pipes Fuel tank plugs Fuel tanks Gear cases Gearboxes for motorcycles Generators and components Gps Hand grips Handlebars Headlights and signal lights Heart-frequency meters Helmets Horns and acoustic warning signals Hubs Hybrid bikes Ignition systems Injector Institutions and organisations (bike) Institutions and organisations (motorcycle) Insurance Insurance Interphones Karts Kustom clothing Kustom lifestyle Lamp brackets Leasing and financing companies (bike) Leasing and financing companies (motorcycle) Led-guards for scooters Leisure-time bikes License plate holders Lighting equipment Liners, cyclinders and heads Lubricants, oils, paints, chemical products Luggage grids Metal catalysts Mini mopeds Minicross Minicross and atv bikes Motorbike wash equipment Motorcycles and motoscooters Mud guards Mudguards Nipples Not destructive checks Nuts, bolts and screws Nuts, bolts and screws Oils, paints and lubricants Packings for vehicles Parts for bicycle Pedal cranks Pinstriper Piston rings Pistons Pliers Polishing, detergent, rust-proofing products Pressure resistant flexible tubes Protection Pumps Puncture-proof polyurethane tyres Quadricycles Racing bicycles Racing fuels Radiators Rear view mirrors Recoumbent bicycles Reed valves Reflectors Rental electric bicycle Rental of mopeds motorcycles and scooters Rim assemblers Rims Rims for mopeds and motorcycles Ring gears and pinions Rubber and plastic parts Saddles Saddless cover Scooters Seals and gaskets Seat posts Services and routes for bicycle tourism Services sector (bike) Services sector (motorcycle) Shields for cyclists Shock absorbers Sidecars Silencers Small metal parts Snowmobiles and water-scooters Spare parts Spark plugs Special fabrics for cyclist clothing Special fabrics for motorcyclist' clothing Specialist press (bike) Specialist press (motorcycle) Speedometers Spokes Springs Stands Starter pedals and gear levers Steering gear Steering shock absorbers Stems Suspensions Suspensions Tandems Taps Tatoo Technical clothing (airbag, protections) Technical underwear Test beds Thermic auxiliary motors and relative parts Three-wheeled delivery vans Tools and equipment for workshops Touring sport bicycles Tourism on 2 wheels Tourist boards (bike) Tourist 
 --- scripts
 https://fonts.googleapis.com/css?family=Kdam&#x2B;Thmor&#x2B;Pro&amp;display=swap&amp;subset=latin,latin-ext
 https://fonts.googleapis.com/css?family=Open&#x2B;Sans:400,600,800,40&amp;display=swap&amp;subset=latin,latin-ext
 
-===== https://catalogo.eicma.it/en-US/Exhibitors
-allowed=True status=404 len=0
+===== https://catalogo.eicma.it/Espositore?page=2
+allowed=True status=200 len=3686755
 --- robots
 (robots 404)
 --- links
-
+/Espositore
+/Espositore
+/Espositore
+https://www.linkedin.com/company/eicma-spa/
 --- text
-
+ Home Previous Next HOME Exhibitors Product Research SOCIAL WALL ITA ENG Previous Next eicma 2026 exhibitors SEARCH SHOW ALL Sector -- All Associations and institutions Clothing and equipment for motorcyclists Components Helmets Insurance Parts Services sector Specialist press Vehicles: motorcycles-motorscooters-mopeds-delivery tricars-e-bike bicycles Products -- All 50 cc mopeds and scooters Accessories Accessories for bicycles Accumulators Air and oil filter Air spraying All-terrain mountain bikes Altimeters - barometers Anti-misting products for motorbike helmets and glasses Anti-theft devices Associations (bike) Associations (motorcycle) Atv and vehicles for special uses Atv farm implements Atv guards Atv steering arms Atv tracks Atv wheel rims Auxiliary engines and related spare parts Axles and spacers for atv Baby seats Bags Ball and roller and bearing Balls, rollers and needle rollers Baskets Batteries Battery chargers Bells Bicycle frames Bicycle helmets Bicycle pedals Bicycle racks Bicycle-wheelchairs Bikes for the disabled people Biomechanics equipment Bodies for three-wheeled vans Brake pads Brakes Brakes , brake levers Brake-shoes Bumpers Cables, wires and sheaths Carburettors - injection systems Carrier tricycles Carriers Carriers for motorcycle Case for scooters and motorcycles Catalysts for bicycle Chain guards Chains Children's bicycles and tricycles City bikes Clothing and equipment for cyclists Clothing and equipment for motorcyclists Clutches, joints and related components Coils and condensers Connecting rod systems Connecting rods Consortiums (bike) Consortiums (motorcycle) Covers for motorcycles Crank-set and accessories Cross - bmx bicycles Customized vehicles Cycle-computers Cycle-simulators Cylinders Decalcomanias Decorative accessories Dietary supplements for sports Direction indicatores Disk brakes Dynamos Electric auxiliary motors and relative parts Electric bikes (epac) Electric blankets for tyres Electric contacts and switches Electric vehicles Electrical mopeds Electronic devices and accessories Electronic gear case Engine shafts Engines Equipment and accessories for atv Equipment and accessories for bicycle tourism Equipment and accessories for the motorcycle tourism Equipment and special machinery for the bicycle industry Equipment and special machinery for the motorcycle industry Equipment for cyclists training Ergonomic equipment Exhaust pipes Eyewear Fairing, footboards and footreast Federations (bike) Federations (motorcycle) Finished and semi-finished products for the motorcycle industry Fitness bikes Fitness equipment Fittings kits Folding bicycles Folding mopeds Footwear Footwear and boots Forks and fork tubes Forks and fork tubes Frames Fuel and oil indicators Fuel pipes Fuel tank plugs Fuel tanks Gear cases Gearboxes for motorcycles Generators and components Gps Hand grips Handlebars Headlights and signal lights Heart-frequency meters Helmets Horns and acoustic warning signals Hubs Hybrid bikes Ignition systems Injector Institutions and organisations (bike) Institutions and organisations (motorcycle) Insurance Insurance Interphones Karts Kustom clothing Kustom lifestyle Lamp brackets Leasing and financing companies (bike) Leasing and financing companies (motorcycle) Led-guards for scooters Leisure-time bikes License plate holders Lighting equipment Liners, cyclinders and heads Lubricants, oils, paints, chemical products Luggage grids Metal catalysts Mini mopeds Minicross Minicross and atv bikes Motorbike wash equipment Motorcycles and motoscooters Mud guards Mudguards Nipples Not destructive checks Nuts, bolts and screws Nuts, bolts and screws Oils, paints and lubricants Packings for vehicles Parts for bicycle Pedal cranks Pinstriper Piston rings Pistons Pliers Polishing, detergent, rust-proofing products Pressure resistant flexible tubes Protection Pumps Puncture-proof polyurethane tyres Quadricycles Racing bicycles Racing fuels Radiators Rear view mirrors Recoumbent bicycles Reed valves Reflectors Rental electric bicycle Rental of mopeds motorcycles and scooters Rim assemblers Rims Rims for mopeds and motorcycles Ring gears and pinions Rubber and plastic parts Saddles Saddless cover Scooters Seals and gaskets Seat posts Services and routes for bicycle tourism Services sector (bike) Services sector (motorcycle) Shields for cyclists Shock absorbers Sidecars Silencers Small metal parts Snowmobiles and water-scooters Spare parts Spark plugs Special fabrics for cyclist clothing Special fabrics for motorcyclist' clothing Specialist press (bike) Specialist press (motorcycle) Speedometers Spokes Springs Stands Starter pedals and gear levers Steering gear Steering shock absorbers Stems Suspensions Suspensions Tandems Taps Tatoo Technical clothing (airbag, protections) Technical underwear Test beds Thermic auxiliary motors and relative parts Three-wheeled delivery vans Tools and equipment for workshops Touring sport bicycles Tourism on 2 wheels Tourist boards (bike) Tourist 
 --- scripts
-
-
-===== https://catalogo.eicma.it/en-US/espositori
-allowed=True status=404 len=0
---- robots
-(robots 404)
---- links
-
---- text
-
---- scripts
-
-
-===== https://catalogo.eicma.it/en-US/Search?country=China
-allowed=True status=404 len=0
---- robots
-(robots 404)
---- links
-
---- text
-
---- scripts
-
-
-===== https://catalogo.eicma.it/robots.txt
-allowed=True status=404 len=0
---- robots
-(robots 404)
---- links
-
---- text
-
---- scripts
-
-
-===== https://www.eicma.it/sitemap_index.xml
-allowed=True status=200 len=2299
---- robots
-Disallow: /wp-includes/
-Disallow: /wp-content/plugins/
-
-
-# START YOAST BLOCK
-# ---------------------------
-User-agent: *
-Disallow:
-
-Sitemap: https://www.eicma.it/sitemap_index.xml
-# ---------------------------
-# END YOAST BLOCK
---- links
-
---- text
- https://www.eicma.it/post-sitemap.xml 2026-11-01T13:58:09+00:00 https://www.eicma.it/post-sitemap2.xml 2026-11-01T13:58:09+00:00 https://www.eicma.it/page-sitemap.xml 2026-10-28T16:06:13+00:00 https://www.eicma.it/gallery-sitemap.xml 2026-09-24T09:05:10+00:00 https://www.eicma.it/wpfd_file-sitemap.xml 2024-07-17T09:26:46+00:00 https://www.eicma.it/wpfd_file-sitemap2.xml 2023-08-10T16:07:29+00:00 https://www.eicma.it/wpfd_file-sitemap3.xml 2023-08-17T15:15:16+00:00 https://www.eicma.it/wpfd_file-sitemap4.xml 2023-11-08T10:38:42+00:00 https://www.eicma.it/wpfd_file-sitemap5.xml 2023-11-10T14:02:39+00:00 https://www.eicma.it/wpfd_file-sitemap6.xml 2023-11-15T08:04:09+00:00 https://www.eicma.it/wpfd_file-sitemap7.xml 2024-04-29T08:09:45+00:00 https://www.eicma.it/wpfd_file-sitemap8.xml 2024-07-17T09:26:46+00:00 https://www.eicma.it/category-sitemap.xml 2026-11-01T13:58:09+00:00 https://www.eicma.it/categoria-gallery-sitemap.xml 2026-05-03T12:05:00+00:00 https://www.eicma.it/categoria-video-sitemap.xml 2025-11-07T14:07:13+00:00 https://www.eicma.it/wpfd-category-sitemap.xml 2024-07-17T09:26:46+00:00 
---- scripts
-https://www.eicma.it/post-sitemap.xml</loc>
-		<lastmod>2026-11-01T13:58:09+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/post-sitemap2.xml</loc>
-		<lastmod>2026-11-01T13:58:09+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/page-sitemap.xml</loc>
-		<lastmod>2026-10-28T16:06:13+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/gallery-sitemap.xml</loc>
-		<lastmod>2026-09-24T09:05:10+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap.xml</loc>
-		<lastmod>2024-07-17T09:26:46+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap2.xml</loc>
-		<lastmod>2023-08-10T16:07:29+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap3.xml</loc>
-		<lastmod>2023-08-17T15:15:16+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap4.xml</loc>
-		<lastmod>2023-11-08T10:38:42+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap5.xml</loc>
-		<lastmod>2023-11-10T14:02:39+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap6.xml</loc>
-		<lastmod>2023-11-15T08:04:09+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap7.xml</loc>
-		<lastmod>2024-04-29T08:09:45+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd_file-sitemap8.xml</loc>
-		<lastmod>2024-07-17T09:26:46+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/category-sitemap.xml</loc>
-		<lastmod>2026-11-01T13:58:09+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/categoria-gallery-sitemap.xml</loc>
-		<lastmod>2026-05-03T12:05:00+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/categoria-video-sitemap.xml</loc>
-		<lastmod>2025-11-07T14:07:13+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.eicma.it/wpfd-category-sitemap.xml</loc>
-		<lastmod>2024-07-17T09:26:46+00:00</lastmod>
-	</sitemap>
-</sitemapindex>
-<!--
-
-===== https://espositori.eicma.it/
-allowed=True status=200 len=17005
---- robots
-(robots 404)
---- links
-
---- text
- EICMA ESPOSIZIONE INTERNAZIONALE DELLE DUE RUOTE COOKIE POLICY The company ESPOSIZIONE INTERNAZIONALE CICLO E MOTOCICLO S.p.A. (hereinafter, for brevity, also "EICMA. S.p.A.") in its capacity as the owner of the processing of personal data, intends to provide, pursuant to and in accordance with Art. 13 of Regulation (EU) 2016/679 (hereinafter "GDPR"), some information on the processing of personal data relating to the user or surfer ("User" or "Interested Party") that may be communicated while browsing this website (hereinafter "Site"). It should be noted that this information is provided only for the Site and not also for other websites that may be consulted by the user through links (for which please refer to their respective privacy policies/terms). 1. WHAT ARE COOKIES? Cookies are information (small text files) that websites transmit to the device used by the user (PC, smartphone, tablet). This information makes it possible to carry out navigation, perform computer authentication, collect information on the number of visitors and how they use the site, as well as to monitor and profile users. First-party cookies are those transmitted directly from the website visited (so-called Publisher). Third-party cookies are those transmitted by sites or web servers other than the website visited. 2. TYPE OF COOKIES USED BY THE SITE Il Sito utilizza i seguenti cookie: Technical cookies: strictly necessary . These cookies are necessary for the proper functioning and security of the Site and cannot be disabled in our systems. The installation and use of these cookies does not require the user's consent. You can set your browser used for browsing to block these cookies, but some parts of the Site may not work. per la navigazione per bloccare questi cookie, ma alcune parti del Sito potrebbero non funzionare. functionality . These cookies allow the Site to provide functionality. The installation and use of these cookies does not require the consent of the user. If you disable these cookies, some services may not work properly. 3. NATURE OF DATA PROVISION AND CONSEQUENCES IN CASE OF REFUSAL The release of the User's navigation data is necessary for purposes related to the operation of the Site and the routing of connections related to access to the Site itself, which may be precluded in the absence of such data. 4. DATA RETENTION PERIOD The personal data collected through the use of the Site are processed for the time strictly necessary to provide the services requested and to carry out the related technical and security operations, as well as, once the latter has ended, for any time period established by the regulations in force for administrative and possibly defensive purposes. 5. DATA TRANSFER TO THIRD COUNTRIES OUTSIDE THE EU The User's personal data will not be transferred to entities located in Third Countries outside the EU. 6. RIGHTS OF DATA SUBJECTS According to current legislation (see Articles 15 -22 of the GDPR), the User has the right to request access to personal data concerning him/her and to rectify them if they are inaccurate, to delete them or limit their processing if the conditions are met, as well as to obtain the portability of the data provided only if they are subject to automated processing based on consent or contract, and to object for reasons related to his/her particular situation and in any case to their use for direct marketing purposes. The User also has the right to revoke the consent given for the processing purposes that require it, without prejudice to the lawfulness of the processing carried out until the time of revocation. The User also has the right to lodge a complaint with the Data Protection Authority. For the exercise of the above rights and any further information regarding the processing of personal data concerning him/her, the User may contact privacy@eicma.it. CLOSE CLOSE Exhibitor Reserved Area Company Code Password Language Italiano English LOG IN I don't have password / Generate Password Practical guide to online registration We use cookies to improve the present and future user experience of our website. By continuing to browse, you accept our cookie policy. See the Cookie Policy for more details on our website''s use of cookies. ACCEPT × Your numeric company code can be found: - Within the email sent by the organizing secretariat - Or you can request it at segreteriaorganizzativa@eicma.it indicating the name of the company Enter the password you have. If you do not remember it or if you are logging in for the first time, click on "FORGOTTEN PASSWORD OR FIRST ACCESS". You will receive in the box of the event manager indicated during registration, an email containing a temporary password (to be entered in the old password field) which you will use to set the new password. 
---- scripts
+https://fonts.googleapis.com/css?family=Kdam&#x2B;Thmor&#x2B;Pro&amp;display=swap&amp;subset=latin,latin-ext
+https://fonts.googleapis.com/css?family=Open&#x2B;Sans:400,600,800,40&amp;display=swap&amp;subset=latin,latin-ext
