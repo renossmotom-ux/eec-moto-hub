@@ -1,24 +1,5 @@
 
 
-===== official https://global.qjmotor.com
-QJMOTOR | Global Motorcycles Industry Leader
-All
-{{item.name}}
-0(cc)
-300(cc)
-500(cc)
-700(cc)
-1000(cc)
->2000(cc)
-{{carcatelist[car_num-1].shortname}}
-3 / 11
-{{item.inputtime}}
-{{item.title}}
-LEARN MORE
-150
-3,000
-5,000
-
 ===== official https://en.haojue.com
 Haojue - Welcome To Our World
 PRODUCTS
@@ -65,6 +46,25 @@ Contact Us
 粤公网安备44070302000305号
 粤ICP备09026360号
 
+===== official https://global.qjmotor.com
+QJMOTOR | Global Motorcycles Industry Leader
+All
+{{item.name}}
+0(cc)
+300(cc)
+500(cc)
+700(cc)
+1000(cc)
+>2000(cc)
+{{carcatelist[car_num-1].shortname}}
+3 / 11
+{{item.inputtime}}
+{{item.title}}
+LEARN MORE
+150
+3,000
+5,000
+
 ===== official https://yinxiangmotor.com/
 银翔摩托
 首 页
@@ -107,22 +107,59 @@ Contact Us
 ICP备案号：渝ICP备20008138号-2
 网站建设：指引科技
 
-===== official https://global.qjmotor.com/about.html
-About Brand
-Your browser does not support the video tag.
-NO.1
-11
-1985
-50
--
-1200
-cc
-30
-million+
-0
-+
-0
-+
+===== official https://en.haojue.com/contact.html
+Contact Us-Haojue - Welcome To Our World
+PRODUCTS
+BackBone
+Scooter
+UnderBone
+Official Duty Models
+All
+
+CONTACT US
+PARTS CATALOGUE
+CN
+
+Products
+BackBone
+Scooter
+UnderBone
+Contact Us
+Parts Catalogue
+CN
+CONTACT US
+Telephone: 0086-750-3228439
+Address: No.5 Jiandabei Rd., Jiangmen City, Guangdong Province, P. R. China
+E-mail: export@haojue.com
+HOTLINE
+0086-750-3228439
+Engine Plant I & Headquarters of DCJ.
+Add: No.5 Jiandabei Road, Jiangmen, Guangdong, P.R.China
+Motorcycle Plant II & Engine Plant II of DCJ.
+Add: No.16 Futanger Road, Jiangmen, Guangdong, P.R.China
+Motorcycle Plant I of DCJ.
+Add: No.3 Hongjiang Road, Jiangmen, Guangdong, P.R.China
+Products
+BackBone
+Scooter
+UnderBone
+Services
+Parts Catalogue
+HOTLINE
+0086-750-3228439
+Legal Statement
+Sitemap
+Contact Us
+Copyright©2026 Jiangmen Dachangjiang Group Co., Ltd., 粤公网安备44070302000305号
+粤ICP备09026360号
+0086-750-3228439
+HOTLINE
+© 2026 Jiangmen Dachangjiang Group Co., Ltd.,
+Legal Statement
+Sitemap
+Contact Us
+粤公网安备44070302000305号
+粤ICP备09026360号
 
 ===== showroom/contact-info.html https://taomotor.en.made-in-china.com/contact-info.html
 Golf Cart Manufacturer, ATV , Dirt Bike Supplier - Zhejiang Taotao Vehicles Co., Ltd
@@ -481,8 +518,8 @@ Contact Us
 FAQ
 Submit a Complaint
 
-===== showroom/contact-info.html https://wangbinbin2019.en.made-in-china.com/contact-info.html
-Taizhou City Luqiao Zhenchaowei Amperex Technology Co., Ltd. - Contact Details
+===== showroom/contact-info.html https://opaisales.en.made-in-china.com/contact-info.html
+Wuxi Shengbao Vehicle Manufacturing Co., Ltd. - Contact Details
 Menu
 Sign In
 My Account
@@ -543,56 +580,115 @@ On Made-in-China.com
 On Made-in-China.com
 
 Post Sourcing Request
-Taizhou City Luqiao Zhenchaowei Amperex Technology Co., Ltd.
-Zhejiang, China
+Wuxi Shengbao Vehicle Manufacturing Co., Ltd.
+Jiangsu, China
+Business Type:
+Manufacturer/Factory & Trading Company
 Main Products:
-Electric Motorbike
+Eletric Scooter
 ,
-Electric Scooter
-,
-Electric Motorcycle Bicycle
-,
-Electric Bicycle
-,
-Electric Vehicle
-,
-Electric Bike
-,
-Electric Motorcycle Bike
+Electric Motorcycle
+Year of Establishment:
+2003-01-03
+Number of Employees:
+450
 Address:
-Fenshui Yanchang Huanglang, Jinqing Town, Luqiao, Taizhou, Zhejiang, China
-Main Markets:
-North America, South America, Southeast Asia, Africa, Mid East, Eastern Asia
-International Commercial Terms(Incoterms):
-FOB, CIF
-Terms of Payment:
-T/T
-Average Lead Time:
-Peak Season Lead Time: one month
-Off Season Lead Time: within 15 workdays
+No. 208 Furong Middle 4th Road, Xishan Economic Development Park, Wuxi, Jiangsu, China
 OEM/ODM Service
 Sample Available
 Visit My Factory
+Rating:
+4.8/5
 Average Response Time:
-Electric Motorbike, Electric Scooter, Electric Motorcycle Bicycle manufacturer / supplier in China, offering Electric Adult Tricycle E-Motorcycle with Proof for Adults-X3 Model, Sport Electric Motorcycle High Speed Street Racing E Motorbike, Foldable Light Electric Scooter City Commute E Bike and so on.
+Scooter, E-Bike, Electric Bicycle manufacturer / supplier in China, offering Electric Motorcycle High Efficiency Brazil Supplier Long Range Delivery Electric Scooter 1300mm Wheelbase, High Speed Electric Motorcycles High-Power 4500W Long Range Adult Electric Motorbike Electric Scooter, Manufacturer 600W 45km/H Max Speed 50km Long Range Adult Electric Pedal Scooter and so on.
 Send Inquiry
 Chat Now
 Diamond Member
 Diamond Member
-Since 2019
+Since 2016
 Suppliers with verified business licenses
 Audited Supplier
 Home
 Products
-SPARE PARTS
-ELECTRIC MOTORCYCLE
-EEC ELECTRIC CAR
-ELECTRIC TRICYCLE
-ELECTRIC MOBILITY SCOOTER
-ELECTRIC SCOOTER
-HYBIRD SCOOTER
-MEDIUM-MOTOR ELECTRIC SCOOTER
-MOPED ELECTRIC SCOOTER
+Top Deals
+New Models
+Electric Dirt Motorcycle
+Mini Dirt Bike
+Electric Bicycle
+WARRIOR
+COOLSTER
+HONEY
+LETAO
+EB001
+EB002
+EB003
+EB004
+EB005
+EB006
+COCO
+DOMY
+EX-ODI
+EX-GLORY
+ROMEO
+LOLITA
+Electric Motor Scooter
+XINCHI
+Yun Duo
+Gucci
+V6-9
+CANDY
+CY BER
+URANUS
+CORA
+AVATAR
+TESLA
+VESPA
+OPY-EX007
+FLYING TIGER
+TESLA MINI
+WOLF
+EM005 PRO
+EM005
+EM006
+MELODY yuedong
+WHALE
+EM028
+ATHENE lixiang
+ARES jinba
+BULL shenniu
+EM010
+EM078
+GODNESS nvshen
+EAGLE lanying
+K1
+Adult Electric Bike
+Electric Motorcycle
+Yao Tu
+Wen Jie
+Han TU
+FANGZHOU
+Night Shadow
+SONIC
+EM-k8
+Retro Motocycle
+YIHU
+JAGUAR
+KIRIN
+BEYOND
+FALCON
+HELLCAT
+GEEK
+EEC Delivery Bike
+XIAOSHA
+SKYLINE
+OPY-HV180
+OPY-LINK
+OPY-HK360
+OPY-LD03
+Electric Balancing Scooter
+Electric Tricycle
+Leisure Tricycle
+Cargo Tricycle
 Product Catalogs
 About Us
 Solutions
@@ -606,7 +702,7 @@ Send your message to this supplier
 From:
 *
 To:
-Mr. Jack
+Mr. benny
 *
 Message:
 Enter between 20 to 4,000 characters.
@@ -617,19 +713,252 @@ Post a Sourcing Request Now
 Contact Details
 Inquiry Basket
 Address:
-Fenshui Yanchang Huanglang, Jinqing Town, Luqiao, Taizhou, Zhejiang, China
+No. 208 Furong Middle 4th Road, Xishan Economic Development Park, Wuxi, Jiangsu, China
 Book a Factory Tour
 360° Virtual Tour
 Local Time:
 Showroom:
-https://wangbinbin2019.en.made-in-china.com
+https://opaisales.en.made-in-china.com
+|
+Mobile Site
+Scan the code to check this supplier on your mobile phone.
+Contact Supplier
+Mr. benny
+Export Department
+International Trade Director
+Chat Now
+Send Inquiry
+Hot Products
+China Products
+Chinese Manufacturers/Suppliers
+China Wholesale
+Wholesale Price
+Industry Sites
+Regional Channels
+Product Index
+Mobile Site
+Insights
+Language Options:
+Español
+Português
+Français
+Русский язык
+Italiano
+Deutsch
+Nederlands
+العربية
+한국어
+日本語
+हिन्दी
+ภาษาไทย
+Türkçe
+Tiếng Việt
+Bahasa Indonesia
+Copyright © 1998-2026
+Focus Technology Co., Ltd.
+All Rights Reserved.
+User Agreement
+Declaration
+Privacy Policy
+Post Sourcing Request
+Industry Channels
+Regional Channels
+Other Services:
+Explore Trade Resources
+View More in Buyer Guide
+Search Sourcing Requests
+加入认证供应商
+进入会员e家
+Contact Us
+FAQ
+Submit a Complaint
+
+===== showroom/contact-info.html https://wuxisinotechmoto.en.made-in-china.com/contact-info.html
+Wuxi Sinotech Import&Export Co., Ltd - Contact Details
+Menu
+Sign In
+My Account
+New Message(s)
+0
+Unquoted Sourcing Request(s)
+0
+New Quote(s) of Sourcing Request
+0
+Manage Products
+Edit My Showroom
+Sign Out
+For Buyer
+Search Products & Suppliers
+Product Directory
+Supplier Discovery
+Post Sourcing Request
+Sourcing Solutions
+Source from Industry Hubs
+Customize Your Products
+MEI Awards-Winning Products
+Smart Expo
+Service
+New User Guide
+Product Alert
+Supplier Audit Report
+Meet Suppliers
+Secured Trading Service
+Contact Us
+Quick Links
+My Favorites
+Recent Visit History
+Inquiry Basket
+Get Apps
+Download App!
+Explore App Exclusive Discounts
+English
+Español
+Português
+Français
+Русский язык
+Italiano
+Deutsch
+Nederlands
+العربية
+한국어
+日本語
+हिन्दी
+ภาษาไทย
+Türkçe
+Tiếng Việt
+Bahasa Indonesia
+
+Menu
+
+In This Site
+On Made-in-China.com
+On Made-in-China.com
+
+Post Sourcing Request
+Wuxi Sinotech Import&Export Co., Ltd
+Jiangsu, China
+Main Products:
+Electric Motorcycle
+,
+Electric Scooter
+,
+Gas Scooter
+,
+Racing Motorcycle
+,
+Electric Car
+,
+Ebike
+,
+Tricycle
+Address:
+Anzhen Town, Wuxi, Jiangsu, China
+Main Markets:
+North America, South America, Eastern Europe, Southeast Asia, Africa, Oceania, Mid East, Eastern Asia, Western Europe
+International Commercial Terms(Incoterms):
+FOB, EXW, CFR, CIF, DDP
+Terms of Payment:
+LC, T/T, D/P, Western Union
+Average Lead Time:
+Peak Season Lead Time: one month
+Off Season Lead Time: within 15 workdays
+OEM/ODM Service
+Sample Available
+Visit My Factory
+Rating:
+5.0/5
+Average Response Time:
+Electric Motorcycle, Electric Scooter, Gas Scooter manufacturer / supplier in China, offering Loadmax Heavy Load Large Frame Gas Scooter, Strong Suspension OEM ODM, 100% Comfort and Spacious Seat 175cc 200cc Gas Scooter, Low Noise Gasoline Scooter EPA EEC and so on.
+Send Inquiry
+Chat Now
+Diamond Member
+Diamond Member
+Since 2022
+Suppliers with verified business licenses
+Audited Supplier
+Home
+Products
+Gasoline scooter
+EPA scooter
+3 wheel Motorcycle scooter
+49cc EPA scooter
+New Arrival Gas Scooter
+EEC scooter
+motorcycle scooter
+Others Gasoline scooter
+electric motorcycle
+Electric Motorcycle for Rent & Delivery
+EEC Electric Motorcycle
+Lithium Battery
+Hot Sale Electric Motorcycle
+new arrival escooter
+Electric Racing Motorcycle
+Others electric motorcycle
+Electric Tricycle
+New Arrival passenger tricycle
+Electric Cabin
+Others Electric Tricycle
+Motorcycle(Racing & Street)
+Off Road
+New Arrival Racing Motorcycle
+Others Motorcycle(Racing & Street)
+electric scooter
+Electric Moped
+Mobility Scooter
+Electric Kick Scooter
+MOTORCYCLE SCOOTER
+Others electric scooter
+Off Road
+Electric Bike
+New Arrival Ebike
+Folding Ebike 2025
+Others Electric Bike
+Electric Car
+Solar Car
+Electric Mini Cabin Car
+Four Wheel
+Three Wheel
+Others Electric Mini Cabin Car
+GO-KARTS& ATVS & Golf Carts
+All Groups
+Product Catalogs
+Secured Trading Service
+New
+About Us
+Solutions
+Live
+Discover
+Contact Us
+Supplier Homepage
+Contact Us
+Send your message to this supplier
+*
+From:
+*
+To:
+Mr. Joe Cao
+*
+Message:
+Enter between 20 to 4,000 characters.
+Send
+This is not what you are looking for?
+
+Post a Sourcing Request Now
+Contact Details
+Inquiry Basket
+Address:
+Anzhen Town, Wuxi, Jiangsu, China
+Book a Factory Tour
+Local Time:
+Showroom:
+https://wuxisinotechmoto.en.made-in-china.com
 |
 Mobile Site
 Scan the code to check this supplier on your mobile phone.
 |
 Website
 Contact Supplier
-Mr. Jack
+Mr. Joe Cao
 Sales Department
 General Manager
 Chat Now
@@ -679,192 +1008,32 @@ Contact Us
 FAQ
 Submit a Complaint
 
-===== showroom/contact-info.html https://sy-electric-scooter.en.made-in-china.com/contact-info.html
-WUXI SHENYUN TECHNOLOGY DEVELOPMENT CO., LTD. - Contact Details
-Menu
-Sign In
-My Account
-New Message(s)
-0
-Unquoted Sourcing Request(s)
-0
-New Quote(s) of Sourcing Request
-0
-Manage Products
-Edit My Showroom
-Sign Out
-For Buyer
-Search Products & Suppliers
-Product Directory
-Supplier Discovery
-Post Sourcing Request
-Sourcing Solutions
-Source from Industry Hubs
-Customize Your Products
-MEI Awards-Winning Products
-Smart Expo
-Service
-New User Guide
-Product Alert
-Supplier Audit Report
-Meet Suppliers
-Secured Trading Service
-Contact Us
-Quick Links
-My Favorites
-Recent Visit History
-Inquiry Basket
-Get Apps
-Download App!
-Explore App Exclusive Discounts
-English
-Español
-Português
-Français
-Русский язык
-Italiano
-Deutsch
-Nederlands
-العربية
-한국어
-日本語
-हिन्दी
-ภาษาไทย
-Türkçe
-Tiếng Việt
-Bahasa Indonesia
-
-Menu
-
-In This Site
-On Made-in-China.com
-On Made-in-China.com
-
-Post Sourcing Request
-WUXI SHENYUN TECHNOLOGY DEVELOPMENT CO., LTD.
-Jiangsu, China
-Business Type:
-Manufacturer/Factory & Trading Company
-Main Products:
-Electric Motorcycle
-,
-Electric Motorcycle Parts
-Year of Establishment:
-2003-12-15
-Number of Employees:
-53
-Address:
-258 Xihu Road, Langxia village, Yangjian Town, Xishan District
-OEM/ODM Service
-Sample Available
-Visit My Factory
-Rating:
-4.8/5
-Average Response Time:
-Electric Scooter, Electric Motorcycle manufacturer / supplier in China, offering BLAZE PRO, Syev 45km/H Electric Scooter Electric Motorcycle Motor with 1200W, Shenyun Classic Best Seller 1200W Low Speed 45km/H Electric Bike for Commuting with Pedal and so on.
-Send Inquiry
-Chat Now
-Diamond Member
-Diamond Member
-Since 2021
-Suppliers with verified business licenses
-Audited Supplier
-Home
-Products
-BOX
-Electric Sharing Bike
-Electric Delivery Bike
-Electric Bicycle
-Electric Bike
-Electric Motorcycle
-Electric Scooter
-Product Catalogs
-Secured Trading Service
-New
-About Us
-Solutions
-Live
-Discover
-Contact Us
-Supplier Homepage
-Contact Us
-Send your message to this supplier
-*
-From:
-*
-To:
-Mrs. Zoe
-*
-Message:
-Enter between 20 to 4,000 characters.
-Send
-This is not what you are looking for?
-
-Post a Sourcing Request Now
-Contact Details
-Inquiry Basket
-Address:
-258 Xihu Road, Langxia village, Yangjian Town, Xishan District
- 214107
-Book a Factory Tour
-360° Virtual Tour
-Local Time:
-Showroom:
-https://sy-electric-scooter.en.made-in-china.com
-|
-Mobile Site
-Scan the code to check this supplier on your mobile phone.
-|
-Website
-Contact Supplier
-Mrs. Zoe
-Sales Department
-Chat Now
-Send Inquiry
-Hot Products
-China Products
-Chinese Manufacturers/Suppliers
-China Wholesale
-Wholesale Price
-Industry Sites
-Regional Channels
-Product Index
-Mobile Site
-Insights
-Language Options:
-Español
-Português
-Français
-Русский язык
-Italiano
-Deutsch
-Nederlands
-العربية
-한국어
-日本語
-हिन्दी
-ภาษาไทย
-Türkçe
-Tiếng Việt
-Bahasa Indonesia
-Copyright © 1998-2026
-Focus Technology Co., Ltd.
-All Rights Reserved.
-User Agreement
-Declaration
-Privacy Policy
-Post Sourcing Request
-Industry Channels
-Regional Channels
-Other Services:
-Explore Trade Resources
-View More in Buyer Guide
-Search Sourcing Requests
-加入认证供应商
-进入会员e家
-Contact Us
-FAQ
-Submit a Complaint
+===== anchors https://taomotor.en.made-in-china.com/contact-info.html
+
+
+===== anchors https://taomotor.en.made-in-china.com/company-info.html
+
+
+===== anchors https://blitzbear.en.made-in-china.com/contact-info.html
+<a href="https://blitzbear.en.made-in-china.com" itemprop="item">
+<span itemprop="name">Supplier Homepage</span>
+</a>
+<a class="link-web" href="//www.made-in-china.com/redirect.do?action=com&amp;sourceId=GOkAuNmKXzHq" rel="nofollow" target="_blank">Website</a>
+
+===== anchors https://blitzbear.en.made-in-china.com/company-info.html
+<a href="https://blitzbear.en.made-in-china.com" itemprop="item">
+<span itemprop="name">Supplier Homepage</span>
+</a>
+
+===== anchors https://opaisales.en.made-in-china.com/contact-info.html
+<a href="https://opaisales.en.made-in-china.com" itemprop="item">
+<span itemprop="name">Supplier Homepage</span>
+</a>
+
+===== anchors https://opaisales.en.made-in-china.com/company-info.html
+<a href="https://opaisales.en.made-in-china.com" itemprop="item">
+<span itemprop="name">Supplier Homepage</span>
+</a>
 
 ===== showroom/company-info.html https://taomotor.en.made-in-china.com/company-info.html
 Golf Cart Manufacturer, ATV , Dirt Bike Supplier - Zhejiang Taotao Vehicles Co., Ltd
@@ -1207,8 +1376,8 @@ Rating:
 Average Response Time:
 BLITZBEAR is a leading innovator in the electric mobility sector, dedicated to designing, developing, and manufacturing high-quality, intelligent two-wheeled electric vehicles. Our core mission is to provide global urban populations with efficient, convenient, environmentally friendly, and enjoyable transportation solutions. Strategically headquartered and manufactured in Wuxi, Jiangsu Province - a major hub within China's advanced manufacturing ecosystem - we leverage this prime location to guarantee premium quality and drive continuous innovation. Our modern Wuxi factory, spanning over 10, 000 square meters in a dynamic industrial park, serves as the robust foundation of our operations. This facility is meticulously engineered for large-scale production, stringent quality control, and optimal efficiency. It houses industry-leading automated production lines, precision assembly workshops, rigorous quality testing centers, and efficient warehousing and logistics systems, ensuring excellence permeates every stage from raw materials to finished product. BLITZBEAR's competitive edge stems from deep industry experience, cutting-edge capabilities, and an unwavering commitment to excellence, Leveraging our Wuxi base, we continuously invest in cutting-edge technology to create truly smart cycling experiences. Automated workshops and optimized logistics ensure refined, efficient production. Our versatile assembly workshops and dedicated QC centers support simultaneous production across multiple product lines. This robust infrastructure provides the flexibility to meet diverse and personalized customization needs for global partners. Uncompromising Quality Assurance: A comprehensive quality management system, adhering strictly to international standards, ensures every BLITZBEAR vehicle delivers reliable safety and enduring performance, giving riders unparalleled peace of mind. Our designers and engineers work closely, deeply understanding user needs to continuously optimize products and processes. This ensures our offerings combine aesthetic appeal with practical functionality while maintaining industry-leading performance. Our core Business Scope encompasses the entire lifecycle of intelligent electric mobility solutions: From R&D, design, and engineering to large-scale manufacturing, rigorous quality control, and global sales and distribution. We specialize in electric bicycles, e-scooters, and related smart two-wheeled transportation, specifically engineered for the demands of modern urban environments. Our dedication to premium quality, advanced manufacturing prowess, and proven ability to deliver tailored solutions positions BLITZBEAR as the trusted partner for distributors, retailers, and brands worldwide seeking reliable, innovative, high-performance electric vehicles. The fu
 
-===== showroom/company-info.html https://wangbinbin2019.en.made-in-china.com/company-info.html
-Company Overview of China Manufacturer - Taizhou City Luqiao Zhenchaowei Amperex Technology Co., Ltd.
+===== showroom/company-info.html https://opaisales.en.made-in-china.com/company-info.html
+Company Overview of China Manufacturer - Wuxi Shengbao Vehicle Manufacturing Co., Ltd.
 Menu
 Sign In
 My Account
@@ -1269,241 +1438,378 @@ On Made-in-China.com
 On Made-in-China.com
 
 Post Sourcing Request
-Taizhou City Luqiao Zhenchaowei Amperex Technology Co., Ltd.
-Zhejiang, China
-Main Products:
-Electric Motorbike
-,
-Electric Scooter
-,
-Electric Motorcycle Bicycle
-,
-Electric Bicycle
-,
-Electric Vehicle
-,
-Electric Bike
-,
-Electric Motorcycle Bike
-Address:
-Fenshui Yanchang Huanglang, Jinqing Town, Luqiao, Taizhou, Zhejiang, China
-Main Markets:
-North America, South America, Southeast Asia, Africa, Mid East, Eastern Asia
-International Commercial Terms(Incoterms):
-FOB, CIF
-Terms of Payment:
-T/T
-Average Lead Time:
-Peak Season Lead Time: one month
-Off Season Lead Time: within 15 workdays
-OEM/ODM Service
-Sample Available
-Visit My Factory
-Average Response Time:
-Electric Motorbike, Electric Scooter, Electric Motorcycle Bicycle manufacturer / supplier in China, offering Electric Adult Tricycle E-Motorcycle with Proof for Adults-X3 Model, Sport Electric Motorcycle High Speed Street Racing E Motorbike, Foldable Light Electric Scooter City Commute E Bike and so on.
-Send Inquiry
-Chat Now
-Diamond Member
-Diamond Member
-Since 2019
-Suppliers with verified business licenses
-Audited Supplier
-Home
-Products
-SPARE PARTS
-ELECTRIC MOTORCYCLE
-EEC ELECTRIC CAR
-ELECTRIC TRICYCLE
-ELECTRIC MOBILITY SCOOTER
-ELECTRIC SCOOTER
-HYBIRD SCOOTER
-MEDIUM-MOTOR ELECTRIC SCOOTER
-MOPED ELECTRIC SCOOTER
-Product Catalogs
-About Us
-Solutions
-Live
-Discover
-Contact Us
-Supplier Homepage
-About Us
-About Us
-Company Profile
-General Information
-Trade Capacity
-Company Show
-Contact Supplier
-Mr. Jack
-General Manager
-Chat Now
-Send
-Company Profile
-General Information
-Trade Capacity
-Company Show
-Company Profile
-General Information
-Trade Capacity
-Company Show
-Company Profile
-Inquiry Basket
-360° Virtual Tour
-Book a Factory Tour
-Main Products:
-‪Electric Motorbike‬
-,
-‪Electric Scooter‬
-,
-‪Electric Motorcycle Bicycle‬
-,
-‪Electric Bicycle‬
-,
-‪Electric Vehicle‬
-,
-‪Electric Bike‬
-,
-‪Electric Motorcycle Bike‬
-Address:
-Fenshui Yanchang Huanglang, Jinqing Town, Luqiao, Taizhou, Zhejiang, China
-Main Markets:
-North America, South America, Southeast Asia, Africa, Mid East, Eastern Asia
-International Commercial Terms(Incoterms):
-FOB, CIF
-Terms of Payment:
-T/T
-Average Lead Time:
-Peak Season Lead Time: one month
-Off Season Lead Time: within 15 workdays
-BV Audit Report No.
- :
-MIC-ASR263014
-Verify Now
-|
-Read Free Report
-Average Response Time:
-Chaowei Amperex Technology Co., Ltd. is a group enterprise that integrates research, design, manufacturing, sales and service of electric vehicle, owned Taizhou Chaowei, Tianjin Chaowei, Xuzhou Chaowei three major production bases, Among them, Taizhou Chaowei controls: Taizhou Xinzhou Machinery Co., Ltd., Taizhou Mingyi Metal Co., Ltd. Taizhou Xiangyuan Metal Deep processing Co., Ltd.
-The main three major production bases of Chaowei Electric vehicle's occupies
-About 220 thousand square meters, we currently have 500 staff, among which 50 persons Sales team and 60 persons are technical research and development and quality assurance. The three major production bases have 10 advanced production lines, among which Taizhou Chaowei has 3 lines, Xuzhou Chaowei has 2 lines and Tianjin Chaowei has 3 lines. The three major production bases have the production capacity of 1 million electric vehicles. Each base has the current domestic leading electric vehicle reliability test and inspection line with large number of electric vehicle industry professionals teams, for chaowei "big brand, real power" brand promotion laid a good foundation.
-In strict accordance with ISO: 9001-2000 standards, the company has established a standardized quality assurance system and process. Adhering to the corporate culture of "unity, innovation, integrity and win-win", the company strictly adheres to the quality management policy of "enhancing quality awareness, adhering to win by quality, strengthening quality management, realizing customer satisfaction" and the enterprise creed of "steadfastly doing things, earnestly being a person", aiming at energy saving, environmental protection, novel style, leading technology and dynamic fashion, Superpower takes people as its product goal. Based on environmental protection and technology, we are committed to building the smartest, safest and most powerful electric vehicle. All employees of Chaowei regard "patience, concentration and persistence" as their motto, "exquisite carving, superb charm, super-power in beauty and wisdom, super-power in connotation; Stronger power, only super-power" is the unremitting pursuit of Chaowei people!
-View All
-General Information
-Information provided by supplier
-Main Products:
-Electric Motorbike, Electric Scooter, Electric Motorcycle Bicycle, Electric Bicycle, Electric Vehicle, Electric Bike, Electric Motorcycle Bike
-Address:
-Fenshui Yanchang Huanglang, Jinqing Town, Luqiao, Taizhou, Zhejiang, China
-Trade Capacity
-Information provided by supplier
-Main Markets:
-North America, South America, Southeast Asia, Africa, Mid East, Eastern Asia
-International Commercial Terms(Incoterms):
-FOB, CIF
-Terms of Payment:
-T/T
-Average Lead Time:
-Peak Season Lead Time: one month
-Off Season Lead Time: within 15 workdays
-
-
-===== showroom/company-info.html https://sy-electric-scooter.en.made-in-china.com/company-info.html
-Company Overview of China Manufacturer - WUXI SHENYUN TECHNOLOGY DEVELOPMENT CO., LTD.
-Menu
-Sign In
-My Account
-New Message(s)
-0
-Unquoted Sourcing Request(s)
-0
-New Quote(s) of Sourcing Request
-0
-Manage Products
-Edit My Showroom
-Sign Out
-For Buyer
-Search Products & Suppliers
-Product Directory
-Supplier Discovery
-Post Sourcing Request
-Sourcing Solutions
-Source from Industry Hubs
-Customize Your Products
-MEI Awards-Winning Products
-Smart Expo
-Service
-New User Guide
-Product Alert
-Supplier Audit Report
-Meet Suppliers
-Secured Trading Service
-Contact Us
-Quick Links
-My Favorites
-Recent Visit History
-Inquiry Basket
-Get Apps
-Download App!
-Explore App Exclusive Discounts
-English
-Español
-Português
-Français
-Русский язык
-Italiano
-Deutsch
-Nederlands
-العربية
-한국어
-日本語
-हिन्दी
-ภาษาไทย
-Türkçe
-Tiếng Việt
-Bahasa Indonesia
-
-Menu
-
-In This Site
-On Made-in-China.com
-On Made-in-China.com
-
-Post Sourcing Request
-WUXI SHENYUN TECHNOLOGY DEVELOPMENT CO., LTD.
+Wuxi Shengbao Vehicle Manufacturing Co., Ltd.
 Jiangsu, China
 Business Type:
 Manufacturer/Factory & Trading Company
 Main Products:
-Electric Motorcycle
+Eletric Scooter
 ,
-Electric Motorcycle Parts
+Electric Motorcycle
 Year of Establishment:
-2003-12-15
+2003-01-03
 Number of Employees:
-53
+450
 Address:
-258 Xihu Road, Langxia village, Yangjian Town, Xishan District
+No. 208 Furong Middle 4th Road, Xishan Economic Development Park, Wuxi, Jiangsu, China
 OEM/ODM Service
 Sample Available
 Visit My Factory
 Rating:
 4.8/5
 Average Response Time:
-Electric Scooter, Electric Motorcycle manufacturer / supplier in China, offering BLAZE PRO, Syev 45km/H Electric Scooter Electric Motorcycle Motor with 1200W, Shenyun Classic Best Seller 1200W Low Speed 45km/H Electric Bike for Commuting with Pedal and so on.
+Scooter, E-Bike, Electric Bicycle manufacturer / supplier in China, offering Electric Motorcycle High Efficiency Brazil Supplier Long Range Delivery Electric Scooter 1300mm Wheelbase, High Speed Electric Motorcycles High-Power 4500W Long Range Adult Electric Motorbike Electric Scooter, Manufacturer 600W 45km/H Max Speed 50km Long Range Adult Electric Pedal Scooter and so on.
 Send Inquiry
 Chat Now
 Diamond Member
 Diamond Member
-Since 2021
+Since 2016
 Suppliers with verified business licenses
 Audited Supplier
 Home
 Products
-BOX
-Electric Sharing Bike
-Electric Delivery Bike
+Top Deals
+New Models
+Electric Dirt Motorcycle
+Mini Dirt Bike
 Electric Bicycle
-Electric Bike
+WARRIOR
+COOLSTER
+HONEY
+LETAO
+EB001
+EB002
+EB003
+EB004
+EB005
+EB006
+COCO
+DOMY
+EX-ODI
+EX-GLORY
+ROMEO
+LOLITA
+Electric Motor Scooter
+XINCHI
+Yun Duo
+Gucci
+V6-9
+CANDY
+CY BER
+URANUS
+CORA
+AVATAR
+TESLA
+VESPA
+OPY-EX007
+FLYING TIGER
+TESLA MINI
+WOLF
+EM005 PRO
+EM005
+EM006
+MELODY yuedong
+WHALE
+EM028
+ATHENE lixiang
+ARES jinba
+BULL shenniu
+EM010
+EM078
+GODNESS nvshen
+EAGLE lanying
+K1
+Adult Electric Bike
 Electric Motorcycle
+Yao Tu
+Wen Jie
+Han TU
+FANGZHOU
+Night Shadow
+SONIC
+EM-k8
+Retro Motocycle
+YIHU
+JAGUAR
+KIRIN
+BEYOND
+FALCON
+HELLCAT
+GEEK
+EEC Delivery Bike
+XIAOSHA
+SKYLINE
+OPY-HV180
+OPY-LINK
+OPY-HK360
+OPY-LD03
+Electric Balancing Scooter
+Electric Tricycle
+Leisure Tricycle
+Cargo Tricycle
+Product Catalogs
+About Us
+Solutions
+Live
+Discover
+Contact Us
+Info marked by
+is verified by
+BV
+Supplier Homepage
+About Us
+About Us
+Company Profile
+General Information
+Trade Capacity
+R&D Capacity
+Company Show
+Business Performance
+Ratings & Reviews
+Contact Supplier
+Mr. benny
+International Trade Director
+Chat Now
+Send
+Company Profile
+General Information
+Trade Capacity
+R&D Capacity
+Company Show
+Ratings & Reviews
+Company Profile
+General Information
+Trade Capacity
+R&D Capacity
+Company Show
+Company Profile
+Inquiry Basket
+360° Virtual Tour
+Book a Factory Tour
+Business Type:
+Manufacturer/Factory & Trading Company
+Main Products:
+‪Eletric Scooter‬
+,
+‪Electric Motorcycle‬
+Year of Establishment:
+2003-01-03
+Number of Employees:
+450
+Address:
+No. 208 Furong Middle 4th Road, Xishan Economic Development Park, Wuxi, Jiangsu, China
+BV Audit Report No.
+ :
+MIC-ASR2341899
+Verify Now
+|
+Read Free Report
+Rating:
+4.8/5
+Average Response Time:
+Founded in 1996, Opai Technology has developed into a large-scale new energy transportation manufacturing enterprise which integrates the research, development, production, manufacturing, sales and service of electric vehicles after twenty-five-year technical innovation, with the annual productivity of 2 million sets of electric two-wheeled vehicles.
+Over the years, Opai Technology has persevered in the corporate vision of "becoming respectable and most innovative industry leading enterprise". We have successively established four production bases in Wuxi, Tianjin, and Guangxi, and have formed the Wuxi-headquartered industrial strategy layout of electric vehicle across the country.
+Opai products cover simple, luxurious, electric motorcycle series of nearly a hundred models. Currently, over three thousand sales outlets subordinate to Opai spread in over 30 provinces throughout the country. Some products are exported to most of the developed countries such as Germany, France, Sweden, Poland, Italy, etc. Both quality and services are far in the lead.
+R&D
+With perfect quality to service life. This is we Opai has been doing, we are demanding in quality, quality assurance, strict to control every inspection process, the quality culture not only placed in OPAI enterprise culture, more permeable to the OPAI users, supply chain and sales channels.
+Our design team, energy conservation and innovative, with science and technology to explore the dynamics of electric vehicles, with first-class design to service the modern aesthetic, with high-tech environmental protection materials devotion to green living
+View All
+General Information
+6
+items verified
+by
+BV
+Business Type:
+Manufacturer/Factory & Trading Company
+Main Products:
+Eletric Scooter, Electric Motorcycle
+Year of Establishment:
+2003-01-03
+Number of Employees:
+450
+Address:
+No. 208 Furong Middle 4th Road, Xishan Economic Development Park, Wuxi, Jiangsu, China
+Plant Area:
+40000 square meters
+Registered Capital:
+100,000,000 RMB
+Trade Capacity
+7
+items verified
+by
+BV
+Main Markets:
+South America, Europe, Southeast Asia/ Mideast, Domestic
+Number of Foreign Trading Staff:
+6
+International Commercial Terms(Incoterms):
+FOB, CIF, CFR, EXW
+Terms of Payment:
+LC, T/T, D/P, PayPal, Western Union, Small-amount payment
+Average Lead Time:
+Peak Season Lead Time: one month
+Off Season Lead Time: one month
+Overseas Agent/Branch:
+No
+Export Year:
+2015-03-01
+Nearest Port:
+Shanghai Port
+R&D Capacity
+All information verified
+by
+BV
+Own Brand:
+
+
+===== showroom/company-info.html https://wuxisinotechmoto.en.made-in-china.com/company-info.html
+Company Overview of China Manufacturer - Wuxi Sinotech Import&Export Co., Ltd
+Menu
+Sign In
+My Account
+New Message(s)
+0
+Unquoted Sourcing Request(s)
+0
+New Quote(s) of Sourcing Request
+0
+Manage Products
+Edit My Showroom
+Sign Out
+For Buyer
+Search Products & Suppliers
+Product Directory
+Supplier Discovery
+Post Sourcing Request
+Sourcing Solutions
+Source from Industry Hubs
+Customize Your Products
+MEI Awards-Winning Products
+Smart Expo
+Service
+New User Guide
+Product Alert
+Supplier Audit Report
+Meet Suppliers
+Secured Trading Service
+Contact Us
+Quick Links
+My Favorites
+Recent Visit History
+Inquiry Basket
+Get Apps
+Download App!
+Explore App Exclusive Discounts
+English
+Español
+Português
+Français
+Русский язык
+Italiano
+Deutsch
+Nederlands
+العربية
+한국어
+日本語
+हिन्दी
+ภาษาไทย
+Türkçe
+Tiếng Việt
+Bahasa Indonesia
+
+Menu
+
+In This Site
+On Made-in-China.com
+On Made-in-China.com
+
+Post Sourcing Request
+Wuxi Sinotech Import&Export Co., Ltd
+Jiangsu, China
+Main Products:
+Electric Motorcycle
+,
 Electric Scooter
+,
+Gas Scooter
+,
+Racing Motorcycle
+,
+Electric Car
+,
+Ebike
+,
+Tricycle
+Address:
+Anzhen Town, Wuxi, Jiangsu, China
+Main Markets:
+North America, South America, Eastern Europe, Southeast Asia, Africa, Oceania, Mid East, Eastern Asia, Western Europe
+International Commercial Terms(Incoterms):
+FOB, EXW, CFR, CIF, DDP
+Terms of Payment:
+LC, T/T, D/P, Western Union
+Average Lead Time:
+Peak Season Lead Time: one month
+Off Season Lead Time: within 15 workdays
+OEM/ODM Service
+Sample Available
+Visit My Factory
+Rating:
+5.0/5
+Average Response Time:
+Electric Motorcycle, Electric Scooter, Gas Scooter manufacturer / supplier in China, offering Loadmax Heavy Load Large Frame Gas Scooter, Strong Suspension OEM ODM, 100% Comfort and Spacious Seat 175cc 200cc Gas Scooter, Low Noise Gasoline Scooter EPA EEC and so on.
+Send Inquiry
+Chat Now
+Diamond Member
+Diamond Member
+Since 2022
+Suppliers with verified business licenses
+Audited Supplier
+Home
+Products
+Gasoline scooter
+EPA scooter
+3 wheel Motorcycle scooter
+49cc EPA scooter
+New Arrival Gas Scooter
+EEC scooter
+motorcycle scooter
+Others Gasoline scooter
+electric motorcycle
+Electric Motorcycle for Rent & Delivery
+EEC Electric Motorcycle
+Lithium Battery
+Hot Sale Electric Motorcycle
+new arrival escooter
+Electric Racing Motorcycle
+Others electric motorcycle
+Electric Tricycle
+New Arrival passenger tricycle
+Electric Cabin
+Others Electric Tricycle
+Motorcycle(Racing & Street)
+Off Road
+New Arrival Racing Motorcycle
+Others Motorcycle(Racing & Street)
+electric scooter
+Electric Moped
+Mobility Scooter
+Electric Kick Scooter
+MOTORCYCLE SCOOTER
+Others electric scooter
+Off Road
+Electric Bike
+New Arrival Ebike
+Folding Ebike 2025
+Others Electric Bike
+Electric Car
+Solar Car
+Electric Mini Cabin Car
+Four Wheel
+Three Wheel
+Others Electric Mini Cabin Car
+GO-KARTS& ATVS & Golf Carts
+All Groups
 Product Catalogs
 Secured Trading Service
 New
@@ -1512,155 +1818,73 @@ Solutions
 Live
 Discover
 Contact Us
-Info marked by
-is verified by
-TÜV Rheinland
 Supplier Homepage
 About Us
 About Us
 Company Profile
 General Information
 Trade Capacity
-Production Capacity
-R&D Capacity
 Company Show
 Business Performance
 Ratings & Reviews
 Contact Supplier
-Mrs. Zoe
+Mr. Joe Cao
+General Manager
 Chat Now
 Send
 Company Profile
 General Information
 Trade Capacity
-Production Capacity
-R&D Capacity
 Company Show
 Ratings & Reviews
 Company Profile
 General Information
 Trade Capacity
-Production Capacity
-R&D Capacity
 Company Show
 Company Profile
 Inquiry Basket
-360° Virtual Tour
 Book a Factory Tour
-Business Type:
-Manufacturer/Factory & Trading Company
 Main Products:
 ‪Electric Motorcycle‬
 ,
-‪Electric Motorcycle Parts‬
-Year of Establishment:
-2003-12-15
-Number of Employees:
-53
+‪Electric Scooter‬
+,
+‪Gas Scooter‬
+,
+‪Racing Motorcycle‬
+,
+‪Electric Car‬
+,
+‪Ebike‬
+,
+‪Tricycle‬
 Address:
-258 Xihu Road, Langxia village, Yangjian Town, Xishan District
-TÜV Rheinland Audit Report No.
- :
-MIC-ASR244950
-Verify Now
-|
-Read Free Report
-Rating:
-4.8/5
-Average Response Time:
-In 1985, with the great support of COSTIND(state commision of science and technology for national defense industry), we managed to produce the very first electric motorcycle in China, and therefore named our factory as Wuxi Feihong Vehicle by Mr. Zhou Yiping, political commissar of COSTIND. Meanwhile, we designed and produced the first electric bicycle in China.
-After decades hard-working, the company has developed gradually. And now it has ability of prilling, injection molding, assembling and packing, and it has 4 modern assembling lines with 15 technical persons and 350 workers, covering an area of around 55 thousand square meters. And it is capable to produce over 1 million electric vehicle annually.
-With the support of Jiangsu Cycling Association and some related science and development institution in Tianjing, we established Wuxi Shenyun Technology Development Co., Ltd. Its business scope covers R& D, innovation, trade, OEM, brand extension and so on. We have been strategic partner with some leading brands in China, like Shenzhen XDS, Jiangsu Yadea, Tianjing Sykee and Shanghai Phonixs (in randon order).
-Our products are selling well in the market of America, European, South Asia and Middle East. Our company brand "DALIYA" is also very popular in domestic.
-We enjoy high reputation in this field, especially in the R& D of simply-type electirc scooter. Our goal is to offer the best quality e-vehicles to our friends all over the world.
-View All
-General Information
-9
-items verified
-by
-TÜV Rheinland
-Business Type:
-Manufacturer/Factory & Trading Company
-Main Products:
-Electric Motorcycle, Electric Motorcycle Parts
-Year of Establishment:
-2003-12-15
-Number of Employees:
-53
-Product Certification:
-Others
-Cooperated with Fortune 500:
-No
-Repeat Buyers Choice:
-80%~100%
-Address:
-258 Xihu Road, Langxia village, Yangjian Town, Xishan District
-Plant Area:
-3000 square meters
-Registered Capital:
-3,000,000 RMB
-Trade Capacity
-All information verified
-by
-TÜV Rheinland
+Anzhen Town, Wuxi, Jiangsu, China
 Main Markets:
-South America, Europe, Southeast Asia/ Mideast
-Number of Foreign Trading Staff:
-8
-Supply Chain Partners:
-20
-Minimum Order Quantity:
-1 Set
+North America, South America, Eastern Europe, Southeast Asia, Africa, Oceania, Mid East, Eastern Asia, Western Europe
 International Commercial Terms(Incoterms):
-FOB, CIF, CFR, EXW
+FOB, EXW, CFR, CIF, DDP
 Terms of Payment:
-LC, T/T, D/P, PayPal, Small-amount payment, Western Union
+LC, T/T, D/P, Western Union
 Average Lead Time:
 Peak Season Lead Time: one month
-Off Season Lead Time: one month
-Overseas Agent/Branch:
-No
-Export Year:
-21 Years
-Nearest Port:
-Shanghai Port
-Production Capacity
-All information verified
-by
-TÜV Rheinland
-Production Lines:
-2
-Inspection Type for Finished Products:
-100% inspection(Visual inspection & Function inspection)
-Inspection Method for Finished Products:
-Have instructions and uniformly followed
-QA/QC Inspectors:
-3 people
-Traceability of Raw Materials:
-Yes
-R&D Capacity
-All information verified
-by
-TÜV Rheinland
-Own Brand:
-Yes
-ODM Service Available:
-Yes
-OEM Service Available:
-Yes
-R&D Engineers:
-4 people
-New Products Launched in Last Year:
-Yes
-Customization Options:
-Customization from Samples, Customization from Designs, Full Customization, Flexible customization, Minor Customization
-Production Machines:
-Assembling Line, Injection Molding Machine
-Company Show
-Certificates
-8
- Items
-Made-in-China Au
+Off Season Lead Time: within 15 workdays
+Rating:
+5.0/5
+Average Response Time:
+WUXI SINOTECH MOTORS GLOBAL Co., Ltd. is specialized in producing motorcycles, scooters, off-road motorcycles, tricycles, E-car, E-motorcycles, E-scooters, E-bicycles, moped, etcWe have a professional team with technical knowledge and managerial experience. Of the total staff, 500 of them are senior managers and technical personnel. Our company has advanced equipments for assembling, testing and packing. By virtue of perfect managerial system and excellent quality, our company has passed ISO9001 International Quality Certification and China Compulsory Product Certification for all the motorcycles and electric vehicles. For the development of international market 15years, we have exported our products to mostly countries and regions in the world, such as Europe, south America, north Africa and Southeast Asia, etc. We exported about thousands of units monthly. In addition to our existing lines, we can design and supply products with OEM brand names for individual markets as well. With "Quality first, customers above anything else and to explore in innovative way" as the strategy of development, we'll absorb talented personnel, improve qualification and management standard, consummate after-sales services, so as to make the company's management more adaptable to international standard. Our company always follow the international trade practices, adhering to the "value contract, keep promise, quality service, mutual benefit and win-win" business philosophy. We hope to establish a long-term cooperation, and build a bright future together! We cordially welcome friends and clients, old and new, to cooperate with us for a bright development of mutually beneficial business venture for years to come.
+View All
+General Information
+Information provided by supplier
+Main Products:
+Electric Motorcycle, Electric Scooter, Gas Scooter, Racing Motorcycle, Electric Car, Ebike, Tricycle
+Address:
+Anzhen Town, Wuxi, Jiangsu, China
+Trade Capacity
+Information provided by supplier
+Main Markets:
+North America, South America, Eastern Europe, Southeast Asia, Africa, Oceania, Mid East, Eastern Asia, Western Europe
+International Commercial Te
 
 ===== directory https://www.tradewheel.com/co/wuxi-cmoto-international-trading-co-lt-944175/
 Wuxi Cmoto International Trading Co., Ltd. | Gas Motorcycle, Scooter Supplier from China | Tradewheel
@@ -1759,11 +1983,11 @@ Show
 Contact Supplier
 Send Message
 You may be interested In
-Machinery Engines & Parts Buyers
-Electrical Scooter Buyers
+Cnc Machined Parts Buyers
 Electric Scooters Buyers
-Parts Accessories Buyers
 Car Parts Buyers
+CNC Parts Buyers
+Scooters Buyers
 ✓
 Customer Services
 Contact Us
@@ -2141,11 +2365,11 @@ Show
 Contact Supplier
 Send Message
 You may be interested In
-Car Seat Belt Buyers
-Safety Car Seat Buyers
-Car Seat Material Buyers
-Baby Car Seat Buyers
+Car Seat Fabric Buyers
 Car Seat Covers Buyers
+Baby Car Seat Buyers
+Car Seat Belt Buyers
+Car Seat Mat Buyers
 ✓
 Customer Services
 Contact Us
@@ -2230,8 +2454,8 @@ Join Free
 Need Help
 Register Your Company
 
-===== directory https://www.tradewheel.com/co/xiamen-xiashing-motorcycle-61384/
-Xiamen Xiashing Motorcycle Co., Ltd. | Gas Scooters, Scooters Supplier from China | Tradewheel
+===== directory https://www.tradewheel.com/co/zhejiang-chuangtai-motorcycle-298600/
+Zhejiang Chuangtai Motorcycle Co., Ltd. | Gas Scooters, Racing Motorcycles Supplier from China | Tradewheel
 Please wait while your account is being registered at Tradewheel.com
 Join World's Fastest Growing B2B Network
 Join Now
@@ -2269,8 +2493,8 @@ Login
 Join Free
 Home
 Suppliers
-Xiamen Xiashing Motorcycle Co., Ltd.
-Xiamen Xiashing Motorcycle Co., Ltd.
+Zhejiang Chuangtai Motorcycle Co., Ltd.
+Zhejiang Chuangtai Motorcycle Co., Ltd.
 Free Member
 In Company
 In TradeWheel
@@ -2280,75 +2504,72 @@ Products
 About Us
 Contact Us
 Location
--, China
+taizhou, Zhejiang, China
 Main Products
-Gas Scooters, Scooters, Outdoor Sports, Sports Scooter
+Gas Scooters, Racing Motorcycles, Motorcycle Meter
 Year Established
-1993
+2005
 Annual Revenue
-US$2.5 Million - US$5 Million
+US$1 Million - US$2.5 Million
 Total Employees
-501 - 1000 People
+Fewer than 5 People
 Business Type
 Manufacturer
-Xiamen Xiashing Motorcycle Co., Ltd.
+Zhejiang Chuangtai Motorcycle Co., Ltd.
+Jiangkou Industrial park, huangyan district, taizhou,
 China
 Contact supplier
 Send Message
 Show Case
-SYM JET 14 200cc sport liquid cool systemnew gas s...
-JET 14 125 original SYM sport liquid cool systemne...
-1999 - 2999 USD / Piece
-SYM GR 150cc EFI EEC euro 4 sport gas scooter 4 s...
-SYM JET 14 125cc sport liquid cool systemnew gas...
-SYM JET 4 125 original EFI EEC euro 4 sport gas sc...
-SYM CROX 125cc Original off-road type sport gas sc...
-SYM SYMPHONY S 125 Classical Streamlined Graceful...
-SYM Original JET 125cc Africa popular motorcycle...
+250cc water-cooled gas scooter
+1268 - 1500 USD / Units
+LCD digital meter
+58 - 70 USD / Pieces
+125CC GP ONE racing motorcycle
+1500 - 1700 USD / Units
+400CC GP ONEsport bike motorcycle
+1999 - 2299 USD / Units
 Company Information
 Business Type
 Manufacturer
 Company
-Xiamen Xiashing Motorcycle Co., Ltd.
+Zhejiang Chuangtai Motorcycle Co., Ltd.
 Main Products
 Gas Scooters
-,
-Scooters
-,
-Outdoor Sports
-, Sports Scooter
+, Racing Motorcycles,
+Motorcycle Meter
 Established Year
-1993
+2005
 City / State
--, -
+taizhou, Zhejiang
 Country/Region
 China
 Address
--
+Jiangkou Industrial park, huangyan district, taizhou
 Total Employees
-501 - 1000 People
+Fewer than 5 People
 Trading Information
 Total Revenue
-US$2.5 Million - US$5 Million
+US$1 Million - US$2.5 Million
 Export Percentage
-91% - 100%
+11% - 20%
 Nearest Port
 -
 Overseas Office
 Contact Details
-Taiwan SYM
+Mr. David Lee
 Address:
-China
+Jiangkou Industrial park, huangyan district, taizhou, China
 Website:
 Show
 Contact Supplier
 Send Message
 You may be interested In
-Electric Scooters Buyers
-Scooter Motorcycle Buyers
-Outdoor Sports Buyers
-Electric Wheel Scooter Buyers
-Scooter Battery Buyers
+Gas Scooters Buyers
+Motorcycle Meter Buyers
+Race Motorcycle Buyers
+Eec Gas Scooter Buyers
+Gas Scooter 50cc Buyers
 ✓
 Customer Services
 Contact Us
@@ -2577,43 +2798,44 @@ Verify FOSHAN NANHAI JIUJIANG JIADESHI HELMET CO.,LTD. before reaching out - Ree
 - Source: Reevol Source (https://source.reevol.com). Underlying data from Reevol, sourced from public business registries, trade-fair exhibitor lists, certification bodies, and digital footprint.
 - License: see https://source.reevol.com/en/methodology/
 
-===== reevol https://source.reevol.com/en/suppliers/guangzhou-jinhao-sporting-goods/ai-card.md
-# GuangZhou JinHao Sporting Goods Co.,LTD
+===== reevol https://source.reevol.com/en/suppliers/foshan-nanhai-jiujiang-jiadeshi-helmet/ai-card.md
+# FOSHAN NANHAI JIUJIANG JIADESHI HELMET CO.,LTD.
 
-> Reevol Source machine-readable supplier card. Profile URL: https://source.reevol.com/en/suppliers/guangzhou-jinhao-sporting-goods/. Locale: en.
+> Reevol Source machine-readable supplier card. Profile URL: https://source.reevol.com/en/suppliers/foshan-nanhai-jiujiang-jiadeshi-helmet/. Locale: en.
 
 ## Profile status
 - Unclaimed profile. The details below come from public business registries, trade-fair exhibitor lists and certification bodies, and have not yet been confirmed by the company itself. Fields that are absent here are unconfirmed, not negative findings.
-- The company can claim this profile free at https://source.reevol.com/en/claim/guangzhou-jinhao-sporting-goods/ to confirm and complete it.
+- The company can claim this profile free at https://source.reevol.com/en/claim/foshan-nanhai-jiujiang-jiadeshi-helmet/ to confirm and complete it.
 
 ## Identity
-- Legal name (en): GuangZhou JinHao Sporting Goods Co.,LTD
-- Legal name (zh-CN): 广州市晋颢体育用品有限公司
-- Aliases: 广州市晋颢体育用品有限公司
+- Legal name (en): FOSHAN NANHAI JIUJIANG JIADESHI HELMET CO.,LTD.
+- Legal name (zh-CN): 佛山市南海区九江佳德士头盔有限公司
+- Aliases: 佛山市南海区九江佳德士头盔有限公司
 - Business type: manufacturer
-- Location: GUANGZHOU, Guangdong, China
-- Year founded: 2008
+- Location: FOSHAN, GUANGDONG, China
+- Year founded: 1994
 - Employee range: 500+
 
 ## Industry
 - Primary: Toys
-- Sub-industries: 境内采购商, 境外采购商, 采购代表（境外企业驻华机构代表）, MOTORCYCLE HELMET, FLIP UP, ABS SHELL, 境内采购商, 境外采购商, 采购代表（境外企业驻华机构代表）, HELMET
-- HS codes: 6506, 9505
+- Sub-industries: 境内采购商, 境外采购商, 采购代表（境外企业驻华机构代表）, helmet, motorcycle helmet, off road helmet, double visors off road helmet, 境内采购商, 采购代表（境外企业驻华机构代表）, 境外采购商
+- HS codes: 6506, 9503
 
 ## Digital footprint
-- Website: http://www.gsb-helmet.com/
+- Website: http://www.jdshelmet.com
+- LinkedIn: http://www.linkedin.com/company/guangdong-foshan-nanhaijiujiangjiadeshi-helmet-co.-ltd.
 
 ## Summary
-What we know: Manufacturer of motorcycle helmets and sporting goods based in Guangzhou, China (verified by industry, city, business type) Founded in 2008 with 500+ employees (verified by year founded, team size) Produces flip-up and ABS shell helmets exported under HS codes 6506 and 9505 (verified by HS codes)
+What we know: Helmet manufacturer based in Foshan, China (verified by country and city) Founded in 1994 with 500+ employees (verified by year founded and team size) Produces motorcycle helmets, off-road helmets, and double visor variants (verified by industry tags and HS codes 6506, 9503)
 
-What the data suggests: Serves both domestic and international buyers (suggested by industry tags indicating domestic and overseas procurement) Helmet manufacturing is core competency, likely including design and tooling (suggested by repeated helmet references across industry tags)
+What the data suggests: Serves both domestic and international buyers (suggested by industry tags indicating domestic and overseas procurement) Active web presence at http://www.jdshelmet.com (suggested by website field)
 
 Not yet verified: Certifications, Trade fairs, Export markets, Production capacity.
 
-Verify GuangZhou JinHao Sporting Goods Co.,LTD before reaching out - Reevol returns a verification brief within 24 hours.
+Verify FOSHAN NANHAI JIUJIANG JIADESHI HELMET CO.,LTD. before reaching out - Reevol returns a verification brief within 24 hours.
 
 ## Provenance
-- Last enriched: 2026-03-19T08:56:05.137Z
-- AI content last generated: 2026-06-23T01:01:59.851Z
+- Last enriched: 2026-03-19T08:56:06.024Z
+- AI content last generated: 2026-06-22T00:11:59.858Z
 - Source: Reevol Source (https://source.reevol.com). Underlying data from Reevol, sourced from public business registries, trade-fair exhibitor lists, certification bodies, and digital footprint.
 - License: see https://source.reevol.com/en/methodology/
