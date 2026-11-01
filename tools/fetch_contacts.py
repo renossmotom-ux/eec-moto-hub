@@ -258,7 +258,7 @@ def showroom_of(r):
 DIRECTORY = re.compile(r"tradewheel\.com|sourceready\.com|b2brazil\.com|source\.reevol\.com|ec21\.com|globalsources\.com|freshdi\.com")
 
 def scan(r):
-    res = {"emails": [], "wa": None, "wc": None, "phone": None, "web": r.get("web"), "staff": []}
+    res = {"emails": [], "wa": None, "wc": None, "phone": None, "web": r.get("web") or EICMA_WEB.get(r["id"]), "staff": []}
     seen = set()
     toks = core(r.get("legal")) + core(r.get("name"))
     def take(found, src, own):
@@ -325,6 +325,11 @@ def scan(r):
     out = {k: v for k, v in res.items() if v}
     if out.get("web") == r.get("web"): out.pop("web", None)
     return r["id"], out
+
+try:  # websites EICMA exhibitors gave in the EICMA 2026 catalogue (tools/fetch_eicma.py)
+    EICMA_WEB = {k: v["web"] for k, v in json.load(open(f"{ROOT}/data/eicma.json")).items() if v.get("web")}
+except Exception:
+    EICMA_WEB = {}
 
 def safe_scan(r):
     try: return scan(r)

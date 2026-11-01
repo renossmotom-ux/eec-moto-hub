@@ -487,15 +487,6 @@
    }
   ]
  },
- "chongqing-jianya-motorcycle": {
-  "staff": [
-   {
-    "name": "Gang Mou",
-    "role": "General Manager",
-    "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/22973"
-   }
-  ]
- },
  "chongqing-kingstorm-mechanical-and-elect": {
   "emails": [
    {
@@ -544,12 +535,30 @@
   ]
  },
  "chongqing-new-kainiu": {
+  "emails": [
+   {
+    "src": "http://www.kainiugroup.com",
+    "v": "motor1@kainiugroup.com"
+   }
+  ],
+  "phone": {
+   "src": "http://www.kainiugroup.com",
+   "v": "+86-23-47636788"
+  },
   "staff": [
    {
     "name": "Miss Jane Sun",
     "src": "https://kainiu.en.made-in-china.com/contact-info.html"
    }
   ],
+  "wa": {
+   "src": "http://www.kainiugroup.com",
+   "v": "+8617384797166"
+  },
+  "wc": {
+   "src": "http://www.kainiugroup.com/contact.html",
+   "v": "+8618623304355"
+  },
   "web": "http://www.kainiugroup.com"
  },
  "chongqing-new-summit-motor": {
@@ -848,20 +857,11 @@
   ]
  },
  "foshan-fosti-motorcycle": {
-  "phone": {
-   "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/14612",
-   "v": "+8675788353980"
-  },
   "staff": [
    {
     "name": "Ms. Spring Wu",
     "role": "Manager · Overseas Department",
     "src": "https://fosti22.en.made-in-china.com/contact-info.html"
-   },
-   {
-    "name": "Huaneng Chen",
-    "role": "President",
-    "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/14612"
    }
   ]
  },
@@ -973,6 +973,10 @@
   ]
  },
  "guangdong-jianya-motorcycle": {
+  "phone": {
+   "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/22973",
+   "v": "+8613983827555"
+  },
   "staff": [
    {
     "name": "Mr. Perry",
@@ -1233,12 +1237,26 @@
   }
  },
  "h-foshan-scoyco-extreme-sports-product": {
+  "emails": [
+   {
+    "src": "https://www.scoyco.com/",
+    "v": "info@scoyco.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.scoyco.com/",
+   "v": "86-020-81033256"
+  },
   "staff": [
    {
     "name": "Mr. Kyle",
     "src": "https://scoycosport.en.made-in-china.com/contact-info.html"
    }
   ],
+  "wa": {
+   "src": "https://www.scoyco.com/",
+   "v": "+8613711685017"
+  },
   "web": "https://www.scoyco.com/"
  },
  "h-foshan-shishabo": {
@@ -2103,19 +2121,6 @@
    {
     "name": "Mr. Kevin",
     "src": "https://kevinliu123456.en.made-in-china.com/contact-info.html"
-   }
-  ]
- },
- "jiangmen-wangye-motorcycle": {
-  "phone": {
-   "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/13728",
-   "v": "+8651252881958"
-  },
-  "staff": [
-   {
-    "name": "Mingjun Shen",
-    "role": "President",
-    "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/13728"
    }
   ]
  },
@@ -4055,15 +4060,6 @@
    }
   ]
  },
- "wuxi-legend-electric-vehicle": {
-  "staff": [
-   {
-    "name": "Pengcheng Pan",
-    "role": "Chairman",
-    "src": "https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/14397"
-   }
-  ]
- },
  "wuxi-leo-new-energy-vehicle": {
   "emails": [
    {
@@ -4331,12 +4327,30 @@
   "web": "http://www.longsong-motor.com"
  },
  "wuxi-yizhiling-locomotive-development": {
+  "emails": [
+   {
+    "src": "https://www.yizhilingev.com",
+    "v": "dong@yizhilingev.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.yizhilingev.com",
+   "v": "+86-0510-81008773"
+  },
   "staff": [
    {
     "name": "Mr. Cyrus Dong",
     "src": "https://wxyiling.en.made-in-china.com/contact-info.html"
    }
   ],
+  "wa": {
+   "src": "https://www.yizhilingev.com",
+   "v": "+8613338746168"
+  },
+  "wc": {
+   "src": "https://www.yizhilingev.com/contact.html",
+   "v": "13338746168"
+  },
   "web": "https://www.yizhilingev.com"
  },
  "wuxi-yologo-intelligent": {
