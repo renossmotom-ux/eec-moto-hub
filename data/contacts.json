@@ -2574,16 +2574,6 @@
   ]
  },
  "jinhua-otmar": {
-  "emails": [
-   {
-    "src": "http://www.otmarebikes.com",
-    "v": "jollity@otmarebike.com"
-   }
-  ],
-  "phone": {
-   "src": "http://www.otmarebikes.com/?about_5/",
-   "v": "86-15988591827"
-  },
   "staff": [
    {
     "name": "Ms. Jollity Xue",
@@ -3226,6 +3216,22 @@
    "v": "+8613632905138"
   }
  },
+ "s-wuxi-zhongfa-electric-bike": {
+  "emails": [
+   {
+    "src": "https://www.zhongfaev.com",
+    "v": "zhongfanewenergy@outlook.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.zhongfaev.com",
+   "v": "92 310 987 3333"
+  },
+  "wa": {
+   "src": "https://www.zhongfaev.com",
+   "v": "+923705243373"
+  }
+ },
  "sachs-bikes": {
   "staff": [
    {
@@ -3853,20 +3859,6 @@
   ]
  },
  "ucore": {
-  "emails": [
-   {
-    "src": "https://ucorebike.com/",
-    "v": "annyz@ucorebike.com"
-   },
-   {
-    "src": "https://ucorebike.com/",
-    "v": "rina@ucorebike.com"
-   },
-   {
-    "src": "https://ucorebike.com/about/",
-    "v": "doris@ucorebike.com"
-   }
-  ],
   "staff": [
    {
     "name": "Mrs. Anny",
@@ -4708,6 +4700,12 @@
   ]
  },
  "xuzhou-lilong-locomotive": {
+  "emails": [
+   {
+    "src": "https://lilong-autobike.com/contact/",
+    "v": "sales01@lilong-autobike.cn"
+   }
+  ],
   "staff": [
    {
     "name": "Mr. Darren Koo",
@@ -4827,16 +4825,6 @@
   ]
  },
  "yongkang-dahai-and-trade": {
-  "emails": [
-   {
-    "src": "https://www.ddclm.com",
-    "v": "caijunjie@ddclm.com"
-   }
-  ],
-  "phone": {
-   "src": "https://www.ddclm.com/contact-us",
-   "v": "+8613064640477"
-  },
   "staff": [
    {
     "name": "Mr. Caijunjie",
