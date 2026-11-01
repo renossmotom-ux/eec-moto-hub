@@ -261,7 +261,7 @@ def scan(r):
         for p in found["staff"]:
             if p["email"] and not email_ok(p["email"], src, res["web"] if own else None): p["email"] = None
             if not (p["name"] or p["email"]): continue
-            if not any((p["name"] and p["name"] == q["name"]) or (p["email"] and p["email"] == q["email"]) for q in res["staff"]):
+            if not any((p["name"] and p["name"] == q.get("name")) or (p["email"] and p["email"] == q.get("email")) for q in res["staff"]):
                 res["staff"].append({k: v for k, v in p.items() if v})
         for k in ("wa", "wc", "phone"):
             if found[k] and not res[k]: res[k] = {"v": found[k], "src": src}
@@ -319,6 +319,11 @@ def scan(r):
     if out.get("web") == r.get("web"): out.pop("web", None)
     return r["id"], out
 
+def safe_scan(r):
+    try: return scan(r)
+    except Exception as e:
+        print("  error", r["id"], type(e).__name__, e, file=sys.stderr); return r["id"], {}
+
 def main():
     rows = json.load(open(f"{ROOT}/data/factories.json")) + json.load(open(f"{ROOT}/data/helmets.json"))
     only = [a for a in sys.argv[1:] if not a.startswith("--")]
@@ -326,7 +331,7 @@ def main():
     if "--sample" in sys.argv: rows = rows[:12] + [r for r in rows if r.get("kind") == "helmet"][:6]
     out, n = {}, len(rows)
     with ThreadPoolExecutor(6) as ex:
-        for i, (fid, c) in enumerate(ex.map(scan, rows), 1):
+        for i, (fid, c) in enumerate(ex.map(safe_scan, rows), 1):
             if c: out[fid] = c
             print(f"[{i}/{n}] {fid}: " + ", ".join(k + ("=" + str(len(v)) if k == "emails" else "") for k, v in c.items()), file=sys.stderr, flush=True)
     seen = collections.Counter()
