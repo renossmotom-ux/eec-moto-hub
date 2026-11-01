@@ -10,7 +10,7 @@ A WhatsApp / WeChat value is kept only when the page labels it as WhatsApp / WeC
 
 Writes data/contacts.json: {id: {emails: [{v, src}], wa: {v, src}, wc: {v, src}, phone: {v, src}, web}}.
 """
-import json, re, sys, time, threading
+import collections, json, re, sys, time, threading
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse, urljoin, unquote
 from urllib.robotparser import RobotFileParser
@@ -73,6 +73,9 @@ def get(url, kind="page"):
             if DEBUG:
                 with LOCK:
                     if len(SAMPLES.setdefault(kind, [])) < 4: SAMPLES[kind].append((url, r.text))
+                    if "made-in-china" in host and len(SAMPLES.setdefault("anchors", [])) < 6:
+                        SAMPLES["anchors"].append((url, "\n".join(str(a)[:400] for a in BeautifulSoup(r.text, "html.parser").find_all("a")
+                                                                  if re.search(r"website|homepage|官网", str(a), re.I))))
             return r.text
         if r.status_code in (404, 410): return None
         time.sleep(3)
@@ -273,6 +276,20 @@ def main():
         for i, (fid, c) in enumerate(ex.map(scan, rows), 1):
             if c: out[fid] = c
             print(f"[{i}/{n}] {fid}: " + ", ".join(k + ("=" + str(len(v)) if k == "emails" else "") for k, v in c.items()), file=sys.stderr, flush=True)
+    seen = collections.Counter()
+    for c in out.values():
+        for k in ("wa", "wc", "phone"):
+            if c.get(k): seen[re.sub(r"\D", "", c[k]["v"]) or c[k]["v"]] += 1
+        for e in c.get("emails", []): seen[e["v"]] += 1
+    shared = {v for v, n in seen.items() if n > 1}
+    for fid, c in list(out.items()):
+        for k in ("wa", "wc", "phone"):
+            if c.get(k) and (re.sub(r"\D", "", c[k]["v"]) or c[k]["v"]) in shared: print("  shared, dropped", fid, k, c[k]["v"], file=sys.stderr); c.pop(k)
+        if c.get("emails"): c["emails"] = [e for e in c["emails"] if e["v"] not in shared]
+        for p in c.get("staff", []):
+            if p.get("email") in shared: p.pop("email")
+        out[fid] = {k: v for k, v in c.items() if v}
+        if not out[fid]: out.pop(fid)
     json.dump(out, open(f"{ROOT}/data/contacts.json", "w"), ensure_ascii=False, indent=1, sort_keys=True)
     if DEBUG:
         import os
@@ -280,8 +297,7 @@ def main():
         with open(f"{ROOT}/debug/samples.txt", "w") as fh:
             for kind, xs in SAMPLES.items():
                 for u, h in xs:
-                    s = BeautifulSoup(h, "html.parser")
-                    fh.write(f"\n\n===== {kind} {u}\n" + page_text(s)[:6000])
+                    fh.write(f"\n\n===== {kind} {u}\n" + (h if kind == "anchors" else page_text(BeautifulSoup(h, "html.parser"))[:6000]))
     # coverage, existing hand-checked data included
     def has(r, k):
         c = out.get(r["id"], {})
