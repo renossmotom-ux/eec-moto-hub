@@ -39,6 +39,9 @@ def detail(c):
     f = extract(r.text, SRC)
     s = BeautifulSoup(r.text, "html.parser")
     web = f["web"] or next((a["href"] for a in s.find_all("a", href=True) if a["href"].startswith("http") and not SOCIAL.search(a["href"]) and not PLATFORM.search(a["href"])), None)
+    if web:  # "https://www. kovemoto.com", "https://a.com  www.b.com" -> first clean address
+        web = re.sub(r"(https?://)?www\.\s+", lambda m: (m.group(1) or "https://") + "www.", web.strip()).split()[0]
+        web = web if web.startswith("http") else "https://" + web
     return {"emails": f["emails"], "phone": f["phone"], "wa": f["wa"], "wc": f["wc"], "web": web, "text": page_text(s)[:600]}
 
 def match(name, rows):
