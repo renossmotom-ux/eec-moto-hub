@@ -1,0 +1,376 @@
+
+
+===== https://www.eicma.it/en/exhibitors/
+allowed=True status=200 len=173535
+--- robots
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+
+
+# START YOAST BLOCK
+# ---------------------------
+User-agent: *
+Disallow:
+
+Sitemap: https://www.eicma.it/sitemap_index.xml
+# ---------------------------
+# END YOAST BLOCK
+--- links
+https://www.eicma.it/en/exhibit/
+https://catalogo.eicma.it/?culture=en-US
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/it/espositori/
+https://www.linkedin.com/company/eicma-spa/
+https://catalogo.eicma.it/?culture=en-US
+https://www.eicma.it/en/queens-exhibition/
+#form-espositori
+https://espositori.eicma.it/
+https://espositori.eicma.it/
+https://www.linkedin.com/company/eicma-spa/
+https://www.eicma.it/en/exhibit/
+--- text
+ Exhibitors - EICMA Menu Exhibitors Hospitality FloorPlan Gallery About Us Sustainability Contact close Visit General Info VISA Hospitality Trade Visitors Exhibitors List 2026 Exhibitors FloorPlan Special Projects Gaming Arena QUEENS EXHIBITION Your Urban Mobility Start-up & Safety Area Motolive Arena MotoLive Champions Charity Race Media News Gallery About Us Sustainability Contact EICMA RIDING FEST EICMA RIDING X FEST Menu ENG ITA close Ticket Shop Menu Visit General Info VISA Hospitality Trade Visitors Exhibitors List 2026 Motolive Arena MotoLive Champions Charity Race Special Areas Gaming Arena QUEENS EXHIBITION Your Urban Mobility Start-up & Safety Area Media News ERF EICMA RIDING FEST EICMA RIDING X FEST close Exhibitors BROCHURE EICMA Partecipation info NOTICE & DOCS Exhibitors area VISA 83 rd International Two-Wheeler Exhibition 3 - 8 november 2026. milano rho - fiera EICMA is the leading global platform for the two-wheel industry , a trade show capable of generating tangible value for companies by delivering international visibility and measurable business opportunities. The success of recent editions, marked by record-breaking numbers of visitors, qualified professionals, media, and stakeholders, confirms the strength of a format that is both current and closely aligned with market needs. Looking ahead to EICMA 2026 (3–8 November) , the organization is further strengthening its commitment to enhancing the exhibition experience, continuing to invest in advanced services and networking tools designed to maximize exhibitors’ return on investment. Its dual B2B and B2C nature enables companies to engage effectively with both international and domestic decision-makers , as well as with an ever-growing, younger, and highly engaged community of enthusiasts . EICMA also continues to enhance its appeal by expanding media visibility , including through the production of special formats, the introduction of new thematic areas, and an increasingly rich and exciting MotoLive outdoor area. Exhibiting at EICMA means choosing to take center stage on a truly unique global platform. TIMETABLE OF EICMA 2026 TUESDAY, NOVEMBER 3 Press entrance : 8:30 am - 6:30 pm Trade visitors : 1:00 pm - 6:30 pm WEDNESDAY, NOVEMBER 4 Press and trade visitors : 8:30 am - 6:30 pm FROM THURSDAY 5 TO SUNDAY NOVEMBER 8 Press, trade visitors & public 9:30 am - 6:30 pm Exhibitor hours : entry one hour before opening time and exit half an hour after closing time; Tuesday 3rd : early access 
+--- scripts
+https://fonts.googleapis.com/css?family=Sweet+Sans:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900
+https://fonts.googleapis.com/css?family=Sweet+Sans:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.eicma.it%2Fen%2Fexhibit%2F&#038;lang=en
+https://www.eicma.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.eicma.it%2Fen%2Fexhibit%2F&#038;format=xml&#038;lang=en
+https://www.eicma.it/wp-json/pys-tiktok/v1/event
+https://www.eicma.it/wp-json/pys-openai/v1/event
+https://www.eicma.it/wp-json/pys-facebook/v1/event
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/exhibit/
+https://www.facebook.com/tr?id=242621936315659&#038;ev=API_PageView&#038;noscript=1&#038;eid=2426219363156599bc4e3d1-022c-479d-bb89-34ecc47d4bb1&#038;cd%5Bpage_title%5D=Exhibitors&#038;cd%5Bpost_type%5D=page&#038;cd%5Bpost_id%5D=63127&#038;cd%5Bplugin%5D=PixelYourSite&#038;cd%5Bevent_url%5D=www.eicma.it%2Fen%2Fexhibit%2F&#038;cd%5Buser_role%5D=guest
+https://www.facebook.com/tr?id=242621936315659&#038;ev=PageView&#038;noscript=1&#038;eid=2426219363156590b3f68a4-a27a-4b68-a479-1a88efbe36e8&#038;cd%5Bpage_title%5D=Exhibitors&#038;cd%5Bpost_type%5D=page&#038;cd%5Bpost_id%5D=63127&#038;cd%5Bplugin%5D=PixelYourSite&#038;cd%5Bevent_url%5D=www.eicma.it%2Fen%2Fexhibit%2F&#038;cd%5Buser_role%5D=guest
+
+===== https://www.eicma.it/en/exhibitors-list/
+allowed=True status=200 len=116559
+--- robots
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+
+
+# START YOAST BLOCK
+# ---------------------------
+User-agent: *
+Disallow:
+
+Sitemap: https://www.eicma.it/sitemap_index.xml
+# ---------------------------
+# END YOAST BLOCK
+--- links
+https://www.eicma.it/en/exhibit/
+https://catalogo.eicma.it/?culture=en-US
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/exhibitors-list-2025/
+https://www.linkedin.com/company/eicma-spa/
+https://catalogo.eicma.it/?culture=en-US
+https://www.eicma.it/en/queens-exhibition/
+https://www.linkedin.com/company/eicma-spa/
+https://www.eicma.it/en/exhibit/
+--- text
+ Exhibitors List 2025 - EICMA Menu Exhibitors Hospitality FloorPlan Gallery About Us Sustainability Contact close Visit General Info VISA Hospitality Trade Visitors Exhibitors List 2026 Exhibitors FloorPlan Special Projects Gaming Arena QUEENS EXHIBITION Your Urban Mobility Start-up & Safety Area Motolive Arena MotoLive Champions Charity Race Media News Gallery About Us Sustainability Contact EICMA RIDING FEST EICMA RIDING X FEST Menu ENG ITA close Ticket Shop Menu Visit General Info VISA Hospitality Trade Visitors Exhibitors List 2026 Motolive Arena MotoLive Champions Charity Race Special Areas Gaming Arena QUEENS EXHIBITION Your Urban Mobility Start-up & Safety Area Media News ERF EICMA RIDING FEST EICMA RIDING X FEST close Exhibitors list 2025 COMING SOON NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. Menu General Info MotoLive Exhibit Contact About Us close Via Fabio Filzi 25/a 20124 - Milano 02 6773511 eicma@eicma.it © Copyright 2023 Esposizione internazionale del ciclo, motociclo, accessori S.p.A. in sigla E.I.C.M.A. S.p.A - Privacy Policy - Cookie Policy - Condizioni Generali Sede legale: Via Fabio Filzi 25/a, 20124 Milano - Pi e cf: 04145450153 N° iscrizione 04145450153 - Capitale sociale sottoscritto e versato: 100.000 euro Made by Agenzia YES S.p.A. close arrow-circle-o-down facebook linkedin angle-double-up ellipsis-v youtube-play instagram envelope user phone-handset map-marker 
+--- scripts
+https://fonts.googleapis.com/css?family=Sweet+Sans:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900
+https://fonts.googleapis.com/css?family=Sweet+Sans:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900
+https://www.eicma.it/en/exhibitors-list-2025/
+https://www.eicma.it/en/exhibitors-list-2025/
+https://www.eicma.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.eicma.it%2Fen%2Fexhibitors-list-2025%2F&#038;lang=en
+https://www.eicma.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.eicma.it%2Fen%2Fexhibitors-list-2025%2F&#038;format=xml&#038;lang=en
+https://www.eicma.it/wp-json/pys-tiktok/v1/event
+https://www.eicma.it/wp-json/pys-openai/v1/event
+https://www.eicma.it/wp-json/pys-facebook/v1/event
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/exhibitors-list-2025/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/exhibit/
+https://www.facebook.com/tr?id=242621936315659&#038;ev=API_PageView&#038;noscript=1&#038;eid=24262193631565910b8ef1d-7229-4692-8ecd-bde0df1020a8&#038;cd%5Bpage_title%5D=Exhibitors+List+2025&#038;cd%5Bpost_type%5D=page&#038;cd%5Bpost_id%5D=63801&#038;cd%5Bplugin%5D=PixelYourSite&#038;cd%5Bevent_url%5D=www.eicma.it%2Fen%2Fexhibitors-list-2025%2F&#038;cd%5Buser_role%5D=guest
+https://www.facebook.com/tr?id=242621936315659&#038;ev=PageView&#038;noscript=1&#038;eid=242621936315659034c82ca-b554-46c6-98dc-e1d30272bca1&#038;cd%5Bpage_title%5D=Exhibitors+List+2025&#038;cd%5Bpost_type%5D=page&#038;cd%5Bpost_id%5D=63801&#038;cd%5Bplugin%5D=PixelYourSite&#038;cd%5Bevent_url%5D=www.eicma.it%2Fen%2Fexhibitors-list-2025%2F&#038;cd%5Buser_role%5D=guest
+
+===== https://www.eicma.it/espositori/
+allowed=True status=200 len=1996
+--- robots
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+
+
+# START YOAST BLOCK
+# ---------------------------
+User-agent: *
+Disallow:
+
+Sitemap: https://www.eicma.it/sitemap_index.xml
+# ---------------------------
+# END YOAST BLOCK
+--- links
+
+--- text
+ Espositori converter 
+--- scripts
+
+
+===== https://www.eicma.it/en/
+allowed=True status=200 len=239647
+--- robots
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+
+
+# START YOAST BLOCK
+# ---------------------------
+User-agent: *
+Disallow:
+
+Sitemap: https://www.eicma.it/sitemap_index.xml
+# ---------------------------
+# END YOAST BLOCK
+--- links
+https://www.eicma.it/en/exhibit/
+https://catalogo.eicma.it/?culture=en-US
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.linkedin.com/company/eicma-spa/
+https://catalogo.eicma.it/?culture=en-US
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/kawasaki-to-exhibit-corleo-robotic-multi-legged-vehicle-at-eicma/
+https://www.eicma.it/en/gmg-appoints-antonio-cairoli-as-brand-ambassador-and-invites-visitors-to-eicma-2026/
+https://www.linkedin.com/company/eicma-spa/
+https://www.eicma.it/en/exhibit/
+--- text
+ Homepage - EICMA Menu Exhibitors Hospitality FloorPlan Gallery About Us Sustainability Contact close Visit General Info VISA Hospitality Trade Visitors Exhibitors List 2026 Exhibitors FloorPlan Special Projects Gaming Arena QUEENS EXHIBITION Your Urban Mobility Start-up & Safety Area Motolive Arena MotoLive Champions Charity Race Media News Gallery About Us Sustainability Contact EICMA RIDING FEST EICMA RIDING X FEST Menu ENG ITA close Ticket Shop Menu Visit General Info VISA Hospitality Trade Visitors Exhibitors List 2026 Motolive Arena MotoLive Champions Charity Race Special Areas Gaming Arena QUEENS EXHIBITION Your Urban Mobility Start-up & Safety Area Media News ERF EICMA RIDING FEST EICMA RIDING X FEST close NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. NOVEMBER 3-4. PRESS AND OPERATORS. | NOVEMBER 5-8 MILAN RHO-FIERA. 3-8 NOVEMBER 2026. MILAN RHO-FIERA. 00 days : 00 hours : 00 minutes : 00 seconds EICMA The International Two-Wheeler Exhibition, at the world level, is the most important trade fair event for the entire 2-wheel sector and represents the marketing tool of ANCMA, the Confindustria Industrial Association of which the most prestigious companies in the industry. NEWS 01 November 2026 Andreani Group: technology and training courses at EICMA 2026 Technical expertise, development and training are the themes that will feature at the Andreani Group’s stand at EICMA this year, in a space dedicated to the latest innovations in the suspension sector and activities centred on the world of motor racing. Among the highlights is the new DB5, a test bench that brings together the […] 1 2 3 … 894 Next » 01 November 2026 Kawasaki to exhibit Corleo robotic multi-legged vehicle at EICMA 31 October 2026 Ducati Monster Dark: the return of the essential naked bike 31 October 2026 Midland celebrates next season's new products and 20 years of intercoms 30 October 2026 GMG appoints Antonio Cairoli as brand ambassador and invites visitors to EICMA 2026 30 October 2026 eBay Garage: special events, experiences, and the future of online shopping 30 Oct
+--- scripts
+https://fonts.googleapis.com/css?family=Sweet+Sans:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900
+https://fonts.googleapis.com/css?family=Sweet+Sans:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900|Couture:100,200,300,400,500,600,700,800,900
+https://www.eicma.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.eicma.it%2Fen%2F&#038;lang=en
+https://www.eicma.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.eicma.it%2Fen%2F&#038;format=xml&#038;lang=en
+https://www.eicma.it/wp-json/pys-tiktok/v1/event
+https://www.eicma.it/wp-json/pys-openai/v1/event
+https://www.eicma.it/wp-json/pys-facebook/v1/event
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/exhibit/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/queens-exhibition/
+https://www.eicma.it/en/kawasaki-to-exhibit-corleo-robotic-multi-legged-vehicle-at-eicma/
+https://www.eicma.it/en/exhibit/
+
+===== https://www.cantonfair.org.cn/en-US/
+allowed=True status=200 len=2001
+--- robots
+User-agent: *
+Disallow: /supplier/
+Disallow: /purchase/
+Disallow: /platform/
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: Gemini-Deep-Research
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: GrokBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot-Extended
+User-agent: CCBot
+Disallow: /
+--- links
+
+--- text
+ Home - China Import and Export Fair (Canton Fair) 
+--- scripts
+
+
+===== https://www.cantonfair.org.cn/en-US/exhibitors
+allowed=True status=200 len=1738
+--- robots
+User-agent: *
+Disallow: /supplier/
+Disallow: /purchase/
+Disallow: /platform/
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: Gemini-Deep-Research
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: GrokBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot-Extended
+User-agent: CCBot
+Disallow: /
+--- links
+
+--- text
+ China Import and Export Fair (Canton Fair) 
+--- scripts
+
+
+===== https://ex.cantonfair.org.cn/
+allowed=None status=error ConnectionError len=0
+--- robots
+robots error ConnectionError
+--- links
+
+--- text
+
+--- scripts
+
+
+===== https://www.gsxt.gov.cn/
+allowed=True status=403 len=1773
+--- robots
+(robots 403)
+--- links
+
+--- text
+ 请求异常 当前IP请求异常，请更换IP地址进行访问，或访问地址（https://shiming.gsxt.gov.cn）实名注册/登录后再进行访问，如有疑问请拨打010-88650267/88650265进行咨询 
+--- scripts
+
+
+===== https://cpzgg.miit.gov.cn/
+allowed=None status=error ConnectionError len=0
+--- robots
+robots error ConnectionError
+--- links
+
+--- text
+
+--- scripts
+
+
+===== https://www.cccauthority.com/
+allowed=None status=error ConnectionError len=0
+--- robots
+robots error ConnectionError
+--- links
+
+--- text
+
+--- scripts
+
+
+===== https://www.cqc.com.cn/
+allowed=True status=200 len=158
+--- robots
+(robots 404)
+--- links
+
+--- text
+ 
+--- scripts
+
+
+===== https://vpic.nhtsa.dot.gov/api/vehicles/GetManufacturerDetails/loncin?format=json
+allowed=True status=200 len=2410
+--- robots
+(robots 404)
+--- links
+
+--- text
+{"Count":3,"Message":"Response returned successfully","SearchCriteria":null,"Results":[{"Address":"BAIHE INDUSTRIAL PARK,","Address2":null,"City":"CHONGQING ECONOMIC & TECHNOLOG","ContactEmail":"86075@loncinindustries.com","ContactFax":" 0086-23-89026902","ContactPhone":"+86238669 2687","Country":"CHINA","DBAs":null,"EquipmentItems":[],"LastUpdated":"\/Date(1714394840460-0400)\/","ManufacturerTypes":[{"Name":"Completed Vehicle Manufacturer"}],"Mfr_CommonName":null,"Mfr_ID":7058,"Mfr_Name":"CHONGQING LONCIN MOTOR CO., LTD","OtherManufacturerDetails":null,"PostalCode":null,"PrimaryProduct":null,"PrincipalFirstName":"Jun Li","PrincipalLastName":null,"PrincipalPosition":"Vice President","StateProvince":"CHONGQING","SubmittedName":"James Xu","SubmittedOn":"\/Date(1714104000000-0400)\/","SubmittedPosition":"Consultant","VehicleTypes":[{"GVWRFrom":"Class 1A: 3,000 lb or less (1,360 kg or less)","GVWRTo":null,"IsPrimary":true,"Name":"Motorcycle"}]},{"Address":"NO. TE5, HENGJIE, SHIPINGQIAO,","Address2":null,"City":"JIULONGPO DISTRICT","ContactEmail":null,"ContactFax":"86 23 6865 5085 ","ContactPhone":"862368655085","Country":"CHINA","DBAs":null,"EquipmentItems":[],"LastUpdated":"\/Date(1440530282270-0400)\/","ManufacturerTypes":[],"Mfr_CommonName":null,"Mfr_ID":11061,"Mfr_Name":"LONCIN GROUP CO., LTD","OtherManufacturerDetails":null,"PostalCode":"400051","PrimaryProduct":null,"PrincipalFirstName":"Tu Jianhua ","PrincipalLastName":null,"PrincipalPosition":"owner","StateProvince":"CHONGQING","SubmittedName":"Gao Yong","SubmittedOn":"\/Date(1075352400000-0500)\/","SubmittedPosition":"President","VehicleTypes":[{"GVWRFrom":"Class 1A: 3,000 lb or less (1,360 kg or less)","GVWRTo":null,"IsPrimary":true,"Name":"Motorcycle"}]},{"Address":"Loncin Industrial Estate","Address2":"Baihe Industrial ParkChongqing Economic Development Zone","City":"Chongping","ContactEmail":null,"ContactFax":null,"ContactPhone":null,"Country":"CHINA","DBAs":null,"EquipmentItems":[],"LastUpdated":"\/Date(1454941956697-0500)\/","ManufacturerTypes":[],"Mfr_CommonName":null,"Mfr_ID":14434,"Mfr_Name":"LONCIN GROUP IMPORT & EXPORT CO., LTD.","OtherManufacturerDetails":null,"PostalCode":"400060","PrimaryProduct":null,"PrincipalFirstName":"Gong Hui","PrincipalLastName":null,"PrincipalPosition":"General Manager","StateProvince":null,"SubmittedName":null,"SubmittedOn":null,"SubmittedPosition":null,"VehicleTypes":[]}]}
+--- scripts
+
+
+===== https://www.intermot.de/en/exhibitors/
+allowed=True status=404 len=66912
+--- robots
+
+User-agent: *
+Sitemap: https://www.intermot.de/asdb-sitemap.xml
+Sitemap: https://www.intermot.de/speaker-sitemap.xml
+Sitemap: https://www.intermot.de/event-sitemap.xml
+
+Disallow: /technisch*
+Disallow: /technisch-global/*
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Metaexternalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: Awario
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training-data-crawler
+Disallow: /
+
+User-agent: SemrushBot
+--- links
+
+--- text
+ 404 | INTERMOT Köln 19.–21.02.2027 #INTERMOT. Die Messe. DE DE Element 13300 Element 12300 EN DE DE Element 13300 Element 12300 EN Menü Log in Kontakt Übersicht Die Messe Events Aussteller und Produkte Für Aussteller Presse Log in Kontakt Übersicht Übersicht Aussteller und Produkte Ausstellerverzeichnis Created by potrace 1.16, written by Peter Selinger 2001-2019 Produktverzeichnis Produktgruppen Hallenplan Übersicht Übersicht Die Messe INTERMOT Übersicht Übersicht INTERMOT Termin und Öffnungszeiten Daten und Fakten Partner App Anreise und Aufenthalt Übersicht Übersicht Anreise & Aufenthalt Anreise VISA Support Übernachtung Messestadt Köln Barrierefreier Messeaufenthalt Rückblick Übersicht Übersicht Rückblick Rückblick 2025 Rückblick 2024 Rückblick 2022 tickets Tickets kaufen und Ticket-Codes einlösen Übersicht Übersicht Events Motorrad erleben CREATOR @ INTERMOT Übersicht Übersicht Für Aussteller Aussteller werden Übersicht Übersicht Aussteller werden Stimmen der Branche Vorteile als Aussteller Standkostenkalkulation Aussteller-Anmeldung Meinen Messestand verwalten Marketingpaket Messeauftritt planen Übersicht Übersicht Messeauftritt planen Standbau Bestellfristen Ihre Werbemöglichkeiten Service-Partner Parcel Service Services bestellen Übersicht Übersicht Services bestellen Kostenlose Werbemittel Service-Shop Catering Messestand Auf- und Abbau Übersicht Übersicht Messestand Auf- & Abbau Auf- und Abbauzeiten Anfahrt für LKW Verkehrsleitfaden eSlot Besuchermanagement Übersicht Übersicht Besuchermanagement App Networking Übersicht Übersicht Presse Presseinformationen Übersicht Übersicht Presseinformationen Presseinformationen der INTERMOT Presseinformationen der Aussteller Schlussbericht Teilnahme für Medienvertreter Übersicht Übersicht Teilnahme für Medienvertreter Akkreditierung für Journalisten Presseservices vor Ort Übersicht Übersicht Presseservices vor Ort Presse-Centrum Pressetermine Multimedia Übersicht Übersicht Multimedia Bilddatenbank Übersicht Search 404 Das tut uns leid! Die von dir angeforderte Seite konnte nicht gefunden werden. Sofern du etwas Bestimmtes suchst, nutze gerne die nachfolgende Suchfunktion: Noch immer nicht fündig geworden? Sofern du deinen gesuchten Inhalt auf unserer Internetpräsenz nicht finden kannst oder du ein anderweitiges Anliegen hast, kontaktiere uns gerne jederzeit! Zur Kontaktseite Zur Startseite Das könnte dich interessieren Für Aussteller der INTERMOT Du hast Interesse Aussteller der INTERMOT zu werden oder benöt
+--- scripts
+https://cdns.eu1.gigya.com/js/gigya.js?apikey=3_vxddhO1_zcXnKtnWOsJfjPxOkhQGJ2v6s6wjAeUMjrH-xUok24dp5YgkjuLihg2_
+
+===== https://www.motorcycleshow.co.uk/
+allowed=None status=error SSLError len=0
+--- robots
+robots error SSLError
+--- links
+
+--- text
+
+--- scripts
+
+
+===== https://www.automechanika-dubai.com/
+allowed=None status=error ConnectionError len=0
+--- robots
+robots error ConnectionError
+--- links
+
+--- text
+
+--- scripts
