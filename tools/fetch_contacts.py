@@ -342,6 +342,9 @@ def main():
     if only: rows = [r for r in rows if r["id"] in only]
     if "--sample" in sys.argv: rows = rows[:12] + [r for r in rows if r.get("kind") == "helmet"][:6]
     out, n = {}, len(rows)
+    if only:  # refresh just these companies, keep everyone else's contacts
+        try: out = {k: v for k, v in json.load(open(f"{ROOT}/data/contacts.json")).items() if k not in only}
+        except Exception: out = {}
     with ThreadPoolExecutor(6) as ex:
         for i, (fid, c) in enumerate(ex.map(safe_scan, rows), 1):
             if c: out[fid] = c
