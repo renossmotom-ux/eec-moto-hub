@@ -160,6 +160,26 @@ def extract(html, url):
         m = WC_ID.search(text)
         if m and not re.fullmatch(r"(?i)scan|follow|official|account|public|qrcode|code", m.group(1)): out["wc"] = m.group(1)
     out["staff"] = staff_of(text, out["emails"], url)
+    # Directory pages (made-in-china showroom, tradewheel): the named sales contact, with title / department when shown.
+    if re.search(r"made-in-china\.com|tradewheel\.com", host):
+        lines = [l.strip() for l in text.split("\n") if l.strip()]
+        for i, l in enumerate(lines):
+            if re.fullmatch(r"(?:Mr|Ms|Mrs|Miss)\.?\s+[A-Za-z][A-Za-z'\- ]{1,38}", l):
+                prev = lines[i - 1] if i else ""
+                nxt = lines[i + 1:i + 3]
+                role = next((x for x in nxt if TITLE.fullmatch(x) or re.fullmatch(r"[A-Za-z ]{2,30}(?:Dept|Department)", x)), None)
+                if re.search(r"^(?:\*|To:|Contact Supplier|Contact Details)$", prev) or role or (i > 0 and re.search(r"(?:Co\.,? ?Ltd|Company|Limited|Inc)\.?$", prev, re.I)):
+                    name = " ".join(w.capitalize() if w.islower() else w for w in l.split())
+                    if not any(p["name"] == name for p in out["staff"]):
+                        out["staff"].append({"name": name, "role": " · ".join(x for x in nxt if TITLE.fullmatch(x) or re.search(r"Dept|Department", x))[:60] or None,
+                                             "market": None, "email": None, "src": url})
+                    if len(out["staff"]) > 4: break
+    for a in soup.find_all("a", href=True):
+        if re.fullmatch(r"\s*(?:Website|Official Website|Homepage|Home Page|官网|公司网站)\s*", a.get_text(" ", strip=True), re.I):
+            h = a["href"].strip()
+            if h.startswith("//"): h = "https:" + h
+            if h.startswith("http") and urlparse(h).netloc != host and not PLATFORM.search(urlparse(h).netloc) and not out["web"]:
+                out["web"] = h
     m = re.search(r"(?:Website|Homepage|Home Page|Web Site|官网|网址)\s*[:：]?\s*((?:https?://)?(?:www\.)?[a-z0-9\-]+(?:\.[a-z0-9\-]+)+(?:/\S*)?)", text, re.I)
     if m and not PLATFORM.search(m.group(1)):
         w = m.group(1).rstrip(".,;)")
