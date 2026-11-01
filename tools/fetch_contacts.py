@@ -22,7 +22,7 @@ ROOT = __file__.rsplit("/tools/", 1)[0]
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 H = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"}
 LOCK = threading.Lock()
-_robots, BLOCKED, HOST_LAST = {}, set(), {}
+_robots, BLOCKED, HOST_LAST, DEAD = {}, set(), {}, set()
 DEBUG = "--debug" in sys.argv
 SAMPLES = {}
 
@@ -53,14 +53,19 @@ def get(url, kind="page"):
     if not allowed(url):
         print("  robots.txt disallows", url, file=sys.stderr); BLOCKED.add(url); return None
     host = urlparse(url).netloc
+    if host in DEAD: return None
     for i in range(2):
         polite(host)
         try:
-            r = requests.get(url, headers=H, timeout=25)
+            r = requests.get(url, headers=H, timeout=20)
         except Exception as e:
-            print("  fail", url, type(e).__name__, file=sys.stderr); time.sleep(2); continue
+            print("  fail", url, type(e).__name__, file=sys.stderr)
+            if "made-in-china" not in host: DEAD.add(host); return None
+            time.sleep(2); continue
         if r.status_code in (403, 429):
-            BLOCKED.add(url); print("  refused", r.status_code, url, file=sys.stderr); return None
+            BLOCKED.add(url); print("  refused", r.status_code, url, file=sys.stderr)
+            if "made-in-china" not in host: DEAD.add(host)  # don't keep knocking on a site that refused us
+            return None
         ctype = r.headers.get("content-type", "html")
         if r.status_code == 200 and ("html" in ctype or "text" in ctype or url.endswith(".md")):
             if re.search(r"slide to verify|captcha", r.text[:30000], re.I) and len(r.text) < 40000:
@@ -86,6 +91,34 @@ LABEL = re.compile(r"((?:(?:whats\s?app|wechat|we\s?chat|weixin|微信|tel(?:eph
                    r"\s*(?:no\.?|number|num|id|号)?\s*(?:[/&|,]|and|or|\+)?\s*){1,5})\s*[:：]?\s*" + NUM, re.I)
 WC_ID = re.compile(r"(?:wechat|we\s?chat|weixin|微信)\s*(?:id|号|account)?\s*[:：]\s*([A-Za-z][-_A-Za-z0-9]{5,19})\b", re.I)
 
+MARKETS = [("Morocco", r"morocc|maroc"), ("Algeria", r"algeri"), ("Tunisia", r"tunisi"), ("Egypt", r"egypt"), ("Nigeria", r"nigeri"),
+           ("France", r"\bfrance\b|french"), ("Spain", r"\bspain\b|spanish"), ("Italy", r"\bital(y|ian)"), ("Germany", r"german"),
+           ("Middle East", r"middle[- ]east|mideast|\bgcc\b"), ("Africa", r"africa"), ("Europe", r"europe|\beu\b"),
+           ("South America", r"south america|latin america|latam"), ("Central America", r"central america"), ("North America", r"north america|\busa\b"),
+           ("Asia", r"south[- ]?east asia|\basia"), ("Oceania", r"oceania|australia")]
+TITLE = re.compile(r"(?:general |regional |area |overseas |international |export |sales |marketing |business |account )*"
+                   r"(?:manager|director|representative|sales|supervisor|executive|ceo|president|owner|specialist)", re.I)
+PERSON = re.compile(r"\b(?:Mr|Ms|Mrs|Miss|Dr)\.?\s+([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)?)")
+CPERSON = re.compile(r"(?:Contact\s*Person|Contact\s*Name|Contact|Sales\s*Contact|联系人)\s*[:：]\s*((?:(?:Mr|Ms|Mrs|Miss)\.?\s+)?[A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+){0,2})", re.I)
+NOT_NAME = re.compile(r"^(?:Us|Now|Supplier|Information|Info|Details|Form|Person|Name|Email|Phone|Tel|Address|We|Me|Our|The|Sales|Company|Seller)\b", re.I)
+
+def staff_of(text, emails, url):
+    """People and the markets they handle, read from the page: a name / title / market close to an email or a Contact Person label."""
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
+    out = []
+    for i, l in enumerate(lines):
+        es = [e for e in emails if e in l.lower()]
+        m = CPERSON.search(l) or (CPERSON.search(l + " " + lines[i + 1]) if i + 1 < len(lines) and re.search(r"contact\s*person|联系人", l, re.I) else None)
+        if not es and not m: continue
+        ctx = " ".join(lines[max(0, i - 3): i + 1]) if es else " ".join(lines[i: i + 3])
+        name = m.group(1).strip() if m else (PERSON.search(ctx).group(0) if PERSON.search(ctx) else None)
+        if name and (NOT_NAME.search(re.sub(r"^(?:Mr|Ms|Mrs|Miss)\.?\s+", "", name)) or len(name) > 40): name = None
+        mk = next((k for k, rx in MARKETS if re.search(rx, ctx, re.I)), None)
+        tm = TITLE.search(ctx)
+        if not (name or mk): continue
+        out.append({"name": name, "role": tm.group(0).strip().title() if tm else None, "market": mk, "email": es[0] if es else None, "src": url})
+    return out
+
 def clean_num(s):
     s = re.sub(r"\s+", " ", s).strip(" -.")
     d = re.sub(r"\D", "", s)
@@ -99,7 +132,7 @@ def page_text(soup):
 
 def extract(html, url):
     """Return {emails: set, wa, wc, phone, web, links} found on one page."""
-    out = {"emails": [], "wa": None, "wc": None, "phone": None, "web": None, "links": []}
+    out = {"emails": [], "wa": None, "wc": None, "phone": None, "web": None, "links": [], "staff": []}
     soup = BeautifulSoup(html, "html.parser")
     host = urlparse(url).netloc
     for a in soup.find_all("a", href=True):
@@ -126,6 +159,7 @@ def extract(html, url):
     if not out["wc"]:
         m = WC_ID.search(text)
         if m and not re.fullmatch(r"(?i)scan|follow|official|account|public|qrcode|code", m.group(1)): out["wc"] = m.group(1)
+    out["staff"] = staff_of(text, out["emails"], url)
     m = re.search(r"(?:Website|Homepage|Home Page|Web Site|官网|网址)\s*[:：]?\s*((?:https?://)?(?:www\.)?[a-z0-9\-]+(?:\.[a-z0-9\-]+)+(?:/\S*)?)", text, re.I)
     if m and not PLATFORM.search(m.group(1)):
         w = m.group(1).rstrip(".,;)")
@@ -152,12 +186,17 @@ def showroom_of(r):
 DIRECTORY = re.compile(r"tradewheel\.com|sourceready\.com|b2brazil\.com|source\.reevol\.com|ec21\.com|globalsources\.com|freshdi\.com")
 
 def scan(r):
-    res = {"emails": [], "wa": None, "wc": None, "phone": None, "web": r.get("web")}
+    res = {"emails": [], "wa": None, "wc": None, "phone": None, "web": r.get("web"), "staff": []}
     seen = set()
     def take(found, src, own):
         for e in found["emails"]:
             if email_ok(e, src, res["web"] if own else None) and e not in [x["v"] for x in res["emails"]]:
                 res["emails"].append({"v": e, "src": src})
+        for p in found["staff"]:
+            if p["email"] and not email_ok(p["email"], src, res["web"] if own else None): p["email"] = None
+            if not (p["name"] or p["email"]): continue
+            if not any((p["name"] and p["name"] == q["name"]) or (p["email"] and p["email"] == q["email"]) for q in res["staff"]):
+                res["staff"].append({k: v for k, v in p.items() if v})
         for k in ("wa", "wc", "phone"):
             if found[k] and not res[k]: res[k] = {"v": found[k], "src": src}
     def visit(url, own, kind, follow=True):
@@ -199,6 +238,7 @@ def scan(r):
     dom = urlparse(res["web"]).netloc.split(".")[-2:] if res["web"] else None
     res["emails"].sort(key=lambda x: (x["v"].split("@")[1].split(".")[-2:] != dom, bool(FREEMAIL.search(x["v"]))))
     res["emails"] = res["emails"][:6]
+    res["staff"] = res["staff"][:12]
     out = {k: v for k, v in res.items() if v}
     if out.get("web") == r.get("web"): out.pop("web", None)
     return r["id"], out
@@ -212,7 +252,7 @@ def main():
     with ThreadPoolExecutor(6) as ex:
         for i, (fid, c) in enumerate(ex.map(scan, rows), 1):
             if c: out[fid] = c
-            print(f"[{i}/{n}] {fid}: " + ", ".join(k + ("=" + str(len(v)) if k == "emails" else "") for k in c), file=sys.stderr, flush=True)
+            print(f"[{i}/{n}] {fid}: " + ", ".join(k + ("=" + str(len(v)) if k == "emails" else "") for k, v in c.items()), file=sys.stderr, flush=True)
     json.dump(out, open(f"{ROOT}/data/contacts.json", "w"), ensure_ascii=False, indent=1, sort_keys=True)
     if DEBUG:
         import os
@@ -230,6 +270,7 @@ def main():
     for kind, label in (("moto", "Motorcycle factories"), ("helmet", "Helmet companies")):
         rs = [r for r in rows if (r.get("kind") == "helmet") == (kind == "helmet")]
         print(f"\n**{label}: {len(rs)}**  ")
+        print(f"- Staff names / market contacts: {sum(bool(out.get(r['id'], {}).get('staff')) for r in rs)}  ")
         for k, name in (("emails", "Email"), ("wa", "WhatsApp"), ("wc", "WeChat"), ("phone", "Phone")):
             print(f"- {name}: {sum(has(r, k) for r in rs)}  ")
         print(f"- Any contact: {sum(any(has(r, k) for k in ('emails','wa','wc','phone')) for r in rs)}  ")

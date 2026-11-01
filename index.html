@@ -768,6 +768,9 @@ function factories(includeRemoved, all){
       if (!f.web && c.web) f.web = c.web;
     }
     f.csrc = csrc;
+    // Staff: people in charge of each market. Admin/factory edits win, else public finds + region notes already in the data.
+    const noteStaff = (b.emailNotes || []).map(n => { const m = /^(\S+@\S+)\s*\(([^)]+)\)/.exec(n); return m && /europe|africa|asia|america|middle east|oceania|morocc|france|general|distributor/i.test(m[2]) ? {market: m[2], email: m[1], src: (b.src || [])[0]} : null; }).filter(Boolean);
+    f.staff = Array.isArray(e.staff) ? e.staff : noteStaff.concat(((c && c.staff) || []).filter(p => !noteStaff.some(q => q.email && q.email === p.email)));
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = f.kind === "helmet" ? (f.usd ? f.usd[0] : null) : prices.length ? Math.min(...prices) : null;
     const facts = f.kind === "helmet" ? [f.legal,f.city,f.since,f.emp,f.addr,f.products,f.contact] : [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
@@ -1049,7 +1052,7 @@ document.addEventListener("click", async e => { const d = e.target.closest("[dat
 const T3 = {
  en:{aPhotos:"Photos",aPhotosS:"Factory · Expo · Showroom",aComm:"Communication",aCommS:"Email · WhatsApp · WeChat · Social",aReq:"Requests",aReqS:"Become an agent · Visit the factory",
   gFactory:"Factory",gExpo:"Expo",gShow:"Showroom",gEmpty:"No photos or videos here yet. The factory adds them after claiming its profile.",gVideo:"Video",
-  gAdd:"Photo or video links (one https:// link per line, YouTube or .mp4 works)",social:"Social media",socialEmpty:"The factory adds its Facebook, Instagram, TikTok, YouTube or LinkedIn after claiming its profile.",
+  gAdd:"Photo or video links (one https:// link per line, YouTube or .mp4 works)",staffT:"Staff by market",stMarket:"Market",stName:"Person in charge",stContact:"Contact",stAll:"All markets",staffEmpty:"The factory adds who handles Africa, Morocco, France and its other markets when it completes its profile.",staffAdd:"Staff, one per line: Market | Name | Role | Email | WhatsApp",social:"Social media",socialEmpty:"The factory adds its Facebook, Instagram, TikTok, YouTube or LinkedIn after claiming its profile.",
   socialAdd:"Social media links (one https:// link per line)",call:"Call",openWa:"Chat on WhatsApp",openMail:"Send an email",foundOn:"Found on",wcCopy:"Copy the WeChat ID, then add it in WeChat → Add contacts",
   noContact:"Not published yet",rAgent:"Become an agent",rAgentS:"Sell this factory's products in your country",rVisit:"Book a factory visit",rVisitS:"Plan an appointment at the factory",
   fName:"Your name",fCo:"Company",fCountry:"Country",fCity:"City",fEmail:"Email",fPhone:"Phone / WhatsApp",fBrands:"Brands you sell now",fVol:"Expected units per year",fShop:"Showroom or shop",fShopY:"I have a showroom or shop",
@@ -1057,7 +1060,7 @@ const T3 = {
   rSent:n=>`Sent. ${n} and EEC Moto Hub have your request and will answer by email or WhatsApp.`,rMail:"Your email app is opening with the request ready. Press Send there to deliver it.",rErr:"Please fill in your name and email."},
  fr:{aPhotos:"Photos",aPhotosS:"Usine · Salon · Showroom",aComm:"Communication",aCommS:"Email · WhatsApp · WeChat · Réseaux",aReq:"Demandes",aReqS:"Devenir agent · Visiter l'usine",
   gFactory:"Usine",gExpo:"Salon",gShow:"Showroom",gEmpty:"Pas encore de photos ou vidéos ici. L'usine les ajoute après avoir réclamé son profil.",gVideo:"Vidéo",
-  gAdd:"Liens photo ou vidéo (un lien https:// par ligne, YouTube ou .mp4)",social:"Réseaux sociaux",socialEmpty:"L'usine ajoute son Facebook, Instagram, TikTok, YouTube ou LinkedIn après avoir réclamé son profil.",
+  gAdd:"Liens photo ou vidéo (un lien https:// par ligne, YouTube ou .mp4)",staffT:"Équipe par marché",stMarket:"Marché",stName:"Responsable",stContact:"Contact",stAll:"Tous marchés",staffEmpty:"L'usine indique qui gère l'Afrique, le Maroc, la France et ses autres marchés en complétant son profil.",staffAdd:"Équipe, une ligne par personne : Marché | Nom | Poste | Email | WhatsApp",social:"Réseaux sociaux",socialEmpty:"L'usine ajoute son Facebook, Instagram, TikTok, YouTube ou LinkedIn après avoir réclamé son profil.",
   socialAdd:"Liens réseaux sociaux (un lien https:// par ligne)",call:"Appeler",openWa:"Discuter sur WhatsApp",openMail:"Envoyer un email",foundOn:"Trouvé sur",wcCopy:"Copiez l'ID WeChat puis ajoutez-le dans WeChat → Ajouter des contacts",
   noContact:"Pas encore publié",rAgent:"Devenir agent",rAgentS:"Vendre les produits de cette usine dans votre pays",rVisit:"Réserver une visite d'usine",rVisitS:"Planifier un rendez-vous à l'usine",
   fName:"Votre nom",fCo:"Société",fCountry:"Pays",fCity:"Ville",fEmail:"Email",fPhone:"Téléphone / WhatsApp",fBrands:"Marques que vous vendez",fVol:"Unités prévues par an",fShop:"Showroom ou magasin",fShopY:"J'ai un showroom ou un magasin",
@@ -1065,7 +1068,7 @@ const T3 = {
   rSent:n=>`Envoyé. ${n} et EEC Moto Hub ont votre demande et répondront par email ou WhatsApp.`,rMail:"Votre application email s'ouvre avec la demande prête. Appuyez sur Envoyer.",rErr:"Indiquez votre nom et votre email."},
  zh:{aPhotos:"图片",aPhotosS:"工厂 · 展会 · 展厅",aComm:"联系",aCommS:"邮箱 · WhatsApp · 微信 · 社交媒体",aReq:"申请",aReqS:"成为代理 · 预约参观工厂",
   gFactory:"工厂",gExpo:"展会",gShow:"展厅",gEmpty:"暂无图片或视频。工厂认领资料后可上传。",gVideo:"视频",
-  gAdd:"图片或视频链接（每行一个 https:// 链接，支持 YouTube 或 .mp4）",social:"社交媒体",socialEmpty:"工厂认领资料后可添加 Facebook、Instagram、TikTok、YouTube 或 LinkedIn。",
+  gAdd:"图片或视频链接（每行一个 https:// 链接，支持 YouTube 或 .mp4）",staffT:"各市场负责人",stMarket:"市场",stName:"负责人",stContact:"联系方式",stAll:"所有市场",staffEmpty:"工厂完善资料时可填写非洲、摩洛哥、法国等各市场的负责人。",staffAdd:"每行一人：市场 | 姓名 | 职位 | 邮箱 | WhatsApp",social:"社交媒体",socialEmpty:"工厂认领资料后可添加 Facebook、Instagram、TikTok、YouTube 或 LinkedIn。",
   socialAdd:"社交媒体链接（每行一个 https:// 链接）",call:"致电",openWa:"WhatsApp 聊天",openMail:"发送邮件",foundOn:"来源",wcCopy:"复制微信号，然后在微信 → 添加朋友 中搜索",
   noContact:"尚未公开",rAgent:"成为代理",rAgentS:"在您的国家销售该工厂产品",rVisit:"预约参观工厂",rVisitS:"安排工厂参观时间",
   fName:"您的姓名",fCo:"公司",fCountry:"国家",fCity:"城市",fEmail:"邮箱",fPhone:"电话 / WhatsApp",fBrands:"目前销售的品牌",fVol:"预计年采购量",fShop:"展厅或门店",fShopY:"我有展厅或门店",
@@ -1073,7 +1076,7 @@ const T3 = {
   rSent:n=>`已发送。${n} 和 EEC Moto Hub 已收到您的申请，将通过邮件或 WhatsApp 回复。`,rMail:"邮件应用已打开并填好申请，请点击发送。",rErr:"请填写姓名和邮箱。"},
  ar:{aPhotos:"الصور",aPhotosS:"المصنع · المعرض · صالة العرض",aComm:"التواصل",aCommS:"بريد · واتساب · وي تشات · شبكات اجتماعية",aReq:"الطلبات",aReqS:"كن وكيلاً · زيارة المصنع",
   gFactory:"المصنع",gExpo:"المعرض",gShow:"صالة العرض",gEmpty:"لا توجد صور أو فيديوهات بعد. يضيفها المصنع بعد المطالبة بملفه.",gVideo:"فيديو",
-  gAdd:"روابط صور أو فيديو (رابط https:// في كل سطر، يوتيوب أو mp4.)",social:"الشبكات الاجتماعية",socialEmpty:"يضيف المصنع فيسبوك أو إنستغرام أو تيك توك أو يوتيوب أو لينكدإن بعد المطالبة بملفه.",
+  gAdd:"روابط صور أو فيديو (رابط https:// في كل سطر، يوتيوب أو mp4.)",staffT:"المسؤولون حسب السوق",stMarket:"السوق",stName:"المسؤول",stContact:"التواصل",stAll:"كل الأسواق",staffEmpty:"يضيف المصنع المسؤول عن أفريقيا والمغرب وفرنسا وأسواقه الأخرى عند إكمال ملفه.",staffAdd:"شخص في كل سطر: السوق | الاسم | المنصب | البريد | واتساب",social:"الشبكات الاجتماعية",socialEmpty:"يضيف المصنع فيسبوك أو إنستغرام أو تيك توك أو يوتيوب أو لينكدإن بعد المطالبة بملفه.",
   socialAdd:"روابط الشبكات الاجتماعية (رابط https:// في كل سطر)",call:"اتصال",openWa:"محادثة واتساب",openMail:"إرسال بريد",foundOn:"المصدر",wcCopy:"انسخ معرف وي تشات ثم أضفه في وي تشات ← إضافة جهات اتصال",
   noContact:"غير منشور بعد",rAgent:"كن وكيلاً",rAgentS:"بِع منتجات هذا المصنع في بلدك",rVisit:"احجز زيارة للمصنع",rVisitS:"حدد موعدًا في المصنع",
   fName:"اسمك",fCo:"الشركة",fCountry:"البلد",fCity:"المدينة",fEmail:"البريد",fPhone:"الهاتف / واتساب",fBrands:"العلامات التي تبيعها",fVol:"الوحدات المتوقعة سنويًا",fShop:"صالة عرض أو متجر",fShopY:"لدي صالة عرض أو متجر",
@@ -1138,11 +1141,19 @@ function openComm(){
     ${row("🟢", t("whatsapp"), f.wa, digits(f.wa).length > 6 && `https://wa.me/${digits(f.wa)}`, t("openWa"), "cm-wa")}
     ${row("💬", t("wechat"), f.wc, null, "", "cm-wc")}${f.wc ? `<p class="from" style="margin:6px 0 0">${t("wcCopy")}</p>` : ""}
     ${row("📞", t("phone"), f.phone, f.phone && `tel:${String(f.phone).replace(/[^\d+]/g, "")}`, t("call"), "cm-ph")}
+    <h3 style="font-size:18px;margin-top:16px">${t("staffT")}</h3>
+    ${f.staff.length ? `<table class="staff" style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:start">${t("stMarket")}</th><th style="text-align:start">${t("stName")}</th><th style="text-align:start">${t("stContact")}</th></tr></thead><tbody>${f.staff.map(p => `<tr style="border-top:1px solid var(--line,#ddd)"><td style="padding:6px 4px">${esc(p.market || t("stAll"))}</td><td style="padding:6px 4px">${esc(p.name || "")}${p.role ? `<div class="from" style="font-size:12px">${esc(p.role)}</div>` : ""}</td><td style="padding:6px 4px;word-break:break-all">${p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : ""}${p.wa ? `<div><a href="https://wa.me/${digits(p.wa)}" target="_blank" rel="noopener">WhatsApp ${esc(p.wa)}</a></div>` : ""}${p.wc ? `<div>WeChat ${esc(p.wc)}</div>` : ""}${p.src ? `<div class="from" style="font-size:12px"><a href="${esc(p.src)}" target="_blank" rel="noopener">${t("foundOn")} ${esc(host(p.src))}</a></div>` : ""}</td></tr>`).join("")}</tbody></table>` : ""}
+    <div class="empty-cat" style="margin-top:8px">${t("staffEmpty")}</div>
+    ${isAdmin ? `<form class="form" id="st-f"><label for="st-u">${t("staffAdd")}<textarea id="st-u" rows="4" placeholder="Morocco | Mr. Li Wei | Export Manager | li@factory.com | +86 138...">${esc(f.staff.map(p => [p.market, p.name, p.role, p.email, p.wa].map(x => x || "").join(" | ")).join("\n"))}</textarea></label><button class="btn sec" type="submit">${t("save")}</button></form>` : ""}
     <h3 style="font-size:18px;margin-top:16px">${t("social")}</h3>
     ${soc.length ? `<div class="soc">${soc.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join("")}</div>` : `<div class="empty-cat">${t("socialEmpty")}</div>`}
     ${isAdmin ? `<form class="form" id="so-f"><label for="so-u">${t("socialAdd")}<textarea id="so-u" rows="3" placeholder="https://">${esc(soc.join("\n"))}</textarea></label><button class="btn sec" type="submit">${t("save")}</button></form>` : ""}`);
   if (isAdmin) $("so-f").onsubmit = async e => { e.preventDefault(); const social = links($("so-u").value).slice(0, 12);
     await saveEdit(f.id, {social}); f.social = social; toast(t("saved")); openComm(); };
+  if (isAdmin) $("st-f").onsubmit = async e => { e.preventDefault();
+    const staff = $("st-u").value.split("\n").map(l => l.split("|").map(x => x.trim())).filter(a => a.some(Boolean)).slice(0, 30)
+      .map(([market, name, role, email, wa]) => ({market: market || null, name: name || null, role: role || null, email: email || null, wa: wa || null}));
+    await saveEdit(f.id, {staff}); f.staff = staff; toast(t("saved")); openComm(); };
 }
 
 function openRequests(kind){
