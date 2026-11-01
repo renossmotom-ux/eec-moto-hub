@@ -734,6 +734,7 @@ const eur = n => "€ " + n.toLocaleString("en-US");
 let EDITS = {};
 let PHOTOS = {};
 let HELMETS = [], HPHOTOS = {};  // from tools/fetch_helmets.py
+let CONTACTS = {};  // id -> {emails:[{v,src}], wa, wc, phone: {v,src}, web} from tools/fetch_contacts.py (public pages only)
 let LOGOS = {};  // id -> {p, from} from tools/fetch_logos.py
 let TH = {};     // photo URL -> local thumbnail, from tools/make_thumbs.py // id -> {page, products:[{u,alt}], factory:[{u,alt}]} from tools/fetch_photos.py
 let NEWS = {};   // fid -> [{id,title,body,date}]       // id -> {removed, rating, note, emails, phone, whatsapp, wechat}
@@ -760,6 +761,13 @@ function factories(includeRemoved, all){
     const e = EDITS[b.id] || {};
     const f = {...b, removed: !!e.removed, rating: e.rating || 0, note: e.note || "", tour: e.tour || b.tour || "", media: e.media || null, social: Array.isArray(e.social) ? e.social : (b.social || []),
       ph: (b.kind === "helmet" ? HPHOTOS : PHOTOS)[b.id] || null, logo: e.logo || (LOGOS[b.id] || {}).p || null, emails: Array.isArray(e.emails) ? e.emails : b.emails, phone: e.phone ?? b.phone, wa: e.whatsapp ?? b.wa, wc: e.wechat ?? b.wc};
+    const c = CONTACTS[b.id], csrc = {};
+    if (c) {
+      if (!Array.isArray(e.emails)) { const add = (c.emails || []).filter(x => !f.emails.includes(x.v)); add.forEach(x => csrc[x.v] = x.src); f.emails = f.emails.concat(add.map(x => x.v)); }
+      ["phone", "wa", "wc"].forEach(k => { if (!f[k] && c[k]) { f[k] = c[k].v; csrc[c[k].v] = c[k].src; } });
+      if (!f.web && c.web) f.web = c.web;
+    }
+    f.csrc = csrc;
     const prices = f.eec.map(x=>x.eu).filter(Boolean);
     f.from = f.kind === "helmet" ? (f.usd ? f.usd[0] : null) : prices.length ? Math.min(...prices) : null;
     const facts = f.kind === "helmet" ? [f.legal,f.city,f.since,f.emp,f.addr,f.products,f.contact] : [f.legal,f.city,f.since,f.emp,f.cap,f.markets,f.web];
@@ -938,8 +946,13 @@ function modelRows(f){
       <button class="btn" type="button" data-req="${esc(x.n)}">${t("reqPrice")}</button></div>
   </div>`).join("");
 }
+function srcNote(val){
+  const u = val && cur && cur.csrc && cur.csrc[val]; if (!u) return "";
+  let h = u; try { h = new URL(u).hostname.replace(/^www\./, ""); } catch(_) {}
+  return `<div class="from" style="font-size:12px">${t("foundOn")} <a href="${esc(u)}" target="_blank" rel="noopener">${esc(h)}</a></div>`;
+}
 function crow(label, val, copyId){
-  return `<div class="crow"><div class="k"><span class="label">${label}</span>${val ? `<div class="contact-v" id="${copyId}">${esc(val)}</div>` : `<b>${t("addedByFactory")}</b>`}</div>${val ? `<button class="copy" type="button" data-copy="${copyId}">${t("copy")}</button>` : ""}</div>`;
+  return `<div class="crow"><div class="k"><span class="label">${label}</span>${val ? `<div class="contact-v" id="${copyId}">${esc(val)}</div>${srcNote(val)}` : `<b>${t("addedByFactory")}</b>`}</div>${val ? `<button class="copy" type="button" data-copy="${copyId}">${t("copy")}</button>` : ""}</div>`;
 }
 function renderProfile(f){
   cur = f;
@@ -1037,7 +1050,7 @@ const T3 = {
  en:{aPhotos:"Photos",aPhotosS:"Factory · Expo · Showroom",aComm:"Communication",aCommS:"Email · WhatsApp · WeChat · Social",aReq:"Requests",aReqS:"Become an agent · Visit the factory",
   gFactory:"Factory",gExpo:"Expo",gShow:"Showroom",gEmpty:"No photos or videos here yet. The factory adds them after claiming its profile.",gVideo:"Video",
   gAdd:"Photo or video links (one https:// link per line, YouTube or .mp4 works)",social:"Social media",socialEmpty:"The factory adds its Facebook, Instagram, TikTok, YouTube or LinkedIn after claiming its profile.",
-  socialAdd:"Social media links (one https:// link per line)",call:"Call",openWa:"Chat on WhatsApp",openMail:"Send an email",wcCopy:"Copy the WeChat ID, then add it in WeChat → Add contacts",
+  socialAdd:"Social media links (one https:// link per line)",call:"Call",openWa:"Chat on WhatsApp",openMail:"Send an email",foundOn:"Found on",wcCopy:"Copy the WeChat ID, then add it in WeChat → Add contacts",
   noContact:"Not published yet",rAgent:"Become an agent",rAgentS:"Sell this factory's products in your country",rVisit:"Book a factory visit",rVisitS:"Plan an appointment at the factory",
   fName:"Your name",fCo:"Company",fCountry:"Country",fCity:"City",fEmail:"Email",fPhone:"Phone / WhatsApp",fBrands:"Brands you sell now",fVol:"Expected units per year",fShop:"Showroom or shop",fShopY:"I have a showroom or shop",
   fDate:"Preferred date",fPeople:"Number of visitors",fNeed:"What do you want to see?",fMsg:"Message",fSend:"Send request",
@@ -1045,7 +1058,7 @@ const T3 = {
  fr:{aPhotos:"Photos",aPhotosS:"Usine · Salon · Showroom",aComm:"Communication",aCommS:"Email · WhatsApp · WeChat · Réseaux",aReq:"Demandes",aReqS:"Devenir agent · Visiter l'usine",
   gFactory:"Usine",gExpo:"Salon",gShow:"Showroom",gEmpty:"Pas encore de photos ou vidéos ici. L'usine les ajoute après avoir réclamé son profil.",gVideo:"Vidéo",
   gAdd:"Liens photo ou vidéo (un lien https:// par ligne, YouTube ou .mp4)",social:"Réseaux sociaux",socialEmpty:"L'usine ajoute son Facebook, Instagram, TikTok, YouTube ou LinkedIn après avoir réclamé son profil.",
-  socialAdd:"Liens réseaux sociaux (un lien https:// par ligne)",call:"Appeler",openWa:"Discuter sur WhatsApp",openMail:"Envoyer un email",wcCopy:"Copiez l'ID WeChat puis ajoutez-le dans WeChat → Ajouter des contacts",
+  socialAdd:"Liens réseaux sociaux (un lien https:// par ligne)",call:"Appeler",openWa:"Discuter sur WhatsApp",openMail:"Envoyer un email",foundOn:"Trouvé sur",wcCopy:"Copiez l'ID WeChat puis ajoutez-le dans WeChat → Ajouter des contacts",
   noContact:"Pas encore publié",rAgent:"Devenir agent",rAgentS:"Vendre les produits de cette usine dans votre pays",rVisit:"Réserver une visite d'usine",rVisitS:"Planifier un rendez-vous à l'usine",
   fName:"Votre nom",fCo:"Société",fCountry:"Pays",fCity:"Ville",fEmail:"Email",fPhone:"Téléphone / WhatsApp",fBrands:"Marques que vous vendez",fVol:"Unités prévues par an",fShop:"Showroom ou magasin",fShopY:"J'ai un showroom ou un magasin",
   fDate:"Date souhaitée",fPeople:"Nombre de visiteurs",fNeed:"Que voulez-vous voir ?",fMsg:"Message",fSend:"Envoyer la demande",
@@ -1053,7 +1066,7 @@ const T3 = {
  zh:{aPhotos:"图片",aPhotosS:"工厂 · 展会 · 展厅",aComm:"联系",aCommS:"邮箱 · WhatsApp · 微信 · 社交媒体",aReq:"申请",aReqS:"成为代理 · 预约参观工厂",
   gFactory:"工厂",gExpo:"展会",gShow:"展厅",gEmpty:"暂无图片或视频。工厂认领资料后可上传。",gVideo:"视频",
   gAdd:"图片或视频链接（每行一个 https:// 链接，支持 YouTube 或 .mp4）",social:"社交媒体",socialEmpty:"工厂认领资料后可添加 Facebook、Instagram、TikTok、YouTube 或 LinkedIn。",
-  socialAdd:"社交媒体链接（每行一个 https:// 链接）",call:"致电",openWa:"WhatsApp 聊天",openMail:"发送邮件",wcCopy:"复制微信号，然后在微信 → 添加朋友 中搜索",
+  socialAdd:"社交媒体链接（每行一个 https:// 链接）",call:"致电",openWa:"WhatsApp 聊天",openMail:"发送邮件",foundOn:"来源",wcCopy:"复制微信号，然后在微信 → 添加朋友 中搜索",
   noContact:"尚未公开",rAgent:"成为代理",rAgentS:"在您的国家销售该工厂产品",rVisit:"预约参观工厂",rVisitS:"安排工厂参观时间",
   fName:"您的姓名",fCo:"公司",fCountry:"国家",fCity:"城市",fEmail:"邮箱",fPhone:"电话 / WhatsApp",fBrands:"目前销售的品牌",fVol:"预计年采购量",fShop:"展厅或门店",fShopY:"我有展厅或门店",
   fDate:"希望日期",fPeople:"参观人数",fNeed:"想参观什么？",fMsg:"留言",fSend:"提交申请",
@@ -1061,7 +1074,7 @@ const T3 = {
  ar:{aPhotos:"الصور",aPhotosS:"المصنع · المعرض · صالة العرض",aComm:"التواصل",aCommS:"بريد · واتساب · وي تشات · شبكات اجتماعية",aReq:"الطلبات",aReqS:"كن وكيلاً · زيارة المصنع",
   gFactory:"المصنع",gExpo:"المعرض",gShow:"صالة العرض",gEmpty:"لا توجد صور أو فيديوهات بعد. يضيفها المصنع بعد المطالبة بملفه.",gVideo:"فيديو",
   gAdd:"روابط صور أو فيديو (رابط https:// في كل سطر، يوتيوب أو mp4.)",social:"الشبكات الاجتماعية",socialEmpty:"يضيف المصنع فيسبوك أو إنستغرام أو تيك توك أو يوتيوب أو لينكدإن بعد المطالبة بملفه.",
-  socialAdd:"روابط الشبكات الاجتماعية (رابط https:// في كل سطر)",call:"اتصال",openWa:"محادثة واتساب",openMail:"إرسال بريد",wcCopy:"انسخ معرف وي تشات ثم أضفه في وي تشات ← إضافة جهات اتصال",
+  socialAdd:"روابط الشبكات الاجتماعية (رابط https:// في كل سطر)",call:"اتصال",openWa:"محادثة واتساب",openMail:"إرسال بريد",foundOn:"المصدر",wcCopy:"انسخ معرف وي تشات ثم أضفه في وي تشات ← إضافة جهات اتصال",
   noContact:"غير منشور بعد",rAgent:"كن وكيلاً",rAgentS:"بِع منتجات هذا المصنع في بلدك",rVisit:"احجز زيارة للمصنع",rVisitS:"حدد موعدًا في المصنع",
   fName:"اسمك",fCo:"الشركة",fCountry:"البلد",fCity:"المدينة",fEmail:"البريد",fPhone:"الهاتف / واتساب",fBrands:"العلامات التي تبيعها",fVol:"الوحدات المتوقعة سنويًا",fShop:"صالة عرض أو متجر",fShopY:"لدي صالة عرض أو متجر",
   fDate:"التاريخ المفضل",fPeople:"عدد الزوار",fNeed:"ماذا تريد أن ترى؟",fMsg:"رسالة",fSend:"إرسال الطلب",
@@ -1116,7 +1129,7 @@ function openPhotos(tab){
 
 function openComm(){
   const f = cur, digits = s => String(s || "").replace(/[^\d]/g, "");
-  const row = (icon, label, val, href, act, copyId) => `<div class="crow"><span class="ci" aria-hidden="true">${icon}</span><div class="k"><span class="label">${label}</span>${val ? `<div class="contact-v" id="${copyId}">${esc(val)}</div>` : `<b>${t("noContact")}</b>`}</div>
+  const row = (icon, label, val, href, act, copyId) => `<div class="crow"><span class="ci" aria-hidden="true">${icon}</span><div class="k"><span class="label">${label}</span>${val ? `<div class="contact-v" id="${copyId}">${esc(val)}</div>${srcNote(val)}` : `<b>${t("noContact")}</b>`}</div>
     ${val && href ? `<a class="btn" href="${esc(href)}" target="_blank" rel="noopener">${act}</a>` : ""}${val ? `<button class="copy" type="button" data-copy="${copyId}">${t("copy")}</button>` : ""}</div>`;
   const soc = f.social || [];
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch(_) { return u; } };
@@ -1570,10 +1583,10 @@ $("open-filters").onclick = () => $("filters").classList.add("open");
 $("f-done").onclick = () => $("filters").classList.remove("open");
 applyLang();
 (async () => {
-  const [b, p, th, lg, hb, hp, xp] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+  const [b, p, th, lg, hb, hp, xp, ct] = await Promise.all([fetch("data/factories.json").then(r => r.json()).catch(() => []), fetch("data/photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/thumbs.json").then(r => r.ok ? r.json() : {}).catch(() => ({})), fetch("data/logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
     fetch("data/helmets.json").then(r => r.ok ? r.json() : []).catch(() => []), fetch("data/helmet_photos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-    fetch("data/expos.json").then(r => r.ok ? r.json() : []).catch(() => [])]);
-  BASE = b; PHOTOS = p; TH = th; LOGOS = lg; HELMETS = hb; HPHOTOS = hp; EXPOS = xp;
+    fetch("data/expos.json").then(r => r.ok ? r.json() : []).catch(() => []), fetch("data/contacts.json").then(r => r.ok ? r.json() : {}).catch(() => ({}))]);
+  BASE = b; PHOTOS = p; TH = th; LOGOS = lg; HELMETS = hb; HPHOTOS = hp; EXPOS = xp; CONTACTS = ct || {};
   try { await loadServer(); } catch(err){ toast(t("loadErr") + " " + err.message); }
   await loadBuyer();
   render();
