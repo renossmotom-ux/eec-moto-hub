@@ -67,7 +67,7 @@ def get(url, kind="page"):
             if "made-in-china" not in host: DEAD.add(host)  # don't keep knocking on a site that refused us
             return None
         ctype = r.headers.get("content-type", "html")
-        if r.status_code == 200 and ("html" in ctype or "text" in ctype or url.endswith(".md")):
+        if r.status_code == 200 and ("html" in ctype or "text" in ctype or "json" in ctype or url.endswith(".md")):
             if re.search(r"slide to verify|captcha", r.text[:30000], re.I) and len(r.text) < 40000:
                 BLOCKED.add(url); print("  captcha", url, file=sys.stderr); return None
             if DEBUG:
@@ -199,6 +199,34 @@ def email_ok(e, src, web):
     # other domains: accept only when found on the company's own website (not a directory page)
     return bool(web) and urlparse(web).netloc.split(".")[-2:] == srch.split(".")[-2:]
 
+# ---------- NHTSA vPIC: public US filings by foreign vehicle makers (company head + contact) ----------
+STOP = set("co ltd company limited corp corporation inc industry industrial industries technology tech motorcycle motorcycles motor motors vehicle vehicles "
+           "group manufacture manufacturing mfg trading trade import export imp exp development science sci power the and of new energy electric "
+           "zhejiang guangdong jiangsu fujian shandong chongqing shanghai hebei henan anhui hunan hubei jiangxi tianjin beijing sichuan city china "
+           "taizhou jinhua wuxi yongkang hangzhou guangzhou jiangmen foshan wenzhou ningbo".split())
+def core(n): return [w for w in re.findall(r"[a-z0-9]+", (n or "").lower()) if w not in STOP and len(w) > 1]
+_nhtsa = {}
+def nhtsa(r):
+    words = core(r.get("legal")) or core(r.get("name"))
+    if not words: return []
+    q = max(words, key=len)
+    if len(q) < 4: return []
+    with LOCK: cached = _nhtsa.get(q)
+    if cached is None:
+        h = get(f"https://vpic.nhtsa.dot.gov/api/vehicles/GetManufacturerDetails/{q}?format=json", "nhtsa")
+        try: cached = json.loads(h)["Results"] if h else []
+        except Exception: cached = []
+        with LOCK: _nhtsa[q] = cached
+        if DEBUG and cached: print("  nhtsa keys", sorted(cached[0].keys()), file=sys.stderr)
+    out, want = [], set(words)
+    for m in cached:
+        g = {k.lower(): v for k, v in m.items()}
+        if "china" not in str(g.get("country", "")).lower(): continue
+        got = set(core(g.get("mfr_name")))
+        if not got or len(want & got) / len(want | got) < 0.6: continue
+        out.append(g)
+    return out
+
 # ---------- per company ----------
 def showroom_of(r):
     for u in [r.get("contact"), r.get("via")] + (r.get("src") or []):
@@ -250,6 +278,16 @@ def scan(r):
             else:
                 f = visit(u, False, "directory", follow=False)
                 if f and f["web"] and not res["web"]: res["web"] = f["web"]
+    for g in nhtsa(r)[:2]:
+        src = f"https://vpic.nhtsa.dot.gov/decoder/Manufacturer/Details/{g.get('mfr_id')}"
+        pn = " ".join(x for x in (g.get("principalfirstname"), g.get("principallastname")) if x)
+        if pn and not any(p.get("name") == pn for p in res["staff"]):
+            res["staff"].append({"name": pn.title(), "role": (g.get("principalposition") or "Company head").title(), "src": src})
+        em, toks = (g.get("contactemail") or "").strip().lower(), core(r.get("legal")) + core(r.get("name"))
+        if EMAIL.fullmatch(em) and any(t in em.split("@")[1] for t in toks if len(t) > 3) and em not in [x["v"] for x in res["emails"]]:
+            res["emails"].append({"v": em, "src": src})
+        ph = re.sub(r"\D", "", g.get("contactphone") or "")
+        if ph.startswith("86") and not res["phone"]: res["phone"] = {"v": "+" + ph, "src": src}
     if res["web"]:
         visit(res["web"], True, "official")
         w = res["web"].rstrip("/")
