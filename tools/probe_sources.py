@@ -5,11 +5,7 @@ from urllib.robotparser import RobotFileParser
 from bs4 import BeautifulSoup
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 H = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"}
-URLS = [
-  "https://catalogo.eicma.it/?culture=en-US", "https://catalogo.eicma.it/en-US/Exhibitors", "https://catalogo.eicma.it/en-US/espositori",
-  "https://catalogo.eicma.it/en-US/Search?country=China", "https://catalogo.eicma.it/robots.txt",
-  "https://www.eicma.it/sitemap_index.xml", "https://espositori.eicma.it/",
-]
+URLS = ["https://catalogo.eicma.it/Espositore", "https://catalogo.eicma.it/Espositore?culture=en-US&nazione=CINA", "https://catalogo.eicma.it/Espositore?page=2"]
 out = open(sys.argv[1] if len(sys.argv) > 1 else "debug/probe.txt", "w")
 for u in URLS:
     base = re.match(r"https?://[^/]+", u).group(0)
@@ -30,3 +26,12 @@ for u in URLS:
     out.write(f"\n\n===== {u}\nallowed={ok} status={st} len={len(body)}\n--- robots\n{robots}\n--- links\n" + "\n".join(links) +
               "\n--- text\n" + re.sub(r"\s+", " ", s.get_text(" "))[:5000] + "\n--- scripts\n" + "\n".join(re.findall(r"https?://[^\"' ]+(?:api|json|exhib)[^\"' ]*", body)[:20]))
     print(u, ok, st, len(body))
+    if u.endswith("/Espositore"):
+        out.write("\n--- forms\n" + "\n".join(str(f)[:1500] for f in BeautifulSoup(body, "html.parser").find_all(["form", "select"]))[:6000])
+        det = [a["href"] for a in BeautifulSoup(body, "html.parser").find_all("a", href=True) if re.search(r"Espositore/|Dettaglio|scheda", a["href"], re.I)]
+        out.write("\n--- detail links\n" + "\n".join(det[:60]))
+        for d in det[:3]:
+            d = d if d.startswith("http") else "https://catalogo.eicma.it" + ("" if d.startswith("/") else "/") + d
+            r2 = requests.get(d, headers=H, timeout=25); s2 = BeautifulSoup(r2.text, "html.parser")
+            for x in s2(["script", "style"]): x.decompose()
+            out.write(f"\n\n===== DETAIL {d} {r2.status_code}\n" + re.sub(r"\s+", " ", s2.get_text(" "))[:3000])
