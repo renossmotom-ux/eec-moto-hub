@@ -211,11 +211,9 @@ def email_ok(e, src, web, toks=()):
     srch = urlparse(src).netloc
     if web and d.split(".")[-2:] == urlparse(web).netloc.split(".")[-2:]: return True
     if FREEMAIL.search(e): return True
-    # other domains: only on the company's own website, and only when the domain carries the company's or site's name
-    # (drops web-designer / agency addresses printed in footers)
-    if not (web and urlparse(web).netloc.split(".")[-2:] == srch.split(".")[-2:]): return False
-    names = [t for t in list(toks) + core(urlparse(web).netloc.split(".")[-2]) if len(t) > 3]
-    return any(t in d or d.split(".")[0] in t for t in names)
+    # other domains (a group or brand domain): only on the company's own website, never a web-agency footer address
+    if re.search(r"^(?:webside|webmaster|web|seo|design|hostmaster)@|aankhan|qqqqq|\b(?:seo|webdesign|website|jianzhan|ceshi)", e, re.I): return False
+    return bool(web) and urlparse(web).netloc.split(".")[-2:] == srch.split(".")[-2:]
 
 # ---------- NHTSA vPIC: public US filings by foreign vehicle makers (company head + contact) ----------
 STOP = set("co ltd company limited corp corporation inc industry industrial industries technology tech motorcycle motorcycles motor motors vehicle vehicles "
