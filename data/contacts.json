@@ -3193,6 +3193,18 @@
    }
   ]
  },
+ "s-disiyuan-ebike-factory": {
+  "emails": [
+   {
+    "src": "https://www.disiyuan.com/pages/contact",
+    "v": "jack@disiyuan.com"
+   }
+  ],
+  "wc": {
+   "src": "https://www.disiyuan.com",
+   "v": "+8615113813917"
+  }
+ },
  "s-p-v": {
   "staff": [
    {
@@ -3201,6 +3213,34 @@
     "src": "https://spvmotor15.en.made-in-china.com/contact-info.html"
    }
   ]
+ },
+ "s-shenzhen-rooder-technology-co-ltd": {
+  "emails": [
+   {
+    "src": "https://www.roodergroup.com/pages/contact",
+    "v": "rooder@roodergroup.com"
+   }
+  ],
+  "wa": {
+   "src": "https://www.roodergroup.com/pages/contact",
+   "v": "+8613632905138"
+  }
+ },
+ "s-wuxi-zhongfa-electric-bike": {
+  "emails": [
+   {
+    "src": "https://www.zhongfaev.com",
+    "v": "zhongfanewenergy@outlook.com"
+   }
+  ],
+  "phone": {
+   "src": "https://www.zhongfaev.com",
+   "v": "92 310 987 3333"
+  },
+  "wa": {
+   "src": "https://www.zhongfaev.com",
+   "v": "+923705243373"
+  }
  },
  "sachs-bikes": {
   "staff": [
